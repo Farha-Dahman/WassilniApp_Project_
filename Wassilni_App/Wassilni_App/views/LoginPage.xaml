@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             NavigationPage.HasNavigationBar="false"
+             x:Class="Wassilni_App.views.LoginPage">
+    <ContentPage.Content>
+        <StackLayout>
+
+            <Label Text="Welcome to Log in page"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand"
+                   FontFamily="Roboto-Black"
+                   FontSize="Small"/>
+
+
+            <Button  x:Name="ForgetPass" VerticalOptions="Center" Text="Forget Passwrod" Clicked="GoToForgetPassPage"/>
+            <Button x:Name="Login" VerticalOptions="Center" Text="Log In" Clicked="GoToTheHomePage"/>
+            <Button x:Name="Signup" VerticalOptions="Center" Text="Sign Up" Clicked="GoToTheSignupPage"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

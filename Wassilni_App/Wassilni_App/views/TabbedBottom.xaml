@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:views="clr-namespace:Wassilni_App.views"
+            xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            mc:Ignorable="d"
+            xmlns:andriod="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            andriod:TabbedPage.ToolbarPlacement="Bottom"
+            x:Class="Wassilni_App.views.TabbedBottom"
+            SelectedTabColor="{StaticResource colorPrimary}"
+            UnselectedTabColor="Black"
+            NavigationPage.HasNavigationBar="False">
+  <!--Pages can be added as references or inline-->
+
+    <views:HomePage Title="Home" IconImageSource="Home.png" />
+    <views:MyTripsPage Title="MyTrips" IconImageSource="Car.png"/>
+    <views:RequestsPage Title="Requests" IconImageSource="Request.ong"/>
+    <views:ProfilePage Title="Profile" IconImageSource="Profile.png" />
+ 
+</TabbedPage>

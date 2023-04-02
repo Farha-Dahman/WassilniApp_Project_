@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="Wassilni_App.views.HomePage">
+    <ContentPage.Content>
+        <StackLayout>
+            
+            <Label Text="Welcome to Home page"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+
+            <Button x:Name="CreatePool"  VerticalOptions="Center" Text="Create Pool" Clicked="GoToCreatePoolPage"/>
+            <Button x:Name="FindPool" VerticalOptions="Center" Text="Find Pool"   Clicked="GoToFindPoolPage"/>
+            
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

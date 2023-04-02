@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Wassilni_App.App">
+    <Application.Resources>
+        <ResourceDictionary>
+
+
+            <Color x:Key="colorPrimary">#5E7FFF</Color>
+            <Color x:Key="colorSecondary">#879DF2</Color>
+            <Color x:Key="colorDrop">#FF4E4E</Color>
+            <Color x:Key="colorInput">#5F5D60</Color>
+            <Color x:Key="colorText">#FFFFFF</Color>
+            
+
+
+            <Style x:Name="NormalBtn" TargetType="Button">
+                <Setter Property="TextColor" Value="White"></Setter>
+                <Setter Property="FontSize" Value="20"></Setter>
+                <Setter Property="FontAttributes" Value="Bold"></Setter>
+                <Setter Property="BackgroundColor" Value="{StaticResource colorPrimary}" />
+                <Setter Property="HeightRequest" Value="50"></Setter>
+                <Setter Property="WidthRequest" Value="326"></Setter>
+                <Setter Property="CornerRadius" Value="10"></Setter>
+                <Setter Property="Margin" Value="7"></Setter>
+                <Setter Property="FontFamily" Value="Roboto-Bold"></Setter>
+                <Setter Property="TextTransform" Value="None"></Setter>
+            </Style>
+
+
+            <Style x:Name="CstumEntry" TargetType="Entry">
+                <Setter Property="TextColor" Value="Gray"></Setter>
+                <Setter Property="FontSize" Value="20"></Setter>
+                <Setter Property="FontAttributes" Value="None"></Setter>
+                <Setter Property="Keyboard" Value="Email"></Setter>
+                <Setter Property="CursorPosition" Value="15"></Setter>
+            </Style>
+
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource colorPrimary}"></Setter>
+                <Setter Property="BarTextColor" Value="{StaticResource colorText}"></Setter>
+            </Style>
+
+            <x:String x:Key="Home">&#xe3af;</x:String>
+            <x:String x:Key="Car">&#xf5de;</x:String>
+            <x:String x:Key="Request">&#xf1d8;</x:String>
+            <x:String x:Key="Profile">&#xf007;</x:String>
+            <x:String x:Key="Email">&#xf0e0;</x:String>
+            <x:String x:Key="Login">&#xf2f6;</x:String>
+            <x:String x:Key="LockPassword">&#xf023;</x:String>
+            <x:String x:Key="UnLockPassword">&#xff13e;</x:String>
+            <x:String x:Key="Time">&#xf017;</x:String>
+            <x:String x:Key="Date">&#xf073;</x:String>
+            <x:String x:Key="Money">&#x24;</x:String>
+            <x:String x:Key="MoneyBill">&#xf0d6;</x:String>
+            <x:String x:Key="LocationTo">&#xf111;</x:String>
+            <x:String x:Key="LocationFrom">&#xf3c5;</x:String>
+            <x:String x:Key="Plus">&#x2b;</x:String>
+            <x:String x:Key="Minas">&#xf068;</x:String>
+            <x:String x:Key="MoneyShekel">&#xf20b;</x:String>
+            <x:String x:Key="EditPhoto">&#xf303;</x:String>
+            <x:String x:Key="Edit">&#xf044;</x:String>
+            <x:String x:Key="arrow-right">&#xf054;</x:String>
+            <x:String x:Key="arrow-down">&#xf107;</x:String>
+            <x:String x:Key="arrow-up">&#xf106;</x:String>
+            <x:String x:Key="arrow-down-long">&#xf063;</x:String>
+            <x:String x:Key="Birthday">&#xf1fd;</x:String>
+            <x:String x:Key="Phone">&#xf095;</x:String>
+            <x:String x:Key="Notification">&#xf0f3;</x:String>
+            <x:String x:Key="eye">&#xf06e;</x:String>
+            <x:String x:Key="xMark">&#xf00d;</x:String>
+            <x:String x:Key="Gender">&#xf224;</x:String>
+            <x:String x:Key="bus">&#xf207;</x:String>
+            <x:String x:Key="Google">&#xf1a0;</x:String>
+            
+          
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
