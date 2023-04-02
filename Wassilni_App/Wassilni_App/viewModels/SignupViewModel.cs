@@ -343,7 +343,7 @@ namespace Wassilni_App.viewModels
 
                 await firebaseClient.Child("User").Child(authResult.User.LocalId).PutAsync(newUser);
 
-             //   await PopupNavigation.Instance.PushAsync(new PopUpSignUp());
+                await PopupNavigation.Instance.PushAsync(new PopUpSignUp());
             }
             catch 
             {
