@@ -45,7 +45,7 @@
                         </Grid>
                     </StackLayout>
 
-                    <Button x:Name="btnLogin" Text="Log in With Google" BorderColor="#2196F3" BorderWidth="1.5" BackgroundColor="Transparent" TextColor="Black" Margin="20" HorizontalOptions="FillAndExpand"/>
+                    <Button x:Name="btnLogin" Text="Log in With Google" Clicked="btnLogin_Clicked" BorderColor="#2196F3" BorderWidth="1.5" BackgroundColor="Transparent" TextColor="Black" Margin="20" HorizontalOptions="FillAndExpand"/>
 
                     <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
                         <Label Text="Don't have an account ?" TextColor="DarkGray" FontSize="Small" FontFamily="Roboto-Black.ttf" />
