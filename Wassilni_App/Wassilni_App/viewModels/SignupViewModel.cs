@@ -311,10 +311,13 @@ namespace Wassilni_App.viewModels
                 && ValidateLastName()
                 && ValidatePhoneNumber()
                 && ValidateEmail()
-                && ValidatePassword()
-                && ValidateConfirmPassword()
                 && ValidateBirthdate()
-                && ValidateGender();
+                && ValidateGender()
+                && ValidatePassword()
+
+
+
+        ;
         }
 
 
@@ -345,7 +348,7 @@ namespace Wassilni_App.viewModels
 
                 await PopupNavigation.Instance.PushAsync(new PopUpSignUp());
             }
-            catch 
+            catch (Exception ex)
             {
                 EmailErrorMessage = "Account Already Exist With This Email";
 

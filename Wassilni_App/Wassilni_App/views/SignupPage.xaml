@@ -93,14 +93,18 @@
                     <Label Text="{Binding GendersErrorMessage}" TextColor="Red" />
                 </StackLayout>
 
-                <Frame Margin="0,0,0,0"  Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="10" HeightRequest="54">
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="{StaticResource LockPassword}" FontFamily="FAS" HorizontalOptions="FillAndExpand" Margin="17,17,0,0" FontSize="20"></Label>
-                        <Entry  Placeholder="Password" IsPassword="True"  HorizontalOptions="FillAndExpand" Margin="0,0,120,0" FontSize="Medium" Text="{Binding Password}" WidthRequest="100" />
-                        <Frame >
-                            <Label Text="{StaticResource eye}" FontFamily="FAS" HorizontalOptions="FillAndExpand" Margin="0,0,0,0" FontSize="Small"></Label>
-                        </Frame>
-                    </StackLayout>
+                <Frame Margin="0,0,0,0" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="10" HeightRequest="54">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="{StaticResource LockPassword}" FontFamily="FAS" HorizontalOptions="FillAndExpand" Margin="17,17,0,0" FontSize="20"></Label>
+                        <Entry x:Name="PasswordEntry" IsPassword="True" Placeholder="Password" HorizontalOptions="FillAndExpand" Margin="0,0,120,0" FontSize="Medium" Text="{Binding Password}" WidthRequest="100" />
+                        <Frame>
+                            <Label x:Name="EyeIcon" Text="{StaticResource eye}" FontFamily="FAS" HorizontalOptions="FillAndExpand" Margin="0,0,0,0" FontSize="Small">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnEyeIconTapped"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Frame>
+                </StackLayout>
                 </Frame>
                 <Label Text="{Binding PasswordErrorMessage}" TextColor="Red"/>
 

@@ -47,6 +47,22 @@ namespace Wassilni_App.views
             string phonePrefix = countryPhonePrefixes[selectedCountry];
             phoneCodeLabel.Text = phonePrefix;
         }
+        private bool isPasswordVisible;
 
+        private void OnEyeIconTapped(object sender, EventArgs e)
+        {
+            isPasswordVisible = !isPasswordVisible;
+            PasswordEntry.IsPassword = !isPasswordVisible;
+
+            // Update the eye icon
+            if (isPasswordVisible)
+            {
+                EyeIcon.Text = "\xf070"; // Replace with the closed eye icon resource
+            }
+            else
+            {
+                EyeIcon.Text = "\xf06e"; // Replace with the open eye icon resource
+            }
+        }
     }
 }
