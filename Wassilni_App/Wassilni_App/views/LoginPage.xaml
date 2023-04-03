@@ -1,21 +1,59 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             NavigationPage.HasNavigationBar="false"
-             x:Class="Wassilni_App.views.LoginPage">
+             x:Class="Wassilni_App.views.LoginPage"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout BackgroundColor="White">
+            <StackLayout Padding="0" Margin="0,10,0,0" HorizontalOptions="FillAndExpand">
+                <Image Source="Logo.jpg" Aspect="AspectFit" Margin="0" HeightRequest="200" WidthRequest="500"/>
 
-            <Label Text="Welcome to Log in page"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand"
-                   FontFamily="Roboto-Black"
-                   FontSize="Small"/>
+                <StackLayout>
+                    <Label Text="LOG IN" TextColor="Black" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Title" Padding="20"/>
 
+                    <Frame Margin="0,20,0,0"  Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="10">
+                        <StackLayout Orientation="Horizontal">
+                            <Frame >
+                                <Label Text="{StaticResource Email}" FontFamily="FAS" FontSize="Large"></Label>
+                            </Frame>
+                            <Entry Placeholder="Email*" TextColor="Black" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0" Text="{Binding Email}"/>
 
-            <Button  x:Name="ForgetPass" VerticalOptions="Center" Text="Forget Passwrod" Clicked="GoToForgetPassPage"/>
-            <Button x:Name="Login" VerticalOptions="Center" Text="Log In" Clicked="GoToTheHomePage"/>
-            <Button x:Name="Signup" VerticalOptions="Center" Text="Sign Up" Clicked="GoToTheSignupPage"/>
+                        </StackLayout>
+                    </Frame>
+                    <Label Text="{Binding EmailErrorMessage}" TextColor="Red"  />
+                    <Frame Margin="0,20,0,0" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="10">
+                        <StackLayout Orientation="Horizontal">
+                            <Frame >
+                                <Label Text="{StaticResource LockPassword}" FontFamily="FAS" FontSize="Large"></Label>
+                            </Frame>
+                            <Entry Placeholder="Password*" IsPassword="True" TextColor="Black" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0" Text="{Binding Password}"/>
+
+                        </StackLayout>
+                    </Frame>
+                    <Label Text="{Binding PasswordErrorMessage}" TextColor="Red"  />
+                    <StackLayout  Orientation="Horizontal">
+                        <Button BackgroundColor="Transparent" Text="Forgot Password ?" TextColor="Black" FontAttributes="Bold" HorizontalOptions="EndAndExpand" FontSize="Small" x:Name="ForgetPass" Clicked="GoToForgetPassPage" WidthRequest="150"/>
+                    </StackLayout>
+
+                    <Button x:Name="Login" VerticalOptions="Center" Text="Login" Command="{Binding SignInCommand}" />
+                    <StackLayout Margin="0,15,0,0" Padding="0">
+                        <Grid>
+                            <BoxView BackgroundColor="DarkGray" HeightRequest="1" WidthRequest="350"  HorizontalOptions="Center" VerticalOptions="Center"/>
+                            <Frame BackgroundColor="White" HeightRequest="65" WidthRequest="65" CornerRadius="65" HasShadow="False" BorderColor="DarkGray" Margin="0" HorizontalOptions="Center" Padding="0">
+                                <Label Text="OR" TextColor="DarkGray" FontSize="Small" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                            </Frame>
+                        </Grid>
+                    </StackLayout>
+
+                    <Button x:Name="btnLogin" Text="Log in With Google" BorderColor="#2196F3" BorderWidth="1.5" BackgroundColor="Transparent" TextColor="Black" Margin="20" HorizontalOptions="FillAndExpand"/>
+
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                        <Label Text="Don't have an account ?" TextColor="DarkGray" FontSize="Small" FontFamily="Roboto-Black.ttf" />
+                        <Button x:Name="Signup" Text="Sign Up" BackgroundColor="Transparent" TextColor="Black" Margin="0" Padding="0" Clicked="GoToTheSignupPage" WidthRequest="80" HeightRequest="20" FontSize="Small" />
+                    </StackLayout>
+
+                </StackLayout>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
