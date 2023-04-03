@@ -9,7 +9,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Wassilni_App.views
-{
+{ 
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ResetPasswordPopUp : Rg.Plugins.Popup.Pages.PopupPage
     {

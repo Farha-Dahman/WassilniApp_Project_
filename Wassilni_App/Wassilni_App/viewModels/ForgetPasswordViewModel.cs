@@ -14,7 +14,7 @@ using Xamarin.Forms;
 namespace Wassilni_App.viewModels
 {
 
-    public class ForgetPasswordViewModel : BaseViewModel
+    public class ForgetPasswordViewModel : BaseViewModel  
     {
 
         FirebaseClient firebaseClient = new Firebase.Database.FirebaseClient("https://wassilni-app-default-rtdb.firebaseio.com/");
