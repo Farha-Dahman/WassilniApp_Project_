@@ -14,6 +14,7 @@ namespace Wassilni_App.Droid
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            Rg.Plugins.Popup.Popup.Init(this);
             base.OnCreate(savedInstanceState);
             Rg.Plugins.Popup.Popup.Init(this);
 

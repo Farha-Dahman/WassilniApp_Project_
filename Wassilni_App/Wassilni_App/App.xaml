@@ -72,8 +72,8 @@
             <x:String x:Key="Gender">&#xf224;</x:String>
             <x:String x:Key="bus">&#xf207;</x:String>
             <x:String x:Key="Google">&#xf1a0;</x:String>
+            <x:String x:Key="close-eye">&#xf070;</x:String>
             
-          
 
         </ResourceDictionary>
     </Application.Resources>
