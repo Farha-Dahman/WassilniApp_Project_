@@ -28,13 +28,7 @@
             </Style>
 
 
-            <Style x:Name="CstumEntry" TargetType="Entry">
-                <Setter Property="TextColor" Value="Gray"></Setter>
-                <Setter Property="FontSize" Value="20"></Setter>
-                <Setter Property="FontAttributes" Value="None"></Setter>
-                <Setter Property="Keyboard" Value="Email"></Setter>
-                <Setter Property="CursorPosition" Value="15"></Setter>
-            </Style>
+           
 
             <Style TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="{StaticResource colorPrimary}"></Setter>
@@ -72,8 +66,8 @@
             <x:String x:Key="Gender">&#xf224;</x:String>
             <x:String x:Key="bus">&#xf207;</x:String>
             <x:String x:Key="Google">&#xf1a0;</x:String>
+            <x:String x:Key="close-eye">&#xf070;</x:String>
             
-          
 
         </ResourceDictionary>
     </Application.Resources>

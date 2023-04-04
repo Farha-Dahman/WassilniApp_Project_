@@ -14,6 +14,7 @@ namespace Wassilni_App.Droid
 
         protected override void OnCreate(Bundle savedInstanceState) 
         {
+            Rg.Plugins.Popup.Popup.Init(this);
             base.OnCreate(savedInstanceState);
             Rg.Plugins.Popup.Popup.Init(this);
 
@@ -28,7 +29,6 @@ namespace Wassilni_App.Droid
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
-        [Obsolete]
         public override void OnBackPressed()
         {
             Rg.Plugins.Popup.Popup.SendBackPressed(base.OnBackPressed);
