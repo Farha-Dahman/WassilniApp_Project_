@@ -60,7 +60,7 @@ namespace Wassilni_App.views
 
         async private void GoToTheHomePage(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new TabbedBottom()));
+            await Navigation.PushModalAsync(new TabbedBottom());
         }
 
         async private void GoToTheSignupPage(object sender, EventArgs e)
