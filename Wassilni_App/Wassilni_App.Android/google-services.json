@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "443330997132",
+    "firebase_url": "https://wassilni-app-default-rtdb.firebaseio.com",
+    "project_id": "wassilni-app",
+    "storage_bucket": "wassilni-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:443330997132:android:907fb93daad9399ab244a9",
+        "android_client_info": {
+          "package_name": "com.companyname.wassilni_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "443330997132-o3558uf8jki775028d77sd84a6qub8eu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.companyname.wassilni_app",
+            "certificate_hash": "6083df2acaa0ec4428464699320ebd51ba3b933b"
+          }
+        },
+        {
+          "client_id": "443330997132-et5887tkcs83uve84n0ai3jih9ujeh1r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjSByMBEWLWvtHZZihrVixIaZ7tJt_Mw4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "443330997132-dlgs10v9no955tdkiadsth4c4p47fjk0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
