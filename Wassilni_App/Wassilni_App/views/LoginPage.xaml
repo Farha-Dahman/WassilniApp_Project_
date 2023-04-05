@@ -1,21 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             NavigationPage.HasNavigationBar="false"
-             x:Class="Wassilni_App.views.LoginPage">
+             xmlns:views="clr-namespace:Wassilni_App.views" xmlns:viewmodels="clr-namespace:Wassilni_App.viewModels" x:DataType="viewmodels:LoginViewModel"
+             x:Class="Wassilni_App.views.LoginPage"
+             NavigationPage.HasNavigationBar="False"  BackgroundColor="White">
     <ContentPage.Content>
-        <StackLayout>
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Image Grid.Row="0" Source="LogoImage.png" Aspect="AspectFit" Margin="0" HeightRequest="250" WidthRequest="300" HorizontalOptions="Center"/>
+            <StackLayout Grid.Row="1" Padding="10" Spacing="2" VerticalOptions="Center">
+                    <Label Text="LOG IN" TextColor="#333333" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="30" Margin="0,0,0,11"/>
+                    <Frame Margin="0,3,0,0" Padding="2" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BorderColor="Gray">
+                        <StackLayout Orientation="Horizontal">
+                        <Label Text="{StaticResource Email}" FontFamily="FAS"  FontSize="24" TextColor="{StaticResource colorPrimary}" Margin="9,10,0,0"/>
+                        <Entry x:Name="Email" Placeholder="Email*" TextColor="#333333" FontSize="18" HorizontalOptions="FillAndExpand" Margin="10,0,0,0" Text="{Binding Email}" />
+                        </StackLayout>
+                    </Frame>
+                    <Label Text="{Binding EmailErrorMessage}" TextColor="Red" />
+                    <Frame Margin="0,3,0,0" Padding="2" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BorderColor="Gray">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{StaticResource LockPassword}" FontFamily="FAS" FontSize="24" TextColor="{StaticResource colorPrimary}" Margin="9,10,0,0"/>
+                            <Entry Placeholder="Password*" IsPassword="True" TextColor="#333333" FontSize="18"  HorizontalOptions="FillAndExpand" Margin="10,0,0,0" Text="{Binding Password}" />
+                        </StackLayout>
+                    </Frame>
+                    <Label Text="{Binding PasswordErrorMessage}" TextColor="Red" />
+                <Button BackgroundColor="Transparent" Text="Forgot Password?" HorizontalOptions="End" Margin="195,-20,0,15" TextColor="#333333" FontAttributes="Bold" FontSize="16" x:Name="ForgetPass" />
+                    <Button x:Name="Login" Text="Login" Command="{Binding SignInCommand}" FontSize="22" Clicked="GoToTheHomePage"/>
+                    <Grid Margin="0,15,0,5">
+                        <BoxView BackgroundColor="DarkGray" HeightRequest="1" WidthRequest="350" HorizontalOptions="Center" VerticalOptions="Center" />
+                        <Frame BackgroundColor="#F7F7F7" HeightRequest="40" WidthRequest="45" CornerRadius="25" HasShadow="False" BorderColor="DarkGray" Margin="0" HorizontalOptions="Center" Padding="0">
+                            <Label Text="OR" TextColor="DarkGray" FontSize="Small" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />
+                        </Frame>
+                    </Grid>
 
-            <Label Text="Welcome to Log in page"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand"
-                   FontFamily="Roboto-Black"
-                   FontSize="Small"/>
+                    <Button x:Name="btnLogin" Text="Log in With Google" ImageSource="Googleimages.png" HorizontalOptions="FillAndExpand" HeightRequest="50" WidthRequest="20"  BorderColor="{StaticResource colorPrimary}"  BorderWidth="1.5" BackgroundColor="Transparent" TextColor="#333333" Margin="60,20,60,20"  CornerRadius="10" FontSize="18" />
 
-
-            <Button  x:Name="ForgetPass" VerticalOptions="Center" Text="Forget Passwrod" Clicked="GoToForgetPassPage"/>
-            <Button x:Name="Login" VerticalOptions="Center" Text="Log In" Clicked="GoToTheHomePage"/>
-            <Button x:Name="Signup" VerticalOptions="Center" Text="Sign Up" Clicked="GoToTheSignupPage"/>
-        </StackLayout>
+                    
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                        <Label Text="Don't have an account ?" TextColor="DarkGray" FontSize="16" FontFamily="Roboto-Black.ttf" />
+                        <Button x:Name="Signup" Text="Sign Up" BackgroundColor="Transparent" TextColor="#333333" Margin="0" Padding="0" Clicked="GoToTheSignupPage" WidthRequest="80" HeightRequest="20" FontSize="16" />
+                    </StackLayout>
+                </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
