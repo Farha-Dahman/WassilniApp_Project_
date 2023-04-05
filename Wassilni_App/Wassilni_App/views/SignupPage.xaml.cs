@@ -25,12 +25,10 @@ namespace Wassilni_App.views
         async private void OnLoginButtonClicked(object sender, EventArgs e)
         {
             await Navigation.PushModalAsync(new LoginPage());
-            //await Navigation.PushModalAsync(new NavigationPage(new VerificationCodePage()));
         }
         async private void OnSubmitButtonClicked(object sender, EventArgs e)
         {
             await Navigation.PushModalAsync(new LoginPage());
-            //await Navigation.PushModalAsync(new NavigationPage(new VerificationCodePage()));
         }
         Dictionary<string, string> countryPhonePrefixes = new Dictionary<string, string>
         {

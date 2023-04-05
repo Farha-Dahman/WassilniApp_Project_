@@ -27,8 +27,8 @@
                         </StackLayout>
                     </Frame>
                     <Label Text="{Binding PasswordErrorMessage}" TextColor="Red" />
-                <Button BackgroundColor="Transparent" Text="Forgot Password?" HorizontalOptions="End" Margin="195,-20,0,15" TextColor="#333333" FontAttributes="Bold" FontSize="16" x:Name="ForgetPass" />
-                    <Button x:Name="Login" Text="Login" Command="{Binding SignInCommand}" FontSize="22" Clicked="GoToTheHomePage"/>
+                <Button BackgroundColor="Transparent" Text="Forgot Password?" Clicked="ForgetPass_Clicked" HorizontalOptions="End" Margin="195,-20,0,15" TextColor="#333333" FontAttributes="Bold" FontSize="16" x:Name="ForgetPass" />
+                    <Button x:Name="Login" Text="Login" Command="{Binding SignInCommand}" FontSize="22"/>
                     <Grid Margin="0,15,0,5">
                         <BoxView BackgroundColor="DarkGray" HeightRequest="1" WidthRequest="350" HorizontalOptions="Center" VerticalOptions="Center" />
                         <Frame BackgroundColor="#F7F7F7" HeightRequest="40" WidthRequest="45" CornerRadius="25" HasShadow="False" BorderColor="DarkGray" Margin="0" HorizontalOptions="Center" Padding="0">
@@ -36,7 +36,7 @@
                         </Frame>
                     </Grid>
 
-                    <Button x:Name="btnLogin" Text="Log in With Google" ImageSource="Googleimages.png" HorizontalOptions="FillAndExpand" HeightRequest="50" WidthRequest="20"  BorderColor="{StaticResource colorPrimary}"  BorderWidth="1.5" BackgroundColor="Transparent" TextColor="#333333" Margin="60,20,60,20"  CornerRadius="10" FontSize="18" />
+                <Button x:Name="btnLogin" Text="Log in With Google" Clicked="btnLogin_Clicked" ImageSource="Googleimages.png" HorizontalOptions="FillAndExpand" HeightRequest="50" WidthRequest="20"  BorderColor="{StaticResource colorPrimary}"  BorderWidth="1.5" BackgroundColor="Transparent" TextColor="#333333" Margin="60,20,60,20"  CornerRadius="10" FontSize="18" />
 
                     
                     <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
