@@ -10,7 +10,7 @@ using Wassilni_App.views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Android.App;
-
+using System.ComponentModel;
 
 namespace Wassilni_App.views
 {
@@ -68,6 +68,10 @@ namespace Wassilni_App.views
             await Navigation.PushAsync(new SignupPage());
         }
 
+        private void Entry_Focused(object sender, FocusEventArgs e)
+        {
+
+        }
     }
 
 }

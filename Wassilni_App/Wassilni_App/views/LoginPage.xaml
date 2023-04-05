@@ -10,14 +10,13 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Image Grid.Row="0" Source="Logo.jpg" Aspect="AspectFit" Margin="0" HeightRequest="300" WidthRequest="500" HorizontalOptions="Center"/>
-            <ScrollView Grid.Row="1">
-                <StackLayout Padding="10" Spacing="2" VerticalOptions="Center">
+            <Image Grid.Row="0" Source="LogoImage.png" Aspect="AspectFit" Margin="0" HeightRequest="250" WidthRequest="300" HorizontalOptions="Center"/>
+            <StackLayout Grid.Row="1" Padding="10" Spacing="2" VerticalOptions="Center">
                     <Label Text="LOG IN" TextColor="#333333" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="30" Margin="0,0,0,11"/>
                     <Frame Margin="0,3,0,0" Padding="2" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BorderColor="Gray">
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="{StaticResource Email}" FontFamily="FAS" FontSize="24" TextColor="{StaticResource colorPrimary}" Margin="9,10,0,0"/>
-                            <Entry Placeholder="Email*" TextColor="#333333" FontSize="18" HorizontalOptions="FillAndExpand" Margin="10,0,0,0" Text="{Binding Email}" />
+                        <Label Text="{StaticResource Email}" FontFamily="FAS"  FontSize="24" TextColor="{StaticResource colorPrimary}" Margin="9,10,0,0"/>
+                        <Entry x:Name="Email" Placeholder="Email*" TextColor="#333333" FontSize="18" HorizontalOptions="FillAndExpand" Margin="10,0,0,0" Text="{Binding Email}" />
                         </StackLayout>
                     </Frame>
                     <Label Text="{Binding EmailErrorMessage}" TextColor="Red" />
@@ -28,11 +27,11 @@
                         </StackLayout>
                     </Frame>
                     <Label Text="{Binding PasswordErrorMessage}" TextColor="Red" />
-                    <Button BackgroundColor="Transparent" Text="Forgot Password?" HorizontalOptions="EndAndExpand" Margin="195,-20,0,15" TextColor="#333333" FontAttributes="Bold" FontSize="16" x:Name="ForgetPass" />
+                <Button BackgroundColor="Transparent" Text="Forgot Password?" HorizontalOptions="End" Margin="195,-20,0,15" TextColor="#333333" FontAttributes="Bold" FontSize="16" x:Name="ForgetPass" />
                     <Button x:Name="Login" Text="Login" Command="{Binding SignInCommand}" FontSize="22" Clicked="GoToTheHomePage"/>
                     <Grid Margin="0,15,0,5">
                         <BoxView BackgroundColor="DarkGray" HeightRequest="1" WidthRequest="350" HorizontalOptions="Center" VerticalOptions="Center" />
-                        <Frame BackgroundColor="#F7F7F7" HeightRequest="40" WidthRequest="40" CornerRadius="20" HasShadow="False" BorderColor="DarkGray" Margin="0" HorizontalOptions="Center" Padding="0">
+                        <Frame BackgroundColor="#F7F7F7" HeightRequest="40" WidthRequest="45" CornerRadius="25" HasShadow="False" BorderColor="DarkGray" Margin="0" HorizontalOptions="Center" Padding="0">
                             <Label Text="OR" TextColor="DarkGray" FontSize="Small" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />
                         </Frame>
                     </Grid>
@@ -45,7 +44,6 @@
                         <Button x:Name="Signup" Text="Sign Up" BackgroundColor="Transparent" TextColor="#333333" Margin="0" Padding="0" Clicked="GoToTheSignupPage" WidthRequest="80" HeightRequest="20" FontSize="16" />
                     </StackLayout>
                 </StackLayout>
-            </ScrollView>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
