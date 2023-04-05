@@ -29,28 +29,28 @@ namespace Wassilni_App.views.Settings
         }
         async private void GoToFAQsPage(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new FAQsPage()));
+            await Navigation.PushAsync(new FAQsPage());
 
         }
         async private void GoToContactUsPage(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new ContactUsPage()));
+            await Navigation.PushAsync(new ContactUsPage());
 
         }
         async private void GoToPrivacy_TermsPage(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new Privacy_TermsPage()));
+            await Navigation.PushAsync(new Privacy_TermsPage());
 
         }
         async private void GoToChangePassPage(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new ChangePasswordPage()));
+            await Navigation.PushAsync(new ChangePasswordPage());
 
         }
         
         async private void btnLogout_Clicked(object sender, EventArgs e) 
         { 
-            await Navigation.PushModalAsync(new NavigationPage(new LoginPage()));
+            await Navigation.PushAsync(new LoginPage());
         }
 
 

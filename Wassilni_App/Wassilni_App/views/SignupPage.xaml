@@ -8,28 +8,32 @@
     <ContentPage.Content>
         <StackLayout>
             <StackLayout BackgroundColor="White" HeightRequest="25" Margin="0,15,0,0">
-                <StackLayout BackgroundColor="White" HeightRequest="25" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                <StackLayout HeightRequest="25" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
                     <Label Text="Sign Up" TextColor="Black" FontSize="Title" />
                 </StackLayout>
             </StackLayout>
             <StackLayout Margin="20,17,25,0" WidthRequest="0">
-                <Frame Margin="0,10,0,0"  Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="10" HeightRequest="54">
+
+                <Frame Margin="0,3,0,0" Padding="2" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BorderColor="Gray">
                     <StackLayout Orientation="Horizontal">
-                        <Entry Placeholder="First Name*" TextColor="Black" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0" FontSize="Medium"  Text="{Binding FirstName}"  Keyboard="Text"/>
+                        <Entry x:Name="FirstName" Placeholder="First Name*" TextColor="#333333" FontSize="18" HorizontalOptions="FillAndExpand" Margin="10,0,0,0" Text="{Binding FirstName}" Keyboard="Text" />
                     </StackLayout>
                 </Frame>
                 <Label Text="{Binding EmptyFieldsFirstNameErrorMessage}" TextColor="Red"/>
-                <Frame Margin="0,0,0,0"  Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="10" HeightRequest="54">
+
+
+                <Frame Margin="0,3,0,0" Padding="2" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BorderColor="Gray">
                     <StackLayout Orientation="Horizontal">
-                        <Entry Placeholder="Last Name*" TextColor="Black" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0" FontSize="Medium"  Text="{Binding LastName}"  Keyboard="Text"/>
+                        <Entry Placeholder="Last Name*" TextColor="Black" FontAttributes="None" FontSize="18" HorizontalOptions="FillAndExpand" Margin="10,0,0,0" Text="{Binding LastName}"  Keyboard="Text"/>
                     </StackLayout>
                 </Frame>
                 <Label Text="{Binding EmptyFieldsLastNameErrorMessage}" TextColor="Red"/>
 
+                
                 <StackLayout>
                 <StackLayout Orientation="Horizontal" Margin="0,0,0,-35" >
                         <StackLayout Orientation="Horizontal" Margin="0,0,0,40">
-                            <Picker FontSize="Small" WidthRequest="50" x:Name="countryPicker" Title="Select Country" HeightRequest="54" SelectedIndexChanged="OnCountryPickerSelectedIndexChanged">
+                            <Picker FontSize="Medium" WidthRequest="50" x:Name="countryPicker" Title="Select Country" HeightRequest="54" SelectedIndexChanged="OnCountryPickerSelectedIndexChanged">
                                 <Picker.Items >
                                     <x:String>United States</x:String>
                                     <x:String>Canada</x:String>
@@ -40,81 +44,81 @@
                                 </Picker.Items>
                             </Picker>
                         </StackLayout>
-                        <Frame Margin="0,0,0,40"  Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="10" HeightRequest="54" WidthRequest="50">
+                        <Frame  Margin="0,0,0,45" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" HeightRequest="50" WidthRequest="50" BorderColor="Gray">
                             <StackLayout Orientation="Horizontal">
                                 <Label x:Name="phoneCodeLabel" Text="+1" VerticalOptions="CenterAndExpand" Margin="10,0,0,0"/>
                             </StackLayout>
                         </Frame>
+
                         <StackLayout>
-                            <Frame Margin="0,0,0,0"  Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="10" HeightRequest="54" WidthRequest="250">
+                            <Frame Margin="0,0,0,0" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" HeightRequest="50" WidthRequest="250" BorderColor="Gray">
                                 <StackLayout Orientation="Horizontal">
-                                    <Entry   Placeholder="Phone no.*" Text="{Binding PhoneNumber}" TextColor="Black" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"  FontSize="Medium"  Keyboard="Telephone"/>
+                                    <Entry   Placeholder="Phone no.*" Text="{Binding PhoneNumber}" TextColor="Black" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="10,0,0,0"  FontSize="Medium"  Keyboard="Telephone"/>
                                 </StackLayout>
                             </Frame>
+                        </StackLayout>
                     </StackLayout>
-                </StackLayout>
                     <Label Text="{Binding PhoneNumberErrorMessage}" TextColor="Red"/>
                 </StackLayout>
 
+                
 
-                <Frame Margin="0,0,0,0"  Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="10" HeightRequest="54">
+                <Frame Margin="0,3,0,0" Padding="2" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BorderColor="Gray">
                     <StackLayout Orientation="Horizontal">
-                        <Frame >
-                            <Label Text="{StaticResource Email}" FontFamily="FAS" FontSize="Medium"></Label>
-                        </Frame>
-                        <Entry Placeholder="Email*" FontSize="Medium" TextColor="Black" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0" Text="{Binding Email}" Keyboard="Email"/>
+                        <Label Text="{StaticResource Email}" FontFamily="FAS"  FontSize="24" TextColor="{StaticResource colorPrimary}" Margin="9,10,0,0"/>
+                        <Entry x:Name="Email" Placeholder="Email*" TextColor="#333333" FontSize="18" HorizontalOptions="FillAndExpand" Margin="10,0,0,0" Text="{Binding Email}" />
                     </StackLayout>
                 </Frame>
                 <Label Text="{Binding EmailErrorMessage}" TextColor="Red"/>
 
-                <StackLayout>
-                <Frame Margin="0,0,0,0"  Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="10" HeightRequest="55">
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="{StaticResource Birthday}" FontFamily="FAS" Margin="17,17,5,0" FontSize="Large"></Label>
-                            <DatePicker x:Name="datePicker" Format="MM/dd/yyyy" WidthRequest="260" Margin="0,0,0,0" FontSize="Medium"  Date="{Binding Birthdate}" />
-                        </StackLayout>
-                    </Frame>
-                </StackLayout>
+
+
+                <Frame Margin="0,3,0,0" Padding="2" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BorderColor="Gray">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="{StaticResource Birthday}" FontFamily="FAS"  FontSize="24" TextColor="{StaticResource colorPrimary}" Margin="9,10,0,0"/>
+                        <DatePicker  x:Name="datePicker" Format="MM/dd/yyyy" TextColor="#333333" FontSize="18" HorizontalOptions="FillAndExpand" Margin="10,0,0,0" Date="{Binding Birthdate}" />
+                    </StackLayout>
+                </Frame>
                 <Label Text="{Binding BirthdateErrorMessage}" TextColor="Red" />
 
-
-                <StackLayout>
-                <Frame Margin="0,0,0,0"  Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="10" HeightRequest="55">
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="{StaticResource Gender}" FontFamily="FAS" FontSize="23" Margin="17,17,5,0"></Label>
-                            <Picker x:Name="genderPicker" Title="Select Gender" WidthRequest="260" Margin="5,0,0,0" FontSize="Medium" ItemsSource="{Binding Genders}" SelectedItem="{Binding SelectedGender}">
-                                <Picker.Items>
-                                    <x:String>Male</x:String>
-                                    <x:String>Female</x:String>
-                                </Picker.Items>
-                            </Picker>
-                        </StackLayout>
-                    </Frame>
-                    <Label Text="{Binding GendersErrorMessage}" TextColor="Red" />
-                </StackLayout>
-
-                <Frame Margin="0,0,0,0" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="10" HeightRequest="54">
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="{StaticResource LockPassword}" FontFamily="FAS" HorizontalOptions="FillAndExpand" Margin="17,17,0,0" FontSize="20"></Label>
-                        <Entry x:Name="PasswordEntry" IsPassword="True" Placeholder="Password" HorizontalOptions="FillAndExpand" Margin="0,0,120,0" FontSize="Medium" Text="{Binding Password}" WidthRequest="100" />
-                        <Frame>
-                            <Label x:Name="EyeIcon" Text="{StaticResource eye}" FontFamily="FAS" HorizontalOptions="FillAndExpand" Margin="0,0,0,0" FontSize="Small">
-                            <Label.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="OnEyeIconTapped"/>
-                            </Label.GestureRecognizers>
-                        </Label>
-                    </Frame>
-                </StackLayout>
+                
+                <Frame Margin="0,3,0,0" Padding="2" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BorderColor="Gray">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="{StaticResource Gender}" FontFamily="FAS"  FontSize="24" TextColor="{StaticResource colorPrimary}" Margin="9,10,0,0"/>
+                        <Picker x:Name="genderPicker" Title="Select Gender" WidthRequest="300" Margin="5,0,0,0" FontSize="Medium" ItemsSource="{Binding Genders}" SelectedItem="{Binding SelectedGender}">
+                            <Picker.Items>
+                                <x:String>Male</x:String>
+                                <x:String>Female</x:String>
+                            </Picker.Items>
+                        </Picker>
+                    </StackLayout>
                 </Frame>
+                <Label Text="{Binding GendersErrorMessage}" TextColor="Red" />
+
+                
+               
+
+                <Frame Margin="0,3,0,0" Padding="2" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BorderColor="Gray">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="{StaticResource LockPassword}" FontFamily="FAS"  FontSize="24" TextColor="{StaticResource colorPrimary}" Margin="9,10,0,0"/>
+                        <Entry  x:Name="PasswordEntry" IsPassword="True" Placeholder="Password" TextColor="#333333" FontSize="18" HorizontalOptions="FillAndExpand" Margin="10,0,0,0" Text="{Binding Password}" />
+                        <Label x:Name="EyeIcon" Text="{StaticResource eye}" FontFamily="FAS" TextColor="{StaticResource colorPrimary}" HorizontalOptions="FillAndExpand" Margin="160,14,10,5" FontSize="Medium">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnEyeIconTapped"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                    </StackLayout>
+                </Frame>
+                
                 <Label Text="{Binding PasswordErrorMessage}" TextColor="Red"/>
 
                 
-                <Button Text="Sign Up" Command="{Binding SignUpCommand}" HeightRequest="44" Margin="10,0,10,0" />
+                <Button Text="Sign Up" Command="{Binding SignUpCommand}" HeightRequest="44" Margin="10,15,10,0" />
 
 
-                <StackLayout Orientation="Horizontal" >
-                    <Label Text="Do you already have an account?" TextColor="DarkGray" FontSize="Default" Margin="20,0,0,0"/>
-                    <Button x:Name="Signin" Text="SIGN IN" BackgroundColor="Transparent" TextColor="Black"  Clicked="OnLoginButtonClicked" Margin="0,0,0,0" Padding="1" WidthRequest="80" HeightRequest="0" FontSize="Default" />
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                    <Label Text="Do you already have an account?" TextColor="DarkGray" FontSize="16" FontFamily="Roboto-Black.ttf"  Margin="20,8,0,0"/>
+                    <Button x:Name="Signin" Text="SIGN IN" BackgroundColor="Transparent" TextColor="#333333" Margin="0,6,0,0" Padding="0" Clicked="OnLoginButtonClicked" WidthRequest="80" HeightRequest="20" FontSize="16" />
                 </StackLayout>
             </StackLayout>
         </StackLayout>
