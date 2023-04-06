@@ -12,7 +12,7 @@
             <Button x:Name="BuContactUs" VerticalOptions="Center" Text="Contact us Page" Clicked="GoToContactUsPage"/>
             <Button x:Name="BuPrivacy_Terms" VerticalOptions="Center" Text="Privacy_Terms Page" Clicked="GoToPrivacy_TermsPage"/>
             <Button x:Name="BuChangePass" VerticalOptions="Center" Text="Change Password page" Clicked="GoToChangePassPage"/>
-            <Button x:Name="BuLogout" VerticalOptions="Center" Text="Logout page" Clicked="Logout"/>
+            <Button x:Name="BuLogout" VerticalOptions="Center" Text="Logout page" Clicked="btnLogout_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

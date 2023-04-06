@@ -2,18 +2,27 @@
 <resources>
 
   <style name="MainTheme" parent="MainTheme.Base">
-	  <!-- As of Xamarin.Forms 4.6 the theme has moved into the Forms binary -->
-	  <!-- If you want to override anything you can do that here. -->
-	  <!-- Underneath are a couple of entries to get you started. -->
-
-	  <!-- Set theme colors from https://aka.ms/material-colors -->
-	  <!-- colorPrimary is used for the default action bar background -->
-	  <!--<item name="colorPrimary">#2196F3</item>-->
-	  <!-- colorPrimaryDark is used for the status bar -->
-	  <!--<item name="colorPrimaryDark">#1976D2</item>-->
-	  <!-- colorAccent is used as the default value for colorControlActivated
-         which is used to tint widgets -->
-	  <!--<item name="colorAccent">#FF4081</item>-->
+	  <item name="colorPrimary">#5E7FFF</item>
+	  <item name="colorPrimaryDark">#5E7FFF</item>
+	  <item name="colorAccent">#5E7FFF</item>
+	  <item name="android:datePickerDialogTheme">@style/CustomDatePickerDialog</item>
   </style>
-	
+
+
+  <style name="CustomDatePickerDialog" parent="ThemeOverlay.AppCompat.Dialog">
+	  <!--header background-->
+	  <item name="colorAccent">@color/colorPrimary</item>
+	  <!--header textcolor-->
+	  <item name="android:textColorPrimaryInverse">@android:color/white</item>
+	  <!--body background-->
+	  <item name="android:windowBackground">@android:color/white</item>
+	  <!--selected day-->
+	  <item name="android:colorControlActivated">@color/colorPrimary</item>
+	  <!--days of the month-->
+	  <item name="android:textColorPrimary">@color/colorPrimary</item>
+	  <!--days of the week-->
+	  <item name="android:textColorSecondary">@android:color/white</item>
+	  <!--cancel&ok-->
+	  <item name="android:textColor">@color/colorPrimary</item>
+  </style>
 </resources>
