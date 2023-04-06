@@ -1,18 +1,71 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             NavigationPage.HasNavigationBar="False"
-             x:Class="Wassilni_App.views.HomePage">
+             NavigationPage.HasNavigationBar="False" xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             x:Class="Wassilni_App.views.HomePage" BackgroundColor="WhiteSmoke">
     <ContentPage.Content>
         <StackLayout>
-            
-            <Label Text="Welcome to Home page"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
 
-            <Button x:Name="CreatePool"  VerticalOptions="Center" Text="Create Pool" Clicked="GoToCreatePoolPage"/>
-            <Button x:Name="FindPool" VerticalOptions="Center" Text="Find Pool"   Clicked="GoToFindPoolPage"/>
-            
+            <StackLayout HeightRequest="300">
+                <maps:Map IsShowingUser="True"/>
+            </StackLayout>
+
+            <StackLayout Spacing="1.5" >
+                <Frame  Margin="0,13,0,0" Padding="15,5,15,5" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BackgroundColor="Transparent">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="{StaticResource LocationFrom}" FontFamily="FAS"  FontSize="16" TextColor="{StaticResource colorPrimary}" Margin="10,15,0,0"/>
+                    <Entry x:Name="LocationFrom" Placeholder="Enter Your Location" TextColor="#333333" FontSize="18" HorizontalOptions="FillAndExpand" Margin="10,0,0,0"></Entry>
+                </StackLayout>
+            </Frame>
+
+            <Frame  Margin="0,3,0,0" Padding="15,0,15,0" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BackgroundColor="Transparent">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="{StaticResource LocationTo}" FontFamily="FAS"  FontSize="24" TextColor="{StaticResource colorDrop}" Margin="9,10,0,0"/>
+                    <Entry x:Name="LocationTo" Placeholder="Enter Drop Location" TextColor="#333333" FontSize="18" HorizontalOptions="FillAndExpand" Margin="10,0,0,0"></Entry>
+                </StackLayout>
+            </Frame>
+            <Grid Padding="15,9,15,8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackLayout Grid.Column="0">
+                    <Frame  Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BackgroundColor="Transparent">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{StaticResource Date}" FontFamily="FAS"  FontSize="24" TextColor="{StaticResource colorPrimary}" Margin="9,10,0,0"/>
+                            <DatePicker x:Name="datePicker" Format="MM/dd/yyyy" TextColor="#333333" FontSize="18" HorizontalOptions="FillAndExpand" Margin="10,0,0,0" />
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+                <StackLayout Grid.Column="1">
+                    <Frame Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BackgroundColor="Transparent">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{StaticResource Time}" FontFamily="FAS"  FontSize="24" TextColor="{StaticResource colorPrimary}" Margin="9,10,0,0"/>
+                            <TimePicker x:Name="Time" TextColor="#333333" FontSize="18" HorizontalOptions="FillAndExpand" Margin="10,0,0,0"></TimePicker>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </Grid>
+
+                <Frame  Margin="0,3,0,0" Padding="15,5,15,28" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BackgroundColor="Transparent">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="{StaticResource Car}" FontFamily="FAS"  FontSize="26" TextColor="{StaticResource colorPrimary}" Margin="9,10,0,0"/>
+                        <Picker x:Name="NoOfSeats" Title="Number of Seats" TextColor="#333333" Margin="5,0,0,0" FontSize="18" HorizontalOptions="FillAndExpand">
+                            <Picker.Items>
+                                <x:String>1 Seat</x:String>
+                                <x:String>2 Seat</x:String>
+                                <x:String>3 Seat</x:String>
+                                <x:String>4 Seat</x:String>
+                                <x:String>5 Seat</x:String>
+                            </Picker.Items>
+                        </Picker>
+                    </StackLayout>
+            </Frame>
+
+
+            <Button x:Name="CreatePool" Text="Create Pool" Clicked="GoToCreatePoolPage" FontSize="22" CornerRadius="50" />
+                <Button x:Name="FindPool" Text="Find Pool"  Clicked="GoToFindPoolPage" FontSize="22"  CornerRadius="50" />
+        </StackLayout>
         </StackLayout>
 
     </ContentPage.Content>
