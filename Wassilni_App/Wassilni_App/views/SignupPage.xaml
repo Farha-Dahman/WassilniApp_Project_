@@ -3,11 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:Wassilni_App.viewModels"
              x:Class="Wassilni_App.views.SignupPage"
              x:DataType="viewmodels:SignupViewModel"
-             NavigationPage.HasNavigationBar="False"
->
+             NavigationPage.HasNavigationBar="false">
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout BackgroundColor="White" HeightRequest="25" Margin="0,15,0,0">
+            <StackLayout  HeightRequest="25" Margin="0,15,0,0">
                 <StackLayout HeightRequest="25" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
                     <Label Text="Sign Up" TextColor="Black" FontSize="Title" />
                 </StackLayout>
@@ -29,9 +28,9 @@
                 </Frame>
                 <Label Text="{Binding EmptyFieldsLastNameErrorMessage}" TextColor="Red"/>
 
-                
+
                 <StackLayout>
-                <StackLayout Orientation="Horizontal" Margin="0,0,0,-35" >
+                    <StackLayout Orientation="Horizontal" Margin="0,0,0,-35" >
                         <StackLayout Orientation="Horizontal" Margin="0,0,0,40">
                             <Picker FontSize="Medium" WidthRequest="50" x:Name="countryPicker" Title="Select Country" HeightRequest="54" SelectedIndexChanged="OnCountryPickerSelectedIndexChanged">
                                 <Picker.Items >
@@ -60,9 +59,7 @@
                     </StackLayout>
                     <Label Text="{Binding PhoneNumberErrorMessage}" TextColor="Red"/>
                 </StackLayout>
-
                 
-
                 <Frame Margin="0,3,0,0" Padding="2" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BorderColor="Gray">
                     <StackLayout Orientation="Horizontal">
                         <Label Text="{StaticResource Email}" FontFamily="FAS"  FontSize="24" TextColor="{StaticResource colorPrimary}" Margin="9,10,0,0"/>
@@ -70,18 +67,15 @@
                     </StackLayout>
                 </Frame>
                 <Label Text="{Binding EmailErrorMessage}" TextColor="Red"/>
-
-
-
+                
                 <Frame Margin="0,3,0,0" Padding="2" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BorderColor="Gray">
                     <StackLayout Orientation="Horizontal">
-                        <Label Text="{StaticResource Birthday}" FontFamily="FAS"  FontSize="24" TextColor="{StaticResource colorPrimary}" Margin="9,10,0,0"/>
+                        <Label Text="{StaticResource Birthday}" FontFamily="FAS"  FontSize="24" TextColor="{StaticResource colorPrimary}" Margin="9,10,0,0" />
                         <DatePicker  x:Name="datePicker" Format="MM/dd/yyyy" TextColor="#333333" FontSize="18" HorizontalOptions="FillAndExpand" Margin="10,0,0,0" Date="{Binding Birthdate}" />
                     </StackLayout>
                 </Frame>
                 <Label Text="{Binding BirthdateErrorMessage}" TextColor="Red" />
 
-                
                 <Frame Margin="0,3,0,0" Padding="2" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BorderColor="Gray">
                     <StackLayout Orientation="Horizontal">
                         <Label Text="{StaticResource Gender}" FontFamily="FAS"  FontSize="24" TextColor="{StaticResource colorPrimary}" Margin="9,10,0,0"/>
@@ -94,9 +88,6 @@
                     </StackLayout>
                 </Frame>
                 <Label Text="{Binding GendersErrorMessage}" TextColor="Red" />
-
-                
-               
 
                 <Frame Margin="0,3,0,0" Padding="2" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BorderColor="Gray">
                     <StackLayout Orientation="Horizontal">

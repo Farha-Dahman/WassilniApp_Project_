@@ -21,7 +21,8 @@ namespace Wassilni_App.views
 
         async private void GoToSettingsPage(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new SettingsPage());
+            await Navigation.PushAsync(new NavigationPage(new SettingsPage()));
+
         }
 
     }

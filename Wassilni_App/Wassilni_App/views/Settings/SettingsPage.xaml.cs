@@ -25,7 +25,8 @@ namespace Wassilni_App.views.Settings
 
         async private void GoToEditProfilePage(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new EditProfilePage()));
+            await Navigation.PushAsync(new EditProfilePage());
+
         }
         async private void GoToFAQsPage(object sender, EventArgs e)
         {
@@ -45,9 +46,8 @@ namespace Wassilni_App.views.Settings
         async private void GoToChangePassPage(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new ChangePasswordPage());
-
         }
-        
+
         async private void btnLogout_Clicked(object sender, EventArgs e) 
         { 
             await Navigation.PushAsync(new LoginPage());

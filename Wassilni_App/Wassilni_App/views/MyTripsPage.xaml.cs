@@ -20,7 +20,8 @@ namespace Wassilni_App.views
 
         async private void GoToPoolDetails(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new TripDetailsPage());
+            await Navigation.PushAsync(new NavigationPage(new TripDetailsPage()));
+
         }
     }
 }

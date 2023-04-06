@@ -103,7 +103,7 @@ namespace Wassilni_App.viewModels
                 {
                     // Email already exists in Firebase
                     await authProvider.SignInWithEmailAndPasswordAsync(Email, Password);
-                    await Application.Current.MainPage.Navigation.PushAsync(new HomePage());
+                    await Application.Current.MainPage.Navigation.PushAsync(new TabbedBottom());
                     EmailErrorMessage = "";
                 }
                 else

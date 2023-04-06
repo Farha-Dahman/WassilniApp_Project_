@@ -60,18 +60,19 @@ namespace Wassilni_App.views
 
         async private void GoToTheHomePage(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new TabbedBottom());
+            await Navigation.PushAsync(new NavigationPage(new TabbedBottom()));
 
         }
 
         async private void GoToTheSignupPage(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new SignupPage());
+            await Navigation.PushModalAsync(new NavigationPage(new SignupPage()));
 
         }
         async private void ForgetPass_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new ForgetPasswordPage());
+            await Navigation.PushAsync(new NavigationPage(new ForgetPasswordPage()));
+
         }
 
 

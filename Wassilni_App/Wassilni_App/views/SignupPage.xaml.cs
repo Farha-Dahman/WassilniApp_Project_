@@ -15,20 +15,19 @@ namespace Wassilni_App.views
         {
             InitializeComponent();
             this.BindingContext = new SignupViewModel();
-            // BuSignup.Clicked += GoToVerificationPage;
         }
         async private void GoToVerificationPage(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new VerificationCodePage());
-            //await Navigation.PushModalAsync(new NavigationPage(new VerificationCodePage()));
+            await Navigation.PushAsync(new NavigationPage(new VerificationCodePage()));
         }
         async private void OnLoginButtonClicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new LoginPage());
+            await Navigation.PushModalAsync(new NavigationPage(new LoginPage()));
+
         }
         async private void OnSubmitButtonClicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new LoginPage());
+            await Navigation.PushModalAsync(new NavigationPage(new LoginPage()));
         }
         Dictionary<string, string> countryPhonePrefixes = new Dictionary<string, string>
         {
