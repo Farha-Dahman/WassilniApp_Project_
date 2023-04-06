@@ -12,7 +12,7 @@ namespace Wassilni_App.views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ForgetPasswordPage : ContentPage
     {
-        public ForgetPasswordPage()
+        public ForgetPasswordPage() 
         {
             InitializeComponent();
             this.BindingContext = new ForgetPasswordViewModel();

@@ -7,7 +7,7 @@ using Wassilni_App.viewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Wassilni_App.views.Settings
+namespace Wassilni_App.views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FindPoolPage : ContentPage

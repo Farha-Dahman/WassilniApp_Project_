@@ -12,7 +12,7 @@ namespace Wassilni_App
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new LoginPage());
+            MainPage = new NavigationPage(new SplashScreen());
         }
 
         protected override void OnStart()
