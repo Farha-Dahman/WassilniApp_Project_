@@ -47,8 +47,8 @@
             <x:String x:Key="Date">&#xf073;</x:String>
             <x:String x:Key="Money">&#x24;</x:String>
             <x:String x:Key="MoneyBill">&#xf0d6;</x:String>
-            <x:String x:Key="LocationTo">&#xf111;</x:String>
-            <x:String x:Key="LocationFrom">&#xf3c5;</x:String>
+            <x:String x:Key="LocationFrom">&#xf111;</x:String>
+            <x:String x:Key="LocationTo">&#xf3c5;</x:String>
             <x:String x:Key="Plus">&#x2b;</x:String>
             <x:String x:Key="Minas">&#xf068;</x:String>
             <x:String x:Key="MoneyShekel">&#xf20b;</x:String>
