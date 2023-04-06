@@ -21,11 +21,15 @@ namespace Wassilni_App.views
 
         async private void GoToCreatePoolPage(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new CreatePoolPage());
+            await Navigation.PushAsync(new NavigationPage(new CreatePoolPage()));
+
+
         }
         async private void GoToFindPoolPage(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new FindPoolPage());
+            await Navigation.PushAsync(new NavigationPage(new FindPoolPage()));
+
+
         }
     }
 }
