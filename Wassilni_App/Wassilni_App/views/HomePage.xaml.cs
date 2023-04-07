@@ -28,8 +28,8 @@ namespace Wassilni_App.views
         async private void GoToFindPoolPage(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new NavigationPage(new FindPoolPage()));
-
-
+            
         }
+
     }
 }

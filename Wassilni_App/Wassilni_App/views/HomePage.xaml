@@ -10,21 +10,26 @@
                 <maps:Map IsShowingUser="True"/>
             </StackLayout>
 
-            <StackLayout Spacing="1.5" >
-                <Frame  Margin="0,13,0,0" Padding="15,5,15,5" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BackgroundColor="Transparent">
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="{StaticResource LocationFrom}" FontFamily="FAS"  FontSize="16" TextColor="{StaticResource colorPrimary}" Margin="10,15,0,0"/>
-                    <Entry x:Name="LocationFrom" Placeholder="Enter Your Location" TextColor="#333333" FontSize="18" HorizontalOptions="FillAndExpand" Margin="10,0,0,0"></Entry>
-                </StackLayout>
-            </Frame>
+            <StackLayout Spacing="1" >
+                <Label Text="{Binding EmptyErrorMessage}" TextColor="Red" Margin="10,0,0,0"/>
 
-            <Frame  Margin="0,3,0,0" Padding="15,0,15,0" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BackgroundColor="Transparent">
+                <Frame  Margin="0,9,0,0" Padding="15,5,15,-7" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BackgroundColor="Transparent">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="{StaticResource LocationFrom}" FontFamily="FAS"  FontSize="16" TextColor="{StaticResource colorPrimary}" Margin="10,15,0,0"/>
+                        <Entry x:Name="LocationFrom" Text="{Binding LocationFrom}" Placeholder="Enter Your Location" TextColor="#333333" FontSize="18" HorizontalOptions="FillAndExpand" Margin="10,0,0,0"></Entry>
+                    </StackLayout>
+                </Frame>
+                <BoxView BackgroundColor="DarkGray" Margin="45,5,5,5" HeightRequest="1.1" Color="Gray" WidthRequest="310" HorizontalOptions="Center" VerticalOptions="Center" />
+
+                <Frame  Margin="0,3,0,0" Padding="15,5,15,-7" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BackgroundColor="Transparent">
                 <StackLayout Orientation="Horizontal">
                     <Label Text="{StaticResource LocationTo}" FontFamily="FAS"  FontSize="24" TextColor="{StaticResource colorDrop}" Margin="9,10,0,0"/>
-                    <Entry x:Name="LocationTo" Placeholder="Enter Drop Location" TextColor="#333333" FontSize="18" HorizontalOptions="FillAndExpand" Margin="10,0,0,0"></Entry>
+                        <Entry x:Name="LocationTo" Text="{Binding LocationTo}" Placeholder="Enter Drop Location" TextColor="#333333" FontSize="18" HorizontalOptions="FillAndExpand" Margin="10,0,0,0"></Entry>
                 </StackLayout>
             </Frame>
-            <Grid Padding="15,9,15,8">
+                <BoxView BackgroundColor="DarkGray" Margin="45,5,5,10" HeightRequest="1.1" Color="Gray" WidthRequest="310" HorizontalOptions="Center" VerticalOptions="Center" />
+
+                <Grid Padding="15,9,15,8">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
@@ -47,24 +52,27 @@
                 </StackLayout>
             </Grid>
 
-                <Frame  Margin="0,3,0,0" Padding="15,5,15,28" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BackgroundColor="Transparent">
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="{StaticResource Car}" FontFamily="FAS"  FontSize="26" TextColor="{StaticResource colorPrimary}" Margin="9,10,0,0"/>
-                        <Picker x:Name="NoOfSeats" Title="Number of Seats" TextColor="#333333" Margin="5,0,0,0" FontSize="18" HorizontalOptions="FillAndExpand">
-                            <Picker.Items>
-                                <x:String>1 Seat</x:String>
-                                <x:String>2 Seat</x:String>
-                                <x:String>3 Seat</x:String>
-                                <x:String>4 Seat</x:String>
-                                <x:String>5 Seat</x:String>
-                            </Picker.Items>
-                        </Picker>
+                <Frame  Margin="0,3,0,0" Padding="15,-15,15,-20" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BackgroundColor="Transparent">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="{StaticResource Car}" FontFamily="FAS"  FontSize="26" TextColor="{StaticResource colorPrimary}" Margin="9,35,0,0"/>
+                        <Frame BackgroundColor="Transparent" HorizontalOptions="FillAndExpand">
+                            <StackLayout Orientation="Horizontal">
+                                <Label x:Name="NoOfSeat" Text="{Binding Source={x:Reference stepper}, Path=Value, StringFormat='{0} Seat'}" BindingContext="{x:Reference stepper}" FontSize="18" Margin="0,10,0,0" TextColor="#333333"></Label>
+                                <Stepper Maximum="7"
+                                 Minimum="1"
+                                 Increment="1"
+                                 HorizontalOptions="EndAndExpand"
+                                 WidthRequest="150"
+                                 x:Name="stepper"/>
+                            </StackLayout>
+                        </Frame>
                     </StackLayout>
-            </Frame>
+                </Frame>
 
+                <BoxView BackgroundColor="DarkGray" Margin="50,0,5,27" HeightRequest="1.1" Color="Gray" WidthRequest="310" HorizontalOptions="Center" VerticalOptions="Center" />
 
-            <Button x:Name="CreatePool" Text="Create Pool" Clicked="GoToCreatePoolPage" FontSize="22" CornerRadius="50" />
-                <Button x:Name="FindPool" Text="Find Pool"  Clicked="GoToFindPoolPage" FontSize="22"  CornerRadius="50" />
+                <Button x:Name="CreatePool" Text="Create Pool" FontSize="22" CornerRadius="50" Command="{Binding CreatePoolCommand}"/>
+                <Button x:Name="FindPool" Text="Find Pool"  FontSize="22"  CornerRadius="50" Command="{Binding FindPoolCommand}"/>
         </StackLayout>
         </StackLayout>
 
