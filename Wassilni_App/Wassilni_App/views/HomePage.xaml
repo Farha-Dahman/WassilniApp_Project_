@@ -10,9 +10,10 @@
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
 
-            <Button x:Name="CreatePool"  VerticalOptions="Center" Text="Create Pool" Clicked="GoToCreatePoolPage"/>
+          
             <Button x:Name="FindPool" VerticalOptions="Center" Text="Find Pool"   Clicked="GoToFindPoolPage"/>
-            
+            <Button Text="Create Pool" VerticalOptions="Center" x:Name="createPool" />
+
         </StackLayout>
 
     </ContentPage.Content>
