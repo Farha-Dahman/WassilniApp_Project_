@@ -13,10 +13,13 @@ namespace Wassilni_App.views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HomePage : ContentPage
     {
-        public HomePage()
+
+        public HomePage(string userid)
         {
+            string id = userid;
             InitializeComponent();
             this.BindingContext = new HomeViewModel();
+            createPool.Clicked += (sender, e) => CreatePoolButton_Clicked(sender, e, id);
         }
 
         async private void GoToCreatePoolPage(object sender, EventArgs e)
@@ -29,6 +32,13 @@ namespace Wassilni_App.views
         {
             await Navigation.PushAsync(new NavigationPage(new FindPoolPage()));
 
+
+        }
+        async private void CreatePoolButton_Clicked(object sender, EventArgs e, string id)
+        {
+
+
+            await Navigation.PushModalAsync(new CreatePoolPage(id));
 
         }
     }
