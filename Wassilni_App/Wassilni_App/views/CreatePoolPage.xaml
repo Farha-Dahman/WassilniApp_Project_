@@ -1,13 +1,92 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              x:Class="Wassilni_App.views.CreatePoolPage"
-              NavigationPage.HasNavigationBar="false">
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Create pool"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ScrollView>
+            <StackLayout>
+                <StackLayout Padding="0" HorizontalOptions="FillAndExpand" HeightRequest="300">
+                    
+                </StackLayout>
+
+                <StackLayout Margin="20" Spacing="15">
+
+                    <StackLayout Orientation="Horizontal">
+                        <Frame BackgroundColor="Transparent" Padding="8" HorizontalOptions="Center" VerticalOptions="Center">
+                            <Label Text="{StaticResource Profile}" FontFamily="FAS" FontSize="Large" TextColor="#2196F3"></Label>
+                        </Frame>
+                        <Entry Placeholder="Name" TextColor="Black" FontAttributes="None" HorizontalOptions="FillAndExpand" Keyboard="Text"/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Frame BackgroundColor="Transparent" Padding="8" HorizontalOptions="Center" VerticalOptions="Center">
+                            <Label Text="{StaticResource Phone}" FontFamily="FAS" FontSize="Large" TextColor="#2196F3"></Label>
+                        </Frame>
+                        <Entry Placeholder="Phone Number" TextColor="Black" FontAttributes="None" HorizontalOptions="FillAndExpand" Keyboard="Telephone"/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Frame BackgroundColor="Transparent" Padding="8" HorizontalOptions="Center" VerticalOptions="Center">
+                            <Label Text="{StaticResource LocationTo}" FontFamily="FAS" FontSize="Medium" TextColor="#2196F3"></Label>
+                        </Frame>
+                        <Entry Placeholder="Enter start location" TextColor="Black" FontAttributes="None" HorizontalOptions="FillAndExpand" Keyboard="Text"/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Frame BackgroundColor="Transparent" Padding="8" HorizontalOptions="Center" VerticalOptions="Center">
+                            <Label Text="{StaticResource LocationFrom}" FontFamily="FAS" FontSize="Large" TextColor="#2196F3"></Label>
+                        </Frame>
+                        <Entry Placeholder="Enter Drop Location" TextColor="Black" FontAttributes="None" HorizontalOptions="FillAndExpand" Keyboard="Text"/>
+                    </StackLayout>
+
+                    <Grid Padding="10,9,10,8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Grid.Column="0">
+                            <Frame  Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BackgroundColor="Transparent">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{StaticResource Date}" FontFamily="FAS"  FontSize="24" TextColor="{StaticResource colorPrimary}" Margin="9,10,0,0"/>
+                                    <DatePicker x:Name="datePicker" Format="MM/dd/yyyy" TextColor="#333333" FontSize="18" HorizontalOptions="FillAndExpand" Margin="10,0,0,0" />
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                        <StackLayout Grid.Column="1">
+                            <Frame Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BackgroundColor="Transparent">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{StaticResource Time}" FontFamily="FAS"  FontSize="24" TextColor="{StaticResource colorPrimary}" Margin="9,10,0,0"/>
+                                    <TimePicker x:Name="Time" TextColor="#333333" FontSize="18" HorizontalOptions="FillAndExpand" Margin="10,0,0,0"></TimePicker>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </Grid>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Frame BackgroundColor="Transparent" Padding="8" HorizontalOptions="Center" VerticalOptions="Center" >
+                            <Label Text="{StaticResource Car}" FontFamily="FAS" FontSize="Large" TextColor="#2196F3"></Label>
+                        </Frame>
+                        <Entry Placeholder="Car Model" TextColor="Black" FontAttributes="None" HorizontalOptions="FillAndExpand" Keyboard="Text" />
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Frame BackgroundColor="Transparent" Padding="8" HorizontalOptions="Center" VerticalOptions="Center" >
+                            <Label Text="{StaticResource Money}" FontFamily="FAS" FontSize="Large" TextColor="#2196F3"></Label>
+                        </Frame>
+                        <Entry Placeholder="Price" TextColor="Black" FontAttributes="None" HorizontalOptions="FillAndExpand" Keyboard="Numeric" />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Frame BackgroundColor="Transparent" Padding="8" HorizontalOptions="Center" VerticalOptions="Center" >
+                            <Label Text="{StaticResource Car}" FontFamily="FAS" FontSize="Large" TextColor="#2196F3"></Label>
+                        </Frame>
+                        <Entry Placeholder="Number seat" TextColor="Black" FontAttributes="None" HorizontalOptions="FillAndExpand" Keyboard="Numeric" />
+                    </StackLayout>
+
+                    <Button x:Name="CreateBool" VerticalOptions="Center" Text="Create Pool"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
