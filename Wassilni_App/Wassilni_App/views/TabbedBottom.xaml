@@ -12,9 +12,6 @@
             NavigationPage.HasNavigationBar="False">
   <!--Pages can be added as references or inline-->
 
-    <views:HomePage Title="Home" IconImageSource="Home.png" />
-    <views:MyTripsPage Title="MyTrips" IconImageSource="Car.png"/>
-    <views:RequestsPage Title="Requests" IconImageSource="Request.png"/>
-    <views:ProfilePage Title="Profile" IconImageSource="Profile.png" />
+ 
  
 </TabbedPage>
