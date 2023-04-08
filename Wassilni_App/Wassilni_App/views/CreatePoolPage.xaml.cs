@@ -16,17 +16,15 @@ namespace Wassilni_App.views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CreatePoolPage : ContentPage
     {
-        private readonly string _userId;
-        private List<Frame> errorFrames;
-        private bool isErrorMessageVisible = false;
+     
 
       
-        public CreatePoolPage(string id)
+        public CreatePoolPage()
         {
             InitializeComponent();
-            _userId = id;
+           
 
-            this.BindingContext = new CreatePoolViewModel(_userId);
+            this.BindingContext = new CreatePoolViewModel();
 
             var viewModel = BindingContext as CreatePoolViewModel;
             viewModel.ShowTopErrorMessage += ViewModel_ShowTopErrorMessage;

@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Wassilni_App.Models;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace Wassilni_App.viewModels
@@ -16,9 +17,9 @@ namespace Wassilni_App.viewModels
     public class CreatePoolViewModel : BaseViewModel
     {
 
+
         FirebaseClient firebaseClient = new Firebase.Database.FirebaseClient("https://wassilni-app-default-rtdb.firebaseio.com/");
-        FirebaseAuthProvider authProvider;
-        string webAPIkey = "AIzaSyClVyVHgbXooKCTyoKMg6RgfBcnkkFKTX0";
+    
 
 
         private string _fullName;
@@ -174,12 +175,15 @@ namespace Wassilni_App.viewModels
 
         public ICommand CreatePoolCommand { get; set; }
 
-        public CreatePoolViewModel(string id)
+        public CreatePoolViewModel()
         {
-            CreatePoolCommand = new Command(async () => await ExecuteCreatePoolCommand(id));
-            string userId = id;
+            string userId = Preferences.Get("userId", string.Empty);
+
+           
+            CreatePoolCommand = new Command(async () => await ExecuteCreatePoolCommand(userId));
+           
             //
-            FetchUserData(userId);
+             FetchUserData(userId);
         }
 
 
@@ -297,7 +301,7 @@ namespace Wassilni_App.viewModels
             }
             else if (!ValidateStartTime())
             {
-                string errorMessage = "Please Select A Valid Time!.";
+                string errorMessage = "Please Select A Valid Time And Date !.";
 
                 ErrorMessage = errorMessage;
                 ShowTopErrorMessage?.Invoke(this, EventArgs.Empty);

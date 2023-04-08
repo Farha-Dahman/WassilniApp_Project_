@@ -1,47 +1,68 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps" 
              xmlns:viewmodels="clr-namespace:Wassilni_App.viewModels" x:DataType="viewmodels:CreatePoolViewModel"
              x:Class="Wassilni_App.views.CreatePoolPage"
-             NavigationPage.HasNavigationBar="False">
+             NavigationPage.HasNavigationBar="False"
+             
+             xmlns:sys="clr-namespace:System;assembly=netstandard"
+
+             >
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout>
-                <StackLayout Padding="0" HorizontalOptions="FillAndExpand" HeightRequest="300">
-                    
-                </StackLayout>
+        <StackLayout>
+            <StackLayout HeightRequest="300">
+                <maps:Map IsShowingUser="True"/>
+            </StackLayout>
+
+
+            <ScrollView>
+
 
                 <StackLayout Margin="20" Spacing="15">
-                    <Frame x:Name="TopErrorFrame" IsVisible="False" Padding="15" BackgroundColor="LightBlue" CornerRadius="15">
-                        <Label x:Name="TopErrorMessage" Text="{Binding ErrorMessage}" FontSize="15" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Red" FontFamily="Roboto-Regular" />
-                    </Frame>
+                 
                     <StackLayout Orientation="Horizontal">
-                        <Frame BackgroundColor="Transparent" Padding="8" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Frame BackgroundColor="Transparent" Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
                             <Label Text="{StaticResource Profile}"   FontFamily="FAS" FontSize="Large" TextColor="#2196F3"></Label>
                         </Frame>
+                        <StackLayout >
                         <Entry Placeholder="Name" TextColor="Black" Text="{Binding FullName}"  FontAttributes="None" HorizontalOptions="FillAndExpand" Keyboard="Text"/>
+                            <BoxView BackgroundColor="DarkGray"   HeightRequest="1" Color="Gray" WidthRequest="300" HorizontalOptions="Center" VerticalOptions="Start" />
+                        </StackLayout>
+
                     </StackLayout>
 
                     <StackLayout Orientation="Horizontal">
                         <Frame BackgroundColor="Transparent" Padding="8" HorizontalOptions="Center" VerticalOptions="Center">
                             <Label Text="{StaticResource Phone}"  FontFamily="FAS" FontSize="Large" TextColor="#2196F3"></Label>
                         </Frame>
-                        <Entry Placeholder="Phone Number" TextColor="Black" Text="{Binding PhoneNumber}" FontAttributes="None" HorizontalOptions="FillAndExpand" Keyboard="Telephone"/>
+                        <StackLayout>
+                            <Entry Placeholder="Phone Number" TextColor="Black" Text="{Binding PhoneNumber}" FontAttributes="None" HorizontalOptions="FillAndExpand" Keyboard="Telephone"/>
+                            <BoxView BackgroundColor="DarkGray"  HeightRequest="1" Color="Gray" WidthRequest="300" HorizontalOptions="Center" VerticalOptions="Center" />
+
+                        </StackLayout>
                     </StackLayout>
 
                     <StackLayout Orientation="Horizontal">
                         <Frame BackgroundColor="Transparent" Padding="8" HorizontalOptions="Center" VerticalOptions="Center">
                             <Label Text="{StaticResource LocationTo}"  FontFamily="FAS" FontSize="Medium" TextColor="#2196F3"></Label>
                         </Frame>
-                        <Entry Placeholder="Enter start location" Text="{Binding StartLocation}" TextColor="Black" FontAttributes="None" HorizontalOptions="FillAndExpand" Keyboard="Text"/>
+                        <StackLayout>
+                            <Entry Placeholder="Enter start location" Text="{Binding StartLocation}" TextColor="Black" FontAttributes="None" HorizontalOptions="FillAndExpand" Keyboard="Text"/>
+                            <BoxView BackgroundColor="DarkGray"  HeightRequest="1" Color="Gray" WidthRequest="300" HorizontalOptions="Center" VerticalOptions="Center" />
+                              
+                        </StackLayout>
                     </StackLayout>
 
                     <StackLayout Orientation="Horizontal">
                         <Frame BackgroundColor="Transparent" Padding="8" HorizontalOptions="Center" VerticalOptions="Center">
                             <Label Text="{StaticResource LocationFrom}"  FontFamily="FAS" FontSize="Large" TextColor="#2196F3"></Label>
                         </Frame>
-                        <Entry Placeholder="Enter Drop Location" Text="{Binding EndLocation}" TextColor="Black" FontAttributes="None" HorizontalOptions="FillAndExpand" Keyboard="Text"/>
+                        <StackLayout>
+                            <Entry Placeholder="Enter Drop Location" Text="{Binding EndLocation}" TextColor="Black" FontAttributes="None" HorizontalOptions="FillAndExpand" Keyboard="Text"/>
+                            <BoxView BackgroundColor="DarkGray"  HeightRequest="1" Color="Gray" WidthRequest="300" HorizontalOptions="Center" VerticalOptions="Center" />
+
+                        </StackLayout>
                     </StackLayout>
 
                     <Grid Padding="10,9,10,8">
@@ -53,7 +74,14 @@
                             <Frame  Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BackgroundColor="Transparent">
                                 <StackLayout Orientation="Horizontal">
                                     <Label Text="{StaticResource Date}" FontFamily="FAS"  FontSize="24" TextColor="{StaticResource colorPrimary}" Margin="9,10,0,0"/>
-                                    <DatePicker x:Name="datePicker" Format="MM/dd/yyyy"   Date="{Binding StartDate}" TextColor="#333333" FontSize="18" HorizontalOptions="FillAndExpand" Margin="10,0,0,0" />
+                                    <DatePicker x:Name="datePicker" 
+                    Format="MM/dd/yyyy"   
+                    MinimumDate="{x:Static sys:DateTime.Today}"
+                    Date="{Binding StartDate}"
+                    TextColor="#333333" 
+                    FontSize="18" 
+                    HorizontalOptions="FillAndExpand" 
+                    Margin="10,0,0,0" />
                                 </StackLayout>
                             </Frame>
                         </StackLayout>
@@ -71,24 +99,40 @@
                         <Frame BackgroundColor="Transparent" Padding="8" HorizontalOptions="Center" VerticalOptions="Center" >
                             <Label Text="{StaticResource Car}" FontFamily="FAS" FontSize="Large" TextColor="#2196F3"></Label>
                         </Frame>
-                        <Entry Placeholder="Car Model" TextColor="Black" FontAttributes="None" HorizontalOptions="FillAndExpand" Keyboard="Text" Text="{Binding AvailableSeats}" />
+                        <StackLayout>
+                            <Entry Placeholder="Number of avialable seats" TextColor="Black" FontAttributes="None" HorizontalOptions="FillAndExpand" Keyboard="Numeric" Text="{Binding AvailableSeats}" />
+                            <BoxView BackgroundColor="DarkGray"  HeightRequest="1" Color="Gray" WidthRequest="300" HorizontalOptions="Center" VerticalOptions="Center" />
+                        </StackLayout>
                     </StackLayout>
 
                     <StackLayout Orientation="Horizontal">
                         <Frame BackgroundColor="Transparent" Padding="8" HorizontalOptions="Center" VerticalOptions="Center" >
                             <Label Text="{StaticResource Money}" FontFamily="FAS" FontSize="Large" TextColor="#2196F3"></Label>
                         </Frame>
-                        <Entry Placeholder="Price" TextColor="Black" FontAttributes="None" HorizontalOptions="FillAndExpand" Keyboard="Numeric" Text="{Binding Price}"  />
+                        <StackLayout>
+                            <Entry Placeholder="Price" TextColor="Black" FontAttributes="None" HorizontalOptions="FillAndExpand" Keyboard="Numeric" Text="{Binding Price}"  />
+                            <BoxView BackgroundColor="DarkGray"  HeightRequest="1" Color="Gray" WidthRequest="300" HorizontalOptions="Center" VerticalOptions="Center" />
+
+                        </StackLayout>
+                        
                     </StackLayout>
+
                     <StackLayout Orientation="Horizontal">
                         <Frame BackgroundColor="Transparent" Padding="8" HorizontalOptions="Center" VerticalOptions="Center" >
                             <Label Text="{StaticResource Car}" FontFamily="FAS" FontSize="Large" TextColor="#2196F3"></Label>
                         </Frame>
-                        <Entry Placeholder="Number seat" TextColor="Black" FontAttributes="None" HorizontalOptions="FillAndExpand" Keyboard="Numeric" Text="{Binding CarModel}" />
+                        <StackLayout>
+                            <Entry Placeholder="Car Model" TextColor="Black" FontAttributes="None" HorizontalOptions="FillAndExpand" Keyboard="Text" Text="{Binding CarModel}" />
+                            <BoxView BackgroundColor="DarkGray"  HeightRequest="1" Color="Gray" WidthRequest="300" HorizontalOptions="Center" VerticalOptions="Center" />
+                        </StackLayout>
                     </StackLayout>
+
+                    <Frame x:Name="TopErrorFrame" IsVisible="False" Padding="15" BackgroundColor="LightBlue" CornerRadius="15">
+                        <Label x:Name="TopErrorMessage" Text="{Binding ErrorMessage}" FontSize="15" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Red" FontFamily="Roboto-Regular" />
+                    </Frame>
                     <Button Text="Create Pool" VerticalOptions="Center" Command="{Binding CreatePoolCommand}" />
                 </StackLayout>
-            </StackLayout>
-        </ScrollView>
+            </ScrollView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

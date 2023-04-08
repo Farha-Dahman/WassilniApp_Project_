@@ -1,5 +1,6 @@
 ﻿using System;
 
+using Android;
 using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
@@ -23,6 +24,7 @@ namespace Wassilni_App.Droid
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            Xamarin.FormsMaps.Init(this, savedInstanceState);
             LoadApplication(new App());
 
         }
@@ -46,6 +48,7 @@ namespace Wassilni_App.Droid
 
         }
 
+        [Obsolete]
         public override void OnBackPressed()
         {
             Rg.Plugins.Popup.Popup.SendBackPressed(base.OnBackPressed);

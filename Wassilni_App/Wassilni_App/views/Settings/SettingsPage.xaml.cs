@@ -48,7 +48,7 @@ namespace Wassilni_App.views.Settings
             await Navigation.PushAsync(new ChangePasswordPage());
         }
 
-        async private void btnLogout_Clicked(object sender, EventArgs e) 
+        async private void BtnLogout_Clicked(object sender, EventArgs e) 
         { 
             await Navigation.PushAsync(new LoginPage());
         }

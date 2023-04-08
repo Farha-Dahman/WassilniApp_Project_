@@ -8,6 +8,7 @@ using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Wassilni_App.Models;
 using Wassilni_App.views;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -105,12 +106,17 @@ namespace Wassilni_App.viewModels
 
                     foreach (var user in emailExistence)
                     {
+
+
                         // user.Key will give you the user ID
                         id = user.Key;
+
+                        Preferences.Set("userId", id);
+
                         if (id != null)
                         {
                             await authProvider.SignInWithEmailAndPasswordAsync(Email, Password);
-                            await Application.Current.MainPage.Navigation.PushModalAsync(new TabbedBottom(id));
+                            await Application.Current.MainPage.Navigation.PushAsync(new TabbedBottom());
                             EmailErrorMessage = "";
                         }
                     }
@@ -123,7 +129,7 @@ namespace Wassilni_App.viewModels
                 }
 
             }
-            catch (Exception ex)
+            catch 
             {
                 PasswordErrorMessage = "The Password you provided is wrong";
             }
