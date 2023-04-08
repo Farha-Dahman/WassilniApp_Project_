@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              NavigationPage.HasNavigationBar="False" xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              xmlns:viewmodels="clr-namespace:Wassilni_App.viewModels" x:DataType="viewmodels:HomeViewModel"
-             x:Class="Wassilni_App.views.HomePage" BackgroundColor="WhiteSmoke">
+             x:Class="Wassilni_App.views.HomePage" BackgroundColor="WhiteSmoke"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+>
     <ContentPage.Content>
         <StackLayout>
 
@@ -39,7 +41,7 @@
                     <Frame  Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BackgroundColor="Transparent">
                         <StackLayout Orientation="Horizontal">
                             <Label Text="{StaticResource Date}" FontFamily="FAS"  FontSize="24" TextColor="{StaticResource colorPrimary}" Margin="9,10,0,0"/>
-                            <DatePicker x:Name="datePicker" Format="MM/dd/yyyy" TextColor="#333333" FontSize="18" HorizontalOptions="FillAndExpand" Margin="10,0,0,0" Date="{Binding StartDate}"/>
+                                <DatePicker x:Name="datePicker" Format="MM/dd/yyyy" TextColor="#333333" FontSize="18" HorizontalOptions="FillAndExpand" Margin="10,0,0,0" Date="{Binding StartDate, Source={x:Static sys:DateTime.Today}, StringFormat='MM/dd/yyyy'}"/>
                         </StackLayout>
                     </Frame>
                 </StackLayout>

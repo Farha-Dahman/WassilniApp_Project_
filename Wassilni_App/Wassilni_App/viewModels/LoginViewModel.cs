@@ -30,6 +30,7 @@ namespace Wassilni_App.viewModels
         private string _passwordErrorMessage;
 
         private bool _isBusy;
+
         public string Email
         {
             get { return _email; }
