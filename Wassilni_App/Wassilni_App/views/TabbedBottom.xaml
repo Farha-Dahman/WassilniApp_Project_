@@ -12,13 +12,12 @@
             NavigationPage.HasNavigationBar="False"
             BackgroundColor="White">
 
-
     <views:HomePage Title="Home">
         <views:HomePage.IconImageSource>
             <FileImageSource File="Home.png" />
         </views:HomePage.IconImageSource>
     </views:HomePage>
-    
+
     <views:MyTripsPage Title="MyTrips">
         <views:MyTripsPage.IconImageSource>
             <FileImageSource File="Car.png"/>
@@ -34,4 +33,5 @@
             <FileImageSource File="Profile.png"/>
         </views:ProfilePage.IconImageSource>
     </views:ProfilePage>
+
 </TabbedPage>

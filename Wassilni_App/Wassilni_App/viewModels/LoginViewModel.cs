@@ -1,7 +1,6 @@
 ﻿using Firebase.Auth;
 using Firebase.Database;
 using Firebase.Database.Query;
-using Java.Security;
 using System;
 using System.Collections.Generic;
 using System.Net.Mail;
@@ -23,6 +22,7 @@ namespace Wassilni_App.viewModels
         FirebaseAuthProvider authProvider;
         string webAPIkey = "AIzaSyClVyVHgbXooKCTyoKMg6RgfBcnkkFKTX0";
 
+        public string id;
 
         private string _email;
         private string _password;
@@ -103,16 +103,10 @@ namespace Wassilni_App.viewModels
                .OnceAsync<object>();
                 if (emailExistence.Count > 0)
                 {
-
-                    foreach (var user in emailExistence)
+                    foreach(var user in emailExistence)
                     {
-
-
-                        // user.Key will give you the user ID
                         id = user.Key;
-
                         Preferences.Set("userId", id);
-
                         if (id != null)
                         {
                             await authProvider.SignInWithEmailAndPasswordAsync(Email, Password);
@@ -140,10 +134,6 @@ namespace Wassilni_App.viewModels
             {
                 IsBusy = false;
             }
-
-
-
-
         }
     }
 }
