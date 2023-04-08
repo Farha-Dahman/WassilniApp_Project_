@@ -242,14 +242,7 @@ namespace Wassilni_App.viewModels
             return true;
         }
 
-        private bool ValidateAvailableSeats()
-        {
-            if (AvailableSeats <= 0)
-            {
-                return false;
-            }
-            return true;
-        }
+        
 
         private bool ValidateCarModel()
         {
@@ -276,7 +269,6 @@ namespace Wassilni_App.viewModels
          && ValidateStartLocation()
          && ValidateEndLocation()
          && ValidateStartTime()
-         && ValidateAvailableSeats()
          && ValidateCarModel()
          && ValidatePrice();
 
@@ -317,13 +309,7 @@ namespace Wassilni_App.viewModels
                 ErrorMessage = errorMessage;
                 ShowTopErrorMessage?.Invoke(this, EventArgs.Empty);
             }
-            else if (!ValidateAvailableSeats())
-            {
-                string errorMessage = "Please Enter Number Of Available Seats!.";
-
-                ErrorMessage = errorMessage;
-                ShowTopErrorMessage?.Invoke(this, EventArgs.Empty);
-            }
+           
             else if (!ValidatePrice())
             {
                 string errorMessage = "Please Enter The Ride price!.";
