@@ -20,7 +20,7 @@ namespace Wassilni_App.views
         private List<Frame> errorFrames;
         private bool isErrorMessageVisible = false;
 
-
+      
         public CreatePoolPage(string id)
         {
             InitializeComponent();

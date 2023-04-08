@@ -22,12 +22,7 @@ namespace Wassilni_App.views
             createPool.Clicked += (sender, e) => CreatePoolButton_Clicked(sender, e, id);
         }
 
-        async private void GoToCreatePoolPage(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new NavigationPage(new CreatePoolPage()));
-
-
-        }
+      
         async private void GoToFindPoolPage(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new NavigationPage(new FindPoolPage()));

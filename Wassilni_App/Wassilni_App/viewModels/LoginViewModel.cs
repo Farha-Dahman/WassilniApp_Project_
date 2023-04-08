@@ -11,6 +11,7 @@ using System.Windows.Input;
 using Wassilni_App.views;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using static Android.Resource;
 
 namespace Wassilni_App.viewModels
 {
@@ -28,7 +29,7 @@ namespace Wassilni_App.viewModels
         private string _passwordErrorMessage;
 
         private bool _isBusy;
-
+        private string id;
         public string Email
         {
             get { return _email; }
@@ -101,10 +102,18 @@ namespace Wassilni_App.viewModels
                .OnceAsync<object>();
                 if (emailExistence.Count > 0)
                 {
-                    // Email already exists in Firebase
-                    await authProvider.SignInWithEmailAndPasswordAsync(Email, Password);
-                    await Application.Current.MainPage.Navigation.PushAsync(new TabbedBottom());
-                    EmailErrorMessage = "";
+
+                    foreach (var user in emailExistence)
+                    {
+                        // user.Key will give you the user ID
+                        id = user.Key;
+                        if (id != null)
+                        {
+                            await authProvider.SignInWithEmailAndPasswordAsync(Email, Password);
+                            await Application.Current.MainPage.Navigation.PushModalAsync(new TabbedBottom(id));
+                            EmailErrorMessage = "";
+                        }
+                    }
                 }
                 else
                 {

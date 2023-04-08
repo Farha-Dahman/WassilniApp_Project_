@@ -12,7 +12,13 @@ namespace Wassilni_App.views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TabbedBottom : TabbedPage
     {
-        public TabbedBottom(string userId)
+
+        public TabbedBottom()
+        {
+            InitializeComponent();
+        }
+
+            public TabbedBottom(string userId)
         {
             InitializeComponent();
 
@@ -38,7 +44,7 @@ namespace Wassilni_App.views
             };
             Children.Add(RequestsPage);
 
-            var profilePage = new ProfilePage(userId)
+            var profilePage = new ProfilePage()
             {
                 Title = "Profile",
                 IconImageSource = ImageSource.FromFile("Profile.png")
