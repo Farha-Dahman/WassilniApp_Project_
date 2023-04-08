@@ -24,5 +24,5 @@
 	  <item name="android:textColorSecondary">@android:color/white</item>
 	  <!--cancel&ok-->
 	  <item name="android:textColor">@color/colorPrimary</item>
-  </style>
+  </style>	
 </resources>
