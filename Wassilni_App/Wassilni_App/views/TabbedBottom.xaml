@@ -8,10 +8,8 @@
             andriod:TabbedPage.ToolbarPlacement="Bottom"
             x:Class="Wassilni_App.views.TabbedBottom"
             SelectedTabColor="{StaticResource colorPrimary}"
-            UnselectedTabColor="Black"
-            NavigationPage.HasNavigationBar="False">
-  <!--Pages can be added as references or inline-->
-
- 
- 
+            UnselectedTabColor="{StaticResource colorSecondary}"
+            NavigationPage.HasNavigationBar="False"
+            BackgroundColor="White">
+     
 </TabbedPage>

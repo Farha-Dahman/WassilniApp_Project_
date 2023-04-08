@@ -15,6 +15,7 @@ namespace Wassilni_App.viewModels
 {
     public class CreatePoolViewModel : BaseViewModel
     {
+<<<<<<< HEAD
 
         FirebaseClient firebaseClient = new Firebase.Database.FirebaseClient("https://wassilni-app-default-rtdb.firebaseio.com/");
         FirebaseAuthProvider authProvider;

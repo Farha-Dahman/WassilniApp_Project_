@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Wassilni_App.Models;
 using Wassilni_App.viewModels;
 using Wassilni_App.views.Settings;
 using Xamarin.Forms;
@@ -22,6 +23,7 @@ namespace Wassilni_App.views
             createPool.Clicked += (sender, e) => CreatePoolButton_Clicked(sender, e, id);
         }
 
+
         async private void GoToCreatePoolPage(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new NavigationPage(new CreatePoolPage()));
@@ -31,8 +33,7 @@ namespace Wassilni_App.views
         async private void GoToFindPoolPage(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new NavigationPage(new FindPoolPage()));
-
-
+            
         }
         async private void CreatePoolButton_Clicked(object sender, EventArgs e, string id)
         {
