@@ -9,8 +9,6 @@ using Wassilni_App.viewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Wassilni_App.views;
-using Android.Content.Res;
-
 namespace Wassilni_App.views.Settings
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -48,7 +46,7 @@ namespace Wassilni_App.views.Settings
             await Navigation.PushAsync(new ChangePasswordPage());
         }
 
-        async private void btnLogout_Clicked(object sender, EventArgs e) 
+        async private void BtnLogout_Clicked(object sender, EventArgs e) 
         { 
             await Navigation.PushAsync(new LoginPage());
         }

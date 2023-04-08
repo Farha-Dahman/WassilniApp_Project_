@@ -12,12 +12,16 @@ namespace Wassilni_App.views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TabbedBottom : TabbedPage
     {
+
+
         public TabbedBottom()
         {
+
             InitializeComponent();
 
 
         }
 
+        
     }
 }

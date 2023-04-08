@@ -8,13 +8,30 @@
             andriod:TabbedPage.ToolbarPlacement="Bottom"
             x:Class="Wassilni_App.views.TabbedBottom"
             SelectedTabColor="{StaticResource colorPrimary}"
-            UnselectedTabColor="Black"
-            NavigationPage.HasNavigationBar="False">
-  <!--Pages can be added as references or inline-->
+            UnselectedTabColor="{StaticResource colorSecondary}"
+            NavigationPage.HasNavigationBar="False"
+            BackgroundColor="White">
 
-    <views:HomePage Title="Home" IconImageSource="Home.png" />
-    <views:MyTripsPage Title="MyTrips" IconImageSource="Car.png"/>
-    <views:RequestsPage Title="Requests" IconImageSource="Request.png"/>
-    <views:ProfilePage Title="Profile" IconImageSource="Profile.png" />
- 
+    <views:HomePage Title="Home">
+        <views:HomePage.IconImageSource>
+            <FileImageSource File="Home.png" />
+        </views:HomePage.IconImageSource>
+    </views:HomePage>
+
+    <views:MyTripsPage Title="MyTrips">
+        <views:MyTripsPage.IconImageSource>
+            <FileImageSource File="Car.png"/>
+        </views:MyTripsPage.IconImageSource>
+    </views:MyTripsPage>
+    <views:RequestsPage Title="Requests">
+        <views:RequestsPage.IconImageSource>
+            <FileImageSource File="Request.png"/>
+        </views:RequestsPage.IconImageSource>
+    </views:RequestsPage>
+    <views:ProfilePage Title="Profile">
+        <views:ProfilePage.IconImageSource>
+            <FileImageSource File="Profile.png"/>
+        </views:ProfilePage.IconImageSource>
+    </views:ProfilePage>
+
 </TabbedPage>

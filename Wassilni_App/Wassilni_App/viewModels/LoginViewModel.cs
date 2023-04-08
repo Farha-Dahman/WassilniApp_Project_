@@ -1,16 +1,17 @@
 ﻿using Firebase.Auth;
 using Firebase.Database;
 using Firebase.Database.Query;
-using Java.Security;
 using System;
 using System.Collections.Generic;
 using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Wassilni_App.Models;
 using Wassilni_App.views;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using static Android.Resource;
 
 namespace Wassilni_App.viewModels
 {
@@ -21,6 +22,7 @@ namespace Wassilni_App.viewModels
         FirebaseAuthProvider authProvider;
         string webAPIkey = "AIzaSyClVyVHgbXooKCTyoKMg6RgfBcnkkFKTX0";
 
+        public string id;
 
         private string _email;
         private string _password;
@@ -101,10 +103,17 @@ namespace Wassilni_App.viewModels
                .OnceAsync<object>();
                 if (emailExistence.Count > 0)
                 {
-                    // Email already exists in Firebase
-                    await authProvider.SignInWithEmailAndPasswordAsync(Email, Password);
-                    await Application.Current.MainPage.Navigation.PushAsync(new TabbedBottom());
-                    EmailErrorMessage = "";
+                    foreach(var user in emailExistence)
+                    {
+                        id = user.Key;
+                        Preferences.Set("userId", id);
+                        if (id != null)
+                        {
+                            await authProvider.SignInWithEmailAndPasswordAsync(Email, Password);
+                            await Application.Current.MainPage.Navigation.PushAsync(new TabbedBottom());
+                            EmailErrorMessage = "";
+                        }
+                    }
                 }
                 else
                 {
@@ -114,7 +123,7 @@ namespace Wassilni_App.viewModels
                 }
 
             }
-            catch (Exception ex)
+            catch 
             {
                 PasswordErrorMessage = "The Password you provided is wrong";
             }
@@ -125,10 +134,6 @@ namespace Wassilni_App.viewModels
             {
                 IsBusy = false;
             }
-
-
-
-
         }
     }
 }
