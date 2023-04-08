@@ -27,7 +27,7 @@ namespace Wassilni_App
         async private void Button_Clicked(object sender, EventArgs e)
         {
             // go to the login page
-            await Navigation.PushModalAsync(new MyTripsPage());
+            await Navigation.PushAsync(new MyTripsPage());
             await PopupNavigation.Instance.PopAsync();
             // Close the popup page
 
