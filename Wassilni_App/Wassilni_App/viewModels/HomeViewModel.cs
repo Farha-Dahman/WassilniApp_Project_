@@ -7,6 +7,7 @@ using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Wassilni_App.Models;
 using Wassilni_App.views;
 using Xamarin.Forms;
 using static Android.Resource;
@@ -22,7 +23,14 @@ namespace Wassilni_App.viewModels
         private DateTime _startDate;
         private TimeSpan _startTime;
         private int _numberOfSeats;
+        private int _price;
 
+
+        public int Price
+        {
+            get { return _price; }
+            set { SetProperty(ref _price, value); }
+        }
 
         public string LocationFrom
         {
@@ -85,7 +93,18 @@ namespace Wassilni_App.viewModels
             {
                 if (ValidateFields())
                 {
-                    await Application.Current.MainPage.Navigation.PushAsync(new CreatePoolPage());
+                    Ride Pool = new Ride
+                    {
+                        StartLocation = LocationFrom,
+                        EndLocation = LocationTo,
+                        Date = StartDate,
+                        Number_of_seats = NumberOfSeats,
+                       
+
+                    };
+
+
+                    await Application.Current.MainPage.Navigation.PushAsync(new CreatePoolPage(Pool));
                 }
             }
             catch (Exception ex)

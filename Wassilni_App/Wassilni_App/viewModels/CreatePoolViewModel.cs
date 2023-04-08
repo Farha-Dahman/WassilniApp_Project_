@@ -175,7 +175,7 @@ namespace Wassilni_App.viewModels
 
         public ICommand CreatePoolCommand { get; set; }
 
-        public CreatePoolViewModel()
+        public CreatePoolViewModel(Ride pool)
         {
             string userId = Preferences.Get("userId", string.Empty);
 
@@ -183,11 +183,11 @@ namespace Wassilni_App.viewModels
             CreatePoolCommand = new Command(async () => await ExecuteCreatePoolCommand(userId));
            
             //
-             FetchUserData(userId);
+             FetchUserData(userId,pool);
         }
 
 
-        private async Task FetchUserData(string userId)
+        private async Task FetchUserData(string userId,Ride pool)
         {
             var user = await firebaseClient.Child("User").Child(userId).OnceSingleAsync<Models.User>();
 
@@ -195,6 +195,10 @@ namespace Wassilni_App.viewModels
             {
                 FullName = $"{user.FirstName} {user.LastName}";
                 PhoneNumber = user.PhoneNumber;
+                StartLocation = pool.StartLocation;
+                EndLocation = pool.EndLocation;
+                StartDate = pool.Date;
+                AvailableSeats = pool.Number_of_seats;
             }
         }
         private bool ValidateStartLocation()

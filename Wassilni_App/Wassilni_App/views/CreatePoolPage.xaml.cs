@@ -19,12 +19,12 @@ namespace Wassilni_App.views
      
 
       
-        public CreatePoolPage()
+        public CreatePoolPage(Ride pool)
         {
             InitializeComponent();
            
 
-            this.BindingContext = new CreatePoolViewModel();
+            this.BindingContext = new CreatePoolViewModel(pool);
 
             var viewModel = BindingContext as CreatePoolViewModel;
             viewModel.ShowTopErrorMessage += ViewModel_ShowTopErrorMessage;
