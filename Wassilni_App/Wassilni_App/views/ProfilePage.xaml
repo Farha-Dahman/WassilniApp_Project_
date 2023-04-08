@@ -7,7 +7,7 @@
     <ContentPage.Content>
         <StackLayout>
             <forms:CircleImage Source="{Binding PersonalPhoto}"
-                   Aspect="AspectFill"
+                   Aspect="AspectFit"
                    HeightRequest="150"
                    WidthRequest="150"
                    BorderColor="Gray"
@@ -17,28 +17,28 @@
             <StackLayout  Margin="35,17,25,0" WidthRequest="0">
                 <StackLayout  Margin="20" >
                     <StackLayout Orientation="Horizontal" VerticalOptions="Center" >
-                        <Label Text="{StaticResource Phone}" FontSize="Large" FontFamily="FAS" />
+                        <Label Text="{StaticResource Phone}" TextColor="#5E7FFF" FontSize="Large" FontFamily="FAS" />
                         <Label Text="{Binding PhoneNumber}"  FontSize="Medium" Margin="5,0,0,0"/>
                     </StackLayout>
                     <BoxView HeightRequest="0.5" BackgroundColor="Gray" VerticalOptions="Center"/>
                 </StackLayout>
                 <StackLayout  Margin="20">
                     <StackLayout Orientation="Horizontal" VerticalOptions="Center" >
-                        <Label Text="{StaticResource Email}" FontSize="Large" FontFamily="FAS" />
+                        <Label Text="{StaticResource Email}" TextColor="#5E7FFF" FontSize="Large" FontFamily="FAS" />
                         <Label Text="{Binding Email}"  FontSize="Medium" Margin="5,0,0,0"/>
                     </StackLayout>
                     <BoxView HeightRequest="0.5" BackgroundColor="Gray" VerticalOptions="Center"/>
                 </StackLayout>
                 <StackLayout  Margin="20">
                     <StackLayout Orientation="Horizontal" VerticalOptions="Center" >
-                        <Label Text="{StaticResource Gender}" FontSize="Large" FontFamily="FAS" />
+                        <Label Text="{StaticResource Gender}" TextColor="#5E7FFF" FontSize="Large" FontFamily="FAS" />
                         <Label Text="{Binding Gender}"  FontSize="Medium" Margin="5,0,0,0"/>
                     </StackLayout>
                     <BoxView HeightRequest="0.5" BackgroundColor="Gray" VerticalOptions="Center"/>
                 </StackLayout>
                 <StackLayout  Margin="20">
                     <StackLayout Orientation="Horizontal" VerticalOptions="Center" >
-                        <Label Text="{StaticResource Birthday}" FontSize="Large" FontFamily="FAS" />
+                        <Label Text="{StaticResource Birthday}" TextColor="#5E7FFF" FontSize="Large" FontFamily="FAS" />
                         <Label Text="{Binding Age}" FontSize="Medium" Margin="5,0,0,0" />
                     </StackLayout>
                     <BoxView HeightRequest="0.5" BackgroundColor="Gray" VerticalOptions="Center"/>

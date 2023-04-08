@@ -13,10 +13,10 @@ namespace Wassilni_App.views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ProfilePage : ContentPage
     {
-        public ProfilePage(String UserId)
+        public ProfilePage()
         {
             InitializeComponent();
-            this.BindingContext = new ProfileViewModel(UserId);
+            this.BindingContext = new ProfileViewModel();
             Settings.Clicked += GoToSettingsPage;
         }
         async private void GoToSettingsPage(object sender, EventArgs e)

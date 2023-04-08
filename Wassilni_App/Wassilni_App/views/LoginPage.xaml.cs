@@ -9,7 +9,6 @@ using Wassilni_App.viewModels;
 using Wassilni_App.views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Android.App;
 using System.ComponentModel;
 
 namespace Wassilni_App.views

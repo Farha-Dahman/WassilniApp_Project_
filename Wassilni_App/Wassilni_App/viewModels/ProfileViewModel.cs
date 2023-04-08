@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Wassilni_App.Models;
 using System.Drawing;
 using Xamarin.Forms.Internals;
+using Xamarin.Essentials;
 
 namespace Wassilni_App.viewModels
 {
@@ -57,8 +58,9 @@ namespace Wassilni_App.viewModels
             set { SetProperty(ref _PersonalPhoto, value); }
         }
 
-        public ProfileViewModel(String userId)
+        public ProfileViewModel()
         {
+            string userId = Preferences.Get("userId", string.Empty);
             GetUser(userId);
         }
 

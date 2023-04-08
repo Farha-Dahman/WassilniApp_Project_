@@ -104,10 +104,11 @@ namespace Wassilni_App.viewModels
                     foreach(var user in emailExistence)
                     {
                         id = user.Key;
-                        if(id != null)
+                        Preferences.Set("userId", id);
+                        if (id != null)
                         {
                             await authProvider.SignInWithEmailAndPasswordAsync(Email, Password);
-                            await Application.Current.MainPage.Navigation.PushAsync(new TabbedBottom(id));
+                            await Application.Current.MainPage.Navigation.PushAsync(new TabbedBottom());
                             EmailErrorMessage = "";
                         }
                     }
