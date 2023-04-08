@@ -11,6 +11,8 @@ using Firebase.Database;
 using Firebase.Database.Query;
 using Wassilni_App.views;
 using Rg.Plugins.Popup.Services;
+using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace Wassilni_App.viewModels
 {
@@ -20,7 +22,6 @@ namespace Wassilni_App.viewModels
         public IEnumerable<string> Genders => _genders;
 
         FirebaseClient firebaseClient = new Firebase.Database.FirebaseClient("https://wassilni-app-default-rtdb.firebaseio.com/");
-        FirebaseAuthProvider authProvider;
         string webAPIkey = "AIzaSyClVyVHgbXooKCTyoKMg6RgfBcnkkFKTX0";
 
         private string _firstName;
@@ -313,11 +314,7 @@ namespace Wassilni_App.viewModels
                 && ValidateEmail()
                 && ValidateBirthdate()
                 && ValidateGender()
-                && ValidatePassword()
-
-
-
-        ;
+                && ValidatePassword();
         }
 
 
@@ -331,8 +328,8 @@ namespace Wassilni_App.viewModels
 
                 // Send a verification email
                 await authProvider.SendEmailVerificationAsync(authResult.FirebaseToken);
-
-
+                var personalPhotoUrl = "PersonalPhoto.png";
+                //var personalPhotoUrl = "https://w7.pngwing.com/pngs/177/551/png-transparent-user-interface-design-computer-icons-default-stephen-salazar-graphy-user-interface-design-computer-wallpaper-sphere-thumbnail.png";
                 var newUser = new
                 {
                     FirstName = FirstName,
@@ -341,7 +338,7 @@ namespace Wassilni_App.viewModels
                     PhoneNumber = PhoneNumber,
                     Birthdate = Birthdate,
                     Gender = SelectedGender,
-                    PhotoUrl = "",
+                    PhotoUrl = personalPhotoUrl,
                 };
 
                 await firebaseClient.Child("User").Child(authResult.User.LocalId).PutAsync(newUser);
@@ -351,8 +348,6 @@ namespace Wassilni_App.viewModels
             catch (Exception ex)
             {
                 EmailErrorMessage = "Account Already Exist With This Email";
-
-
             }
         }
 
