@@ -7,10 +7,10 @@
     <ContentPage.Content>
         <StackLayout Padding="10">
             <Label Text="Trips" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
-            <CollectionView x:Name="PoolsCollectionView" ItemsLayout="VerticalList">
+            <CollectionView x:Name="PoolsCollectionView" ItemsLayout="VerticalList" >
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Frame CornerRadius="15" BackgroundColor="{StaticResource colorSecondary}" Padding="0,1,0,2" >
+                        <Frame CornerRadius="15" BackgroundColor="{StaticResource colorFrame}" Padding="0,1,0,2" BorderColor="{StaticResource colorPrimary}" >
                             <StackLayout>
                                 <Grid Padding="10,10,10,0" >
                                     <Grid.RowDefinitions>
@@ -59,7 +59,7 @@
                                 <ColumnDefinition Width="auto" />
                             </Grid.ColumnDefinitions>
 
-                            <Grid Grid.Column="0" Padding="5,2,10,0" WidthRequest="70">
+                            <Grid Grid.Column="0" Padding="12,2,10,0" WidthRequest="70">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="auto" />
                                     <ColumnDefinition Width="auto" />
@@ -72,9 +72,9 @@
                                 <Label Text="Price" FontSize="Medium" FontFamily="Roboto-Bold" Grid.Column="1" Grid.Row="0" ></Label>
                                 <Label Text="15"  FontFamily="Roboto-Regular" TextColor="black" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" HorizontalTextAlignment="Center" ></Label>
                             </Grid>
-                            <BoxView Grid.Column="1" BackgroundColor="Black" WidthRequest="3" HeightRequest="50" HorizontalOptions="Center" VerticalOptions="Center" />
+                            <BoxView Grid.Column="1" BackgroundColor="Black" WidthRequest="1.8" HeightRequest="55" HorizontalOptions="Center" VerticalOptions="Center" />
 
-                            <Grid Grid.Column="2" Padding="12,2,12,0" WidthRequest="70">
+                            <Grid Grid.Column="2" Padding="12,2,10,0" WidthRequest="70">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="auto" />
                                     <ColumnDefinition Width="auto" />
@@ -88,7 +88,7 @@
                                 <Label Text="5 Mar, 23" FontFamily="Roboto-Regular" TextColor="black" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" HorizontalTextAlignment="Center"></Label>
                             </Grid>
 
-                            <BoxView Grid.Column="3" BackgroundColor="Black" WidthRequest="3" HeightRequest="50" HorizontalOptions="Center" VerticalOptions="Center" />
+                            <BoxView Grid.Column="3" BackgroundColor="Black" WidthRequest="1.8" HeightRequest="55" HorizontalOptions="Center" VerticalOptions="Center" />
 
                             <Grid Grid.Column="4" Padding="12,2,2,0" WidthRequest="80">
                                 <Grid.ColumnDefinitions>
@@ -107,8 +107,8 @@
                     </Grid>
                 </StackLayout>
             </Frame>
-            </DataTemplate>
-            </CollectionView.ItemTemplate>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
             </CollectionView>
         </StackLayout>
     </ContentPage.Content>

@@ -12,7 +12,7 @@
             <Color x:Key="colorInput">#5F5D60</Color>
             <Color x:Key="colorText">#FFFFFF</Color>
             <Color x:Key="colorLine">#D0D0D0</Color>
-
+            <Color x:Key="colorFrame">#D0DAFF</Color>
 
             <Style x:Name="NormalBtn" TargetType="Button">
                 <Setter Property="TextColor" Value="White"></Setter>
