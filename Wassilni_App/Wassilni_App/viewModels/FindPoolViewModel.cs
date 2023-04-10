@@ -14,5 +14,6 @@ namespace Wassilni_App.viewModels
         {
             MatchingPools = new ObservableCollection<RideViewModel>(matchingRides.Select(r => new RideViewModel(r)));
         }
+
     }
 }

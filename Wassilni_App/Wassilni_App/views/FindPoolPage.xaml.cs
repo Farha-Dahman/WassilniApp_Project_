@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using Wassilni_App.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Wassilni_App.Services;
 using System;
 using Wassilni_App.viewModels;
 

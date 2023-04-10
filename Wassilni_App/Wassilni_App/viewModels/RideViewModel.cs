@@ -1,7 +1,6 @@
 ﻿using Firebase.Auth;
 using Firebase.Database;
 using Firebase.Database.Query;
-using Java.Sql;
 using Org.Apache.Http.Protocol;
 using Org.Xmlpull.V1.Sax2;
 using System;
@@ -14,12 +13,12 @@ using System.Windows.Input;
 using Wassilni_App.Models;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-​
 namespace Wassilni_App.viewModels
 {
     public class RideViewModel : BaseViewModel
-    {​​
-        FirebaseClient firebaseClient = new Firebase.Database.FirebaseClient("https://wassilni-app-default-rtdb.firebaseio.com/");​​
+    {
+        FirebaseClient firebaseClient = new Firebase.Database.FirebaseClient("https://wassilni-app-default-rtdb.firebaseio.com/");
+
         public string RideId { get; set; }
         public string StartLocation { get; set; }
         public string EndLocation { get; set; }
@@ -29,13 +28,9 @@ namespace Wassilni_App.viewModels
         public string DriverName { get; set; }
         public string DriverId { get; set; }
         public DateTime PickupDateTime { get; set; }
-​
-        public DateTime TripDate { get; set; }
-​
-        public TimeSpan TripTime { get; set; }​
-​
         public string PhoneNumber { get; set; }
-        public string PhotoUrl { get; set; }​
+        public string PhotoUrl { get; set; }
+
         // Your RideViewModel properties and methods...
         public RideViewModel(Ride ride)
         {
@@ -50,9 +45,8 @@ namespace Wassilni_App.viewModels
             PhoneNumber = ride.PhoneNumber;
             RideId = ride.RideID;
             PhotoUrl = ride.PhotoUrl;
-​​
-            // Other properties...
         }
-​
-}
+
+
+    } 
 }

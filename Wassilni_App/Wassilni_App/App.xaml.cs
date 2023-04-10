@@ -17,6 +17,7 @@ namespace Wassilni_App
             MainPage = new NavigationPage(new SplashScreen());
         }
 
+
         protected override void OnStart()
         {
         }

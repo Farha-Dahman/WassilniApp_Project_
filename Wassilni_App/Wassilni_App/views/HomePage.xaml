@@ -8,7 +8,6 @@
 >
     <ContentPage.Content>
         <StackLayout>
-
             <StackLayout HeightRequest="300">
                 <maps:Map IsShowingUser="True"/>
             </StackLayout>

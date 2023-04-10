@@ -13,8 +13,8 @@ using Wassilni_App.viewModels;
 using Xamarin.Forms;
 using static Android.Resource;
 using Org.Xmlpull.V1.Sax2;
-using Wassilni_App.Services;
 using Xamarin.Essentials;
+using Wassilni_App.Services;
 
 namespace Wassilni_App.viewModels
 {
@@ -29,15 +29,11 @@ namespace Wassilni_App.viewModels
         private int _numberOfSeats;
         private int _price;
         private string _driverId;
-​
-​
+
         public string DriverId
         {
             get { return _driverId; }
-            set
-            {
-                SetProperty(ref _driverId, value);
-            }
+            set { SetProperty(ref _driverId, value); }
         }
 
         public int Price
@@ -78,16 +74,16 @@ namespace Wassilni_App.viewModels
         }
 
         public ICommand CreatePoolCommand { get; set; }
-
         public ICommand FindPoolCommand { get; set; }
+
 
         public HomeViewModel()
         {
-          
+
             CreatePoolCommand = new Command(async () => await ExecuteCreatePoolCommand());
             FindPoolCommand = new Command(async () => await ExecuteFindPoolCommand());
-
         }
+
         private bool ValidateFields()
         {
             if (string.IsNullOrEmpty(LocationFrom) || (string.IsNullOrEmpty(LocationTo)))
@@ -113,7 +109,6 @@ namespace Wassilni_App.viewModels
                         EndLocation = LocationTo,
                         Date = StartDate,
                         Number_of_seats = NumberOfSeats,
-                        DriverID = DriverId,
 
                     };
 
@@ -156,7 +151,5 @@ namespace Wassilni_App.viewModels
             }
         }
     }
-
-
 }
 
