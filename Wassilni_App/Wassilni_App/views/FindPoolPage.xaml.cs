@@ -13,21 +13,16 @@ namespace Wassilni_App.views
     public partial class FindPoolPage : ContentPage
     {
         public ObservableCollection<Ride> MatchingPools { get; set; }
-
         public FindPoolPage(List<Ride> matchingPools)
         {
-
-
             InitializeComponent();
-            this.BindingContext = new FindPoolViewModel();
-            MatchingPools = new ObservableCollection<Ride>(matchingPools);
-            PoolsCollectionView.ItemsSource = MatchingPools;
+            this.BindingContext = new FindPoolViewModel(matchingPools);
+            PoolsCollectionView.ItemsSource = (BindingContext as FindPoolViewModel).MatchingPools;
         }
         private async void OnItemTapped(object sender, EventArgs e)
         {
             var tappedFrame = sender as Frame;
             var tappedItem = tappedFrame.BindingContext as Ride;
-
             await Navigation.PushAsync(new MyTripsPage());
         }
     }

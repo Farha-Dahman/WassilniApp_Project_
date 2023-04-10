@@ -9,6 +9,7 @@ namespace Wassilni_App
 {
     public partial class App : Application
     {
+        public DatabaseHelper dbHelper;
         public App()
         {
             InitializeComponent();

@@ -11,6 +11,10 @@ using Wassilni_App.Models;
 using Wassilni_App.views;
 using Wassilni_App.viewModels;
 using Xamarin.Forms;
+using static Android.Resource;
+using Org.Xmlpull.V1.Sax2;
+using Wassilni_App.Services;
+using Xamarin.Essentials;
 
 namespace Wassilni_App.viewModels
 {
@@ -24,7 +28,17 @@ namespace Wassilni_App.viewModels
         private TimeSpan _startTime;
         private int _numberOfSeats;
         private int _price;
-
+        private string _driverId;
+​
+​
+        public string DriverId
+        {
+            get { return _driverId; }
+            set
+            {
+                SetProperty(ref _driverId, value);
+            }
+        }
 
         public int Price
         {
@@ -99,7 +113,7 @@ namespace Wassilni_App.viewModels
                         EndLocation = LocationTo,
                         Date = StartDate,
                         Number_of_seats = NumberOfSeats,
-                       
+                        DriverID = DriverId,
 
                     };
 
@@ -114,20 +128,32 @@ namespace Wassilni_App.viewModels
             }
         }
 
-        private async Task ExecuteFindPoolCommand( )
+        private async Task ExecuteFindPoolCommand()
         {
-           try {
+            try
+            {
                 if (ValidateFields())
                 {
-                    await Application.Current.MainPage.Navigation.PushAsync(new FindPoolPage());
+                    Ride Pool = new Ride
+                    {
+                        StartLocation = LocationFrom,
+                        EndLocation = LocationTo,
+                        Date = StartDate,
+                        Number_of_seats = NumberOfSeats,
+                        PricePerRide = Price,
+                        DriverID = DriverId,
+                    };
+                    DatabaseHelper dbHelper = ((App)Application.Current).dbHelper;
+                    string DriverID = Pool.DriverID;
+                    Preferences.Set("DriverID", DriverId);
+                    List<Ride> matchingPools = await dbHelper.GetMatchingPoolsAsync(Pool);
+                    await Application.Current.MainPage.Navigation.PushAsync(new FindPoolPage(matchingPools));
                 }
             }
             catch (Exception ex)
             {
                 await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
-
             }
-           
         }
     }
 
