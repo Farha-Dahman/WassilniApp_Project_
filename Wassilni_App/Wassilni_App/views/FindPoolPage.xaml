@@ -1,13 +1,115 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:forms="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              x:Class="Wassilni_App.views.FindPoolPage"
-             NavigationPage.HasNavigationBar="false">
+            >
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Find pool page"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Padding="10">
+            <Label Text="Trips" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
+            <CollectionView x:Name="PoolsCollectionView" ItemsLayout="VerticalList">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame CornerRadius="15" BackgroundColor="{StaticResource colorSecondary}" Padding="0,1,0,2" >
+                            <StackLayout>
+                                <Grid Padding="10,10,10,0" >
+                                    <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                        <forms:CircleImage Source="PersonalPhoto.png" Aspect="AspectFit" HeightRequest="50" WidthRequest="50" Grid.Column="0" />
+                                        <Label Text="Sara Omar " FontSize="20" FontFamily="Roboto-Bold" TextColor="Black" Grid.Column="1"  Padding="3,10" />
+                                        <Label Text="{StaticResource Profile}" TextColor="{StaticResource colorPrimary}" FontSize="26" FontFamily="FAS" Padding="0,9,1,0"  Grid.Column="2" />
+                                        <Label Text="2" FontSize="24" FontFamily="Roboto-Bold" TextColor="Black" Grid.Column="3"  Padding="0,7,10,0"/>
+                                </Grid>
+
+
+                            <StackLayout Grid.Row="1" Padding="50,0,10,0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                </Grid.RowDefinitions>
+                                <Label Text="{StaticResource LocationFrom}" FontFamily="FAS" FontSize="Small" Padding="0,2,0,0" TextColor="{StaticResource colorPrimary}" Grid.Column="0" Grid.Row="0"></Label>
+                                <Label Text="Nablus,rafediastreet447, Palestine" FontFamily="Roboto-Bold" Grid.Column="1" Grid.Row="0"></Label>
+                                <Label Text="{StaticResource LocationTo}" FontFamily="FAS" FontSize="Small" Padding="0,2,0,0" TextColor="{StaticResource colorDrop}"  Grid.Column="0" Grid.Row="1"></Label>
+                                <Label Text="Jenin,alistiklalstreet541, Palestine" FontFamily="Roboto-Bold" Grid.Column="1" Grid.Row="1"></Label>
+                            </Grid>
+                        </StackLayout>
+
+
+                        <Grid Grid.Row="2" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Grid.Column="0" Padding="5,2,10,0" WidthRequest="70">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="auto" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                </Grid.RowDefinitions>
+                                <Label Text="{StaticResource Money}" FontFamily="FAS" FontSize="Medium" TextColor="{StaticResource colorPrimary}" Padding="0,3,0,0" Grid.Column="0" Grid.Row="0"></Label>
+                                <Label Text="Price" FontSize="Medium" FontFamily="Roboto-Bold" Grid.Column="1" Grid.Row="0" ></Label>
+                                <Label Text="15"  FontFamily="Roboto-Regular" TextColor="black" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" HorizontalTextAlignment="Center" ></Label>
+                            </Grid>
+                            <BoxView Grid.Column="1" BackgroundColor="Black" WidthRequest="3" HeightRequest="50" HorizontalOptions="Center" VerticalOptions="Center" />
+
+                            <Grid Grid.Column="2" Padding="12,2,12,0" WidthRequest="70">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="auto" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                </Grid.RowDefinitions>
+                                <Label Text="{StaticResource Date}" FontFamily="FAS" FontSize="Medium" TextColor="{StaticResource colorPrimary}" Padding="0,3,0,0" Grid.Column="0" Grid.Row="0"></Label>
+                                <Label Text="Date" FontSize="Medium" FontFamily="Roboto-Bold" Grid.Column="1" Grid.Row="0" ></Label>
+                                <Label Text="5 Mar, 23" FontFamily="Roboto-Regular" TextColor="black" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" HorizontalTextAlignment="Center"></Label>
+                            </Grid>
+
+                            <BoxView Grid.Column="3" BackgroundColor="Black" WidthRequest="3" HeightRequest="50" HorizontalOptions="Center" VerticalOptions="Center" />
+
+                            <Grid Grid.Column="4" Padding="12,2,2,0" WidthRequest="80">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="auto" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                </Grid.RowDefinitions>
+                                <Label Text="{StaticResource Time}"  FontFamily="FAS" FontSize="Medium" TextColor="{StaticResource colorPrimary}" Padding="0,3,0,0" Grid.Column="0" Grid.Row="0"></Label>
+                                <Label Text="Time"  FontSize="Medium" FontFamily="Roboto-Bold" Grid.Column="1" Grid.Row="0" ></Label>
+                                <Label Text="10:00AM" FontFamily="Roboto-Regular" TextColor="black" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" HorizontalTextAlignment="Center"></Label>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </StackLayout>
+            </Frame>
+            </DataTemplate>
+            </CollectionView.ItemTemplate>
+            </CollectionView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
