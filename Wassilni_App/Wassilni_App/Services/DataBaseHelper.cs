@@ -28,7 +28,6 @@ namespace Wassilni_App.Services
                 DriverName = r.Object.DriverName,
                 PhoneNumber = r.Object.PhoneNumber,
                 PricePerRide = r.Object.PricePerRide,
-                PhotoUrl = r.Object.PhotoUrl,
             }).ToList();
         }
 
@@ -43,7 +42,6 @@ namespace Wassilni_App.Services
                )
                   .Select(r => new Ride
                   {
-                      PhotoUrl = r.PhotoUrl,
                       StartLocation = r.StartLocation,
                       EndLocation = r.EndLocation,
                       PickupDateTime = r.PickupDateTime,

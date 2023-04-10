@@ -7,7 +7,7 @@
 
 
             <Color x:Key="colorPrimary">#5E7FFF</Color>
-            <Color x:Key="colorSecondary">#879DF2</Color>
+            <Color x:Key="colorSecondary">#879DF2</Color> 
             <Color x:Key="colorDrop">#FF4E4E</Color>
             <Color x:Key="colorInput">#5F5D60</Color>
             <Color x:Key="colorText">#FFFFFF</Color>

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Wassilni_App.Models;
 using Wassilni_App.views;
+using Wassilni_App.viewModels;
 using Xamarin.Forms;
 
 namespace Wassilni_App.viewModels
