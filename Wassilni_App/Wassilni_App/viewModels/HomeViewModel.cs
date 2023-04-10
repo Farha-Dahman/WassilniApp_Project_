@@ -134,6 +134,7 @@ namespace Wassilni_App.viewModels
                         StartLocation = LocationFrom,
                         EndLocation = LocationTo,
                         Date = StartDate,
+                        TripTime = StartTime,
                         Number_of_seats = NumberOfSeats,
                         PricePerRide = Price,
                         DriverID = DriverId,
