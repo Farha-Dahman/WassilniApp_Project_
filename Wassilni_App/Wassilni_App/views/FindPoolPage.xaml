@@ -25,10 +25,10 @@
                                         <ColumnDefinition Width="Auto" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
-                                        <forms:CircleImage Source="PersonalPhoto.png" Aspect="AspectFit" HeightRequest="50" WidthRequest="50" Grid.Column="0" />
-                                        <Label Text="Sara Omar " FontSize="20" FontFamily="Roboto-Bold" TextColor="Black" Grid.Column="1"  Padding="3,10" />
+                                        <forms:CircleImage Source="{Binding DriverPhoto}" Aspect="AspectFit" HeightRequest="50" WidthRequest="50" Grid.Column="0" />
+                                        <Label Text="{Binding DriverName}" FontSize="20" FontFamily="Roboto-Bold" TextColor="Black" Grid.Column="1"  Padding="3,10" />
                                         <Label Text="{StaticResource Profile}" TextColor="{StaticResource colorPrimary}" FontSize="26" FontFamily="FAS" Padding="0,9,1,0"  Grid.Column="2" />
-                                        <Label Text="2" FontSize="24" FontFamily="Roboto-Bold" TextColor="Black" Grid.Column="3"  Padding="0,7,10,0"/>
+                                        <Label Text="{Binding NumberOfSeats}" FontSize="24" FontFamily="Roboto-Bold" TextColor="Black" Grid.Column="3"  Padding="0,7,10,0"/>
                                 </Grid>
 
 
@@ -43,9 +43,9 @@
                                     <RowDefinition Height="auto" />
                                 </Grid.RowDefinitions>
                                 <Label Text="{StaticResource LocationFrom}" FontFamily="FAS" FontSize="Small" Padding="0,2,0,0" TextColor="{StaticResource colorPrimary}" Grid.Column="0" Grid.Row="0"></Label>
-                                <Label Text="Nablus,rafediastreet447, Palestine" FontFamily="Roboto-Bold" Grid.Column="1" Grid.Row="0"></Label>
+                                <Label Text="{Binding LocationFrom}" FontFamily="Roboto-Bold" Grid.Column="1" Grid.Row="0"></Label>
                                 <Label Text="{StaticResource LocationTo}" FontFamily="FAS" FontSize="Small" Padding="0,2,0,0" TextColor="{StaticResource colorDrop}"  Grid.Column="0" Grid.Row="1"></Label>
-                                <Label Text="Jenin,alistiklalstreet541, Palestine" FontFamily="Roboto-Bold" Grid.Column="1" Grid.Row="1"></Label>
+                                <Label Text="{Binding LocationTo}" FontFamily="Roboto-Bold" Grid.Column="1" Grid.Row="1"></Label>
                             </Grid>
                         </StackLayout>
 
@@ -70,7 +70,7 @@
                                 </Grid.RowDefinitions>
                                 <Label Text="{StaticResource Money}" FontFamily="FAS" FontSize="Medium" TextColor="{StaticResource colorPrimary}" Padding="0,3,0,0" Grid.Column="0" Grid.Row="0"></Label>
                                 <Label Text="Price" FontSize="Medium" FontFamily="Roboto-Bold" Grid.Column="1" Grid.Row="0" ></Label>
-                                <Label Text="15"  FontFamily="Roboto-Regular" TextColor="black" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" HorizontalTextAlignment="Center" ></Label>
+                                <Label Text="{Binding Price}"  FontFamily="Roboto-Regular" TextColor="black" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" HorizontalTextAlignment="Center" ></Label>
                             </Grid>
                             <BoxView Grid.Column="1" BackgroundColor="Black" WidthRequest="1.8" HeightRequest="55" HorizontalOptions="Center" VerticalOptions="Center" />
 
@@ -85,7 +85,7 @@
                                 </Grid.RowDefinitions>
                                 <Label Text="{StaticResource Date}" FontFamily="FAS" FontSize="Medium" TextColor="{StaticResource colorPrimary}" Padding="0,3,0,0" Grid.Column="0" Grid.Row="0"></Label>
                                 <Label Text="Date" FontSize="Medium" FontFamily="Roboto-Bold" Grid.Column="1" Grid.Row="0" ></Label>
-                                <Label Text="5 Mar, 23" FontFamily="Roboto-Regular" TextColor="black" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" HorizontalTextAlignment="Center"></Label>
+                                <Label Text="{Binding Date}" FontFamily="Roboto-Regular" TextColor="black" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" HorizontalTextAlignment="Center"></Label>
                             </Grid>
 
                             <BoxView Grid.Column="3" BackgroundColor="Black" WidthRequest="1.8" HeightRequest="55" HorizontalOptions="Center" VerticalOptions="Center" />
@@ -101,7 +101,7 @@
                                 </Grid.RowDefinitions>
                                 <Label Text="{StaticResource Time}"  FontFamily="FAS" FontSize="Medium" TextColor="{StaticResource colorPrimary}" Padding="0,3,0,0" Grid.Column="0" Grid.Row="0"></Label>
                                 <Label Text="Time"  FontSize="Medium" FontFamily="Roboto-Bold" Grid.Column="1" Grid.Row="0" ></Label>
-                                <Label Text="10:00AM" FontFamily="Roboto-Regular" TextColor="black" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" HorizontalTextAlignment="Center"></Label>
+                                <Label Text="{Binding Time}" FontFamily="Roboto-Regular" TextColor="black" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" HorizontalTextAlignment="Center"></Label>
                             </Grid>
                         </Grid>
                     </Grid>
