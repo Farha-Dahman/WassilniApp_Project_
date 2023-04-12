@@ -92,7 +92,7 @@
 
                     <Frame  Margin="0,3,0,0" Padding="15,5,15,-7" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BackgroundColor="Transparent">
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="{StaticResource Money}" FontFamily="FAS"  FontSize="24" TextColor="{StaticResource colorPrimary}" Margin="9,10,0,0"/>
+                            <Label Text="{StaticResource MoneyBill}" FontFamily="FAS"  FontSize="24" TextColor="{StaticResource colorPrimary}" Margin="9,10,0,0"/>
                             <Entry x:Name="Price" Keyboard="Numeric" Text="{Binding Price}" Placeholder="Enter Your Price" TextColor="#333333" FontSize="18" HorizontalOptions="FillAndExpand" Margin="10,0,0,0"></Entry>
                         </StackLayout>
                     </Frame>

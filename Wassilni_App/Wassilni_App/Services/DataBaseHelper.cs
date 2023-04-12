@@ -33,6 +33,7 @@ namespace Wassilni_App.Services
                 PricePerRide = r.Object.PricePerRide,
                 PhotoUrl = r.Object.PhotoUrl,
                 TripTime = r.Object.TripTime,
+                Date = r.Object.Date,
             }).ToList();
         }
         public async Task<List<Ride>> GetMatchingPoolsAsync(Ride pool)
@@ -72,6 +73,9 @@ namespace Wassilni_App.Services
                       PhoneNumber = r.PhoneNumber,
                       PricePerRide = r.PricePerRide,
                       DriverID = r.DriverID,
+                      TripTime = r.TripTime,
+                      Date = r.Date,
+
                   })
             .ToList();
         }

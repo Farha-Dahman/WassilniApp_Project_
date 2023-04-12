@@ -30,6 +30,8 @@ namespace Wassilni_App.viewModels
         public DateTime PickupDateTime { get; set; }
         public string PhoneNumber { get; set; }
         public string PhotoUrl { get; set; }
+        public string Date { get; set; }
+        public TimeSpan TripTime { get; set; }
 
         // Your RideViewModel properties and methods...
         public RideViewModel(Ride ride)
@@ -45,6 +47,8 @@ namespace Wassilni_App.viewModels
             PhoneNumber = ride.PhoneNumber;
             RideId = ride.RideID;
             PhotoUrl = ride.PhotoUrl;
+            TripTime = ride.TripTime;
+            Date = ride.Date.Date.ToString("yyyy-MM-dd");
         }
 
 
