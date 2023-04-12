@@ -9,7 +9,7 @@
     <ContentPage.Content>
         <StackLayout>
             <StackLayout HeightRequest="300">
-                <maps:Map IsShowingUser="True"/>
+                <maps:Map IsShowingUser="True" x:Name="map"/>
             </StackLayout>
             <ScrollView>
                 <StackLayout Margin="5" Spacing="10">
@@ -46,7 +46,7 @@
                         </StackLayout>
                     </Frame>
                     <BoxView BackgroundColor="DarkGray" Margin="60,0,15,5" HeightRequest="1.1" Color="Gray" WidthRequest="310" HorizontalOptions="Center" VerticalOptions="Center" />
-
+                  
 
                     <Grid Padding="17,7,17,8">
                         <Grid.ColumnDefinitions>
