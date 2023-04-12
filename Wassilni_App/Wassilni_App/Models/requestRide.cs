@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Wassilni_App.Models
 {
-    public class RideRequest
+    public class requestRide
     {
         private string _requestId;
         private string _riderId;
