@@ -10,7 +10,6 @@ using System.Windows.Input;
 using Wassilni_App.Models;
 using Wassilni_App.views;
 using Xamarin.Forms;
-using static Android.Resource;
 
 namespace Wassilni_App.viewModels
 {
