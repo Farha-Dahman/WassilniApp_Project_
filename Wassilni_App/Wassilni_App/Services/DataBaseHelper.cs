@@ -32,6 +32,7 @@ namespace Wassilni_App.Services
                 PhoneNumber = r.Object.PhoneNumber,
                 PricePerRide = r.Object.PricePerRide,
                 PhotoUrl = r.Object.PhotoUrl,
+                TripTime = r.Object.TripTime,
             }).ToList();
         }
         public async Task<List<Ride>> GetMatchingPoolsAsync(Ride pool)
@@ -39,15 +40,14 @@ namespace Wassilni_App.Services
             string currentUserId = Preferences.Get("userId", string.Empty);
             var allRides = await GetRidesAsync();
 
-            Debug.WriteLine(pool.Number_of_seats);
-            Debug.WriteLine(pool.TripTime);
-            Debug.WriteLine(pool.Date);
-            Debug.WriteLine(pool.StartLocation);
-            Debug.WriteLine(pool.EndLocation);
+            //Debug.WriteLine(pool.Number_of_seats);
+            //Debug.WriteLine(pool.TripTime);
+            //Debug.WriteLine(pool.Date);
+            //Debug.WriteLine(pool.StartLocation);
+            //Debug.WriteLine(pool.EndLocation);
 
             pool.PickupDateTime = pool.Date.Add(pool.TripTime);
-            Debug.WriteLine(pool.PickupDateTime);
-
+            //Debug.WriteLine(pool.PickupDateTime);
 
             return allRides.Where(r =>
                 r.DriverID != currentUserId &&

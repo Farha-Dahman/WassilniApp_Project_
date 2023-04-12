@@ -82,7 +82,7 @@
                                  Minimum="1"
                                  Increment="1"
                                  HorizontalOptions="EndAndExpand"
-                                 x:Name="stepper"/>
+                                 x:Name="stepper" Value="{Binding AvailableSeats}"/>
                                 </StackLayout>
                             </Frame>
                         </StackLayout>
