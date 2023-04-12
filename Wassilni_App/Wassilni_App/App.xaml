@@ -26,9 +26,7 @@
                 <Setter Property="FontFamily" Value="Roboto-Bold"></Setter>
                 <Setter Property="TextTransform" Value="None"></Setter>
             </Style>
-
-
-           
+            
 
             <Style TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="{StaticResource colorPrimary}"></Setter>

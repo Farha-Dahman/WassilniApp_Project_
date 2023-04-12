@@ -27,7 +27,13 @@ namespace Wassilni_App
         async private void Button_Clicked(object sender, EventArgs e)
         {
             // go to the login page
-            await Navigation.PushAsync(new MyTripsPage());
+            var tabbedBottom = new TabbedBottom();
+            var myTripsPage = tabbedBottom.Children.FirstOrDefault(page => page is MyTripsPage);
+            if (myTripsPage != null)
+            {
+                tabbedBottom.CurrentPage = myTripsPage;
+                await Navigation.PushAsync(tabbedBottom);
+            }
             await PopupNavigation.Instance.PopAsync();
             // Close the popup page
 

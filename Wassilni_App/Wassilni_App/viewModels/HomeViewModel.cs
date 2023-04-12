@@ -104,7 +104,7 @@ namespace Wassilni_App.viewModels
                     };
 
 
-                    await Application.Current.MainPage.Navigation.PushAsync(new CreatePoolPage(Pool));
+                    await Application.Current.MainPage.Navigation.PushAsync(new NavigationPage(new CreatePoolPage(Pool)));
                 }
             }
             catch (Exception ex)
