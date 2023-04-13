@@ -98,7 +98,7 @@
                                 </Grid.RowDefinitions>
                                 <Label Text="{StaticResource Date}" FontFamily="FAS" FontSize="20" TextColor="{StaticResource colorPrimary}" Padding="3,2,5,0" Grid.Column="0" Grid.Row="0"></Label>
                                             <Label Text="Date" FontSize="18" FontFamily="Roboto-Bold" Grid.Column="1" Grid.Row="0" TextColor="Black"></Label>
-                                            <Label Text="{Binding Date}" FontFamily="Roboto-Bold" FontSize="16" TextColor="black" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" HorizontalTextAlignment="Center"></Label>
+                                            <Label Text="{Binding TripDate}" FontFamily="Roboto-Bold" FontSize="16" TextColor="black" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" HorizontalTextAlignment="Center"></Label>
                             </Grid>
 
                             <BoxView Grid.Column="3" BackgroundColor="Black" WidthRequest="1.8" HeightRequest="55" HorizontalOptions="Center" VerticalOptions="Center" />
