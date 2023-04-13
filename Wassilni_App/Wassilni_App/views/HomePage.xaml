@@ -8,7 +8,6 @@
 >
     <ContentPage.Content>
         <StackLayout>
-
             <StackLayout HeightRequest="300">
                 <maps:Map IsShowingUser="True"/>
             </StackLayout>
@@ -41,7 +40,7 @@
                     <Frame  Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BackgroundColor="Transparent">
                         <StackLayout Orientation="Horizontal">
                             <Label Text="{StaticResource Date}" FontFamily="FAS"  FontSize="24" TextColor="{StaticResource colorPrimary}" Margin="9,10,0,0"/>
-                                <DatePicker x:Name="datePicker" Format="MM/dd/yyyy" TextColor="#333333" FontSize="18" HorizontalOptions="FillAndExpand" Margin="10,0,0,0" Date="{Binding StartDate, Source={x:Static sys:DateTime.Today}, StringFormat='MM/dd/yyyy'}"/>
+                                <DatePicker x:Name="datePicker" Format="MM/dd/yyyy" TextColor="#333333" FontSize="18" HorizontalOptions="FillAndExpand" Margin="10,0,0,0" Date="{Binding StartDate}"/>
                         </StackLayout>
                     </Frame>
                 </StackLayout>
@@ -65,7 +64,7 @@
                                  Minimum="1"
                                  Increment="1"
                                  HorizontalOptions="EndAndExpand"
-                                 x:Name="stepper"/>
+                                 x:Name="stepper"  Value="{Binding NumberOfSeats}"/>
                             </StackLayout>
                         </Frame>
                     </StackLayout>

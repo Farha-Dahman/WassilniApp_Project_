@@ -11,6 +11,7 @@ using System.Windows.Input;
 using Wassilni_App.Models;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using static Android.Views.WindowInsets;
 
 namespace Wassilni_App.viewModels
 {
@@ -362,6 +363,8 @@ namespace Wassilni_App.viewModels
                         StartLocation = StartLocation,
                         EndLocation = EndLocation,
                         PickupDateTime = StartDate + StartTime,
+                        Date = StartDate,
+                        TripTime = StartTime,
                         CarModel = CarModel,
                         Number_of_seats = AvailableSeats,
                         PricePerRide = Price,

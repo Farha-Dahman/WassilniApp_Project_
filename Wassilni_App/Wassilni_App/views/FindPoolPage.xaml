@@ -2,12 +2,25 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:forms="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
-             x:Class="Wassilni_App.views.FindPoolPage"
-            >
+             x:Class="Wassilni_App.views.FindPoolPage">
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Available Trips"
+                   FontSize="24"
+                   TextColor="White"
+                   HorizontalOptions="StartAndExpand" />
+        </StackLayout>
+    </NavigationPage.TitleView>
+
     <ContentPage.Content>
         <StackLayout Padding="10">
-            <Label Text="Trips" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
-            <CollectionView x:Name="PoolsCollectionView" ItemsLayout="VerticalList" >
+            <CollectionView x:Name="PoolsCollectionView"  >
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"
+                          Span="1" 
+                          HorizontalItemSpacing="10" 
+                          VerticalItemSpacing="18" />
+                </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame CornerRadius="15" BackgroundColor="{StaticResource colorFrame}" Padding="0,1,0,2" BorderColor="{StaticResource colorPrimary}" >
@@ -25,14 +38,14 @@
                                         <ColumnDefinition Width="Auto" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
-                                        <forms:CircleImage Source="{Binding DriverPhoto}" Aspect="AspectFit" HeightRequest="50" WidthRequest="50" Grid.Column="0" />
+                                        <forms:CircleImage Source="{Binding PhotoUrl}"  Aspect="AspectFit" HeightRequest="50" WidthRequest="50" Grid.Column="0" />
                                         <Label Text="{Binding DriverName}" FontSize="20" FontFamily="Roboto-Bold" TextColor="Black" Grid.Column="1"  Padding="3,10" />
                                         <Label Text="{StaticResource Profile}" TextColor="{StaticResource colorPrimary}" FontSize="26" FontFamily="FAS" Padding="0,9,1,0"  Grid.Column="2" />
-                                        <Label Text="{Binding NumberOfSeats}" FontSize="24" FontFamily="Roboto-Bold" TextColor="Black" Grid.Column="3"  Padding="0,7,10,0"/>
+                                        <Label Text="{Binding Number_of_seats}" FontSize="24" FontFamily="Roboto-Bold" TextColor="Black" Grid.Column="3"  Padding="0,7,10,0"/>
                                 </Grid>
 
 
-                            <StackLayout Grid.Row="1" Padding="50,0,10,0">
+                            <StackLayout Grid.Row="1" Padding="60,0,10,10">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="auto" />
@@ -42,15 +55,15 @@
                                     <RowDefinition Height="auto" />
                                     <RowDefinition Height="auto" />
                                 </Grid.RowDefinitions>
-                                <Label Text="{StaticResource LocationFrom}" FontFamily="FAS" FontSize="Small" Padding="0,2,0,0" TextColor="{StaticResource colorPrimary}" Grid.Column="0" Grid.Row="0"></Label>
-                                <Label Text="{Binding LocationFrom}" FontFamily="Roboto-Bold" Grid.Column="1" Grid.Row="0"></Label>
-                                <Label Text="{StaticResource LocationTo}" FontFamily="FAS" FontSize="Small" Padding="0,2,0,0" TextColor="{StaticResource colorDrop}"  Grid.Column="0" Grid.Row="1"></Label>
-                                <Label Text="{Binding LocationTo}" FontFamily="Roboto-Bold" Grid.Column="1" Grid.Row="1"></Label>
+                                <Label Text="{StaticResource LocationFrom}" FontFamily="FAS" FontSize="12" Padding="0,2,0,0" TextColor="{StaticResource colorPrimary}" Grid.Column="0" Grid.Row="0"></Label>
+                                <Label Text="{Binding StartLocation}" FontFamily="Roboto-Bold" Grid.Column="1" Grid.Row="0" FontSize="16"></Label>
+                                <Label Text="{StaticResource LocationTo}" FontFamily="FAS" FontSize="18" Padding="0,2,0,0" TextColor="{StaticResource colorDrop}"  Grid.Column="0" Grid.Row="1"></Label>
+                                <Label Text="{Binding EndLocation}" FontFamily="Roboto-Bold" Grid.Column="1" Grid.Row="1" FontSize="16"></Label>
                             </Grid>
-                        </StackLayout>
+                            </StackLayout> 
 
 
-                        <Grid Grid.Row="2" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                                    <Grid Grid.Row="2" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto" />
                                 <ColumnDefinition Width="auto" />
@@ -68,13 +81,13 @@
                                     <RowDefinition Height="auto" />
                                     <RowDefinition Height="auto" />
                                 </Grid.RowDefinitions>
-                                <Label Text="{StaticResource Money}" FontFamily="FAS" FontSize="Medium" TextColor="{StaticResource colorPrimary}" Padding="0,3,0,0" Grid.Column="0" Grid.Row="0"></Label>
-                                <Label Text="Price" FontSize="Medium" FontFamily="Roboto-Bold" Grid.Column="1" Grid.Row="0" ></Label>
-                                <Label Text="{Binding Price}"  FontFamily="Roboto-Regular" TextColor="black" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" HorizontalTextAlignment="Center" ></Label>
+                                <Label Text="{StaticResource MoneyShekel}" FontFamily="FAS" FontSize="Medium" TextColor="{StaticResource colorPrimary}" Padding="0,3,0,0" Grid.Column="0" Grid.Row="0"></Label>
+                                <Label Text="Price" FontSize="Medium" FontFamily="Roboto-Bold" Grid.Column="1" TextColor="Black" Grid.Row="0" ></Label>
+                                            <Label Text="{Binding PricePerRide}"  FontFamily="Roboto-Bold" FontSize="16" TextColor="Black" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" HorizontalTextAlignment="Center" ></Label>
                             </Grid>
                             <BoxView Grid.Column="1" BackgroundColor="Black" WidthRequest="1.8" HeightRequest="55" HorizontalOptions="Center" VerticalOptions="Center" />
 
-                            <Grid Grid.Column="2" Padding="12,2,10,0" WidthRequest="70">
+                            <Grid Grid.Column="2" Padding="15,2,15,0" WidthRequest="85">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="auto" />
                                     <ColumnDefinition Width="auto" />
@@ -83,9 +96,9 @@
                                     <RowDefinition Height="auto" />
                                     <RowDefinition Height="auto" />
                                 </Grid.RowDefinitions>
-                                <Label Text="{StaticResource Date}" FontFamily="FAS" FontSize="Medium" TextColor="{StaticResource colorPrimary}" Padding="0,3,0,0" Grid.Column="0" Grid.Row="0"></Label>
-                                <Label Text="Date" FontSize="Medium" FontFamily="Roboto-Bold" Grid.Column="1" Grid.Row="0" ></Label>
-                                <Label Text="{Binding Date}" FontFamily="Roboto-Regular" TextColor="black" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" HorizontalTextAlignment="Center"></Label>
+                                <Label Text="{StaticResource Date}" FontFamily="FAS" FontSize="20" TextColor="{StaticResource colorPrimary}" Padding="3,2,5,0" Grid.Column="0" Grid.Row="0"></Label>
+                                            <Label Text="Date" FontSize="18" FontFamily="Roboto-Bold" Grid.Column="1" Grid.Row="0" TextColor="Black"></Label>
+                                            <Label Text="{Binding Date}" FontFamily="Roboto-Bold" FontSize="16" TextColor="black" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" HorizontalTextAlignment="Center"></Label>
                             </Grid>
 
                             <BoxView Grid.Column="3" BackgroundColor="Black" WidthRequest="1.8" HeightRequest="55" HorizontalOptions="Center" VerticalOptions="Center" />
@@ -100,12 +113,12 @@
                                     <RowDefinition Height="auto" />
                                 </Grid.RowDefinitions>
                                 <Label Text="{StaticResource Time}"  FontFamily="FAS" FontSize="Medium" TextColor="{StaticResource colorPrimary}" Padding="0,3,0,0" Grid.Column="0" Grid.Row="0"></Label>
-                                <Label Text="Time"  FontSize="Medium" FontFamily="Roboto-Bold" Grid.Column="1" Grid.Row="0" ></Label>
-                                <Label Text="{Binding Time}" FontFamily="Roboto-Regular" TextColor="black" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" HorizontalTextAlignment="Center"></Label>
+                                            <Label Text="Time"  FontSize="Medium" FontFamily="Roboto-Bold" Grid.Column="1" Grid.Row="0" TextColor="Black"></Label>
+                                            <Label Text="{Binding TripTime}" FontFamily="Roboto-Bold" FontSize="16" TextColor="black" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" HorizontalTextAlignment="Center"></Label>
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Button Text="Request" TextColor="White" FontFamily="Roboto-Medium" FontSize="Medium" HorizontalOptions="End" WidthRequest="120" HeightRequest="50" Grid.Column="2" ></Button>
+                                <Button Text="Request" TextColor="White" FontFamily="Roboto-Medium" FontSize="Medium" HorizontalOptions="End" WidthRequest="120" HeightRequest="50" Grid.Column="2" Command="{Binding RequestRideCommand}"  ></Button>
                 </StackLayout>
             </Frame>
             </DataTemplate>
