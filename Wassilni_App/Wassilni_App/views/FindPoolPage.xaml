@@ -3,9 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:forms="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              x:Class="Wassilni_App.views.FindPoolPage">
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Available Trips"
+                   FontSize="24"
+                   TextColor="White"
+                   HorizontalOptions="StartAndExpand" />
+        </StackLayout>
+    </NavigationPage.TitleView>
+
     <ContentPage.Content>
         <StackLayout Padding="10">
-            <Label Text="Trips" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
             <CollectionView x:Name="PoolsCollectionView"  >
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical"
@@ -48,14 +56,14 @@
                                     <RowDefinition Height="auto" />
                                 </Grid.RowDefinitions>
                                 <Label Text="{StaticResource LocationFrom}" FontFamily="FAS" FontSize="12" Padding="0,2,0,0" TextColor="{StaticResource colorPrimary}" Grid.Column="0" Grid.Row="0"></Label>
-                                <Label Text="{Binding EndLocation}" FontFamily="Roboto-Bold" Grid.Column="1" Grid.Row="0" FontSize="16"></Label>
+                                <Label Text="{Binding StartLocation}" FontFamily="Roboto-Bold" Grid.Column="1" Grid.Row="0" FontSize="16"></Label>
                                 <Label Text="{StaticResource LocationTo}" FontFamily="FAS" FontSize="18" Padding="0,2,0,0" TextColor="{StaticResource colorDrop}"  Grid.Column="0" Grid.Row="1"></Label>
-                                <Label Text="{Binding StartLocation}" FontFamily="Roboto-Bold" Grid.Column="1" Grid.Row="1" FontSize="16"></Label>
+                                <Label Text="{Binding EndLocation}" FontFamily="Roboto-Bold" Grid.Column="1" Grid.Row="1" FontSize="16"></Label>
                             </Grid>
-                        </StackLayout>
+                            </StackLayout> 
 
 
-                        <Grid Grid.Row="2" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                                    <Grid Grid.Row="2" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto" />
                                 <ColumnDefinition Width="auto" />
