@@ -41,27 +41,20 @@ namespace Wassilni_App.Services
             string currentUserId = Preferences.Get("userId", string.Empty);
             var allRides = await GetRidesAsync();
 
-            //Debug.WriteLine(pool.Number_of_seats);
-            //Debug.WriteLine(pool.TripTime);
-            //Debug.WriteLine(pool.Date);
-            //Debug.WriteLine(pool.StartLocation);
-            //Debug.WriteLine(pool.EndLocation);
+
 
             pool.PickupDateTime = pool.Date.Add(pool.TripTime);
-            //Debug.WriteLine(pool.PickupDateTime);
+
+
 
             return allRides.Where(r =>
-                r.DriverID != currentUserId &&
-                r.StartLocation == pool.StartLocation &&
-                r.EndLocation == pool.EndLocation &&
-                //r.Date == pool.Date &&
-                //r.TripTime == pool.TripTime &&
-                //r.PickupDateTime == pool.Date.Add(pool.TripTime) &&
-                //r.PickupDateTime == pool.Date.Add(pool.TripTime) &&
-                //r.PickupDateTime.TimeOfDay == pool.TripTime //&&
-                r.PickupDateTime == pool.PickupDateTime &&
-                r.Number_of_seats >= pool.Number_of_seats
-               )
+                  r.DriverID != currentUserId &&
+                  r.StartLocation == pool.StartLocation &&
+                  r.EndLocation == pool.EndLocation &&
+                  r.PickupDateTime.Date == pool.PickupDateTime.Date &&
+                  ((r.PickupDateTime - pool.PickupDateTime).TotalMinutes <= 30) &&
+                  r.Number_of_seats >= pool.Number_of_seats
+                  )
                   .Select(r => new Ride
                   {
                       PhotoUrl = r.PhotoUrl,
@@ -79,5 +72,6 @@ namespace Wassilni_App.Services
                   })
             .ToList();
         }
+    
     }
 }
