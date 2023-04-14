@@ -77,18 +77,18 @@ namespace Wassilni_App.Services
         }
     
        
-                public async Task<List<requestRide>> GetRideRequestsAsync()
+                public async Task<List<RideRequest>> GetRideRequestsAsync()
                 {
                     string currentUserId = Preferences.Get("userId", string.Empty);
                     string DriverID = Preferences.Get("DriverID", string.Empty);
 
                     var requests = await _firebaseClient
                         .Child("requestRide")
-                        .OnceAsync<requestRide>();
+                        .OnceAsync<RideRequest>();
 
                     return requests
                         .Where(r => r.Object.DriverID == currentUserId)
-                         .Select(r => new requestRide
+                         .Select(r => new RideRequest
                          {
                              RequestDate = r.Object.RequestDate,
                              RideID = r.Object.RideID,
