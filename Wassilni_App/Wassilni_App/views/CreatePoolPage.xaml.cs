@@ -1,6 +1,4 @@
-﻿using Android.Text.Format;
-using Firebase.Auth;
-using Java.Util;
+﻿using Firebase.Auth;
 using System;
 using System.Collections.Generic;
 using System.Linq;
