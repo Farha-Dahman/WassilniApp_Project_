@@ -31,7 +31,7 @@ namespace Wassilni_App.Models
             get { return _Date; }
             set { _Date = value; }
         }
-        public TimeSpan Time
+        public TimeSpan TripTime
         {
             get { return _Time; }
             set { _Time = value; }
