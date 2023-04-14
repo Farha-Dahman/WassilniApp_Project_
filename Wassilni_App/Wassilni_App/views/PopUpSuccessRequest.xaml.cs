@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Android.Content.Res;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,13 +10,14 @@ using Wassilni_App.viewModels;
 using Wassilni_App.views.Settings;
 using Wassilni_App.views;
 using Rg.Plugins.Popup.Services;
+
 namespace Wassilni_App
 {
 
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PopUpCreatePool : Rg.Plugins.Popup.Pages.PopupPage
+    public partial class PopUpSuccessRequest : Rg.Plugins.Popup.Pages.PopupPage
     {
-        public PopUpCreatePool()
+        public PopUpSuccessRequest()
 
         {
 
@@ -25,18 +27,8 @@ namespace Wassilni_App
 
         async private void Button_Clicked(object sender, EventArgs e)
         {
-            // go to the login page
-            var tabbedBottom = new TabbedBottom();
-            var myTripsPage = tabbedBottom.Children.FirstOrDefault(page => page is MyTripsPage);
-            if (myTripsPage != null)
-            {
-                tabbedBottom.CurrentPage = myTripsPage;
-                await Navigation.PushAsync(tabbedBottom);
-            }
+            
             await PopupNavigation.Instance.PopAsync();
-            // Close the popup page
-
-
         }
     }
 }
