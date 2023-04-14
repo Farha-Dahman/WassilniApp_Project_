@@ -9,7 +9,7 @@
     <ContentPage.Content>
         <StackLayout>
             <StackLayout HeightRequest="300">
-                <maps:Map IsShowingUser="True"/>
+                <maps:Map IsShowingUser="True" x:Name="map"/>
             </StackLayout>
 
             <StackLayout Spacing="1" >
@@ -24,13 +24,14 @@
                 <BoxView BackgroundColor="DarkGray" Margin="45,5,5,5" HeightRequest="1.1" Color="Gray" WidthRequest="310" HorizontalOptions="Center" VerticalOptions="Center" />
 
                 <Frame  Margin="0,3,0,0" Padding="15,5,15,-7" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BackgroundColor="Transparent">
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="{StaticResource LocationTo}" FontFamily="FAS"  FontSize="24" TextColor="{StaticResource colorDrop}" Margin="9,10,0,0"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="{StaticResource LocationTo}" FontFamily="FAS"  FontSize="24" TextColor="{StaticResource colorDrop}" Margin="9,10,0,0"/>
                         <Entry x:Name="LocationTo" Text="{Binding LocationTo}" Placeholder="Enter Drop Location" TextColor="#333333" FontSize="18" HorizontalOptions="FillAndExpand" Margin="10,0,0,0"></Entry>
-                </StackLayout>
-            </Frame>
+                    </StackLayout>
+                </Frame>
                 <BoxView BackgroundColor="DarkGray" Margin="45,5,5,10" HeightRequest="1.1" Color="Gray" WidthRequest="310" HorizontalOptions="Center" VerticalOptions="Center" />
-
+                
+                
                 <Grid Padding="15,9,15,8">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
