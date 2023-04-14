@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps" 
              xmlns:viewmodels="clr-namespace:Wassilni_App.viewModels" x:DataType="viewmodels:CreatePoolViewModel"
              x:Class="Wassilni_App.views.CreatePoolPage"
-             NavigationPage.HasNavigationBar="False"    
+             NavigationPage.HasNavigationBar="False" 
              xmlns:sys="clr-namespace:System;assembly=netstandard" >
     <ContentPage.Content>
         <StackLayout>
@@ -20,7 +20,7 @@
                             <Entry x:Name="FullName" Text="{Binding FullName}" Keyboard="Telephone" Placeholder="Phone Number" TextColor="#333333" FontSize="18" HorizontalOptions="FillAndExpand" Margin="10,0,0,0"></Entry>
                         </StackLayout>
                     </Frame>
-                    <BoxView BackgroundColor="DarkGray" Margin="60,0,15,5" HeightRequest="1.2" Color="Gray" WidthRequest="310" HorizontalOptions="Center" VerticalOptions="Center" />
+                    <BoxView BackgroundColor="DarkGray" Margin="60,-5,15,5" HeightRequest="1.2" Color="Gray" WidthRequest="310" HorizontalOptions="Center" VerticalOptions="Center" />
 
                     <Frame  Margin="0,9,0,0" Padding="15,5,15,-7" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BackgroundColor="Transparent">
                         <StackLayout Orientation="Horizontal">
@@ -28,7 +28,7 @@
                             <Entry x:Name="PhoneNumber" Text="{Binding PhoneNumber}" Keyboard="Telephone" Placeholder="Phone Number" TextColor="#333333" FontSize="18" HorizontalOptions="FillAndExpand" Margin="10,0,0,0"></Entry>
                         </StackLayout>
                     </Frame>
-                    <BoxView BackgroundColor="DarkGray" Margin="60,0,15,5" HeightRequest="1.2" Color="Gray" WidthRequest="310" HorizontalOptions="Center" VerticalOptions="Center" />
+                    <BoxView BackgroundColor="DarkGray" Margin="60,-5,15,5" HeightRequest="1.2" Color="Gray" WidthRequest="310" HorizontalOptions="Center" VerticalOptions="Center" />
 
                     <Frame  Margin="0,9,0,0" Padding="15,5,15,-7" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BackgroundColor="Transparent">
                         <StackLayout Orientation="Horizontal">
@@ -36,7 +36,7 @@
                             <Entry x:Name="LocationFrom" Text="{Binding StartLocation}" Placeholder="Enter Your Location" TextColor="#333333" FontSize="18" HorizontalOptions="FillAndExpand" Margin="10,0,0,0"  Keyboard="Text"></Entry>
                         </StackLayout>
                     </Frame>
-                    <BoxView BackgroundColor="DarkGray" Margin="60,0,15,5" HeightRequest="1.1" Color="Gray" WidthRequest="310" HorizontalOptions="Center" VerticalOptions="Center" />
+                    <BoxView BackgroundColor="DarkGray" Margin="60,-5,15,5" HeightRequest="1.1" Color="Gray" WidthRequest="310" HorizontalOptions="Center" VerticalOptions="Center" />
 
 
                     <Frame  Margin="0,3,0,0" Padding="15,5,15,-7" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BackgroundColor="Transparent">
@@ -45,8 +45,7 @@
                             <Entry x:Name="LocationTo" Text="{Binding EndLocation}" Placeholder="Enter Drop Location" TextColor="#333333" FontSize="18" HorizontalOptions="FillAndExpand" Margin="10,0,0,0"></Entry>
                         </StackLayout>
                     </Frame>
-                    <BoxView BackgroundColor="DarkGray" Margin="60,0,15,5" HeightRequest="1.1" Color="Gray" WidthRequest="310" HorizontalOptions="Center" VerticalOptions="Center" />
-                  
+                    <BoxView BackgroundColor="DarkGray" Margin="60,-5,15,5" HeightRequest="1.1" Color="Gray" WidthRequest="310" HorizontalOptions="Center" VerticalOptions="Center" />
 
                     <Grid Padding="17,7,17,8">
                         <Grid.ColumnDefinitions>
@@ -87,7 +86,7 @@
                             </Frame>
                         </StackLayout>
                     </Frame>
-                    <BoxView BackgroundColor="DarkGray" Margin="60,-10,0,0" HeightRequest="1.1" Color="Gray" WidthRequest="310" HorizontalOptions="Center" VerticalOptions="Center" />
+                    <BoxView BackgroundColor="DarkGray" Margin="60,-5,15,10" HeightRequest="1.1" Color="Gray" WidthRequest="310" HorizontalOptions="Center" VerticalOptions="Center" />
 
 
                     <Frame  Margin="0,3,0,0" Padding="15,5,15,-7" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BackgroundColor="Transparent">
@@ -96,16 +95,15 @@
                             <Entry x:Name="Price" Keyboard="Numeric" Text="{Binding Price}" Placeholder="Enter Your Price" TextColor="#333333" FontSize="18" HorizontalOptions="FillAndExpand" Margin="10,0,0,0"></Entry>
                         </StackLayout>
                     </Frame>
-                    <BoxView BackgroundColor="DarkGray" Margin="60,0,15,5" HeightRequest="1.1" Color="Gray" WidthRequest="310" HorizontalOptions="Center" VerticalOptions="Center" />
+                    <BoxView BackgroundColor="DarkGray" Margin="60,-10,15,10" HeightRequest="1.1" Color="Gray" WidthRequest="310" HorizontalOptions="Center" VerticalOptions="Center" />
 
 
-                    <Frame  Margin="0,3,0,0" Padding="15,5,15,-7" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BackgroundColor="Transparent">
+                    <Frame  Margin="0,3,0,0" Padding="10,10,15,27" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BackgroundColor="Transparent">
                         <StackLayout Orientation="Horizontal">
                             <Label Text="{StaticResource bus}" FontFamily="FAS"  FontSize="24" TextColor="{StaticResource colorPrimary}" Margin="9,10,0,0"/>
-                            <Entry x:Name="CarModel" Keyboard="Text" Text="{Binding CarModel}" Placeholder="Enter Your Car Model" TextColor="#333333" FontSize="18" HorizontalOptions="FillAndExpand" Margin="10,0,0,0"></Entry>
+                            <Editor x:Name="CarModel" Text="{Binding CarModel}" Placeholder="Enter Your Car Details" TextColor="#333333" FontSize="18" HorizontalOptions="FillAndExpand" Margin="10,0,0,0"></Editor>
                         </StackLayout>
                     </Frame>
-                    <BoxView BackgroundColor="DarkGray" Margin="60,0,15,30" HeightRequest="1.1" Color="Gray" WidthRequest="310" HorizontalOptions="Center" VerticalOptions="Center" />
 
                     <Frame x:Name="TopErrorFrame" IsVisible="False" Padding="15" BackgroundColor="LightBlue" CornerRadius="15">
                         <Label x:Name="TopErrorMessage" Text="{Binding ErrorMessage}" FontSize="15" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Red" FontFamily="Roboto-Regular" />
