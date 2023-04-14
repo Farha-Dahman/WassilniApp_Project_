@@ -15,6 +15,8 @@ using System.Windows.Input;
 using Wassilni_App.Models;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using static Android.Views.WindowInsets;
+
 namespace Wassilni_App.viewModels
 {
     public class RideViewModel : BaseViewModel
@@ -70,14 +72,17 @@ namespace Wassilni_App.viewModels
 
             string userId = Preferences.Get("userId", string.Empty);
             //  string DriverId = Preferences.Get("DriverId", string.Empty);
-            string rideId = Preferences.Get("RideID", string.Empty);
+            string rideId = RideId;
 
+
+         
 
 
 
             try
             {
-                bool hasRequestedRide = await CheckIfUserHasRequestedRide(RideId, userId);
+                  bool hasRequestedRide = await CheckIfUserHasRequestedRide(rideId, userId);
+
                 if (!hasRequestedRide)
                 {
 
@@ -99,7 +104,7 @@ namespace Wassilni_App.viewModels
                         IsAccepted = false,
                         DriverName = DriverName,
                         RiderName = userName,
-                        RideID = rideId,
+                        RideID = RideId,
                         PhoneNumber = PhoneNumber,
                         TripDate=TripDate,
                     };
@@ -144,7 +149,7 @@ namespace Wassilni_App.viewModels
         {
             var requestExists = await firebaseClient
                 .Child("requestRide")
-                .OrderBy("RideId")
+                .OrderBy("RideID")
                 .EqualTo(rideId)
                 .OnceAsync<RideRequest>();
 
