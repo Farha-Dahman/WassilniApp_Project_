@@ -11,7 +11,6 @@ using Wassilni_App.Models;
 using Wassilni_App.views;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using static Android.Resource;
 
 namespace Wassilni_App.viewModels
 {
