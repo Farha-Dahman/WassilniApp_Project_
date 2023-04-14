@@ -7,12 +7,12 @@
 
 
             <Color x:Key="colorPrimary">#5E7FFF</Color>
-            <Color x:Key="colorSecondary">#879DF2</Color>
+            <Color x:Key="colorSecondary">#879DF2</Color> 
             <Color x:Key="colorDrop">#FF4E4E</Color>
             <Color x:Key="colorInput">#5F5D60</Color>
             <Color x:Key="colorText">#FFFFFF</Color>
-            
-
+            <Color x:Key="colorLine">#D0D0D0</Color>
+            <Color x:Key="colorFrame">#D0DAFF</Color>
 
             <Style x:Name="NormalBtn" TargetType="Button">
                 <Setter Property="TextColor" Value="White"></Setter>
@@ -26,9 +26,7 @@
                 <Setter Property="FontFamily" Value="Roboto-Bold"></Setter>
                 <Setter Property="TextTransform" Value="None"></Setter>
             </Style>
-
-
-           
+            
 
             <Style TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="{StaticResource colorPrimary}"></Setter>

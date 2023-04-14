@@ -17,7 +17,6 @@ namespace Wassilni_App.views
         {
             InitializeComponent();
             this.BindingContext = new ProfileViewModel();
-            Settings.Clicked += GoToSettingsPage;
         }
         async private void GoToSettingsPage(object sender, EventArgs e)
         {

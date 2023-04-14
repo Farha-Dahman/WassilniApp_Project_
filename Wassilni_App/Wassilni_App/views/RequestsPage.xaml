@@ -1,12 +1,55 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Wassilni_App.views.RequestsPage">
+             xmlns:forms="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             x:Class="Wassilni_App.views.RequestsPage"
+             BackgroundColor="#F0F0F0" >
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Request page"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <CollectionView x:Name="RequestsCollectionView">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10">
+                            <Frame  Padding="20,15,0,2"  HorizontalOptions="FillAndExpand" CornerRadius="15" HasShadow="False" BorderColor="{StaticResource colorPrimary}" BackgroundColor="#D0DAFF">
+                                <StackLayout Orientation="Horizontal">
+                                    <forms:CircleImage  Source="{Binding PhotoUrl}"
+                   Aspect="AspectFit"
+                   HeightRequest="60"
+                   WidthRequest="60"
+                   BorderColor="Gray"
+                   BorderThickness="2"
+                   Margin="0,0,0,140 "/>
+                                    <StackLayout >
+                                        <Label Text="{Binding RiderName}" FontSize="Large" FontAttributes="Bold" TextColor="Black"   Margin="8,0,0,10" />
+                                        <StackLayout Orientation="Horizontal" >
+                                            <Label Text="{StaticResource LocationFrom}" TextColor="#5E7FFF" FontSize="Small" FontFamily="FAS" Margin="0,2"/>
+                                            <Label  Text="{Binding StartLocation}" FontSize="15"  TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="0,0,0,5" />
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal" >
+                                            <Label Text="{StaticResource LocationTo}" TextColor="#FF4E4E" FontSize="Small" FontFamily="FAS" Margin="0,2"/>
+                                            <Label  Text="{Binding EndLocation}" FontSize="15"  TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="0,0,0,5" />
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal" >
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="{StaticResource Date}" TextColor="#5E7FFF" FontSize="Small" FontFamily="FAS" Margin="0,2"/>
+                                                <Label  Text="{Binding PickUpDateTime}" FontSize="15"  TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="0,0,0,0" />
+                                            </StackLayout >
+                                            <StackLayout Orientation="Horizontal" Margin="45,0,0,0">
+                                                <Label Text="{StaticResource Time}" TextColor="#5E7FFF" FontSize="Small" FontFamily="FAS" Margin="0,2"/>
+                                                <Label  Text="{Binding RequestDate}" FontSize="15"  TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="0,0,0,0" />
+                                            </StackLayout >
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal" Margin="70,0,0,0" >
+                                            <Button Text="Accept"  WidthRequest="90"  FontSize="Small"  Command="{Binding AcceptRequestCommand}" />
+                                            <Button Text="Deny"  WidthRequest="90"  FontSize="Small" Command="{Binding DenyRequestCommand}" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
