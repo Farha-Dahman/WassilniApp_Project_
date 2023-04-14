@@ -24,5 +24,7 @@ namespace Wassilni_App.views
             var tappedItem = tappedFrame.BindingContext as Ride;
             await Navigation.PushAsync(new MyTripsPage());
         }
+
+
     }
 }

@@ -21,7 +21,11 @@ namespace Wassilni_App.Models
         private string _photoUrl;
         private DateTime _Date;
         private TimeSpan _Time;
+        
 
+        public string TripDate { get; set; }
+
+        public string PhoneNumber { get; set; }
         public DateTime Date
         {
             get { return _Date; }
@@ -92,6 +96,8 @@ namespace Wassilni_App.Models
             get { return _isAccepted; }
             set { _isAccepted = value; }
         }
+
+
 
     }
 }

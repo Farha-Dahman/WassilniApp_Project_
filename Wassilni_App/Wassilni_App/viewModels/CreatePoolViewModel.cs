@@ -48,15 +48,19 @@ namespace Wassilni_App.viewModels
         private string _carModelErrorMessage;
         private string _priceErrorMessage;
         private string _errormessage;
-
         private string _StartDateErrorMessage;
+        
+
 
         public string StartDateErrorMessage
         {
             get => _StartDateErrorMessage;
             set => SetProperty(ref _StartDateErrorMessage, value);
         }
-
+        
+        public TimeSpan Time { get; set; }
+        public String DriverGender { get; set; }
+        public string TripDate { get; set; }
         public string ErrorMessage
         {
             get => _errormessage;
@@ -198,8 +202,10 @@ namespace Wassilni_App.viewModels
                 PhoneNumber = user.PhoneNumber;
                 StartLocation = pool.StartLocation;
                 EndLocation = pool.EndLocation;
+                StartTime = pool.TripTime;
                 StartDate = pool.Date;
                 AvailableSeats = pool.Number_of_seats;
+                DriverGender = user.SelectedGender;
             }
         }
         private bool ValidateStartLocation()
@@ -224,11 +230,11 @@ namespace Wassilni_App.viewModels
             DateTime currentDateTime = DateTime.Now;
             DateTime selectedDateTime = StartDate.Add(StartTime);
 
-            if (StartTime == TimeSpan.Zero || selectedDateTime < currentDateTime)
+            if (selectedDateTime >= currentDateTime)
             {
-                return false;
+                return true;
             }
-            return true;
+            return false;
         }
 
         private bool ValidateStartTime()
@@ -236,11 +242,11 @@ namespace Wassilni_App.viewModels
             DateTime currentDateTime = DateTime.Now;
             DateTime selectedDateTime = StartDate.Add(StartTime);
 
-            if (StartTime == TimeSpan.Zero || selectedDateTime < currentDateTime)
+            if ( selectedDateTime >= currentDateTime)
             {
-                return false;
+                return true;
             }
-            return true;
+            return false;
         }
 
         
@@ -291,21 +297,21 @@ namespace Wassilni_App.viewModels
 
             else if (!ValidateEndLocation())
             {
-                string errorMessage = "Please Selecet Your Distination";
+                string errorMessage = "Please Selecet Your Distination!";
 
                 ErrorMessage = errorMessage;
                 ShowTopErrorMessage?.Invoke(this, EventArgs.Empty);
             }
             else if (!ValidateStartTime())
             {
-                string errorMessage = "Please Select A Valid Time And Date !.";
+                string errorMessage = "Please Select A Valid Time!.";
 
                 ErrorMessage = errorMessage;
                 ShowTopErrorMessage?.Invoke(this, EventArgs.Empty);
             }
             else if (!ValidateStartDate())
             {
-                string errorMessage = "Please Select A Date Time!.";
+                string errorMessage = "Please Select A Valid Date!.";
 
                 ErrorMessage = errorMessage;
                 ShowTopErrorMessage?.Invoke(this, EventArgs.Empty);
@@ -328,7 +334,7 @@ namespace Wassilni_App.viewModels
             else if (!validationResult)
             {
 
-                string errorMessage = "Please fix the error.";
+                string errorMessage = "Please fix the error!.";
 
                 ErrorMessage = errorMessage;
                 ShowTopErrorMessage?.Invoke(this, EventArgs.Empty);
@@ -353,10 +359,11 @@ namespace Wassilni_App.viewModels
             {
                 if (AllValidationsPassed())
                 {
-
+                    var personalPhotoUrl = "PersonalPhoto.png";
                     // Create a pool object
                     var newPool = new Ride
                     {
+                        PhotoUrl = personalPhotoUrl,
                         DriverID = _driverid,
                         DriverName = FullName,
                         PhoneNumber = PhoneNumber,
@@ -368,11 +375,18 @@ namespace Wassilni_App.viewModels
                         CarModel = CarModel,
                         Number_of_seats = AvailableSeats,
                         PricePerRide = Price,
+                        TripDate = StartDate.ToString("yyyy-MM-dd"),
+                        DriverGender= DriverGender
+
                     };
 
                     // Save the pool object to the database
-                    await firebaseClient.Child("Ride").PostAsync(newPool);
-
+                    var rideReference = await firebaseClient.Child("Ride").PostAsync(newPool);
+                    newPool.RideID = rideReference.Key;
+                    Preferences.Set("RideID", rideReference.Key);
+                    string rideId = Preferences.Get("RideID", string.Empty);
+                    newPool.RideID = rideId;
+                    await firebaseClient.Child("Ride").Child(rideId).PutAsync(newPool);
                     // Navigate back or display a success message
                     await PopupNavigation.Instance.PushAsync(new PopUpCreatePool());
                 }

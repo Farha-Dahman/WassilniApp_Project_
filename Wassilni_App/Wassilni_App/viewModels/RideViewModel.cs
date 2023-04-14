@@ -3,9 +3,11 @@ using Firebase.Database;
 using Firebase.Database.Query;
 using Org.Apache.Http.Protocol;
 using Org.Xmlpull.V1.Sax2;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +21,8 @@ namespace Wassilni_App.viewModels
     {
         FirebaseClient firebaseClient = new Firebase.Database.FirebaseClient("https://wassilni-app-default-rtdb.firebaseio.com/");
 
+        public ICommand RequestRideCommand { get; set; }
+
         public string RideId { get; set; }
         public string StartLocation { get; set; }
         public string EndLocation { get; set; }
@@ -30,13 +34,17 @@ namespace Wassilni_App.viewModels
         public DateTime PickupDateTime { get; set; }
         public string PhoneNumber { get; set; }
         public string PhotoUrl { get; set; }
-        public string Date { get; set; }
+        public DateTime Date { get; set; }
+
+        public String TripDate { get; set; }
+
         public TimeSpan TripTime { get; set; }
 
-        // Your RideViewModel properties and methods...
+      //  public TimeSpan Date { get; set; }
+
         public RideViewModel(Ride ride)
         {
-            // Set the properties using the provided ride object
+       
             DriverName = ride.DriverName;
             StartLocation = ride.StartLocation;
             EndLocation = ride.EndLocation;
@@ -48,9 +56,116 @@ namespace Wassilni_App.viewModels
             RideId = ride.RideID;
             PhotoUrl = ride.PhotoUrl;
             TripTime = ride.TripTime;
-            Date = ride.Date.Date.ToString("yyyy-MM-dd");
+            TripDate = ride.Date.Date.ToString("yyyy-MM-dd");
+
+
+            RequestRideCommand = new Command(RequestRide);
+
+
         }
 
 
-    } 
-}
+        private async void RequestRide()
+        {
+
+            string userId = Preferences.Get("userId", string.Empty);
+            //  string DriverId = Preferences.Get("DriverId", string.Empty);
+            string rideId = Preferences.Get("RideID", string.Empty);
+
+
+
+
+            try
+            {
+                bool hasRequestedRide = await CheckIfUserHasRequestedRide(RideId, userId);
+                if (!hasRequestedRide)
+                {
+
+                    string userName = await FetchUserName(userId);
+
+
+
+                    var newRideRequest = new RideRequest
+                    {
+                        PhotoUrl = PhotoUrl,
+                        RiderID = userId,
+                        DriverID = DriverId,
+                        RequestDate = DateTime.Now,
+                        StartLocation = StartLocation,
+                        EndLocation = EndLocation,
+                        PickupDateTime = PickupDateTime,
+                        Date = Date,
+                        Time = TripTime,
+                        IsAccepted = false,
+                        DriverName = DriverName,
+                        RiderName = userName,
+                        RideID = rideId,
+                        PhoneNumber = PhoneNumber,
+                        TripDate=TripDate,
+                    };
+                    var newRideRequestResponse = await firebaseClient
+                   .Child("requestRide")
+                   .PostAsync(newRideRequest);
+
+
+                    string requestId = newRideRequestResponse.Key;
+
+                    newRideRequest.RequestID = requestId;
+                    //  await Application.Current.MainPage.DisplayAlert("Request Sent", requestId, "OK");
+                    await firebaseClient
+                    .Child("requestRide")
+                    .Child(requestId)
+                    .PatchAsync(new { RequestID = requestId });
+
+                    Preferences.Set("RequestID", newRideRequest.RequestID);
+
+
+                    await PopupNavigation.Instance.PushAsync(new PopUpSuccessRequest());
+
+                }
+                else
+                {
+                    await PopupNavigation.Instance.PushAsync(new PopUpDeniedRequest());
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                await Application.Current.MainPage.DisplayAlert("Already Requested", ex.Message, "OK");
+
+            }
+
+
+        }
+
+
+        private async Task<bool> CheckIfUserHasRequestedRide(string rideId, string userId)
+        {
+            var requestExists = await firebaseClient
+                .Child("requestRide")
+                .OrderBy("RideId")
+                .EqualTo(rideId)
+                .OnceAsync<RideRequest>();
+
+            return requestExists.Any(r => r.Object.RiderID == userId);
+        }
+        private async Task<string> FetchUserName(string userId)
+        {
+            var firebaseClient = new FirebaseClient("https://wassilni-app-default-rtdb.firebaseio.com/");
+
+            var userSnapshot = await firebaseClient
+                .Child("User")
+                .Child(userId)
+                .OnceSingleAsync<Wassilni_App.Models.User>();
+
+
+
+            return $"{userSnapshot.FirstName} {userSnapshot.LastName}";
+        }
+    }
+
+
+
+} 
+

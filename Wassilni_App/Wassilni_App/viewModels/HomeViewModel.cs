@@ -15,6 +15,7 @@ using static Android.Resource;
 using Org.Xmlpull.V1.Sax2;
 using Xamarin.Essentials;
 using Wassilni_App.Services;
+using Android.Text.Format;
 
 namespace Wassilni_App.viewModels
 {
@@ -108,6 +109,7 @@ namespace Wassilni_App.viewModels
                         StartLocation = LocationFrom,
                         EndLocation = LocationTo,
                         Date = StartDate,
+                        TripTime= StartTime,
                         Number_of_seats = NumberOfSeats,
 
                     };

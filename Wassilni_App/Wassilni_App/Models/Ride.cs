@@ -18,6 +18,10 @@ namespace Wassilni_App.Models
         public int Number_of_seats { get; set; }
         public string CarModel { get; set; }
         public string PhotoUrl { get; set; }
+        public string TripDate { get; set; }
+
+        public string DriverGender { get; set; }
+
         public User Users { get; set; }
     }
 }
