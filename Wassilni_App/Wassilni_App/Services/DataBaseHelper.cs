@@ -106,15 +106,16 @@ namespace Wassilni_App.Services
                              EndLocation = r.Object.EndLocation,
                              TripTime = r.Object.TripTime,
                              Date = r.Object.Date,
+                             RequestID=r.Object.RequestID
     
                             
                          })
                         .ToList();
               
                 }
-        public async Task DeleteRideRequestAsync(string requestId)
+        public async Task DeleteRideRequestAsync(string requestID)
         {
-            await _firebaseClient.Child("requestRide").Child(requestId).DeleteAsync();
+            await _firebaseClient.Child("requestRide").Child(requestID).DeleteAsync();
         }
 
         public async Task<string> AddAcceptedTripAsync(BookedRide trip)

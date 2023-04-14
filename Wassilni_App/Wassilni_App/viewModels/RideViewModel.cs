@@ -113,14 +113,14 @@ namespace Wassilni_App.viewModels
                    .PostAsync(newRideRequest);
 
 
-                    string requestId = newRideRequestResponse.Key;
+                    string requestID = newRideRequestResponse.Key;
 
-                    newRideRequest.RequestID = requestId;
+                    newRideRequest.RequestID = requestID;
                     //  await Application.Current.MainPage.DisplayAlert("Request Sent", requestId, "OK");
                     await firebaseClient
                     .Child("requestRide")
-                    .Child(requestId)
-                    .PatchAsync(new { RequestID = requestId });
+                    .Child(requestID)
+                    .PatchAsync(new { RequestID = requestID });
 
                     Preferences.Set("RequestID", newRideRequest.RequestID);
 

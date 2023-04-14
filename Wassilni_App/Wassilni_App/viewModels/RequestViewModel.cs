@@ -106,20 +106,20 @@ namespace Wassilni_App.viewModels
 
         private async Task UpdateRequestStatusAsync(bool isAccepted)
         {
-
-            string RequestId = Preferences.Get("RequestID", string.Empty);
+            string RequestID = RequestId;
+          //  string RequestID = Preferences.Get("RequestID", string.Empty);
 
             //    await Application.Current.MainPage.DisplayAlert("Request Updated", RequestId, "OK");
 
             await firebaseClient
                  .Child("requestRide")
-                 .Child(RequestId)
+                 .Child(RequestID)
                  .PatchAsync(new { IsAccepted = isAccepted });
             IsAccepted = isAccepted;
 
             await firebaseClient
             .Child("requestRide")
-            .Child(RequestId)
+            .Child(RequestID)
             .DeleteAsync();
 
             var status = isAccepted ? "accepted" : "denied";
@@ -140,8 +140,9 @@ namespace Wassilni_App.viewModels
                     Number_of_seats = Number_of_seats,
                     PricePerRide = PricePerRide,
                     PhotoUrl = PhotoUrl,
+                    
                 };
-                await _databaseHelper.DeleteRideRequestAsync(RequestId);
+                await _databaseHelper.DeleteRideRequestAsync(RequestID);
 
                 string tripId = await _databaseHelper.AddAcceptedTripAsync(acceptedTrip);
                 acceptedTrip.TripID = tripId;
