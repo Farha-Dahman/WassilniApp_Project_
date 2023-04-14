@@ -49,11 +49,11 @@ namespace Wassilni_App.viewModels
         public ICommand AcceptRequestCommand { get; set; }
         public ICommand DenyRequestCommand { get; set; }
 
-        public ObservableCollection<requestRide> RequestRides { get; set; }
+        public ObservableCollection<RideRequest> RequestRides { get; set; }
         private readonly RequestsViewModel _requestsViewModel;
         private readonly DatabaseHelper _databaseHelper;
 
-        public RequestViewModel(requestRide request, RequestsViewModel requestsViewModel, DatabaseHelper databaseHelper)
+        public RequestViewModel(RideRequest request, RequestsViewModel requestsViewModel, DatabaseHelper databaseHelper)
         {
             RequestId = request.RequestID;
             RiderId = request.RiderID;
@@ -65,7 +65,7 @@ namespace Wassilni_App.viewModels
             IsAccepted = request.IsAccepted;
             DriverName = request.DriverName;
             RiderName = request.RiderName;
-            StartDate = request.StartDate;
+            StartDate = request.Date;
             PhotoUrl = request.PhotoUrl;
             PhoneNumber = request.PhoneNumber;
             PickUpDateTime = request.PickupDateTime;
@@ -74,7 +74,7 @@ namespace Wassilni_App.viewModels
 
             _databaseHelper = databaseHelper;
             _requestsViewModel = requestsViewModel;
-            RequestRides = new ObservableCollection<requestRide>();
+            RequestRides = new ObservableCollection<RideRequest>();
 
             AcceptRequestCommand = new Command(async () => await AcceptRequestAsync());
             DenyRequestCommand = new Command(async () => await DenyRequestAsync());

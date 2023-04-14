@@ -95,7 +95,7 @@ namespace Wassilni_App.viewModels
                         EndLocation = EndLocation,
                         PickupDateTime = PickupDateTime,
                         Date = Date,
-                        Time = TripTime,
+                        TripTime = TripTime,
                         IsAccepted = false,
                         DriverName = DriverName,
                         RiderName = userName,
