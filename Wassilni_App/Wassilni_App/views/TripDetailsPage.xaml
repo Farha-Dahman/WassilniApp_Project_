@@ -1,13 +1,53 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:forms="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              x:Class="Wassilni_App.views.TripDetailsPage"
              NavigationPage.HasNavigationBar="False">
-  <ContentPage.Content>
-      <StackLayout>
-            <Label Text="Welcome to Trip Details"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand"/>
-      </StackLayout>
-  </ContentPage.Content>
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Trip Details"
+                   FontSize="24"
+                   TextColor="White"
+                   HorizontalOptions="StartAndExpand" />
+        </StackLayout>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <Label Text="Matching Pools" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
+            <CollectionView x:Name="PoolsCollectionView" ItemsLayout="VerticalList" >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame CornerRadius="20" BackgroundColor="{StaticResource colorSecondary}" Padding="0,10" >
+
+                            <Grid Padding="10" >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                
+                                <Image Source="{Binding PhotoUrl}"  HeightRequest="60" Grid.Row="0" Grid.Column="0" />
+                                <Label Text="{Binding DriverName}" Grid.Row="0" Grid.Column="1" FontSize="18"  />
+                                <Label Text="{Binding Number_of_seats}" Grid.Row="0" Grid.Column="2" FontSize="18" />
+                                <Label Text="{Binding CarModel}" Grid.Row="1" Grid.Column="0" FontSize="18" />
+                                <Label Text="{Binding PhoneNumber}" Grid.Row="1" Grid.Column="2" FontSize="18" />
+                                <Label Text="{Binding PricePerRide}" Grid.Row="2" Grid.Column="0" FontSize="18" />
+                                
+                                <BoxView Grid.Row="2" Grid.Column="1" BackgroundColor="Black" WidthRequest="3" HeightRequest="40" HorizontalOptions="Center" VerticalOptions="Center" />
+                                <Label Text="{Binding PickupDateTime}" Grid.Row="2" Grid.Column="2" FontSize="18" />
+                                <Button Text="Request Ride" Grid.Row="3" Grid.Column="1" Command="{Binding RequestRideCommand}" />
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
 </ContentPage>

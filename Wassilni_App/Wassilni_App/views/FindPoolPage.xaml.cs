@@ -22,8 +22,10 @@ namespace Wassilni_App.views
         {
             var tappedFrame = sender as Frame;
             var tappedItem = tappedFrame.BindingContext as Ride;
-            await Navigation.PushAsync(new MyTripsPage());
+            await Navigation.PushAsync(new TripDetailsPage());
         }
+        
+
 
 
     }
