@@ -34,17 +34,61 @@
                 <StackLayout >
 
                     <Grid>
-                        <Frame x:Name="Quastion_one" HeightRequest="24" Margin="5,0,5,-20" CornerRadius="5" BackgroundColor="Transparent">
+                        <Grid>
+                            <Frame x:Name="Quastion_one" HeightRequest="24" Margin="5,0,5,0" BackgroundColor="Transparent">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label BackgroundColor="Transparent" TextColor="Black" Text="How to Offer a ride?" FontSize="22" Padding="5,-5,0,0" FontFamily="Roboto-Bold"/>
+                                    <Label x:Name="arrow_1" Text="{StaticResource arrow-down}" FontFamily="FAS" FontSize="20" TextColor="Black" HorizontalOptions="EndAndExpand" Margin="0,0,0,0" />
+                                </StackLayout>
+                            </Frame>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnSourceFrameTapped" />
+                            </Grid.GestureRecognizers>
+                        </Grid>
+
+                        <Frame x:Name="Answer_one"  Margin="8,35,0,-20" BackgroundColor="Transparent" IsVisible="False">
                             <StackLayout Orientation="Horizontal">
-                                <Label BackgroundColor="Transparent" TextColor="Gray" Text="How to Offer a ride?" FontSize="22" Padding="5,-5,0,0"/>
-                                <Label Text="{StaticResource arrow-down}" FontFamily="FAS"  FontSize="24" TextColor="Gray" HorizontalOptions="EndAndExpand" Margin="0,0,0,0"/>
-                                <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="OnSourceFrameTapped" />
-                                </Frame.GestureRecognizers>
+                                <Label FontSize="18" Text="Note that the specific implementation of the FaqPage method es"></Label>
                             </StackLayout>
                         </Frame>
+                    </Grid>
 
-                        <Frame x:Name="Answer_one"  Margin="8,0,0,0" BackgroundColor="Transparent" IsVisible="False">
+
+                    <Grid>
+                        <Grid>
+                            <Frame x:Name="Quastion_two" HeightRequest="24" Margin="5,0,5,0" BackgroundColor="Transparent">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label BackgroundColor="Transparent" TextColor="Black" Text="How to Find a ride?" FontSize="22" Padding="5,-5,0,0" FontFamily="Roboto-Bold"/>
+                                    <Label x:Name="arrow_2" Text="{StaticResource arrow-down}" FontFamily="FAS" FontSize="20" TextColor="Black" HorizontalOptions="EndAndExpand" Margin="0,0,0,0" />
+                                </StackLayout>
+                            </Frame>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnSourceFrameTapped2" />
+                            </Grid.GestureRecognizers>
+                        </Grid>
+
+                        <Frame x:Name="Answer_two"  Margin="8,35,0,-20" BackgroundColor="Transparent" IsVisible="False">
+                            <StackLayout Orientation="Horizontal">
+                                <Label FontSize="18" Text="Note that the specific implementation of the FaqPage method es"></Label>
+                            </StackLayout>
+                        </Frame>
+                    </Grid>
+
+
+                    <Grid>
+                        <Grid>
+                            <Frame x:Name="Quastion_three" HeightRequest="24" Margin="5,0,5,0" BackgroundColor="Transparent">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label BackgroundColor="Transparent" TextColor="Black" Text="How to Cancel a ride?" FontSize="22" Padding="5,-5,0,0" FontFamily="Roboto-Bold"/>
+                                    <Label x:Name="arrow_3" Text="{StaticResource arrow-down}" FontFamily="FAS" FontSize="20" TextColor="Black" HorizontalOptions="EndAndExpand" Margin="0,0,0,0" />
+                                </StackLayout>
+                            </Frame>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnSourceFrameTapped3" />
+                            </Grid.GestureRecognizers>
+                        </Grid>
+
+                        <Frame x:Name="Answer_three"  Margin="8,35,0,-20" BackgroundColor="Transparent" IsVisible="False">
                             <StackLayout Orientation="Horizontal">
                                 <Label FontSize="18" Text="Note that the specific implementation of the FaqPage method es"></Label>
                             </StackLayout>
@@ -53,27 +97,6 @@
 
 
 
-
-                    <Frame x:Name="Quastion_tow" HeightRequest="24" Margin="5,0,5,-20" CornerRadius="5" BackgroundColor="Transparent">
-                        <StackLayout Orientation="Horizontal">
-                            <Label BackgroundColor="Transparent" TextColor="Gray" Text="How to Find a ride?" FontSize="22" Padding="5,-5,0,0"/>
-                            <Label Text="{StaticResource arrow-down}" FontFamily="FAS"  FontSize="24" TextColor="Gray" HorizontalOptions="EndAndExpand" Margin="0,0,0,0"/>
-                        </StackLayout>
-                    </Frame>
-
-                    <Frame x:Name="Quastion_three" HeightRequest="24" Margin="5,0,5,-20" CornerRadius="5" BackgroundColor="Transparent">
-                        <StackLayout Orientation="Horizontal">
-                            <Label BackgroundColor="Transparent" TextColor="Gray" Text="How to Cancel a ride?" FontSize="22" Padding="5,-5,0,0"/>
-                            <Label Text="{StaticResource arrow-down}" FontFamily="FAS"  FontSize="24" TextColor="Gray" HorizontalOptions="EndAndExpand" Margin="0,0,0,0"/>
-                        </StackLayout>
-                    </Frame>
-
-                    <Frame x:Name="Quastion_four" HeightRequest="24" Margin="5,0,5,-20" CornerRadius="5" BackgroundColor="Transparent">
-                        <StackLayout Orientation="Horizontal">
-                            <Label BackgroundColor="Transparent" TextColor="Gray" Text="How to Cancel a ride?" FontSize="22" Padding="5,-5,0,0"/>
-                            <Label Text="{StaticResource arrow-down}" FontFamily="FAS"  FontSize="24" TextColor="Gray" HorizontalOptions="EndAndExpand" Margin="0,0,0,0"/>
-                        </StackLayout>
-                    </Frame>
 
 
                     
