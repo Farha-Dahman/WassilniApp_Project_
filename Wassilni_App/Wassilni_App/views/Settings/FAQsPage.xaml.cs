@@ -17,5 +17,9 @@ namespace Wassilni_App.views.Settings
             InitializeComponent();
             this.BindingContext = new FAQsViewModel();
         }
+        private void OnSourceFrameTapped(object sender, EventArgs e)
+        {
+            Answer_one.IsVisible = !Answer_one.IsVisible;
+        }
     }
 }

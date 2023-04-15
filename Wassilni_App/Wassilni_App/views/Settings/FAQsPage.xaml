@@ -1,14 +1,86 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Wassilni_App.views.Settings.FAQsPage"
-             >
+             x:Class="Wassilni_App.views.Settings.FAQsPage">
+    
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to FAQs page"
-                   FontSize="24"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout BackgroundColor="WhiteSmoke">
+            <Grid Padding="5,15,5,10" BackgroundColor="White">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="FAQs"
+                   FontSize="31.25"
+                   FontFamily="Roboto-Bold"
+                   TextColor="{StaticResource colorPrimary}"
+                   Margin="15,50,0,0" Grid.Column="0"/>
+                    <Label Text="Get your answers"
+                   FontSize="18"
+                   FontFamily="Roboto-Regular"
+                   TextColor="{StaticResource colorPrimary}"
+                   Margin="15,90,0,0" Grid.Column="0"/>
+                    <Image Source="FAQs_image.png" WidthRequest="220" HeightRequest="180" Margin="0,0,0,0" Grid.Column="1"></Image>
+                </Grid>
+            </Grid>
+            <BoxView BackgroundColor="DarkGray" Margin="15,5,15,5" HeightRequest="2" Color="{StaticResource colorPrimary}" WidthRequest="280" />
+
+            <ScrollView>
+                <StackLayout >
+
+                    <Grid>
+                        <Frame x:Name="Quastion_one" HeightRequest="24" Margin="5,0,5,-20" CornerRadius="5" BackgroundColor="Transparent">
+                            <StackLayout Orientation="Horizontal">
+                                <Label BackgroundColor="Transparent" TextColor="Gray" Text="How to Offer a ride?" FontSize="22" Padding="5,-5,0,0"/>
+                                <Label Text="{StaticResource arrow-down}" FontFamily="FAS"  FontSize="24" TextColor="Gray" HorizontalOptions="EndAndExpand" Margin="0,0,0,0"/>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnSourceFrameTapped" />
+                                </Frame.GestureRecognizers>
+                            </StackLayout>
+                        </Frame>
+
+                        <Frame x:Name="Answer_one"  Margin="8,0,0,0" BackgroundColor="Transparent" IsVisible="False">
+                            <StackLayout Orientation="Horizontal">
+                                <Label FontSize="18" Text="Note that the specific implementation of the FaqPage method es"></Label>
+                            </StackLayout>
+                        </Frame>
+                    </Grid>
+
+
+
+
+                    <Frame x:Name="Quastion_tow" HeightRequest="24" Margin="5,0,5,-20" CornerRadius="5" BackgroundColor="Transparent">
+                        <StackLayout Orientation="Horizontal">
+                            <Label BackgroundColor="Transparent" TextColor="Gray" Text="How to Find a ride?" FontSize="22" Padding="5,-5,0,0"/>
+                            <Label Text="{StaticResource arrow-down}" FontFamily="FAS"  FontSize="24" TextColor="Gray" HorizontalOptions="EndAndExpand" Margin="0,0,0,0"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame x:Name="Quastion_three" HeightRequest="24" Margin="5,0,5,-20" CornerRadius="5" BackgroundColor="Transparent">
+                        <StackLayout Orientation="Horizontal">
+                            <Label BackgroundColor="Transparent" TextColor="Gray" Text="How to Cancel a ride?" FontSize="22" Padding="5,-5,0,0"/>
+                            <Label Text="{StaticResource arrow-down}" FontFamily="FAS"  FontSize="24" TextColor="Gray" HorizontalOptions="EndAndExpand" Margin="0,0,0,0"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame x:Name="Quastion_four" HeightRequest="24" Margin="5,0,5,-20" CornerRadius="5" BackgroundColor="Transparent">
+                        <StackLayout Orientation="Horizontal">
+                            <Label BackgroundColor="Transparent" TextColor="Gray" Text="How to Cancel a ride?" FontSize="22" Padding="5,-5,0,0"/>
+                            <Label Text="{StaticResource arrow-down}" FontFamily="FAS"  FontSize="24" TextColor="Gray" HorizontalOptions="EndAndExpand" Margin="0,0,0,0"/>
+                        </StackLayout>
+                    </Frame>
+
+
+                    
+            </StackLayout>
+            </ScrollView>
+
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
