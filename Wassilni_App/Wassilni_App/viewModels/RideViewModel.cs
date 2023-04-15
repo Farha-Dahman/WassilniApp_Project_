@@ -41,8 +41,10 @@ namespace Wassilni_App.viewModels
         public String TripDate { get; set; }
 
         public TimeSpan TripTime { get; set; }
+        public string CarDetails { get; set; }
 
-      //  public TimeSpan Date { get; set; }
+
+        //  public TimeSpan Date { get; set; }
 
         public RideViewModel(Ride ride)
         {
