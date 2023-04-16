@@ -28,11 +28,10 @@ namespace Wassilni_App.views
 
         }
 
-        async private void GoToPoolDetails(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new NavigationPage(new TripDetailsPage()));
-
-        }
+        //async private void GoToPoolDetails(object sender, EventArgs e)
+        //{
+        //    await Navigation.PushAsync(new NavigationPage(new TripDetailsPage()));
+        
         protected override async void OnAppearing()
         {
             base.OnAppearing();
@@ -79,5 +78,6 @@ namespace Wassilni_App.views
                 return new List<Ride>(); 
             }
         }
+
     }
 }

@@ -121,8 +121,9 @@
                             </Grid>
                         </Grid>
                     </Grid>
-                                <Button Text="Request" TextColor="White" FontFamily="Roboto-Medium" FontSize="Medium" HorizontalOptions="End" WidthRequest="120" HeightRequest="50" Grid.Column="2" Command="{Binding RequestRideCommand}"   ></Button>
-                </StackLayout>
+                                <Button Text="Request" TextColor="White" FontFamily="Roboto-Medium" FontSize="Medium" HorizontalOptions="End" WidthRequest="120" HeightRequest="50" Grid.Column="2" Command="{Binding RequestRideCommand}" ></Button>
+
+                            </StackLayout>
             </Frame>
             </DataTemplate>
             </CollectionView.ItemTemplate>

@@ -15,39 +15,20 @@
     <ContentPage.Content>
         <StackLayout Padding="10">
             <Label Text="Matching Pools" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
-            <CollectionView x:Name="PoolsCollectionView" ItemsLayout="VerticalList" >
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Frame CornerRadius="20" BackgroundColor="{StaticResource colorSecondary}" Padding="0,10" >
 
-                            <Grid Padding="10" >
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                
-                                <Image Source="{Binding PhotoUrl}"  HeightRequest="60" Grid.Row="0" Grid.Column="0" />
-                                <Label Text="{Binding DriverName}" Grid.Row="0" Grid.Column="1" FontSize="18"  />
-                                <Label Text="{Binding Number_of_seats}" Grid.Row="0" Grid.Column="2" FontSize="18" />
-                                <Label Text="{Binding CarModel}" Grid.Row="1" Grid.Column="0" FontSize="18" />
-                                <Label Text="{Binding PhoneNumber}" Grid.Row="1" Grid.Column="2" FontSize="18" />
-                                <Label Text="{Binding PricePerRide}" Grid.Row="2" Grid.Column="0" FontSize="18" />
-                                
-                                <BoxView Grid.Row="2" Grid.Column="1" BackgroundColor="Black" WidthRequest="3" HeightRequest="40" HorizontalOptions="Center" VerticalOptions="Center" />
-                                <Label Text="{Binding PickupDateTime}" Grid.Row="2" Grid.Column="2" FontSize="18" />
-                                <Button Text="Request Ride" Grid.Row="3" Grid.Column="1" Command="{Binding RequestRideCommand}" />
-                            </Grid>
-                        </Frame>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+
+                    <Image Source="{Binding PhotoUrl}"  HeightRequest="60"/>
+                    <Label Text="{Binding DriverName}"  FontSize="18"  />
+                    <Label Text="{Binding Number_of_seats}" FontSize="18" />
+                    <Label Text="{Binding CarModel}" FontSize="18" />
+                    <Label Text="{Binding PhoneNumber}"  FontSize="18" />
+                    <Label Text="{Binding PricePerRide}"  FontSize="18" />
+                    <Label Text="{Binding TripDate}"  FontSize="18" />
+                    <Label Text="{Binding TripTime}"  FontSize="18" />
+
+
+            <Button Text="Request" TextColor="White" FontFamily="Roboto-Medium" FontSize="Medium" HorizontalOptions="End" WidthRequest="120" HeightRequest="50" Grid.Column="2" Command="{Binding RequestRideCommand}" ></Button>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

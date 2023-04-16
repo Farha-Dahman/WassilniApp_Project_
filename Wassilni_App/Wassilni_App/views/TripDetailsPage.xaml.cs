@@ -10,13 +10,14 @@ using Xamarin.Forms.Xaml;
 
 namespace Wassilni_App.views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class TripDetailsPage : ContentPage
-	{
-		public TripDetailsPage ()
-		{
-			InitializeComponent ();
-			this.BindingContext = new TripDetailsViewModel();
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class TripDetailsPage : ContentPage
+    {
+        public TripDetailsPage(Ride ride)
+        {
+            InitializeComponent();
+            this.BindingContext = new TripDetailsViewModel(ride.RideID);
         }
+
     }
 }

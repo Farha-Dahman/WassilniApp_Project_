@@ -5,6 +5,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System;
 using Wassilni_App.viewModels;
+using static Android.Views.WindowInsets;
 
 namespace Wassilni_App.views
 {
@@ -22,11 +23,8 @@ namespace Wassilni_App.views
         {
             var tappedFrame = sender as Frame;
             var tappedItem = tappedFrame.BindingContext as Ride;
-            await Navigation.PushAsync(new TripDetailsPage());
+            await Navigation.PushAsync(new TripDetailsPage(tappedItem));
         }
-        
-
-
 
     }
 }
