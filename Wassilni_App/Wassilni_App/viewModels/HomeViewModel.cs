@@ -11,11 +11,8 @@ using Wassilni_App.Models;
 using Wassilni_App.views;
 using Wassilni_App.viewModels;
 using Xamarin.Forms;
-using static Android.Resource;
-using Org.Xmlpull.V1.Sax2;
 using Xamarin.Essentials;
 using Wassilni_App.Services;
-using Android.Text.Format;
 
 namespace Wassilni_App.viewModels
 {
@@ -76,13 +73,18 @@ namespace Wassilni_App.viewModels
 
         public ICommand CreatePoolCommand { get; set; }
         public ICommand FindPoolCommand { get; set; }
-
+        public ICommand SearchCommand { get; set; }
 
         public HomeViewModel()
         {
 
             CreatePoolCommand = new Command(async () => await ExecuteCreatePoolCommand());
             FindPoolCommand = new Command(async () => await ExecuteFindPoolCommand());
+            SearchCommand = new Command(async () => await ExecuteSearchCommand());
+        }
+        private async Task ExecuteSearchCommand()
+        {
+            await Application.Current.MainPage.Navigation.PushAsync(new SearchPage());
         }
 
         private bool ValidateFields()

@@ -1,8 +1,6 @@
 ﻿using Firebase.Auth;
 using Firebase.Database;
 using Firebase.Database.Query;
-using Org.Apache.Http.Protocol;
-using Org.Xmlpull.V1.Sax2;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
@@ -15,7 +13,6 @@ using System.Windows.Input;
 using Wassilni_App.Models;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using static Android.Views.WindowInsets;
 
 namespace Wassilni_App.viewModels
 {

@@ -1,8 +1,6 @@
 ﻿using Firebase.Database;
 using System;
 using Firebase.Database.Query;
-using Org.Xmlpull.V1.Sax2;
-using Org.Apache.Http.Protocol;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;

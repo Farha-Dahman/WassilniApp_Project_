@@ -19,7 +19,7 @@
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout>
-                                <Frame BackgroundColor="AliceBlue" HeightRequest="55" >
+                                <Frame BackgroundColor="AliceBlue" HeightRequest="60" Padding="15" >
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="auto"/>
