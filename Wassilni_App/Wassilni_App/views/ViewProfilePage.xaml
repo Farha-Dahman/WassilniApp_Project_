@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:forms="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             x:Class="Wassilni_App.views.ViewProfilePage">
+    <ContentPage.Content>
+        <StackLayout>
+            <forms:CircleImage Source="{Binding PhotoUrl}"
+                   Aspect="AspectFit"
+                   HeightRequest="150"
+                   WidthRequest="150"
+                   BorderColor="Gray"
+                   BorderThickness="2"
+                   Margin="0,45,0,20 "/>
+            <Grid HorizontalOptions="CenterAndExpand" MinimumHeightRequest="45">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="{Binding FirstName}" FontSize="Large" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="5,0,0,0" Grid.Column="0"/>
+                <Label Text="{Binding LastName}" FontSize="Large" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="5,0,0,0" Grid.Column="1" />
+
+            </Grid>
+            <StackLayout  Margin="35,17,25,0" WidthRequest="0">
+                <StackLayout  Margin="20" >
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center" >
+                        <Label Text="{StaticResource Phone}" TextColor="#5E7FFF" FontSize="24" FontFamily="FAS" />
+                        <Label Text="{Binding PhoneNumber}"  FontSize="Medium" Margin="5,0,0,0"/>
+                    </StackLayout>
+                    <BoxView BackgroundColor="DarkGray" Margin="30,5,5,5" HeightRequest="1.1" Color="Gray" WidthRequest="310" HorizontalOptions="Center" VerticalOptions="Center" />
+                </StackLayout>
+                <StackLayout  Margin="20">
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center" >
+                        <Label Text="{StaticResource Email}" TextColor="#5E7FFF" FontSize="24" FontFamily="FAS" />
+                        <Label Text="{Binding Email}"  FontSize="Medium" Margin="5,0,0,0"/>
+                    </StackLayout>
+                    <BoxView BackgroundColor="DarkGray" Margin="30,5,5,5" HeightRequest="1.1" Color="Gray" WidthRequest="310" HorizontalOptions="Center" VerticalOptions="Center" />
+                </StackLayout>
+                <StackLayout  Margin="20">
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center" >
+                        <Label Text="{StaticResource Gender}" TextColor="#5E7FFF" FontSize="24" FontFamily="FAS" />
+                        <Label Text="{Binding Gender}"  FontSize="Medium" Margin="5,0,0,0"/>
+                    </StackLayout>
+                    <BoxView BackgroundColor="DarkGray" Margin="30,5,5,5" HeightRequest="1.1" Color="Gray" WidthRequest="310" HorizontalOptions="Center" VerticalOptions="Center" />
+                </StackLayout>
+                <StackLayout  Margin="20">
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center" >
+                        <Label Text="{StaticResource Birthday}" TextColor="#5E7FFF" FontSize="24" FontFamily="FAS" />
+                        <Label Text="{Binding Age}" FontSize="Medium" Margin="5,0,0,0" />
+                    </StackLayout>
+                    <BoxView BackgroundColor="DarkGray" Margin="30,5,5,5" HeightRequest="1.1" Color="Gray" WidthRequest="310" HorizontalOptions="Center" VerticalOptions="Center" />
+                </StackLayout>
+            </StackLayout>
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
