@@ -1,23 +1,21 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Wassilni_App.viewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Wassilni_App.viewModels;
+
 namespace Wassilni_App.views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SearchPage : ContentPage
+    public partial class ViewProfilePage : ContentPage
     {
-        SearchViewModel viewModel;
-
-        public SearchPage()
+        public ViewProfilePage(String email)
         {
             InitializeComponent();
-            BindingContext = new SearchViewModel();
+            BindingContext = new ViewProfilePageViewModel(email);
         }
-
     }
 }

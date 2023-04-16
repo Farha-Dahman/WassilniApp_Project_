@@ -70,6 +70,9 @@
     <Compile Update="views\TabbedBottom.xaml.cs">
       <DependentUpon>TabbedBottom.xaml</DependentUpon>
     </Compile>
+    <Compile Update="views\ViewProfilePage.xaml.cs">
+      <DependentUpon>ViewProfilePage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -131,6 +134,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="views\VerificationCodePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="views\ViewProfilePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
