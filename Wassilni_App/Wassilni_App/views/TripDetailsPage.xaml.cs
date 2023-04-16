@@ -13,10 +13,10 @@ namespace Wassilni_App.views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TripDetailsPage : ContentPage
     {
-        public TripDetailsPage(Ride ride)
+        public TripDetailsPage(string rideId)
         {
             InitializeComponent();
-            this.BindingContext = new TripDetailsViewModel(ride.RideID);
+            this.BindingContext = new TripDetailsViewModel(rideId);
         }
 
     }

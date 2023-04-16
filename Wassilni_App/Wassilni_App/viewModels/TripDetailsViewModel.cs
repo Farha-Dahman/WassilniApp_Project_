@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Wassilni_App.Models;
 using Xamarin.Essentials;
+using static Android.Provider.ContactsContract.CommonDataKinds;
+using static Android.Renderscripts.Sampler;
 using static Java.Util.Jar.Attributes;
 
 namespace Wassilni_App.viewModels
@@ -14,7 +16,6 @@ namespace Wassilni_App.viewModels
     public class TripDetailsViewModel : BaseViewModel
     {
         FirebaseClient firebaseClient = new FirebaseClient("https://wassilni-app-default-rtdb.firebaseio.com/");
-
 
         private string _photoUrl;
         private string _driverName;
@@ -26,104 +27,60 @@ namespace Wassilni_App.viewModels
         private string _Date;
         private TimeSpan _Time;
 
-        private ICommand _requestRideCommand;
+        //private ICommand _requestRideCommand;
 
-        // Properties
-        public string PhotoUrl
+        public String PhotoUrl
         {
-            get => _photoUrl;
-            set
-            {
-                _photoUrl = value;
-                OnPropertyChanged();
-            }
+            get { return _photoUrl; }
+            set { SetProperty(ref _photoUrl, value); }
         }
-
-        public string DriverName
+        public String DriverName
         {
-            get => _driverName;
-            set
-            {
-                _driverName = value;
-                OnPropertyChanged();
-            }
+            get { return _driverName; }
+            set { SetProperty(ref _driverName, value); }
         }
-
         public int Number_of_seats
         {
-            get => _numberOfSeats;
-            set
-            {
-                _numberOfSeats = value;
-                OnPropertyChanged();
-            }
+            get { return _numberOfSeats; }
+            set { SetProperty(ref _numberOfSeats, value); }
+        }
+        public String CarModel
+        {
+            get { return _carModel; }
+            set { SetProperty(ref _carModel, value); }
         }
 
-        public string CarModel
+        public decimal PricePerRide 
         {
-            get => _carModel;
-            set
-            {
-                _carModel = value;
-                OnPropertyChanged();
-            }
+            get { return _pricePerRide; }
+            set { SetProperty(ref _pricePerRide, value); }
         }
-
-        public string PhoneNumber
+        public string TripDate  
         {
-            get => _phoneNumber;
-            set
-            {
-                _phoneNumber = value;
-                OnPropertyChanged();
-            }
+            get { return _Date; }
+            set { SetProperty(ref _Date, value); }  
         }
-
-        public decimal PricePerRide
+        public TimeSpan TripTime 
         {
-            get => _pricePerRide;
-            set
-            {
-                _pricePerRide = value;
-                OnPropertyChanged();
-            }
+            get { return _Time; }
+            set { SetProperty(ref _Time, value); }
         }
-
-        public DateTime PickupDateTime
-        {
-            get => _pickupDateTime;
-            set
-            {
-                _pickupDateTime = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string TripDate
-        {
-            get => _Date;
-            set
-            {
-                _Date = value;
-                OnPropertyChanged();
-            }
-        }
-        public TimeSpan TripTime
-        {
-            get => _Time;
-            set
-            {
-                _Time = value;
-                OnPropertyChanged();
-            }
+        public string PhoneNumber 
+        { 
+            get { return _phoneNumber; }
+            set { SetProperty(ref _phoneNumber, value); }
         }
 
 
         public TripDetailsViewModel(string rideId)
         {
-            rideId = Preferences.Get("RideId", string.Empty);
+            //rideId = Preferences.Get("RideId", string.Empty);
+            Console.WriteLine("in the TripDetailsViewModel:");
+            Console.WriteLine(rideId);
+
             GetRide(rideId);
         }
+
 
         public async Task GetRide(string rideId)
         {
@@ -138,6 +95,7 @@ namespace Wassilni_App.viewModels
                 TripDate = ride.TripDate;
                 TripTime = ride.TripTime;
                 PhoneNumber = "0" + ride.PhoneNumber;
+
             }
         }
 

@@ -6,6 +6,7 @@ using Xamarin.Forms.Xaml;
 using System;
 using Wassilni_App.viewModels;
 using static Android.Views.WindowInsets;
+using Android.Animation;
 
 namespace Wassilni_App.views
 {
@@ -19,12 +20,25 @@ namespace Wassilni_App.views
             this.BindingContext = new FindPoolViewModel(matchingPools);
             PoolsCollectionView.ItemsSource = (BindingContext as FindPoolViewModel).MatchingPools;
         }
-        private async void OnItemTapped(object sender, EventArgs e)
+        /*private async void OnItemTapped(object sender, EventArgs e)
         {
             var tappedFrame = sender as Frame;
             var tappedItem = tappedFrame.BindingContext as Ride;
-            await Navigation.PushAsync(new TripDetailsPage(tappedItem));
-        }
+            Console.WriteLine(tappedFrame.BindingContext);
 
+            await Navigation.PushAsync(new TripDetailsPage(tappedItem));
+            
+
+        }*/
+
+
+        //var tappedItem = tappedFrame.BindingContext as Ride;
+        //Console.WriteLine("************************************************");
+        //Console.WriteLine(tappedItem.DriverName);
+
+        //if (tappedItem != null)
+        //{
+        //    await Navigation.PushAsync(new TripDetailsPage(tappedItem.RideID));
+        //}
     }
 }
