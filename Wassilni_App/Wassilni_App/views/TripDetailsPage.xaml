@@ -27,8 +27,47 @@
                     <Label Text="{Binding TripTime}"  FontSize="18" />
 
 
-            <Button Text="Request" TextColor="White" FontFamily="Roboto-Medium" FontSize="Medium" HorizontalOptions="End" WidthRequest="120" HeightRequest="50" Grid.Column="2" Command="{Binding RequestRideCommand}" ></Button>
 
+            <StackLayout Padding="10">
+                <CollectionView x:Name="PoolsCollectionView"  >
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical"
+                          Span="1" 
+                          HorizontalItemSpacing="10" 
+                          VerticalItemSpacing="18" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame x:Name="myFrame" CornerRadius="15" BackgroundColor="{StaticResource colorFrame}" Padding="0,1,0,2" BorderColor="{StaticResource colorPrimary}" >
+
+                                <StackLayout>
+                                    <Grid Padding="10,10,10,0" >
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition Height="auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid Grid.Row="0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <forms:CircleImage Source="{Binding PhotoUrl}"  Aspect="AspectFit" HeightRequest="50" WidthRequest="50" Grid.Column="0" />
+                                            <Label Text="{Binding DriverName}" FontSize="20" FontFamily="Roboto-Bold" TextColor="Black" Grid.Column="1"  Padding="3,10" />
+
+                                        </Grid>
+                                    </Grid>
+
+
+
+                                </StackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

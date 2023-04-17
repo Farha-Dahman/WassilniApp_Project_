@@ -75,8 +75,8 @@ namespace Wassilni_App.viewModels
         private async void OnFrameClicked(string data)
         {
             // Navigate to the second page with the passed data
-            Console.WriteLine("***** data: ");
-            Console.WriteLine(data);
+            //Console.WriteLine("***** data: ");
+            //Console.WriteLine(data);
             await Application.Current.MainPage.Navigation.PushAsync(new TripDetailsPage(data));
         }
 

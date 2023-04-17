@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Wassilni_App.Models;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 using static Android.Provider.ContactsContract.CommonDataKinds;
 using static Android.Renderscripts.Sampler;
 using static Java.Util.Jar.Attributes;
@@ -27,7 +28,8 @@ namespace Wassilni_App.viewModels
         private string _Date;
         private TimeSpan _Time;
 
-        //private ICommand _requestRideCommand;
+        public ICommand RequestRideCommand { get; set; }
+
 
         public String PhotoUrl
         {
@@ -72,11 +74,12 @@ namespace Wassilni_App.viewModels
         }
 
 
+
         public TripDetailsViewModel(string rideId)
         {
             //rideId = Preferences.Get("RideId", string.Empty);
-            Console.WriteLine("in the TripDetailsViewModel:");
-            Console.WriteLine(rideId);
+            //Console.WriteLine("in the TripDetailsViewModel:");
+            //Console.WriteLine(rideId);
 
             GetRide(rideId);
         }
@@ -98,6 +101,9 @@ namespace Wassilni_App.viewModels
 
             }
         }
+
+
+
 
 
     }
