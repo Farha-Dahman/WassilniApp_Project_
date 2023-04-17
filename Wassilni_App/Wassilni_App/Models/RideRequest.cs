@@ -21,7 +21,8 @@ namespace Wassilni_App.Models
         private string _photoUrl;
         private DateTime _Date;
         private TimeSpan _Time;
-        
+        private string _selectedGender;
+
 
         public string TripDate { get; set; }
 
@@ -95,6 +96,12 @@ namespace Wassilni_App.Models
         {
             get { return _isAccepted; }
             set { _isAccepted = value; }
+        }
+
+        public string SelectedGender
+        {
+            get { return _selectedGender; }
+            set { _selectedGender = value; }
         }
 
 

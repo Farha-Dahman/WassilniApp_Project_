@@ -104,9 +104,10 @@ namespace Wassilni_App.Services
                              EndLocation = r.Object.EndLocation,
                              TripTime = r.Object.TripTime,
                              Date = r.Object.Date,
-                             RequestID=r.Object.RequestID
-    
-                            
+                             RequestID=r.Object.RequestID,
+                             SelectedGender = r.Object.SelectedGender,
+
+
                          })
                         .ToList();
               
@@ -151,27 +152,39 @@ namespace Wassilni_App.Services
                 .PutAsync(acceptedTrip);
         }
 
-        public async Task<List<BookedRide>> GetBookedRidesByUserIdAsync(string userId)
+        public async Task<BookedRide> GetBookedRideByRideIdAsync(string rideId)
         {
             var bookedRides = await _firebaseClient
                 .Child("BookedRide")
-                .OrderBy("RiderID")
-                .EqualTo(userId)
+                .OrderBy("RideID")
+                .EqualTo(rideId)
                 .OnceAsync<BookedRide>();
-
-            return bookedRides.Select(item => new BookedRide
+            if (bookedRides.Count == 0)
             {
+                return null;
+            }
+
+            var bookedRide = bookedRides.Select(item => new BookedRide
+            {
+                TripID = item.Object.TripID,
                 RideID = item.Object.RideID,
                 RiderID = item.Object.RiderID,
                 DriverName = item.Object.DriverName,
-                RiderName=  item.Object.RiderName,
-                StartLocation= item.Object.StartLocation,
+                RiderName = item.Object.RiderName,
+                StartLocation = item.Object.StartLocation,
                 EndLocation = item.Object.EndLocation,
-                PricePerRide= item.Object.PricePerRide,
-                PhotoUrl=item.Object.PhotoUrl,
-                Riders=item.Object.Riders,
-            }).ToList();
+                PricePerRide = item.Object.PricePerRide,
+                PhotoUrl = item.Object.PhotoUrl,
+                Date = item.Object.Date,
+                BookedDate = item.Object.BookedDate,
+                PickupDateTime = item.Object.PickupDateTime,
+                Time = item.Object.Time,
+                Riders = item.Object.Riders,
+            }).FirstOrDefault();
+
+            return bookedRide;
         }
+
 
     }
 }

@@ -16,7 +16,7 @@ namespace Wassilni_App.Models
         private string _startLocation;
         private string _endLocation;
         private DateTime _date;
-        private DateTime _time;
+        private TimeSpan _time;
         private User _passengers;
         private string _riderName;
         private string _riderId;
@@ -82,7 +82,7 @@ namespace Wassilni_App.Models
             get { return _date; }
             set { _date = value; }
         }
-        public DateTime Time
+        public TimeSpan Time
         {
             get { return _time; }
             set { _time = value; }
@@ -104,6 +104,7 @@ namespace Wassilni_App.Models
         public string RiderPhotoUrl { get; set; }
         public string Gender { get; set; }
         public int Number_of_seats { get; set; }
+        public string PhotoUrl { get; set; }
     }
 
 }
