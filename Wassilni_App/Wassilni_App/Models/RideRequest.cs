@@ -25,6 +25,7 @@ namespace Wassilni_App.Models
 
 
         public string TripDate { get; set; }
+        public int Number_of_Seats { get; set; }
 
         public string PhoneNumber { get; set; }
         public DateTime Date
@@ -103,7 +104,7 @@ namespace Wassilni_App.Models
             get { return _selectedGender; }
             set { _selectedGender = value; }
         }
-
+        public List<Rider> Riders { get; set; }
 
 
     }

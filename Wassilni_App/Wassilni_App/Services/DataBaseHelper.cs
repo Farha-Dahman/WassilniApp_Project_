@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Wassilni_App.Models;
 using Xamarin.Essentials;
 using System.Diagnostics;
+using Android.App;
 
 namespace Wassilni_App.Services
 {
@@ -106,7 +107,7 @@ namespace Wassilni_App.Services
                              Date = r.Object.Date,
                              RequestID=r.Object.RequestID,
                              SelectedGender = r.Object.SelectedGender,
-
+                           
 
                          })
                         .ToList();
@@ -152,39 +153,97 @@ namespace Wassilni_App.Services
                 .PutAsync(acceptedTrip);
         }
 
-        public async Task<BookedRide> GetBookedRideByRideIdAsync(string rideId)
+        public async Task<Ride> GetBookedRideByRideIdAsync(string rideId)
         {
-            var bookedRides = await _firebaseClient
-                .Child("BookedRide")
+
+            
+            var Ride = await _firebaseClient
+                .Child("Ride")
                 .OrderBy("RideID")
                 .EqualTo(rideId)
-                .OnceAsync<BookedRide>();
-            if (bookedRides.Count == 0)
+                .OnceAsync<Ride>();
+            if (Ride.Count == 0)
             {
                 return null;
             }
 
-            var bookedRide = bookedRides.Select(item => new BookedRide
+            var bookedRide = Ride.Select(item => new Ride
             {
-                TripID = item.Object.TripID,
                 RideID = item.Object.RideID,
-                RiderID = item.Object.RiderID,
+             //   RiderID = item.Object.RideID,
+                DriverID=item.Object.DriverID,
+                CarModel=item.Object.CarModel,
+                TripDate=item.Object.TripDate,
+                TripTime=item.Object.TripTime,
+                PhoneNumber=item.Object.PhoneNumber,
                 DriverName = item.Object.DriverName,
-                RiderName = item.Object.RiderName,
                 StartLocation = item.Object.StartLocation,
                 EndLocation = item.Object.EndLocation,
                 PricePerRide = item.Object.PricePerRide,
                 PhotoUrl = item.Object.PhotoUrl,
                 Date = item.Object.Date,
-                BookedDate = item.Object.BookedDate,
                 PickupDateTime = item.Object.PickupDateTime,
-                Time = item.Object.Time,
-                Riders = item.Object.Riders,
+                Number_of_seats=item.Object.Number_of_seats,
+                Riders=item.Object.Riders,
+             
             }).FirstOrDefault();
 
             return bookedRide;
         }
+        public async Task<List<Ride>> GetBookedRidesByUserIdAsync(string userId)
+        {
+            var bookedRides = await _firebaseClient
+                .Child("Ride")
+                .OnceAsync<Ride>();
 
+            return bookedRides.Select(item => new Ride
+            {
+              
+               
+                DriverName="fujkgsjkl",
 
+            })
+
+              .ToList();
+        }
+        public async Task<List<Ride>> LoadRides(string driverId)
+        {
+            Debug.WriteLine("LoadRides called with driverId: " + driverId);
+
+            try
+            {
+                var rides = await _firebaseClient
+                    .Child("Ride")
+                    .OnceAsync<Ride>();
+
+                var rideList = rides
+                    .Where(r => r.Object.DriverID == driverId)
+                    .Select(r => new Ride
+                    {
+                        PhotoUrl = r.Object.PhotoUrl,
+                        StartLocation = r.Object.StartLocation,
+                        EndLocation = r.Object.EndLocation,
+                        PickupDateTime = r.Object.PickupDateTime,
+                        Number_of_seats = r.Object.Number_of_seats,
+                        DriverName = r.Object.DriverName,
+                        PhoneNumber = r.Object.PhoneNumber,
+                        PricePerRide = r.Object.PricePerRide,
+                        DriverID = r.Object.DriverID,
+                        TripTime = r.Object.TripTime,
+                        Date = r.Object.Date,
+                        RideID=r.Object.RideID,      
+                    })
+                    .ToList();
+
+                Debug.WriteLine("Ride list count: " + rideList.Count);
+
+                return rideList;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Exception in LoadRides: " + ex.Message);
+                throw;
+            }
+        }
     }
 }

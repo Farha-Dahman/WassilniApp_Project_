@@ -95,16 +95,8 @@ namespace Wassilni_App.Models
         public string PhotoUrl { get; set; }
         public decimal PricePerRide { get; set; }
         public string TripID { get; set; }
-        public List<Rider> Riders { get; set; }
+   
     }
-    public class Rider
-    {
-        public string RiderID { get; set; }
-        public string RiderName { get; set; }
-        public string RiderPhotoUrl { get; set; }
-        public string Gender { get; set; }
-        public int Number_of_seats { get; set; }
-        public string PhotoUrl { get; set; }
-    }
+   
 
 }
