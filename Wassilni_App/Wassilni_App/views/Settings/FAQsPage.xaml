@@ -4,106 +4,170 @@
              x:Class="Wassilni_App.views.Settings.FAQsPage">
     
     <ContentPage.Content>
-        <StackLayout BackgroundColor="WhiteSmoke">
-            <Grid Padding="5,15,5,10" BackgroundColor="White">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <Grid Grid.Row="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
+        <StackLayout>
+            <StackLayout>
+                <Grid Padding="5,15,5,10" BackgroundColor="White">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
 
-                    <Label Text="FAQs"
+                        <Label Text="FAQs"
                    FontSize="31.25"
                    FontFamily="Roboto-Bold"
                    TextColor="{StaticResource colorPrimary}"
                    Margin="15,50,0,0" Grid.Column="0"/>
-                    <Label Text="Get your answers"
+                        <Label Text="Get your answers"
                    FontSize="18"
                    FontFamily="Roboto-Regular"
                    TextColor="{StaticResource colorPrimary}"
                    Margin="15,90,0,0" Grid.Column="0"/>
-                    <Image Source="FAQs_image.png" WidthRequest="220" HeightRequest="180" Margin="0,0,0,0" Grid.Column="1"></Image>
+                        <Image Source="FAQs_image.png" WidthRequest="220" HeightRequest="180" Margin="0,0,0,0" Grid.Column="1"></Image>
+                    </Grid>
                 </Grid>
-            </Grid>
-            <BoxView BackgroundColor="DarkGray" Margin="15,5,15,5" HeightRequest="2" Color="{StaticResource colorPrimary}" WidthRequest="280" />
-
-            <ScrollView>
-                <StackLayout >
-
-                    <Grid>
-                        <Grid>
-                            <Frame x:Name="Quastion_one" HeightRequest="24" Margin="5,0,5,0" BackgroundColor="Transparent">
-                                <StackLayout Orientation="Horizontal">
-                                    <Label BackgroundColor="Transparent" TextColor="Black" Text="How to Offer a ride?" FontSize="22" Padding="5,-5,0,0" FontFamily="Roboto-Bold"/>
-                                    <Label x:Name="arrow_1" Text="{StaticResource arrow-down}" FontFamily="FAS" FontSize="20" TextColor="Black" HorizontalOptions="EndAndExpand" Margin="0,0,0,0" />
-                                </StackLayout>
-                            </Frame>
-                            <Grid.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="OnSourceFrameTapped" />
-                            </Grid.GestureRecognizers>
-                        </Grid>
-
-                        <Frame x:Name="Answer_one"  Margin="8,35,0,-20" BackgroundColor="Transparent" IsVisible="False">
-                            <StackLayout Orientation="Horizontal">
-                                <Label FontSize="18" Text="Note that the specific implementation of the FaqPage method es"></Label>
-                            </StackLayout>
-                        </Frame>
-                    </Grid>
-
-
-                    <Grid>
-                        <Grid>
-                            <Frame x:Name="Quastion_two" HeightRequest="24" Margin="5,0,5,0" BackgroundColor="Transparent">
-                                <StackLayout Orientation="Horizontal">
-                                    <Label BackgroundColor="Transparent" TextColor="Black" Text="How to Find a ride?" FontSize="22" Padding="5,-5,0,0" FontFamily="Roboto-Bold"/>
-                                    <Label x:Name="arrow_2" Text="{StaticResource arrow-down}" FontFamily="FAS" FontSize="20" TextColor="Black" HorizontalOptions="EndAndExpand" Margin="0,0,0,0" />
-                                </StackLayout>
-                            </Frame>
-                            <Grid.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="OnSourceFrameTapped2" />
-                            </Grid.GestureRecognizers>
-                        </Grid>
-
-                        <Frame x:Name="Answer_two"  Margin="8,35,0,-20" BackgroundColor="Transparent" IsVisible="False">
-                            <StackLayout Orientation="Horizontal">
-                                <Label FontSize="18" Text="Note that the specific implementation of the FaqPage method es"></Label>
-                            </StackLayout>
-                        </Frame>
-                    </Grid>
-
-
-                    <Grid>
-                        <Grid>
-                            <Frame x:Name="Quastion_three" HeightRequest="24" Margin="5,0,5,0" BackgroundColor="Transparent">
-                                <StackLayout Orientation="Horizontal">
-                                    <Label BackgroundColor="Transparent" TextColor="Black" Text="How to Cancel a ride?" FontSize="22" Padding="5,-5,0,0" FontFamily="Roboto-Bold"/>
-                                    <Label x:Name="arrow_3" Text="{StaticResource arrow-down}" FontFamily="FAS" FontSize="20" TextColor="Black" HorizontalOptions="EndAndExpand" Margin="0,0,0,0" />
-                                </StackLayout>
-                            </Frame>
-                            <Grid.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="OnSourceFrameTapped3" />
-                            </Grid.GestureRecognizers>
-                        </Grid>
-
-                        <Frame x:Name="Answer_three"  Margin="8,35,0,-20" BackgroundColor="Transparent" IsVisible="False">
-                            <StackLayout Orientation="Horizontal">
-                                <Label FontSize="18" Text="Note that the specific implementation of the FaqPage method es"></Label>
-                            </StackLayout>
-                        </Frame>
-                    </Grid>
-
-
-
-
-
-                    
+                <BoxView BackgroundColor="DarkGray" Margin="15,5,15,5" HeightRequest="2" Color="{StaticResource colorPrimary}" WidthRequest="280" />
             </StackLayout>
-            </ScrollView>
+            <StackLayout BackgroundColor="WhiteSmoke">
+                <ScrollView>
+                    <StackLayout >
+
+                        <Grid>
+                            <Grid>
+                                <Frame x:Name="Quastion_one" HeightRequest="24" Margin="5,0,5,0" BackgroundColor="Transparent">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label BackgroundColor="Transparent" TextColor="Black" Text="How to Create a ride?" FontSize="22" Padding="5,-5,0,0" FontFamily="Roboto-Bold"/>
+                                        <Label x:Name="arrow_1" Text="{StaticResource arrow-down}" FontFamily="FAS" FontSize="20" TextColor="Black" HorizontalOptions="EndAndExpand" Margin="0,0,0,0" />
+                                    </StackLayout>
+                                </Frame>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnSourceFrameTapped" />
+                                </Grid.GestureRecognizers>
+                            </Grid>
+
+                            <Frame x:Name="Answer_one"  Margin="8,35,0,-20" BackgroundColor="Transparent" IsVisible="False">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label FontSize="19" Text="User who owns a vehicle can offer rides to ride takers who are travelling on the same route by sharing seat availability details.
+                                                         &#x0a;● Enter from and to details.
+                                                         &#x0a;● Enter date and time to schedule the ride.
+                                                         &#x0a;● Enter number of seats available and your desired fare for a seat."></Label>
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
 
 
+                        <Grid>
+                            <Grid>
+                                <Frame x:Name="Quastion_two" HeightRequest="24" Margin="5,0,5,0" BackgroundColor="Transparent">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label BackgroundColor="Transparent" TextColor="Black" Text="How to Find a ride?" FontSize="22" Padding="5,-5,0,0" FontFamily="Roboto-Bold"/>
+                                        <Label x:Name="arrow_2" Text="{StaticResource arrow-down}" FontFamily="FAS" FontSize="20" TextColor="Black" HorizontalOptions="EndAndExpand" Margin="0,0,0,0" />
+                                    </StackLayout>
+                                </Frame>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnSourceFrameTapped2" />
+                                </Grid.GestureRecognizers>
+                            </Grid>
+
+                            <Frame x:Name="Answer_two"  Margin="8,35,0,-20" BackgroundColor="Transparent" IsVisible="False">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label FontSize="19" Text="You can book a ride for the destination you want on a specific day and time as well
+                                       &#x0a;● Commuter can select a ride from the list of rides offered by Givers.
+                                       &#x0a;● Commuter can select his pickup and drop off.
+                                       &#x0a;● Commuter can enter number of seats he wants.
+                                       &#x0a;● Commuters can see the estimated fare for their route.
+                                       &#x0a;● They can manage their booking from ride history."></Label>
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+
+
+                        <Grid>
+                            <Grid>
+                                <Frame x:Name="Quastion_three" HeightRequest="24" Margin="5,0,5,0" BackgroundColor="Transparent">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label BackgroundColor="Transparent" TextColor="Black" Text="How to Cancel a ride?" FontSize="22" Padding="5,-5,0,0" FontFamily="Roboto-Bold"/>
+                                        <Label x:Name="arrow_3" Text="{StaticResource arrow-down}" FontFamily="FAS" FontSize="20" TextColor="Black" HorizontalOptions="EndAndExpand" Margin="0,0,0,0" />
+                                    </StackLayout>
+                                </Frame>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnSourceFrameTapped3" />
+                                </Grid.GestureRecognizers>
+                            </Grid>
+
+                            <Frame x:Name="Answer_three"  Margin="8,35,0,-20" BackgroundColor="Transparent" IsVisible="False">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label FontSize="19" Text="As a passenger, you can when booking a trip, if you want to cancel the reservation, you go to the My Trips list, and then your trips will contain a cancel button. When you click on it, you cancel your reservation immediately."></Label>
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+
+                        <Grid>
+                            <Grid>
+                                <Frame x:Name="Quastion_four" HeightRequest="24" Margin="5,0,5,0" BackgroundColor="Transparent">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label BackgroundColor="Transparent" TextColor="Black" Text="How to edit profile info?" FontSize="22" Padding="5,-5,0,0" FontFamily="Roboto-Bold"/>
+                                        <Label x:Name="arrow_4" Text="{StaticResource arrow-down}" FontFamily="FAS" FontSize="20" TextColor="Black" HorizontalOptions="EndAndExpand" Margin="0,0,0,0" />
+                                    </StackLayout>
+                                </Frame>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnSourceFrameTapped4" />
+                                </Grid.GestureRecognizers>
+                            </Grid>
+
+                            <Frame x:Name="Answer_four"  Margin="8,35,0,-20" BackgroundColor="Transparent" IsVisible="False">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label FontSize="19" Text="When you click on the profile from the tab bar below, it shows you your profile and contains a settings button. When you click on it, you will find a special button to modify the profile."></Label>
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+
+                        <Grid>
+                            <Grid>
+                                <Frame x:Name="Quastion_five" HeightRequest="24" Margin="5,0,5,0" BackgroundColor="Transparent">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label BackgroundColor="Transparent" TextColor="Black" Text="Can I login through social accounts?" FontSize="22" Padding="5,-5,0,0" FontFamily="Roboto-Bold"/>
+                                        <Label x:Name="arrow_5" Text="{StaticResource arrow-down}" FontFamily="FAS" FontSize="20" TextColor="Black" HorizontalOptions="EndAndExpand" Margin="0,0,0,0" />
+                                    </StackLayout>
+                                </Frame>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnSourceFrameTapped5" />
+                                </Grid.GestureRecognizers>
+                            </Grid>
+
+                            <Frame x:Name="Answer_five"  Margin="8,60,0,-20" BackgroundColor="Transparent" IsVisible="False">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label FontSize="19" Text="You can login through your Google email only, we look forward to you being able to login via your other social media accounts soon."></Label>
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+                        <Grid Margin="0,0,0,40">
+                            <Grid>
+                                <Frame x:Name="Quastion_six" HeightRequest="24" Margin="5,0,5,0" BackgroundColor="Transparent">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label BackgroundColor="Transparent" TextColor="Black" Text="How to Logout my account?" FontSize="22" Padding="5,-5,0,0" FontFamily="Roboto-Bold"/>
+                                        <Label x:Name="arrow_6" Text="{StaticResource arrow-down}" FontFamily="FAS" FontSize="20" TextColor="Black" HorizontalOptions="EndAndExpand" Margin="0,0,0,0" />
+                                    </StackLayout>
+                                </Frame>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnSourceFrameTapped6" />
+                                </Grid.GestureRecognizers>
+                            </Grid>
+
+                            <Frame x:Name="Answer_six"  Margin="8,35,0,-20" BackgroundColor="Transparent" IsVisible="False">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label FontSize="19" Text="From the settings menu inside the profile page, there is an Logout button. When you click on it, it will exit you from your account and take you to the login page."></Label>
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+
+
+                    </StackLayout>
+                </ScrollView>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
