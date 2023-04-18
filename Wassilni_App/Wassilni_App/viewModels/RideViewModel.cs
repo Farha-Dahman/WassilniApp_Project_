@@ -42,7 +42,8 @@ namespace Wassilni_App.viewModels
 
         public TimeSpan TripTime { get; set; }
 
-      //  public TimeSpan Date { get; set; }
+
+        //  public TimeSpan Date { get; set; }
 
         public RideViewModel(Ride ride)
         {
