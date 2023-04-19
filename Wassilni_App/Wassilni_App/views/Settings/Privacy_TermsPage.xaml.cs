@@ -17,5 +17,16 @@ namespace Wassilni_App.views.Settings
             InitializeComponent();
             this.BindingContext = new Privacy_TermsViewModel();
         }
+        private void OnSubjectArrowTapped(object sender, EventArgs e)
+        {
+            SubjectLayout.IsVisible = !SubjectLayout.IsVisible;
+            DefinitionLayout.IsVisible = false;
+        }
+
+        private void OnDefinitionArrowTapped(object sender, EventArgs e)
+        {
+            DefinitionLayout.IsVisible = !DefinitionLayout.IsVisible;
+            SubjectLayout.IsVisible = false;
+        }
     }
 }

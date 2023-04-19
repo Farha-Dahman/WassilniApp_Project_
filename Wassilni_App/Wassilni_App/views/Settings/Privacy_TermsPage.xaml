@@ -4,11 +4,54 @@
              x:Class="Wassilni_App.views.Settings.Privacy_TermsPage"
              >
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Privacy and terms page"
-                   FontSize="24"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Margin="20">
+
+            <Label Text="Privacy and Terms" FontSize="30" FontAttributes="Bold" TextColor="Black" Margin="0,25,0,5" />
+            <Label Text="Our privacy policy defines how we collect, use, and protect your personal information when you use our application." FontSize="Small"/>
+            <BoxView HeightRequest="2" BackgroundColor="Gray" Margin="0,5,0,20" />
+
+            <Frame BackgroundColor="Transparent" Margin="0,20,0,0" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Subject" FontSize="Medium" TextColor="Black" Grid.Column="0" VerticalOptions="Center"/>
+                    <Image Source="https://cdn-icons-png.flaticon.com/512/2985/2985150.png" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="End" WidthRequest="20" HeightRequest="20">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnSubjectArrowTapped"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
+            </Frame>
+            <Frame x:Name="SubjectLayout" BackgroundColor="Transparent" IsVisible="False" Margin="0,20,0,0" >
+                <StackLayout Margin="20,0,0,0">
+                    <Label Text="privacy and security:" FontSize="Medium" FontAttributes="Bold" Margin="0,10,0,0"/>
+                    <Label Text="We take into account the privacy of all users of the site and are committed to protecting the information collected through our app. Your personal information may be collected in a number of ways when you use the Site or any of the services offered through it. We provide you with this statement and our cookie policy (Privacy Policy) so we can assist you to understand what we are able to do using any personal information, we obtain from you.we consider providing your personal information to us, is consent to the privacy policy" Margin="0,5,0,20"/>
+                </StackLayout>
+            </Frame>
+            <Frame BackgroundColor="Transparent" Margin="0,20,0,0" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Definitions"  TextColor="Black" FontSize="Medium" Grid.Column="0" VerticalOptions="Center"/>
+                    <Image Source="https://cdn-icons-png.flaticon.com/512/2985/2985150.png" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="End" WidthRequest="20" HeightRequest="20">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnDefinitionArrowTapped"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
+            </Frame>
+            <Frame x:Name="DefinitionLayout" BackgroundColor="Transparent" IsVisible="False" Margin="0,20,0,0" >
+                <StackLayout  Margin="20,0,0,0">
+
+                    <Label Text="These terms are incorporated into the Privacy Policy and form part of the terms and conditions that govern your use of the Website.We may also use personal information for purposes related to our internal marketing activities and demographic studies along with Non-personal data to monitor customer patterns so that we can make improvements to the site's design that allow us to meet the site visitor's requirements in a better way. Please note that we will retain your personal procedure permitted by law. We do not guarantee the security of any information you provide to us, and we are not responsible for it. If you need more information, please contact our customer service." Margin="0,5,0,20"/>
+                </StackLayout>
+            </Frame>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
