@@ -21,9 +21,11 @@ namespace Wassilni_App.Models
         private string _photoUrl;
         private DateTime _Date;
         private TimeSpan _Time;
-        
+        private string _selectedGender;
+
 
         public string TripDate { get; set; }
+        public int Number_of_Seats { get; set; }
 
         public string PhoneNumber { get; set; }
         public DateTime Date
@@ -97,6 +99,12 @@ namespace Wassilni_App.Models
             set { _isAccepted = value; }
         }
 
+        public string SelectedGender
+        {
+            get { return _selectedGender; }
+            set { _selectedGender = value; }
+        }
+        public List<Rider> Riders { get; set; }
 
 
     }

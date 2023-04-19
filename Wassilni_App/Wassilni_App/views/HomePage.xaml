@@ -14,6 +14,7 @@
 
             <StackLayout Spacing="1" >
                 <Label Text="{Binding EmptyErrorMessage}" TextColor="Red" Margin="10,0,0,0"/>
+                <Label x:Name="TravelTimeLabel"  FontSize="20" HorizontalOptions="Center" TextColor="{StaticResource colorPrimary}"  />
 
                 <Frame  Margin="0,9,0,0" Padding="15,5,15,-7" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BackgroundColor="Transparent">
                     <StackLayout Orientation="Horizontal">

@@ -11,6 +11,8 @@
             <StackLayout HeightRequest="300">
                 <maps:Map IsShowingUser="True" x:Name="map"/>
             </StackLayout>
+            <Label x:Name="TravelTimeLabel" FontSize="20" HorizontalOptions="Center" TextColor="{StaticResource colorPrimary}" Margin="10,15,0,0" />
+
             <ScrollView>
                 <StackLayout Margin="5" Spacing="10">
                  
