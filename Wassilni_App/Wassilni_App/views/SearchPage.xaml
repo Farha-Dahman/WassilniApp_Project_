@@ -9,7 +9,7 @@
 
         <StackLayout>
             <SearchBar x:Name="searchBar"
-                       Placeholder="Search by first name"
+                       Placeholder="Search by name"
                        Text="{Binding SearchTerm}"/>
             <ListView x:Name="userListView"
                       ItemsSource="{Binding Users}"

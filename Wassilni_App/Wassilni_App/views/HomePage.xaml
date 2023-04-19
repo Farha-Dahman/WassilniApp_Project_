@@ -72,7 +72,6 @@
                 </Frame>
 
                 <BoxView BackgroundColor="DarkGray" Margin="50,0,5,27" HeightRequest="1.1" Color="Gray" WidthRequest="310" HorizontalOptions="Center" VerticalOptions="Center" />
-                <Button x:Name="search" Text="Search" FontSize="22" CornerRadius="50" Command="{Binding SearchCommand}"/>
                 <Button x:Name="createPool" Text="Create Pool" FontSize="22" CornerRadius="50" Command="{Binding CreatePoolCommand}"/>
                 <Button x:Name="FindPool" Text="Find Pool"  FontSize="22"  CornerRadius="50" Command="{Binding FindPoolCommand}"/>
         </StackLayout>

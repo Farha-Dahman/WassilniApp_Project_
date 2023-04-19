@@ -73,18 +73,12 @@ namespace Wassilni_App.viewModels
 
         public ICommand CreatePoolCommand { get; set; }
         public ICommand FindPoolCommand { get; set; }
-        public ICommand SearchCommand { get; set; }
 
         public HomeViewModel()
         {
 
             CreatePoolCommand = new Command(async () => await ExecuteCreatePoolCommand());
             FindPoolCommand = new Command(async () => await ExecuteFindPoolCommand());
-            SearchCommand = new Command(async () => await ExecuteSearchCommand());
-        }
-        private async Task ExecuteSearchCommand()
-        {
-            await Application.Current.MainPage.Navigation.PushAsync(new SearchPage());
         }
 
         private bool ValidateFields()
