@@ -41,11 +41,13 @@
                         <StackLayout Orientation="Vertical">
                             <StackLayout Orientation="Horizontal" Margin="0,0,0,5">
                                 <Label Text="{StaticResource LocationFrom}" FontFamily="FAS" FontSize="14" Margin="15,0,0,0" TextColor="{StaticResource colorPrimary}"></Label>
-                                <Entry x:Name="LocationFrom" Text="{Binding StartLocation}" IsReadOnly="True" FontSize="19" TextColor="Black" Margin="0,-15,5,0"/>
+                                <Entry x:Name="LocationFrom" Text="{Binding StartLocation}" IsVisible="false" FontSize="19" TextColor="Black" Margin="0,-15,5,0"/>
+                                <Label x:Name="labelLocationFrom" Text="{Binding StartLocation}" FontSize="19" TextColor="Black" Margin="5,-8,5,0"/>
                             </StackLayout>
                             <StackLayout Orientation="Horizontal">
                                 <Label Text="{StaticResource LocationTo}" FontFamily="FAS" FontSize="20" Margin="15,0,0,0" TextColor="{StaticResource colorDrop}"></Label>
-                                <Entry x:Name="LocationTo" Text="{Binding EndLocation}" IsReadOnly="True" FontSize="19" TextColor="Black" Margin="0,-12,20,0" />
+                                <Entry x:Name="LocationTo" Text="{Binding EndLocation}" IsVisible="false" FontSize="19" TextColor="Black" Margin="0,-12,20,0" />
+                                <Label x:Name="labelLocationTo" Text="{Binding EndLocation}" FontSize="19" TextColor="Black" Margin="5,-4,20,0" />
                             </StackLayout>
                         </StackLayout>
                     </StackLayout>
@@ -53,7 +55,7 @@
                    
                     <StackLayout Margin="15,0,0,0">
                         <Label Text="Vehicle Info"  FontSize="20"></Label>
-                    <Frame  Margin="0,3,0,0" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BackgroundColor="Transparent">
+                    <Frame  Margin="0" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BackgroundColor="Transparent">
                         <StackLayout Orientation="Horizontal">
                             <Label Text="{StaticResource bus}" FontFamily="FAS"  FontSize="24" TextColor="{StaticResource colorPrimary}" Margin="9,10,0,0"/>
                             <Label x:Name="CarModel" Text="{Binding CarModel}" TextColor="Black" FontSize="20" Margin="8,8,0,10"></Label>
@@ -97,7 +99,7 @@
                         </Frame>
                     </StackLayout>
 
-                    <Button Text="Request" TextColor="White" CornerRadius="30" FontSize="22" Margin="20" HeightRequest="55" Command="{Binding RequestRideCommand}" ></Button>
+                    <Button Text="Request Ride" TextColor="White" CornerRadius="30" FontSize="22" Margin="20" HeightRequest="55" Command="{Binding RequestRideCommand}" ></Button>
 
                 </StackLayout>
             </ScrollView>
