@@ -44,7 +44,7 @@ namespace Wassilni_App.views
               var allRides = new List<Ride>(rides);
 
             // Set the combined list as the ItemsSource for the RidesCollectionView
-            RidesCollectionView.ItemsSource = allRides;
+            PoolsCollectionView.ItemsSource = allRides;
         }
 
         private async Task<List<Ride>> LoadRidesWithRiderInfo()
