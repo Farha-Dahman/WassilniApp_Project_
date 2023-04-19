@@ -3,6 +3,7 @@ using Firebase.Database;
 using Firebase.Database.Query;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.InteropServices.ComTypes;
 using System.Text;
@@ -97,21 +98,18 @@ namespace Wassilni_App.viewModels
         }
 
 
-
         public TripDetailsViewModel(string rideId)
         {
 
-            //rideId = Preferences.Get("RideId", string.Empty);
-            //Console.WriteLine("in the TripDetailsViewModel:");
-            //Console.WriteLine(rideId);
             GetRide(rideId);
-            //GetBookedRidesByUserIdAsync(rideId);
+
         }
 
 
         public async Task GetRide(string rideId)
         {
             var ride = await firebaseClient.Child("Ride").Child(rideId).OnceSingleAsync<Models.Ride>();
+
             if (ride != null)
             {
                 TripDate = ride.TripDate;
@@ -126,9 +124,6 @@ namespace Wassilni_App.viewModels
                 PhoneNumber = ride.PhoneNumber;
  
             }
-            Console.WriteLine(ride.StartLocation);
-            Console.WriteLine(ride.EndLocation);
-            Console.WriteLine(ride.PhoneNumber);
 
         }
 

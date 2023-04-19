@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -35,7 +36,7 @@ namespace Wassilni_App.views
             LocationFrom.TextChanged += OnLocationChanged;
             LocationTo.TextChanged += OnLocationChanged;
         }
-     
+
         private async void OnLocationChanged(object sender, TextChangedEventArgs e)
         {
             // Get the start and end location entries
