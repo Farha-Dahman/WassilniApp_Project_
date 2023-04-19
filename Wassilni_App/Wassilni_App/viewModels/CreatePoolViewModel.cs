@@ -12,6 +12,7 @@ using Wassilni_App.Models;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using static Android.Views.WindowInsets;
+using static Wassilni_App.Models.Ride;
 
 namespace Wassilni_App.viewModels
 {
@@ -57,7 +58,8 @@ namespace Wassilni_App.viewModels
             get => _StartDateErrorMessage;
             set => SetProperty(ref _StartDateErrorMessage, value);
         }
-        
+        public string RideID { get; set; }
+
         public TimeSpan Time { get; set; }
         public String DriverGender { get; set; }
         public string TripDate { get; set; }
@@ -359,6 +361,7 @@ namespace Wassilni_App.viewModels
             {
                 if (AllValidationsPassed())
                 {
+
                     var personalPhotoUrl = "PersonalPhoto.png";
                     // Create a pool object
                     var newPool = new Ride
@@ -376,9 +379,13 @@ namespace Wassilni_App.viewModels
                         Number_of_seats = AvailableSeats,
                         PricePerRide = Price,
                         TripDate = StartDate.ToString("yyyy-MM-dd"),
-                        DriverGender= DriverGender
+                        //  DriverGender=DriverGender,
+
+                        Riders = new List<Rider>()
 
                     };
+                    newPool.Riders.Add(new Rider());
+                 
 
                     // Save the pool object to the database
                     var rideReference = await firebaseClient.Child("Ride").PostAsync(newPool);
