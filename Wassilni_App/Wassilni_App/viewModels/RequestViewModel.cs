@@ -1,8 +1,6 @@
-﻿using Android.Provider;
-using Android.Telephony;
+﻿
 using Firebase.Database;
 using Firebase.Database.Query;
-using Org.Xmlpull.V1.Sax2;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

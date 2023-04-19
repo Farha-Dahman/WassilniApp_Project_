@@ -1,8 +1,6 @@
 ﻿using Firebase.Database;
 using System;
 using Firebase.Database.Query;
-using Org.Xmlpull.V1.Sax2;
-using Org.Apache.Http.Protocol;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -10,8 +8,6 @@ using System.Threading.Tasks;
 using Wassilni_App.Models;
 using Xamarin.Essentials;
 using System.Diagnostics;
-using Android.App;
-using static Android.Views.WindowInsets;
 
 namespace Wassilni_App.Services
 {

@@ -13,7 +13,6 @@ using System.Linq;
 using Xamarin.Essentials;
 using System.Diagnostics;
 using Wassilni_App.Services;
-using Org.Xmlpull.V1.Sax2;
 
 namespace Wassilni_App.viewModels
 {
