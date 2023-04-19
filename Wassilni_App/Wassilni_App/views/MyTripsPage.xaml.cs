@@ -22,7 +22,7 @@ namespace Wassilni_App.views
         {
             InitializeComponent();
             this.BindingContext = new MyTripsViewModel();
-            _databaseHelper = new DatabaseHelper("https://wassilni-app-default-rtdb.firebaseio.com/"); // Initialize the _databaseHelper field
+            _databaseHelper = new DatabaseHelper("https://wassilni-app-default-rtdb.firebaseio.com/"); 
 
             _driverid = Xamarin.Essentials.Preferences.Get("userId", string.Empty);
 
@@ -38,12 +38,9 @@ namespace Wassilni_App.views
             base.OnAppearing();
 
             var rides = await LoadRides();
-            //   var ridesWithRiderInfo = await LoadRidesWithRiderInfo();
 
-            // Combine the lists
               var allRides = new List<Ride>(rides);
 
-            // Set the combined list as the ItemsSource for the RidesCollectionView
             PoolsCollectionView.ItemsSource = allRides;
         }
 
@@ -60,7 +57,13 @@ namespace Wassilni_App.views
                 return new List<Ride>();
             }
         }
+        private async void OnCancelClicked(object sender, EventArgs e)
+        {
+            string tripId = (string)((Button)sender).CommandParameter;
 
+            await _databaseHelper.DeleteTripAsync(tripId);
+
+        }
 
 
         private async Task<List<Ride>> LoadRides()

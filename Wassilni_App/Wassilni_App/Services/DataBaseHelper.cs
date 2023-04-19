@@ -310,6 +310,23 @@ namespace Wassilni_App.Services
                 Debug.WriteLine("Exception in LoadRides: " + ex.Message);
                 throw;
             }
+
+        }
+        public async Task DeleteTripAsync(string tripId)
+        {
+            try
+            {
+                await _firebaseClient
+                    .Child("Ride")
+                    .Child(tripId)
+                    .DeleteAsync();
+
+                Debug.WriteLine($"Ride with ID {tripId} deleted successfully.");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error deleting ride with ID {tripId}: {ex.Message}");
+            }
         }
     }
 }
