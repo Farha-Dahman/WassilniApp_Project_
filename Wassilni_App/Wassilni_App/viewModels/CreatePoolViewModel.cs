@@ -361,6 +361,7 @@ namespace Wassilni_App.viewModels
             {
                 if (AllValidationsPassed())
                 {
+
                     var personalPhotoUrl = "PersonalPhoto.png";
                     // Create a pool object
                     var newPool = new Ride

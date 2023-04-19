@@ -11,26 +11,28 @@ namespace Wassilni_App.viewModels
     public class MyTripsViewModel
     {
         public ObservableCollection<Ride> BookedRides { get; set; }
-
+        public string RiderName { get; set; }
         public DatabaseHelper _databaseHelper;
 
         public MyTripsViewModel()
         {
             BookedRides = new ObservableCollection<Ride>();
 
-           //   LoadBookedRides();
+      //   LoadBookedRides();
         }
-
+/*
         private async void LoadBookedRides()
         {
             string userId = Preferences.Get("userId", string.Empty);
-            var bookedRides = await _databaseHelper.GetBookedRidesByUserIdAsync(userId);
-
+            List<Ride> bookedRides = await _databaseHelper.GetBookedRidesByUserIdAsync(userId);
+           
             BookedRides.Clear();
             foreach (var ride in bookedRides)
             {
                 BookedRides.Add(ride);
             }
         }
+*/
     }
+
 }

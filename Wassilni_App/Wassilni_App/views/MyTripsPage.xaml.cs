@@ -35,37 +35,33 @@ namespace Wassilni_App.views
         }
         protected override async void OnAppearing()
         {
-
             base.OnAppearing();
 
-            // Call both methods to load rides and booked rides
-            var bookedRides = await LoadBookedRides();
-        
-
             var rides = await LoadRides();
-           
+            //   var ridesWithRiderInfo = await LoadRidesWithRiderInfo();
 
             // Combine the lists
-            var allRides = new List<Ride>(bookedRides.Concat(rides));
+              var allRides = new List<Ride>(rides);
 
             // Set the combined list as the ItemsSource for the RidesCollectionView
             RidesCollectionView.ItemsSource = allRides;
         }
 
-        private async Task<List<Ride>> LoadBookedRides()
+        private async Task<List<Ride>> LoadRidesWithRiderInfo()
         {
             try
             {
-                var bookedRides = await _databaseHelper.GetBookedRidesByUserIdAsync(_driverid);
-
-                return bookedRides;
+                var ridesWithRiderInfo = await _databaseHelper.GetRidesWithRidersByUserIdAsync(_driverid);
+                return ridesWithRiderInfo;
             }
             catch (Exception ex)
             {
-                await Application.Current.MainPage.DisplayAlert("Error", $" error occurred while loading booked rides:", ex.Message, "OK");
-                return new List<Ride>(); 
+                await Application.Current.MainPage.DisplayAlert("Error", $"error occurred while loading rides: {ex.Message}", "OK");
+                return new List<Ride>();
             }
         }
+
+
 
         private async Task<List<Ride>> LoadRides()
         {
