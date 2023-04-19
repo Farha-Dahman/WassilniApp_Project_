@@ -39,6 +39,7 @@ namespace Wassilni_App.viewModels
         public DateTime Date { get; set; }
 
         public String TripDate { get; set; }
+        public List<Rider> Riders { get; set; }
 
         public TimeSpan TripTime { get; set; }
 
@@ -60,7 +61,7 @@ namespace Wassilni_App.viewModels
             PhotoUrl = ride.PhotoUrl;
             TripTime = ride.TripTime;
             TripDate = ride.Date.Date.ToString("yyyy-MM-dd");
-
+            Riders = ride.Riders;
 
             RequestRideCommand = new Command(RequestRide);
 
@@ -108,11 +109,11 @@ namespace Wassilni_App.viewModels
                         RideID = RideId,
                         PhoneNumber = PhoneNumber,
                         TripDate=TripDate,
+                        Number_of_Seats=Number_of_seats,
                     };
                     var newRideRequestResponse = await firebaseClient
                    .Child("requestRide")
                    .PostAsync(newRideRequest);
-
 
                     string requestID = newRideRequestResponse.Key;
 

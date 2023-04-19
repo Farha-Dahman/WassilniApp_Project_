@@ -46,6 +46,11 @@ namespace Wassilni_App.viewModels
         public decimal PricePerRide { get; set; }
 
 
+        public string Gender { get; set; }
+
+        public List<Rider> Riders { get; set; }
+
+
         public ICommand AcceptRequestCommand { get; set; }
         public ICommand DenyRequestCommand { get; set; }
 
@@ -70,6 +75,10 @@ namespace Wassilni_App.viewModels
             PhoneNumber = request.PhoneNumber;
             PickUpDateTime = request.PickupDateTime;
             TripTime = request.TripTime;
+            PhotoUrl = request.PhotoUrl;
+            Gender = request.SelectedGender;
+            Number_of_seats = request.Number_of_Seats;
+            Riders=request.Riders;
 
 
             _databaseHelper = databaseHelper;
@@ -86,12 +95,58 @@ namespace Wassilni_App.viewModels
 
         private async Task AcceptRequestAsync()
         {
+            string RideID = RideId;
+            await Application.Current.MainPage.DisplayAlert("Request Updated", RideID, "OK");
+
             await UpdateRequestStatusAsync(true);
 
+          
+            Ride bookedRide = await _databaseHelper.GetBookedRideByRideIdAsync(RideID);
+            await Application.Current.MainPage.DisplayAlert("bookedRide", bookedRide.DriverName, "ok");
+            if (bookedRide == null)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "Not Found", "ok");
+            }
+            await Application.Current.MainPage.DisplayAlert("Error", "HI", "ok");
 
-            _requestsViewModel.RemoveRequest(this);
+            bookedRide.Riders.Add(new Rider
+            {
+              RiderID=RiderId,
+              RiderName=RiderName,
+              Number_of_seats=Number_of_seats,
+              Gender=Gender,
+              RiderPhotoUrl=PhotoUrl,
+              
+              
+            });
+            await firebaseClient
+           .Child("Ride")
+            .Child(RideID)
+            .PutAsync(bookedRide);
 
 
+          await UpdateAvailableSeatsAsync(Number_of_seats);
+
+            // Remove the request from the database
+            await _databaseHelper.DeleteRideRequestAsync(RequestId);
+
+
+            // Update or add the booked ride to the BookedRide table
+
+            /*
+            if (bookedRide.RideID == null)
+            {
+                string tripId = await _databaseHelper.AddAcceptedTripAsyncbookedRide);
+                bookedRide.TripID = tripId;
+            }
+            else
+            {
+                await _databaseHelper.UpdateAcceptedTripAsync(bookedRide);
+            }
+            */
+           _requestsViewModel.RemoveRequest(this);
+
+            
         }
 
         private async Task DenyRequestAsync()
@@ -107,7 +162,7 @@ namespace Wassilni_App.viewModels
         private async Task UpdateRequestStatusAsync(bool isAccepted)
         {
             string RequestID = RequestId;
-          //  string RequestID = Preferences.Get("RequestID", string.Empty);
+            //  string RequestID = Preferences.Get("RequestID", string.Empty);
 
             //    await Application.Current.MainPage.DisplayAlert("Request Updated", RequestId, "OK");
 
@@ -125,46 +180,27 @@ namespace Wassilni_App.viewModels
             var status = isAccepted ? "accepted" : "denied";
             await Application.Current.MainPage.DisplayAlert("Request Updated", $"The request has been {status}.", "OK");
 
-            if (isAccepted)
-            {
-                var acceptedTrip = new BookedRide
-                {
-                    RideID = RideId,
-                    RiderID = RiderId,
-                    DriverID = DriverId,
-                    DriverName = DriverName,
-                    RiderName = RiderName,
-                    StartLocation = StartLocation,
-                    EndLocation = EndLocation,
-                    PickupDateTime = PickUpDateTime,
-                    Number_of_seats = Number_of_seats,
-                    PricePerRide = PricePerRide,
-                    PhotoUrl = PhotoUrl,
-                    
-                };
-                await _databaseHelper.DeleteRideRequestAsync(RequestID);
-
-                string tripId = await _databaseHelper.AddAcceptedTripAsync(acceptedTrip);
-                acceptedTrip.TripID = tripId;
-
-             //   await _databaseHelper.DeleteRideRequestAsync(RequestId);
-
-                /*
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    int requestIndex = RequestRides.IndexOf(RequestRides.FirstOrDefault(r => r.RequestID == RequestId));
-                    if (requestIndex >= 0)
-                    {
-                        RequestRides.RemoveAt(requestIndex);
-                    }
-                });
-                */
-
-
-
-            }
-
         }
+
+
+
+        private async Task UpdateAvailableSeatsAsync(int numberOfSeats)
+        {
+            var ride = await firebaseClient
+                .Child("Ride")
+                .Child(RideId)
+                .OnceSingleAsync<Ride>();
+
+            ride.Number_of_seats -= numberOfSeats;
+
+            await firebaseClient
+                .Child("Ride")
+                .Child(RideId)
+                .PutAsync(ride);
+        }
+ 
     }
+
 }
+
 

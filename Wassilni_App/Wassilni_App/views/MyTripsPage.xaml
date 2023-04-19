@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:forms="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              x:Class="Wassilni_App.views.MyTripsPage">
@@ -61,9 +61,9 @@
                                         <ColumnDefinition Width="auto" />
                                     </Grid.ColumnDefinitions>
                                     <Label Text="{StaticResource Date}" FontFamily="FAS" FontSize="22" Padding="0,2,4,0" TextColor="{StaticResource colorPrimary}"  Grid.Column="0" ></Label>
-                                    <Label Text="{Binding TripsDate}" FontFamily="Roboto-Regular" FontSize="19" Grid.Column="1"></Label>
+                                    <Label Text="{Binding TripDate}" FontFamily="Roboto-Regular" FontSize="19" Grid.Column="1"></Label>
                                     <Label Text="{StaticResource Time}" FontFamily="FAS" FontSize="22" Padding="10,2,0,0" TextColor="{StaticResource colorPrimary}"  Grid.Column="2" ></Label>
-                                    <Label Text="{Binding TripsTime}" FontFamily="Roboto-Regular" FontSize="19" Grid.Column="3"></Label>
+                                    <Label Text="{Binding TripTime}" FontFamily="Roboto-Regular" FontSize="19" Grid.Column="3"></Label>
                                 </Grid>
                                 <Grid Grid.Row="3" Grid.ColumnSpan="3" Margin="55,0,0,0">
                                     <Grid.ColumnDefinitions>
@@ -72,7 +72,7 @@
                                         <ColumnDefinition Width="auto" />
                                     </Grid.ColumnDefinitions>
                                     <Label Text="{StaticResource bus}" FontFamily="FAS" FontSize="22" Padding="0,2,0,0" TextColor="{StaticResource colorPrimary}"  Grid.Column="0" ></Label>
-                                    <Label Text="{Binding CarDetails}" FontFamily="Roboto-Regular" FontSize="19" Grid.Column="1"></Label>
+                                    <Label Text="{Binding CarModel}" FontFamily="Roboto-Regular" FontSize="19" Grid.Column="1"></Label>
                                 </Grid>
                                 <Grid Grid.Row="4" Grid.Column="2">
                                     <Grid.ColumnDefinitions>
@@ -80,7 +80,7 @@
                                         <ColumnDefinition Width="auto" />
                                         <ColumnDefinition Width="auto" />
                                     </Grid.ColumnDefinitions>
-                                    <Button Text="Cancel" TextColor="White" FontFamily="Roboto-Medium" FontSize="Medium" HorizontalOptions="End" WidthRequest="110" HeightRequest="40" Grid.Column="2" ></Button>
+                                    <Button Text="Cancel" TextColor="White" FontFamily="Roboto-Medium" FontSize="Medium" HorizontalOptions="End" CommandParameter="{Binding RideID}" WidthRequest="110" HeightRequest="40" Grid.Column="2"  Clicked="OnCancelClicked"></Button>
                                 </Grid>
                             </Grid>
                         </Frame>

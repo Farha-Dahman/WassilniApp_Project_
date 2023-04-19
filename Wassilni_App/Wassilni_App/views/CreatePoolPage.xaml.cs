@@ -153,7 +153,7 @@ namespace Wassilni_App.views
 
                     // Get route from Google Maps Directions API
                     string apiKey = "AIzaSyCzsoVk0vHyr81imbvoPwSDco1qC6s6WAc";
-                    string apiUrl = $"https://maps.googleapis.com/maps/api/directions/json?origin={startPosition.Latitude},{startPosition.Longitude}&destination={endPosition.Latitude},{endPosition.Longitude}&key={apiKey}";
+                    string apiUrl = $"https://maps.googleapis.com/maps/api/directions/json?origin={startPosition.Latitude},{startPosition.Longitude}&destination={endPosition.Latitude},{endPosition.Longitude}&key={apiKey}&departure_time=now&traffic_model=best_guess";
 
                     using (var httpClient = new HttpClient())
                     {
@@ -161,7 +161,13 @@ namespace Wassilni_App.views
                         var routeData = JObject.Parse(response);
                         var points = routeData["routes"][0]["overview_polyline"]["points"].ToString();
                         var positions = DecodePolyline(points);
-
+                        var travelTimeInSeconds = routeData["routes"][0]["legs"][0]["duration"]["value"].Value<int>();
+                        TimeSpan travelTime = TimeSpan.FromSeconds(travelTimeInSeconds);
+                        string travelTimeString = $"{travelTime.Hours} hours, {travelTime.Minutes} minutes, and {travelTime.Seconds} seconds";
+                        Device.BeginInvokeOnMainThread(() =>
+                        {
+                            TravelTimeLabel.Text = $"{"Trip Estimated Time "},{travelTime.Hours}h, {travelTime.Minutes}m,{travelTime.Seconds}s";
+                        });
                         // Create a Polyline shape to represent the route between the two locations
                         var polyline = new Polyline();
                         foreach (var position in positions)

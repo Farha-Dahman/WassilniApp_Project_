@@ -1,22 +1,38 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
+using Wassilni_App.Models;
+using Wassilni_App.Services;
+using Xamarin.Essentials;
 
 namespace Wassilni_App.viewModels
 {
-    internal class MyTripsViewModel
+    public class MyTripsViewModel
     {
+        public ObservableCollection<Ride> BookedRides { get; set; }
+        public string RiderName { get; set; }
+        public DatabaseHelper _databaseHelper;
 
-        public string StartLocation { get; set; }
-        public string EndLocation { get; set; }
-        public string DriverName { get; set; }
-        public string DriverId { get; set; }
-        public string PhoneNumber { get; set; }
-        public string PhotoUrl { get; set; }
-        public String TripDate { get; set; }
-        public TimeSpan TripTime { get; set; }
-        public string CarDetails { get; set; }
+        public MyTripsViewModel()
+        {
+            BookedRides = new ObservableCollection<Ride>();
 
-
+      //   LoadBookedRides();
+        }
+/*
+        private async void LoadBookedRides()
+        {
+            string userId = Preferences.Get("userId", string.Empty);
+            List<Ride> bookedRides = await _databaseHelper.GetBookedRidesByUserIdAsync(userId);
+           
+            BookedRides.Clear();
+            foreach (var ride in bookedRides)
+            {
+                BookedRides.Add(ride);
+            }
+        }
+*/
     }
+
 }
