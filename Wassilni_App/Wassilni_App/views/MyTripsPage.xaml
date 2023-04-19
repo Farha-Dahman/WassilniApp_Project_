@@ -4,11 +4,8 @@
              x:Class="Wassilni_App.views.MyTripsPage">
     <ContentPage.Content>
         <StackLayout>
-            <Button x:Name="BuTrip" VerticalOptions="Start"  Text="Trip" Clicked="GoToPoolDetails" ></Button>
 
-            <Label Text="Welcome to My Trips Page"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Button Text="Cancel" TextColor="White" FontFamily="Roboto-Medium" FontSize="Medium" HorizontalOptions="End" CommandParameter="{Binding RideID}" WidthRequest="110" HeightRequest="40" Grid.Column="2"  Clicked="OnCancelClicked"></Button>
 
 
         </StackLayout>
