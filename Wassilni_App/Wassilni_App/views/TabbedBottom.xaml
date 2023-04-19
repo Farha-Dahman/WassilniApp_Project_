@@ -19,7 +19,7 @@
     </views:HomePage>
     <views:SearchPage Title="Search">
         <views:SearchPage.IconImageSource>
-            <FileImageSource File="Search1.png"/>
+            <FileImageSource File="Search.png"/>
         </views:SearchPage.IconImageSource>
     </views:SearchPage>
     <views:MyTripsPage Title="MyTrips">
