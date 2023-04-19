@@ -46,9 +46,6 @@ namespace Wassilni_App.viewModels
 
         public TimeSpan TripTime { get; set; }
 
-
-        //  public TimeSpan Date { get; set; }
-
         public RideViewModel(Ride ride)
         {
        
@@ -76,7 +73,8 @@ namespace Wassilni_App.viewModels
         {
             // Navigate to the second page with the passed data
             //Console.WriteLine("***** data: ");
-            //Console.WriteLine(data);
+            //Console.WriteLine(data);'
+
             await Application.Current.MainPage.Navigation.PushAsync(new TripDetailsPage(data));
         }
 

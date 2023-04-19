@@ -31,14 +31,5 @@ namespace Wassilni_App.views
 
         }*/
 
-
-        //var tappedItem = tappedFrame.BindingContext as Ride;
-        //Console.WriteLine("************************************************");
-        //Console.WriteLine(tappedItem.DriverName);
-
-        //if (tappedItem != null)
-        //{
-        //    await Navigation.PushAsync(new TripDetailsPage(tappedItem.RideID));
-        //}
     }
 }

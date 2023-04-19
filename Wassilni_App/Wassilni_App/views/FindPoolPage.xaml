@@ -25,7 +25,6 @@
                     <DataTemplate>
                         <Frame x:Name="myFrame" CornerRadius="15" BackgroundColor="{StaticResource colorFrame}" Padding="0,1,0,2" BorderColor="{StaticResource colorPrimary}" >
                             <Frame.GestureRecognizers>
-                                <!--<TapGestureRecognizer Tapped="OnItemTapped" NumberOfTapsRequired="1" />-->
                                 <TapGestureRecognizer Command="{Binding OnItemTapped}" CommandParameter="{Binding RideId}" />
                             </Frame.GestureRecognizers>
                             <StackLayout>

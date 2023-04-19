@@ -1,11 +1,15 @@
-﻿using Firebase.Database;
+﻿using Android.OS;
+using Firebase.Database;
 using Firebase.Database.Query;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Wassilni_App.Models;
+using Wassilni_App.views;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using static Android.Provider.ContactsContract.CommonDataKinds;
@@ -24,13 +28,32 @@ namespace Wassilni_App.viewModels
         private string _carModel;
         private string _phoneNumber;
         private decimal _pricePerRide;
-        private DateTime _pickupDateTime;
+        //private DateTime _pickupDateTime;
         private string _Date;
         private TimeSpan _Time;
+        private string _startLocation;
+        private string _endLocation;
 
+
+        private string _riderName;
+        public string RiderName
+        {
+            get { return _riderName; }
+            set { _riderName = value; }
+        }
         public ICommand RequestRideCommand { get; set; }
 
 
+        public String StartLocation
+        {
+            get { return _startLocation; }
+            set { SetProperty(ref _startLocation, value); }
+        }
+        public String EndLocation
+        {
+            get { return _endLocation; }
+            set { SetProperty(ref _endLocation, value); }
+        }
         public String PhotoUrl
         {
             get { return _photoUrl; }
@@ -77,11 +100,12 @@ namespace Wassilni_App.viewModels
 
         public TripDetailsViewModel(string rideId)
         {
+
             //rideId = Preferences.Get("RideId", string.Empty);
             //Console.WriteLine("in the TripDetailsViewModel:");
             //Console.WriteLine(rideId);
-
             GetRide(rideId);
+            //GetBookedRidesByUserIdAsync(rideId);
         }
 
 
@@ -90,18 +114,23 @@ namespace Wassilni_App.viewModels
             var ride = await firebaseClient.Child("Ride").Child(rideId).OnceSingleAsync<Models.Ride>();
             if (ride != null)
             {
-                PhotoUrl = ride.PhotoUrl;
-                DriverName = ride.DriverName;
-                Number_of_seats = ride.Number_of_seats;
-                CarModel = ride.CarModel;
-                PricePerRide = ride.PricePerRide;
                 TripDate = ride.TripDate;
                 TripTime = ride.TripTime;
-                PhoneNumber = "0" + ride.PhoneNumber;
-
+                PhotoUrl = ride.PhotoUrl;
+                DriverName = ride.DriverName;
+                StartLocation = ride.StartLocation;
+                EndLocation = ride.EndLocation;
+                Number_of_seats = ride.Number_of_seats;
+                CarModel = ride.CarModel;
+                PricePerRide = ride.PricePerRide;     
+                PhoneNumber = ride.PhoneNumber;
+ 
             }
-        }
+            Console.WriteLine(ride.StartLocation);
+            Console.WriteLine(ride.EndLocation);
+            Console.WriteLine(ride.PhoneNumber);
 
+        }
 
 
 
