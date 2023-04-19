@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Wassilni_App.Models;
+using Wassilni_App.views;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using static Android.Views.WindowInsets;
@@ -24,6 +25,8 @@ namespace Wassilni_App.viewModels
         FirebaseClient firebaseClient = new Firebase.Database.FirebaseClient("https://wassilni-app-default-rtdb.firebaseio.com/");
 
         public ICommand RequestRideCommand { get; set; }
+        public ICommand OnItemTapped { get; set; }
+
 
         public string RideId { get; set; }
         public string StartLocation { get; set; }
@@ -43,9 +46,6 @@ namespace Wassilni_App.viewModels
 
         public TimeSpan TripTime { get; set; }
 
-
-        //  public TimeSpan Date { get; set; }
-
         public RideViewModel(Ride ride)
         {
        
@@ -64,10 +64,19 @@ namespace Wassilni_App.viewModels
             Riders = ride.Riders;
 
             RequestRideCommand = new Command(RequestRide);
+            OnItemTapped = new Command<string>(OnFrameClicked);
 
 
         }
 
+        private async void OnFrameClicked(string data)
+        {
+            // Navigate to the second page with the passed data
+            //Console.WriteLine("***** data: ");
+            //Console.WriteLine(data);'
+
+            await Application.Current.MainPage.Navigation.PushAsync(new TripDetailsPage(data));
+        }
 
         private async void RequestRide()
         {
