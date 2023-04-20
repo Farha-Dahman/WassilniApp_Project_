@@ -1,12 +1,16 @@
-﻿using System;
+﻿using Firebase.Database;
+using Firebase.Database.Query;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Wassilni_App.Models;
 using Wassilni_App.Services;
 using Wassilni_App.viewModels;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -60,8 +64,28 @@ namespace Wassilni_App.views
         {
             string tripId = (string)((Button)sender).CommandParameter;
 
-            await _databaseHelper.DeleteTripAsync(tripId);
+            string userId = Preferences.Get("userId", string.Empty);
+            FirebaseClient firebaseClient = new Firebase.Database.FirebaseClient("https://wassilni-app-default-rtdb.firebaseio.com/");
+            var ride = await firebaseClient.Child("Ride").Child(tripId).OnceSingleAsync<Ride>();
+            //string DriverId = "BcqwrYUZrfWqvUWst3qYVrWxWKJ3";
+            //string USerId = "BcqwrYUZrfWqvUWst3qYVrWxWKJ3";
+            if (ride != null && userId == ride.DriverID)
+            {
+                await firebaseClient.Child("Ride").Child(tripId).DeleteAsync();
+            }
+            else if(ride != null && userId != ride.DriverID) 
+            {
+                for(int i =1; i <= ride.Number_of_seats; i++)
+                {
+                    var riderId = await firebaseClient.Child("Ride").Child(tripId).Child("Riders").Child(i.ToString()).Child("RiderId").OnceSingleAsync<string>();
+                    if(riderId == userId)
+                    {
+                        await firebaseClient.Child("ride").Child(tripId).Child("Riders").Child(i.ToString()).DeleteAsync();
 
+                    }
+                }
+            }
+            
         }
 
 
