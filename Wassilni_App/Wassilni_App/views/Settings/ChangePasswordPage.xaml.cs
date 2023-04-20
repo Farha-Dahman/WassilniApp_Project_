@@ -7,7 +7,6 @@ using Wassilni_App.viewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Firebase.Auth;
-using Java.Security;
 
 namespace Wassilni_App.views.Settings
 {
