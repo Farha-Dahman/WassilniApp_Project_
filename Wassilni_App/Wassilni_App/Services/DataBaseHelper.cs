@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 using Wassilni_App.Models;
 using Xamarin.Essentials;
 using System.Diagnostics;
-using Android.App;
-using static Android.Views.WindowInsets;
+
 
 namespace Wassilni_App.Services
 {

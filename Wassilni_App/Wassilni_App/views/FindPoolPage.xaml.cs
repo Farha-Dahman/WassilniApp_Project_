@@ -5,8 +5,6 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System;
 using Wassilni_App.viewModels;
-using static Android.Views.WindowInsets;
-using Android.Animation;
 
 namespace Wassilni_App.views
 {

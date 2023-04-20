@@ -12,7 +12,6 @@ using Wassilni_App.viewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using Xamarin.Forms.Xaml;
-using static Android.App.Assist.AssistStructure;
 
 namespace Wassilni_App.views
 {

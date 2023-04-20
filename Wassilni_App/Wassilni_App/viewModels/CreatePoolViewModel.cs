@@ -11,7 +11,6 @@ using System.Windows.Input;
 using Wassilni_App.Models;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using static Android.Views.WindowInsets;
 using static Wassilni_App.Models.Ride;
 
 namespace Wassilni_App.viewModels
