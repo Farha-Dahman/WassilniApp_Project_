@@ -1,16 +1,92 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:forms="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              x:Class="Wassilni_App.views.MyTripsPage">
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="My Trips"
+                   FontSize="24"
+                   TextColor="White"
+                   HorizontalOptions="StartAndExpand" />
+        </StackLayout>
+    </NavigationPage.TitleView>
     <ContentPage.Content>
-        <StackLayout>
-            <Button x:Name="BuTrip" VerticalOptions="Start"  Text="Trip" Clicked="GoToPoolDetails" ></Button>
-
-            <Label Text="Welcome to My Trips Page"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-
-
+        <StackLayout Padding="10">
+            <CollectionView x:Name="PoolsCollectionView"  >
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"
+                          Span="1" 
+                          HorizontalItemSpacing="10" 
+                          VerticalItemSpacing="18" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame CornerRadius="15"  BackgroundColor="{StaticResource colorFrame}" BorderColor="{StaticResource colorPrimary}" Padding="0,1,0,2" >
+                            <Grid Padding="10,10,10,0" RowSpacing="2" >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <forms:CircleImage Source="{Binding PhotoUrl}" Aspect="AspectFit" HeightRequest="50" WidthRequest="50" Grid.Column="0" Grid.Row="0"/>
+                                <Label Text="{Binding DriverName}" FontSize="20" FontFamily="Roboto-Bold" TextColor="Black" Grid.Column="1" Grid.Row="0"  Padding="3,10" />
+                                <StackLayout Grid.Column="1" Grid.Row="1">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition Height="auto" />
+                                        </Grid.RowDefinitions>
+                                        <Label Text="{StaticResource LocationFrom}" FontFamily="FAS" FontSize="13" Padding="0,2,0,0" TextColor="{StaticResource colorPrimary}" Grid.Column="0" Grid.Row="0"></Label>
+                                        <Label Text="{Binding StartLocation}" FontFamily="Roboto-Bold" Grid.Column="1" Grid.Row="0" FontSize="15"></Label>
+                                        <Label Text="{StaticResource LocationTo}" FontFamily="FAS" FontSize="18" Padding="0,2,0,0" TextColor="{StaticResource colorDrop}"  Grid.Column="0" Grid.Row="1"></Label>
+                                        <Label Text="{Binding EndLocation}" FontFamily="Roboto-Bold" Grid.Column="1" Grid.Row="1" FontSize="15" Margin="0,3,0,0"></Label>
+                                    </Grid>
+                                </StackLayout>
+                                <Grid Grid.Row="2"  Grid.ColumnSpan="3" Margin="55,0,0,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto" />
+                                        <ColumnDefinition Width="auto" />
+                                        <ColumnDefinition Width="auto" />
+                                        <ColumnDefinition Width="auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{StaticResource Date}" FontFamily="FAS" FontSize="22" Padding="0,2,4,0" TextColor="{StaticResource colorPrimary}"  Grid.Column="0" ></Label>
+                                    <Label Text="{Binding TripDate}" FontFamily="Roboto-Regular" FontSize="19" Grid.Column="1"></Label>
+                                    <Label Text="{StaticResource Time}" FontFamily="FAS" FontSize="22" Padding="10,2,0,0" TextColor="{StaticResource colorPrimary}"  Grid.Column="2" ></Label>
+                                    <Label Text="{Binding TripTime}" FontFamily="Roboto-Regular" FontSize="19" Grid.Column="3"></Label>
+                                </Grid>
+                                <Grid Grid.Row="3" Grid.ColumnSpan="3" Margin="55,0,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto" />
+                                        <ColumnDefinition Width="auto" />
+                                        <ColumnDefinition Width="auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{StaticResource bus}" FontFamily="FAS" FontSize="22" Padding="0,2,0,0" TextColor="{StaticResource colorPrimary}"  Grid.Column="0" ></Label>
+                                    <Label Text="{Binding CarModel}" FontFamily="Roboto-Regular" FontSize="19" Grid.Column="1"></Label>
+                                </Grid>
+                                <Grid Grid.Row="4" Grid.Column="2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto" />
+                                        <ColumnDefinition Width="auto" />
+                                        <ColumnDefinition Width="auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Button Text="Cancel" TextColor="White" FontFamily="Roboto-Medium" FontSize="Medium" HorizontalOptions="End" CommandParameter="{Binding RideID}" WidthRequest="110" HeightRequest="40" Grid.Column="2"  Clicked="OnCancelClicked"></Button>
+                                </Grid>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

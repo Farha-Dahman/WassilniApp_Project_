@@ -1,8 +1,6 @@
 ﻿using Firebase.Database;
 using System;
 using Firebase.Database.Query;
-using Org.Xmlpull.V1.Sax2;
-using Org.Apache.Http.Protocol;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -10,6 +8,7 @@ using System.Threading.Tasks;
 using Wassilni_App.Models;
 using Xamarin.Essentials;
 using System.Diagnostics;
+
 
 namespace Wassilni_App.Services
 {
@@ -104,9 +103,10 @@ namespace Wassilni_App.Services
                              EndLocation = r.Object.EndLocation,
                              TripTime = r.Object.TripTime,
                              Date = r.Object.Date,
-                             RequestID=r.Object.RequestID
-    
-                            
+                             RequestID=r.Object.RequestID,
+                             SelectedGender = r.Object.SelectedGender,
+                           
+
                          })
                         .ToList();
               
@@ -151,27 +151,179 @@ namespace Wassilni_App.Services
                 .PutAsync(acceptedTrip);
         }
 
-        public async Task<List<BookedRide>> GetBookedRidesByUserIdAsync(string userId)
+        public async Task<Ride> GetBookedRideByRideIdAsync(string rideId)
         {
-            var bookedRides = await _firebaseClient
-                .Child("BookedRide")
-                .OrderBy("RiderID")
-                .EqualTo(userId)
-                .OnceAsync<BookedRide>();
 
-            return bookedRides.Select(item => new BookedRide
+            
+            var Ride = await _firebaseClient
+                .Child("Ride")
+                .OrderBy("RideID")
+                .EqualTo(rideId)
+                .OnceAsync<Ride>();
+            if (Ride.Count == 0)
+            {
+                return null;
+            }
+
+            var bookedRide = Ride.Select(item => new Ride
             {
                 RideID = item.Object.RideID,
-                RiderID = item.Object.RiderID,
+             //   RiderID = item.Object.RideID,
+                DriverID=item.Object.DriverID,
+                CarModel=item.Object.CarModel,
+                TripDate=item.Object.TripDate,
+                TripTime=item.Object.TripTime,
+                PhoneNumber=item.Object.PhoneNumber,
                 DriverName = item.Object.DriverName,
-                RiderName=  item.Object.RiderName,
-                StartLocation= item.Object.StartLocation,
+                StartLocation = item.Object.StartLocation,
                 EndLocation = item.Object.EndLocation,
-                PricePerRide= item.Object.PricePerRide,
-                PhotoUrl=item.Object.PhotoUrl,
+                PricePerRide = item.Object.PricePerRide,
+                PhotoUrl = item.Object.PhotoUrl,
+                Date = item.Object.Date,
+                PickupDateTime = item.Object.PickupDateTime,
+                Number_of_seats=item.Object.Number_of_seats,
                 Riders=item.Object.Riders,
-            }).ToList();
+             
+            }).FirstOrDefault();
+
+            return bookedRide;
+        }
+        /*
+        public async Task<List<Ride>> GetRidesWithRidersByUserIdAsync(string userId)
+        {
+            var allRides = await _firebaseClient
+                .Child("Ride")
+                .OnceAsync<Ride>();
+
+            var userRides = allRides
+                   .Where(r => r.Object.Riders != null || r.Object.Riders.Any(ri => ri.RiderID == userId))
+                .Select(r => new Ride
+                {
+
+                    PhotoUrl = r.Object.PhotoUrl,
+                    StartLocation = r.Object.StartLocation,
+                    EndLocation = r.Object.EndLocation,
+                    PickupDateTime = r.Object.PickupDateTime,
+                    Number_of_seats = r.Object.Number_of_seats,
+                    DriverName = r.Object.DriverName,
+                    PhoneNumber = r.Object.PhoneNumber,
+                    PricePerRide = r.Object.PricePerRide,
+                    DriverID = r.Object.DriverID,
+                    TripTime = r.Object.TripTime,
+                    Date = r.Object.Date,
+                    RideID = r.Object.RideID,
+                    CarModel = r.Object.CarModel,
+                    TripDate = r.Object.Date.ToString("yyyy-MM-dd"),
+                    Riders = r.Object.Riders.ToList(),
+
+                })
+                .ToList();
+            Debug.WriteLine("Ride list count: " + userRides.Count);
+
+
+            return userRides;
+        }*/
+        public async Task<List<Ride>> GetRidesWithRidersByUserIdAsync(string userId)
+        {
+            var allRides = await _firebaseClient
+                .Child("Ride")
+                .OnceAsync<Ride>();
+
+            Debug.WriteLine($"All rides count: {allRides.Count}");
+
+            var ridesWithRiders = allRides
+                .Where(r => r.Object.Riders != null)
+                .ToList();
+
+            Debug.WriteLine($"Rides with riders count: {ridesWithRiders.Count}");
+
+            var userRides = ridesWithRiders
+                .Where(r => r.Object.Riders.Any(ri => ri.RiderID==userId))
+                .Select(r => new Ride
+                {
+
+                    PhotoUrl = r.Object.PhotoUrl,
+                    StartLocation = r.Object.StartLocation,
+                    EndLocation = r.Object.EndLocation,
+                    PickupDateTime = r.Object.PickupDateTime,
+                    Number_of_seats = r.Object.Number_of_seats,
+                    DriverName = r.Object.DriverName,
+                    PhoneNumber = r.Object.PhoneNumber,
+                    PricePerRide = r.Object.PricePerRide,
+                    DriverID = r.Object.DriverID,
+                    TripTime = r.Object.TripTime,
+                    Date = r.Object.Date,
+                    RideID = r.Object.RideID,
+                    CarModel = r.Object.CarModel,
+                    TripDate = r.Object.Date.ToString("yyyy-MM-dd"),
+                    Riders = r.Object.Riders.ToList(),
+                })
+                .ToList();
+
+            Debug.WriteLine($"User rides count: {userRides.Count}");
+
+            return userRides;
         }
 
+
+        public async Task<List<Ride>> LoadRides(string driverId)
+        {
+            Debug.WriteLine("LoadRides called with driverId: " + driverId);
+
+            try
+            {
+                var rides = await _firebaseClient
+                    .Child("Ride")
+                    .OnceAsync<Ride>();
+
+                var rideList = rides
+                    .Where(r => r.Object.DriverID == driverId)
+                    .Select(r => new Ride
+                    {
+                        PhotoUrl = r.Object.PhotoUrl,
+                        StartLocation = r.Object.StartLocation,
+                        EndLocation = r.Object.EndLocation,
+                        PickupDateTime = r.Object.PickupDateTime,
+                        Number_of_seats = r.Object.Number_of_seats,
+                        DriverName = r.Object.DriverName,
+                        PhoneNumber = r.Object.PhoneNumber,
+                        PricePerRide = r.Object.PricePerRide,
+                        DriverID = r.Object.DriverID,
+                        TripTime = r.Object.TripTime,
+                        Date = r.Object.Date,
+                        RideID=r.Object.RideID,   
+                        CarModel=r.Object.CarModel,
+                        TripDate = r.Object.Date.ToString("yyyy-MM-dd")
+
+            })
+                    .ToList();
+
+                Debug.WriteLine("Ride list count: " + rideList.Count);
+
+                return rideList;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Exception in LoadRides: " + ex.Message);
+                throw;
+            }
+
+        }
+        public async Task DeleteTripAsync(string tripId)
+        {
+            try
+            {
+                await _firebaseClient
+                    .Child("Ride")
+                    .Child(tripId)
+                    .DeleteAsync();
+
+                Debug.WriteLine($"Ride with ID {tripId} deleted successfully.");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error deleting ride with ID {tripId}: {ex.Message}");
+            }
+        }
     }
 }

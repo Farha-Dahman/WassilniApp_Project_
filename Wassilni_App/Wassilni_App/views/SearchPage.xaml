@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:Wassilni_App.viewModels="clr-namespace:Wassilni_App.viewModels" xmlns:forms="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             x:Class="Wassilni_App.views.SearchPage">
+    <ContentPage.BindingContext>
+        <Wassilni_App.viewModels:SearchViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+
+        <StackLayout>
+            <SearchBar x:Name="searchBar"
+                       Placeholder="Search by name"
+                       Text="{Binding SearchTerm}"/>
+            <ListView x:Name="userListView"
+                      ItemsSource="{Binding Users}"
+                      IsVisible="{Binding HasResults}"
+                       HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Frame BackgroundColor="AliceBlue" HeightRequest="60" Padding="15" >
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="120"/>
+                                        </Grid.ColumnDefinitions>
+                                        <forms:CircleImage Source="{Binding PhotoUrl}"
+                                       Aspect="AspectFit"
+                                       HeightRequest="50"
+                                       WidthRequest="50"
+                                       BorderColor="Gray"
+                                       BorderThickness="2"
+                                       Grid.Column="0"/>
+                                        <StackLayout Grid.Column="1">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="auto"/>
+                                                    <ColumnDefinition Width="auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Label Text="{Binding FirstName}" TextColor="Black" FontSize="Subtitle" FontAttributes="Bold" Grid.Column="0"/>
+                                                <Label Text="{Binding LastName}" TextColor="Black" FontSize="Subtitle" FontAttributes="Bold" Grid.Column="1"/>
+                                            </Grid>
+                                            <Label Text="{Binding Email}" FontSize="Small" FontAttributes="Italic" />
+                                        </StackLayout>
+                                        <Button Text="View Profile" FontSize="Small" Grid.Column="2"  Command="{Binding Source={x:Reference userListView}, Path=BindingContext.ViewProfileCommand}" CommandParameter="{Binding .}" ></Button>
+                                    </Grid>
+                                </Frame>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -18,7 +18,26 @@ namespace Wassilni_App.views.Settings
         public SettingsPage()
         {
             InitializeComponent();
+            NavigationPage.SetTitleView(this, new Label { Text = "Settings", HorizontalOptions = LayoutOptions.StartAndExpand });
+
             this.BindingContext = new SettingsViewModel();
+            NavigationPage.SetTitleView(this, new StackLayout
+            {
+                Orientation = StackOrientation.Horizontal,
+                Children =
+            {
+                new Label
+                {
+                    Text = "Settings",
+                    FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label)),
+                    TextColor = Color.White,
+                    HorizontalOptions = LayoutOptions.StartAndExpand
+                }
+            }
+            });
+
+            NavigationPage.SetHasNavigationBar(this, true);
+            NavigationPage.SetHasBackButton(this, true);
         }
 
         async private void GoToEditProfilePage(object sender, EventArgs e)

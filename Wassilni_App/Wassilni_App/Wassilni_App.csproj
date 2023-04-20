@@ -44,14 +44,16 @@
 
   <ItemGroup>
     <PackageReference Include="FirebaseAdmin" Version="2.3.0" />
-    <PackageReference Include="FirebaseAuthentication.net" Version="3.0.1" />
+    <PackageReference Include="FirebaseAuthentication.net" Version="3.7.1" />
     <PackageReference Include="FirebaseDatabase.net" Version="4.2.0" />
+    <PackageReference Include="FirebaseStorage.net" Version="1.0.3" />
     <PackageReference Include="Rg.Plugins.Popup" Version="2.1.0" />
     <PackageReference Include="System.Drawing.Common" Version="7.0.0" />
     <PackageReference Include="Xam.Plugins.Forms.ImageCircle" Version="3.0.0.5" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2578" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
     <PackageReference Include="Xamarin.Forms.Maps" Version="5.0.0.2012" />
+    <PackageReference Include="Xamarin.Plugin.FilePicker" Version="2.1.41" />
   </ItemGroup>
 
   <ItemGroup>
@@ -69,6 +71,9 @@
     </Compile>
     <Compile Update="views\TabbedBottom.xaml.cs">
       <DependentUpon>TabbedBottom.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="views\ViewProfilePage.xaml.cs">
+      <DependentUpon>ViewProfilePage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -115,6 +120,9 @@
     <EmbeddedResource Update="views\FindPoolPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="views\SearchPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="views\SignupPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -128,6 +136,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="views\VerificationCodePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="views\ViewProfilePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

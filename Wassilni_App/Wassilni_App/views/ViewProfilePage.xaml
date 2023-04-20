@@ -1,19 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Wassilni_App.views.ProfilePage"
-             xmlns:forms="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
-             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin">
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:forms="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             x:Class="Wassilni_App.views.ViewProfilePage">
     <ContentPage.Content>
         <StackLayout>
-            <forms:CircleImage Source="{Binding PersonalPhoto}"
+            <forms:CircleImage Source="{Binding PhotoUrl}"
                    Aspect="AspectFit"
                    HeightRequest="150"
                    WidthRequest="150"
                    BorderColor="Gray"
                    BorderThickness="2"
                    Margin="0,45,0,20 "/>
-            <Label Text="{Binding Name}" FontSize="Large" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="5,0,0,0" />
+            <Grid HorizontalOptions="CenterAndExpand" MinimumHeightRequest="45">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="{Binding FirstName}" FontSize="Large" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="5,0,0,0" Grid.Column="0"/>
+                <Label Text="{Binding LastName}" FontSize="Large" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="5,0,0,0" Grid.Column="1" />
+
+            </Grid>
             <StackLayout  Margin="35,17,25,0" WidthRequest="0">
                 <StackLayout  Margin="20" >
                     <StackLayout Orientation="Horizontal" VerticalOptions="Center" >
@@ -44,21 +50,8 @@
                     <BoxView BackgroundColor="DarkGray" Margin="30,5,5,5" HeightRequest="1.1" Color="Gray" WidthRequest="310" HorizontalOptions="Center" VerticalOptions="Center" />
                 </StackLayout>
             </StackLayout>
-            <Frame x:Name="Settings" BackgroundColor="{StaticResource colorPrimary}" HeightRequest="20" Margin="15,0,15,30" HasShadow="True" CornerRadius="10">
-                <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="GoToSettingsPage" />
-                </Frame.GestureRecognizers>
-                <StackLayout Orientation="Horizontal">
-                    <Label x:Name="BuSettings" BackgroundColor="Transparent" TextColor="White" Text="Settings" FontSize="22" Padding="5,-5,0,-10"/>
-                    <Label Text="{StaticResource arrow-right}" FontFamily="FAS"  FontSize="20" TextColor="White" HorizontalOptions="EndAndExpand" Margin="0,0,0,0"/>
-                </StackLayout>
-            </Frame>
+
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
-
-
-
-
-
-

@@ -23,7 +23,10 @@
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Frame CornerRadius="15" BackgroundColor="{StaticResource colorFrame}" Padding="0,1,0,2" BorderColor="{StaticResource colorPrimary}" >
+                        <Frame x:Name="myFrame" CornerRadius="15" BackgroundColor="{StaticResource colorFrame}" Padding="0,1,0,2" BorderColor="{StaticResource colorPrimary}" >
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OnItemTapped}" CommandParameter="{Binding RideId}" />
+                            </Frame.GestureRecognizers>
                             <StackLayout>
                                 <Grid Padding="10,10,10,0" >
                                     <Grid.RowDefinitions>
@@ -42,7 +45,8 @@
                                         <Label Text="{Binding DriverName}" FontSize="20" FontFamily="Roboto-Bold" TextColor="Black" Grid.Column="1"  Padding="3,10" />
                                         <Label Text="{StaticResource Profile}" TextColor="{StaticResource colorPrimary}" FontSize="26" FontFamily="FAS" Padding="0,9,1,0"  Grid.Column="2" />
                                         <Label Text="{Binding Number_of_seats}" FontSize="24" FontFamily="Roboto-Bold" TextColor="Black" Grid.Column="3"  Padding="0,7,10,0"/>
-                                </Grid>
+
+                                    </Grid>
 
 
                             <StackLayout Grid.Row="1" Padding="60,0,10,10">
@@ -118,8 +122,8 @@
                             </Grid>
                         </Grid>
                     </Grid>
-                                <Button Text="Request" TextColor="White" FontFamily="Roboto-Medium" FontSize="Medium" HorizontalOptions="End" WidthRequest="120" HeightRequest="50" Grid.Column="2" Command="{Binding RequestRideCommand}"  ></Button>
-                </StackLayout>
+                               <Button Text="Request" TextColor="White" FontFamily="Roboto-Medium" FontSize="Medium" HorizontalOptions="End" WidthRequest="120" HeightRequest="50" Grid.Column="2" Command="{Binding RequestRideCommand}" ></Button> 
+                            </StackLayout>
             </Frame>
             </DataTemplate>
             </CollectionView.ItemTemplate>
