@@ -1,5 +1,4 @@
-﻿using Android.OS;
-using Firebase.Database;
+﻿using Firebase.Database;
 using Firebase.Database.Query;
 using System;
 using System.Collections.Generic;
@@ -13,9 +12,6 @@ using Wassilni_App.Models;
 using Wassilni_App.views;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using static Android.Provider.ContactsContract.CommonDataKinds;
-using static Android.Renderscripts.Sampler;
-using static Java.Util.Jar.Attributes;
 
 namespace Wassilni_App.viewModels
 {
