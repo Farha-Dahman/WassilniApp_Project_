@@ -181,7 +181,7 @@ namespace Wassilni_App.viewModels
 
         public ICommand CreatePoolCommand { get; set; }
 
-        public CreatePoolViewModel(Ride pool)
+        public   CreatePoolViewModel(Ride pool)
         {
             string userId = Preferences.Get("userId", string.Empty);
 
@@ -189,7 +189,7 @@ namespace Wassilni_App.viewModels
             CreatePoolCommand = new Command(async () => await ExecuteCreatePoolCommand(userId));
            
             //
-             FetchUserData(userId,pool);
+           FetchUserData(userId,pool);
         }
 
 
@@ -229,7 +229,7 @@ namespace Wassilni_App.viewModels
         private bool ValidateStartDate()
         {
             DateTime currentDateTime = DateTime.Now;
-            DateTime selectedDateTime = StartDate.Add(StartTime);
+            DateTime selectedDateTime = StartDate;
 
             if (selectedDateTime >= currentDateTime)
             {
@@ -241,16 +241,16 @@ namespace Wassilni_App.viewModels
         private bool ValidateStartTime()
         {
             DateTime currentDateTime = DateTime.Now;
-            DateTime selectedDateTime = StartDate.Add(StartTime);
+            DateTime selectedDateTime = StartDate;
 
-            if ( selectedDateTime >= currentDateTime)
+            if (selectedDateTime >= currentDateTime)
             {
                 return true;
             }
             return false;
         }
 
-        
+
 
         private bool ValidateCarModel()
         {
@@ -310,14 +310,15 @@ namespace Wassilni_App.viewModels
                 ErrorMessage = errorMessage;
                 ShowTopErrorMessage?.Invoke(this, EventArgs.Empty);
             }
+            /*
             else if (!ValidateStartDate())
             {
                 string errorMessage = "Please Select A Valid Date!.";
 
                 ErrorMessage = errorMessage;
                 ShowTopErrorMessage?.Invoke(this, EventArgs.Empty);
-            }
-           
+            }*/
+
             else if (!ValidatePrice())
             {
                 string errorMessage = "Please Enter The Ride price!.";

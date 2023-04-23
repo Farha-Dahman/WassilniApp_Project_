@@ -13,6 +13,7 @@ using Wassilni_App.views;
 using Rg.Plugins.Popup.Services;
 using System.Drawing;
 using System.Drawing.Imaging;
+using Wassilni_App.Models;
 
 namespace Wassilni_App.viewModels
 {
@@ -322,6 +323,9 @@ namespace Wassilni_App.viewModels
         {
             try
             {
+                // This code should be placed in the login/register method of your shared project
+                // This code should be placed in the login/register method of your ViewModel (or another appropriate class)
+             
                 var authProvider = new FirebaseAuthProvider(new FirebaseConfig(webAPIkey));
 
                 var authResult = await authProvider.CreateUserWithEmailAndPasswordAsync(Email, Password);
@@ -335,22 +339,38 @@ namespace Wassilni_App.viewModels
                     FirstName = FirstName,
                     LastName = LastName,
                     Email = Email,
-                    PhoneNumber = PhoneNumber,
+                    PhoneNumber ="0"+PhoneNumber,
                     Birthdate = Birthdate,
                     Gender = SelectedGender,
                     PhotoUrl = personalPhotoUrl,
                 };
 
                 await firebaseClient.Child("User").Child(authResult.User.LocalId).PutAsync(newUser);
+                var fcmTokenProvider = DependencyService.Get<IFcmTokenProvider>();
+                string fcmToken = await fcmTokenProvider.GetFcmTokenAsync();
+                await SaveFcmTokenAsync(fcmToken, authResult.User.LocalId);
+
+
 
                 await PopupNavigation.Instance.PushAsync(new PopUpSignUp());
             }
-            catch (Exception ex)
+            catch 
             {
                 EmailErrorMessage = "Account Already Exist With This Email";
             }
         }
+        public async Task SaveFcmTokenAsync(string fcmToken,string userId)
+        {
+           
 
+            if (!string.IsNullOrEmpty(userId))
+            {
+                await firebaseClient
+                    .Child("User")
+                    .Child(userId)
+                    .PatchAsync(new { FCMToken = fcmToken });
+            }
+        }
 
         private async Task ExecuteSignUpCommand()
         {

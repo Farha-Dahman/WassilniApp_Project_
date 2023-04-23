@@ -238,7 +238,7 @@ namespace Wassilni_App.Services
             Debug.WriteLine($"Rides with riders count: {ridesWithRiders.Count}");
 
             var userRides = ridesWithRiders
-                .Where(r => r.Object.Riders.Any(ri => ri.RiderID==userId))
+                .Where(r => r.Object.Riders.Any(ri => ri.RiderID == userId))
                 .Select(r => new Ride
                 {
 
@@ -256,7 +256,7 @@ namespace Wassilni_App.Services
                     RideID = r.Object.RideID,
                     CarModel = r.Object.CarModel,
                     TripDate = r.Object.Date.ToString("yyyy-MM-dd"),
-                    Riders = r.Object.Riders.ToList(),
+                  
                 })
                 .ToList();
 

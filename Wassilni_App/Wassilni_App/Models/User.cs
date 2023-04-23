@@ -64,6 +64,7 @@ namespace Wassilni_App.Models
             get { return photoUrl; }
             set { photoUrl = value; }
         }
+        public string FCMToken { get; set; }
 
     }
 }

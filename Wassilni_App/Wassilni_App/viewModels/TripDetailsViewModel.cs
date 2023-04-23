@@ -30,13 +30,25 @@ namespace Wassilni_App.viewModels
         private TimeSpan _Time;
         private string _startLocation;
         private string _endLocation;
-
-
         private string _riderName;
-        public string RiderName
+        private string _riderPhotoUrl;
+        
+        private Rider _rides;
+
+        public Rider Rides
+        {
+            get { return _rides; }
+            set { _rides = value; }
+        }
+        public String RiderPhotoUrl
+        {
+            get { return _riderPhotoUrl; }
+            set { SetProperty(ref _riderPhotoUrl, value); }
+        }
+        public String RiderName
         {
             get { return _riderName; }
-            set { _riderName = value; }
+            set { SetProperty(ref _riderName, value); }
         }
         public ICommand RequestRideCommand { get; set; }
 
@@ -101,6 +113,7 @@ namespace Wassilni_App.viewModels
 
         }
 
+        public ObservableCollection<Rider> Riders { get; set; } = new ObservableCollection<Rider>();
 
         public async Task GetRide(string rideId)
         {
@@ -118,11 +131,24 @@ namespace Wassilni_App.viewModels
                 CarModel = ride.CarModel;
                 PricePerRide = ride.PricePerRide;     
                 PhoneNumber = ride.PhoneNumber;
- 
+
+                if (ride.Riders != null)
+                {
+                    Riders.Clear();
+                    foreach (var rider in ride.Riders)
+                    {
+                        Riders.Add(rider);
+                        RiderName=rider.RiderName;
+                        RiderPhotoUrl=rider.RiderPhotoUrl;
+                    }
+                }
+
             }
 
         }
 
+        // Add a new method to fetch riders for the specified ride
+      
 
 
 

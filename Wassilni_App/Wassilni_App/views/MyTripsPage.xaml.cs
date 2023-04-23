@@ -28,7 +28,7 @@ namespace Wassilni_App.views
             this.BindingContext = new MyTripsViewModel();
             _databaseHelper = new DatabaseHelper("https://wassilni-app-default-rtdb.firebaseio.com/"); 
 
-            _driverid = Xamarin.Essentials.Preferences.Get("userId", string.Empty);
+            _driverid = Preferences.Get("userId", string.Empty);
 
         }
 
@@ -40,9 +40,9 @@ namespace Wassilni_App.views
         {
             base.OnAppearing();
 
-            var rides = await LoadRides();
-
-              var allRides = new List<Ride>(rides);
+           var rides = await LoadRides();
+            var ridesWithRider = await LoadRidesWithRiderInfo();
+              var allRides = new List<Ride>(rides.Concat(ridesWithRider));
 
             PoolsCollectionView.ItemsSource = allRides;
         }
