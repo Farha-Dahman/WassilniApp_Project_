@@ -16,17 +16,24 @@ public class PushNotificationHelper
         {
             httpClient.DefaultRequestHeaders.TryAddWithoutValidation("Authorization", $"key={FirebaseServerKey}");
             httpClient.DefaultRequestHeaders.TryAddWithoutValidation("Sender", $"id={FirebaseSenderId}");
-
             var messageData = new
             {
                 to = fcmToken,
+                priority = "high",
                 notification = new
+                {
+                    title = title,
+                    body = body,
+                    sound = "default", 
+                    icon = "notification", 
+                
+                },
+                data = new
                 {
                     title = title,
                     body = body
                 }
             };
-           
             var jsonMessage = JsonConvert.SerializeObject(messageData);
             Console.WriteLine($"Sending notification: {jsonMessage}"); 
 
