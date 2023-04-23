@@ -10,6 +10,8 @@ using Wassilni_App.views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.ComponentModel;
+using Firebase.Database;
+using Firebase.Database.Query;
 
 namespace Wassilni_App.views
 {
@@ -32,12 +34,21 @@ namespace Wassilni_App.views
             _googleManager.Login(OnLoginComplete);
 
         }
-        private void OnLoginComplete(GoogleUser googleUser, string message)
+        private async void OnLoginComplete(GoogleUser googleUser, string message)
         {
             if (googleUser != null)
             {
 
                 IsLogedIn = true;
+                var user = new GoogleUser
+                {
+                    Name = googleUser.Name,
+                    Email = googleUser.Email,
+                    PhotoUrl = googleUser.Picture.AbsoluteUri,
+                    UserId = googleUser.UserId,
+                };
+                await SaveUserToDatabase(user);
+
                 App.Current.MainPage = new NavigationPage(new TabbedBottom());
 
             }
@@ -46,6 +57,12 @@ namespace Wassilni_App.views
                 DisplayAlert("Message", message, "Ok");
             }
         }
+        private async Task SaveUserToDatabase(GoogleUser user)
+        {
+            var firebaseClient = new FirebaseClient("https://wassilni-app-default-rtdb.firebaseio.com/");
+            await firebaseClient.Child("GoogleUser").PutAsync(user);
+        }
+
         private void GoogleLogout()
         {
             _googleManager.Logout();
