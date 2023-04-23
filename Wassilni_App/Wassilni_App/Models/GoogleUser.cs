@@ -9,6 +9,9 @@ namespace Wassilni_App.Models
         public string Name { get; set; }
         public string Email { get; set; }
         public Uri Picture { get; set; }
+        public string UserId { get; set; }
+        public string PhotoUrl { get; set; }
+
     }
     public interface IGoogleManager
     {
