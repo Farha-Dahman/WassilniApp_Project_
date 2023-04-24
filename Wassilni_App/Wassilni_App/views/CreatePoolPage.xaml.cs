@@ -23,7 +23,6 @@ namespace Wassilni_App.views
         public CreatePoolPage(Ride pool)
         {
             InitializeComponent();
-           
 
             this.BindingContext = new CreatePoolViewModel(pool);
 
