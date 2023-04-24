@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using static Xamarin.Essentials.Permissions;
 
@@ -40,18 +40,6 @@ namespace Wassilni_App.viewModels
             get { return _Email; }
             set { SetProperty(ref _Email, value); }
         }
-        private String _Gender;
-        public String Gender
-        {
-            get { return _Gender; }
-            set { SetProperty(ref _Gender, value); }
-        }
-        private int _Age;
-        public int Age
-        {
-            get { return _Age; }
-            set { SetProperty(ref _Age, value); }
-        }
         private String _PhotoUrl;
         public String PhotoUrl
         {
@@ -74,13 +62,6 @@ namespace Wassilni_App.viewModels
                 LastName = user.LastName;
                 Email = user.Email;
                 PhoneNumber = user.PhoneNumber;
-                var userQuery = await firebaseClient.Child("User")
-                                .OrderBy("Email")
-                                .EqualTo(email)
-                                .OnceAsync<Models.User>();
-                var userNode = userQuery.First().Key;
-                Gender = await firebaseClient.Child("User").Child(userNode).Child("Gender").OnceSingleAsync<string>();
-                Age = (DateTime.Now - DateTime.Parse(user.Birthdate)).Days / 365;
                 PhotoUrl = user.PhotoUrl;
             }
         }

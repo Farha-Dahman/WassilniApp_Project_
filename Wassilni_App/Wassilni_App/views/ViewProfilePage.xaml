@@ -11,26 +11,16 @@
                    BorderColor="Gray"
                    BorderThickness="2"
                    Margin="0,45,0,20 "/>
-            <Grid HorizontalOptions="CenterAndExpand" MinimumHeightRequest="45" ColumnSpacing="0"  RowSpacing="4">
+            <Grid HorizontalOptions="CenterAndExpand" MinimumHeightRequest="45">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                </Grid.RowDefinitions>
-                <Label Text="{Binding FirstName}" FontSize="Large" FontAttributes="Bold" TextColor="Black" VerticalTextAlignment="Center" Margin="20,0,0,0" Grid.Column="0" Grid.Row="0"/>
-                <Label Text="{Binding LastName}" FontSize="Large" FontAttributes="Bold" TextColor="Black"  VerticalTextAlignment="Center" Margin="5,0,0,0" Grid.Column="1" Grid.Row="0"/>
-                <Label Text="{StaticResource Birthday}" TextColor="#5E7FFF" FontSize="Medium" FontFamily="FAS" VerticalTextAlignment="Center" Margin="50,0,0,0" Grid.Column="0" Grid.Row="1"/>
-                <Label Text="{Binding Age}" FontSize="Subtitle" Margin="20,0,0,0" Grid.Column="1" Grid.Row="1" />
-                <Label Text="{StaticResource Phone}"  VerticalTextAlignment="Center" TextColor="#5E7FFF" FontSize="Medium" FontFamily="FAS" Margin="30,0,0,0" Grid.Column="0" Grid.Row="2" />
-                <Label Text="{Binding PhoneNumber}" FontSize="Subtitle" Grid.Column="1" Grid.Row="2" Margin="0,2"/>
-                <Label Text="{StaticResource Email}" VerticalTextAlignment="Center" TextColor="#5E7FFF" FontSize="Medium" FontFamily="FAS" Margin="20,0,0,0" Grid.Column="0" Grid.Row="3"/>
-                <Label Text="{Binding Email}" HorizontalTextAlignment="Start"  FontSize="Subtitle" Grid.Column="1" Grid.Row="3" Margin="0"/>
-            </Grid> 
+                <Label Text="{Binding FirstName}" FontSize="Large" FontAttributes="Bold" TextColor="Black" VerticalTextAlignment="Center" Margin="10,0,0,0" Grid.Column="0"/>
+                <Label Text="{Binding LastName}" FontSize="Large" FontAttributes="Bold" TextColor="Black"  VerticalTextAlignment="Center" Margin="3,0,0,0" Grid.Column="1"/>
+            </Grid>
+            <Label Text="{Binding Email}" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Start"  FontSize="Medium"/>
+            <Label Text="{Binding PhoneNumber}" HorizontalOptions="CenterAndExpand" FontSize="Medium"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
