@@ -73,7 +73,7 @@ namespace Wassilni_App.viewModels
                 FirstName = user.FirstName;
                 LastName = user.LastName;
                 Email = user.Email;
-                PhoneNumber = "0" + user.PhoneNumber;
+                PhoneNumber = user.PhoneNumber;
                 var userQuery = await firebaseClient.Child("User")
                                 .OrderBy("Email")
                                 .EqualTo(email)
