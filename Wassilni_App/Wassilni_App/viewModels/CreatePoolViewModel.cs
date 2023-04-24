@@ -241,16 +241,14 @@ namespace Wassilni_App.viewModels
         private bool ValidateStartTime()
         {
             DateTime currentDateTime = DateTime.Now;
-            DateTime selectedDateTime = StartDate.Add(StartTime);
+            DateTime selectedDateTime = StartDate.Date.Add(StartTime);
 
-            if ( selectedDateTime >= currentDateTime)
+            if (selectedDateTime.TimeOfDay >= currentDateTime.TimeOfDay)
             {
                 return true;
             }
             return false;
         }
-
-        
 
         private bool ValidateCarModel()
         {
