@@ -99,7 +99,7 @@
                         </Frame>
                     </StackLayout>
 
-                    <!-- <Button Text="Request Ride" TextColor="White" CornerRadius="30" FontSize="22" Margin="20" HeightRequest="55" Command="{Binding RequestRideCommand}" ></Button> -->
+                    <Button Text="Request Ride" TextColor="White" CornerRadius="30" FontSize="22" Margin="20" HeightRequest="55" Command="{Binding RequestRideCommand}" ></Button>
 
                 </StackLayout>
             </ScrollView>
