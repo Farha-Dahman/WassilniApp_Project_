@@ -25,11 +25,21 @@ namespace Wassilni_App
 
         async private void Button_Clicked(object sender, EventArgs e)
         {
-            // go to the login page
-            await Navigation.PushAsync(new LoginPage());
-            await PopupNavigation.Instance.PopAsync();
-            // Close the popup page
-            
+
+            try
+            {
+                // Close the popup page
+                await PopupNavigation.Instance.PopAsync();
+
+                // Go to the login page
+                App.Current.MainPage = new NavigationPage(new LoginPage());
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions here
+                Console.WriteLine($"An error occurred: {ex.Message}");
+            }
+
 
         }
     }
