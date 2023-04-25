@@ -7,6 +7,7 @@ using Wassilni_App.viewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Firebase.Auth;
+using Rg.Plugins.Popup.Services;
 
 namespace Wassilni_App.views.Settings
 {
@@ -52,7 +53,7 @@ namespace Wassilni_App.views.Settings
                 await _authProvider.ChangeUserPassword(auth.FirebaseToken, newPassword);
 
                 // Display a success message to the user
-                await DisplayAlert("Password Changed", "Your password has been changed successfully.", "OK");
+                await PopupNavigation.Instance.PushAsync(new ChangePasswordPopUp());
             }
             catch (FirebaseAuthException ex)
             {
