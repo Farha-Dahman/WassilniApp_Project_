@@ -29,7 +29,7 @@ namespace Wassilni_App.views
 
             map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(32.22307396629019, 35.26089741433303), Distance.FromMiles(1)));
             var tapGestureRecognizer = new TapGestureRecognizer();
-            map.MapClicked += OnMapTapped;
+          
 
             map.GestureRecognizers.Add(tapGestureRecognizer);
             LocationFrom.TextChanged += OnLocationChanged;
