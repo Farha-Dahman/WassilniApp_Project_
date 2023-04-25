@@ -316,8 +316,17 @@ namespace Wassilni_App.viewModels
                 && ValidateGender()
                 && ValidatePassword();
         }
-
-
+        private string DefaultUserPhoto()
+        {
+            if (_selectedGender == "Male")
+            {
+                return "MaleDefaultPhoto.png";
+            }
+            else
+            {
+                return "FemaleDefaultPhoto.png";
+            }
+        }
         private async Task CreateUserAccount()
         {
             try
@@ -328,8 +337,6 @@ namespace Wassilni_App.viewModels
 
                 // Send a verification email
                 await authProvider.SendEmailVerificationAsync(authResult.FirebaseToken);
-                var personalPhotoUrl = "PersonalPhoto.png";
-                //var personalPhotoUrl = "https://w7.pngwing.com/pngs/177/551/png-transparent-user-interface-design-computer-icons-default-stephen-salazar-graphy-user-interface-design-computer-wallpaper-sphere-thumbnail.png";
                 var newUser = new
                 {
                     FirstName = FirstName,
@@ -338,7 +345,7 @@ namespace Wassilni_App.viewModels
                     PhoneNumber = PhoneNumber,
                     Birthdate = Birthdate,
                     Gender = SelectedGender,
-                    PhotoUrl = personalPhotoUrl,
+                    PhotoUrl = DefaultUserPhoto(),
                 };
 
                 await firebaseClient.Child("User").Child(authResult.User.LocalId).PutAsync(newUser);
