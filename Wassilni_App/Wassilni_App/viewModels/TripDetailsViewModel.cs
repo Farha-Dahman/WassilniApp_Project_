@@ -30,14 +30,26 @@ namespace Wassilni_App.viewModels
         private TimeSpan _Time;
         private string _startLocation;
         private string _endLocation;
-
-
         private string _riderName;
-        public string RiderName
+        private string _riderPhotoUrl;
+
+        private Rider _rides;
+        public Rider Rides
+        {
+            get { return _rides; }
+            set { _rides = value; }
+        }
+        public String RiderPhotoUrl
+        {
+            get { return _riderPhotoUrl; }
+            set { SetProperty(ref _riderPhotoUrl, value); }
+        }
+        public String RiderName
         {
             get { return _riderName; }
-            set { _riderName = value; }
+            set { SetProperty(ref _riderName, value); }
         }
+
         public ICommand RequestRideCommand { get; set; }
 
 
@@ -101,11 +113,12 @@ namespace Wassilni_App.viewModels
 
         }
 
+        public ObservableCollection<Rider> Riders { get; set; } = new ObservableCollection<Rider>();
+        public bool IsLabelVisible { get;  set; }
 
         public async Task GetRide(string rideId)
         {
             var ride = await firebaseClient.Child("Ride").Child(rideId).OnceSingleAsync<Models.Ride>();
-
             if (ride != null)
             {
                 TripDate = ride.TripDate;
@@ -116,11 +129,27 @@ namespace Wassilni_App.viewModels
                 EndLocation = ride.EndLocation;
                 Number_of_seats = ride.Number_of_seats;
                 CarModel = ride.CarModel;
-                PricePerRide = ride.PricePerRide;     
+                PricePerRide = ride.PricePerRide;
                 PhoneNumber = ride.PhoneNumber;
- 
+                if (ride.Riders != null)
+                {
+                    Riders.Clear();
+                    if (ride.Riders.Count() == 1)
+                    {
+                        // myLabel.Visible = true;
+                        IsLabelVisible = true;
+                    }
+                    else
+                    {
+                        foreach (var rider in ride.Riders.Skip(1))
+                        {
+                            Riders.Add(rider);
+                            RiderName = rider.RiderName;
+                            RiderPhotoUrl = rider.RiderPhotoUrl;
+                        }
+                    }
+                }
             }
-
         }
 
 
