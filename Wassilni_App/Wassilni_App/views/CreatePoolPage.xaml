@@ -58,7 +58,7 @@
                             <Frame  Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BackgroundColor="Transparent">
                                 <StackLayout Orientation="Horizontal">
                                     <Label Text="{StaticResource Date}" FontFamily="FAS"  FontSize="24" TextColor="{StaticResource colorPrimary}" Margin="9,10,0,0"/>
-                                    <DatePicker x:Name="datePicker" Format="MM/dd/yyyy" MinimumDate="{x:Static sys:DateTime.Today}" Date="{Binding StartDate}" TextColor="#333333" FontSize="18" HorizontalOptions="FillAndExpand" Margin="10,0,0,0" />
+                                    <DatePicker x:Name="datePicker" Format="MM/dd/yyyy" MinimumDate="{x:Static sys:DateTime.Today}"  Date="{Binding StartDate}" TextColor="#333333" FontSize="18" HorizontalOptions="FillAndExpand" Margin="10,0,0,0" />
                                 </StackLayout>
                             </Frame>
                         </StackLayout>
