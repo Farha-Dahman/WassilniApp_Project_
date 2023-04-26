@@ -63,29 +63,49 @@ namespace Wassilni_App.views
         private async void OnCancelClicked(object sender, EventArgs e)
         {
             string tripId = (string)((Button)sender).CommandParameter;
-
             string userId = Preferences.Get("userId", string.Empty);
+
             FirebaseClient firebaseClient = new Firebase.Database.FirebaseClient("https://wassilni-app-default-rtdb.firebaseio.com/");
             var ride = await firebaseClient.Child("Ride").Child(tripId).OnceSingleAsync<Ride>();
-            //string DriverId = "BcqwrYUZrfWqvUWst3qYVrWxWKJ3";
-            //string USerId = "BcqwrYUZrfWqvUWst3qYVrWxWKJ3";
+
+            //cancel trip from driver
             if (ride != null && userId == ride.DriverID)
             {
                 await firebaseClient.Child("Ride").Child(tripId).DeleteAsync();
             }
-            else if(ride != null && userId != ride.DriverID) 
+            //cancel trip from rider
+            else if (ride != null && userId != ride.DriverID)
             {
-                for(int i =1; i <= ride.Number_of_seats; i++)
+                for (int i = 1; ; i++)
                 {
-                    var riderId = await firebaseClient.Child("Ride").Child(tripId).Child("Riders").Child(i.ToString()).Child("RiderId").OnceSingleAsync<string>();
-                    if(riderId == userId)
+                    Console.WriteLine("i get the " + i + " rider");
+                    try
                     {
-                        await firebaseClient.Child("ride").Child(tripId).Child("Riders").Child(i.ToString()).DeleteAsync();
+                        var Rider = await firebaseClient.Child("Ride").Child(tripId).Child("Riders").Child(i.ToString()).OnceSingleAsync<Rider>();
+                        if (Rider == null)
+                        {
+                            Console.WriteLine("No more riders.");
+                            break;
+                        }
+                        if (Rider != null && Rider.RiderID == userId)
+                        {
+                            //var NumberOfSeatsForRider = Rider.Number_of_seats;
+                            var NumberOfSeatsForRider = await firebaseClient.Child("Ride").Child(tripId).Child("Riders").Child(i.ToString()).Child("Number_of_seats").OnceSingleAsync<int>();
+                            await firebaseClient.Child("Ride").Child(tripId).Child("Riders").Child(i.ToString()).DeleteAsync();
+                            var NewNumberOfSeats = ride.Number_of_seats - NumberOfSeatsForRider;
+                            Console.WriteLine("the new number : " + NewNumberOfSeats);
+                            await firebaseClient.Child("Ride").Child(tripId).Child("Number_of_seats").PutAsync(NewNumberOfSeats);
+                            Console.WriteLine("the rider deleted");
 
+                        }
+                    } 
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.ToString());
                     }
                 }
             }
-            
+
         }
 
 
