@@ -130,6 +130,7 @@ namespace Wassilni_App.viewModels
                 TripTime = ride.TripTime;
                 PhotoUrl = ride.PhotoUrl;
                 DriverName = ride.DriverName;
+                DriverId = ride.DriverID;
                 StartLocation = ride.StartLocation;
                 EndLocation = ride.EndLocation;
                 Number_of_seats = ride.Number_of_seats;
@@ -165,8 +166,8 @@ namespace Wassilni_App.viewModels
             string rideId = RideId;
             try
             {
-                bool hasRequestedRide = await CheckIfUserHasRequestedRide(rideId, userId);
-
+             bool hasRequestedRide = await CheckIfUserHasRequestedRide(rideId, userId);
+              
                 if (!hasRequestedRide)
                 {
 

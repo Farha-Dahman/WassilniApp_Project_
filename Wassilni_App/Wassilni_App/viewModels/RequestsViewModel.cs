@@ -31,7 +31,7 @@ namespace Wassilni_App.viewModels
 
              LoadRideRequests();
          }
-        */
+        *
         /*
            public async Task LoadRideRequests()
            {
