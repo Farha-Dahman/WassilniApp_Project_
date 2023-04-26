@@ -97,6 +97,9 @@
     <EmbeddedResource Update="views\MyTripsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="views\NotificationsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="views\PopUpCreatePool.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

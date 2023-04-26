@@ -105,6 +105,7 @@ namespace Wassilni_App.Services
                              Date = r.Object.Date,
                              RequestID=r.Object.RequestID,
                              SelectedGender = r.Object.SelectedGender,
+                             Number_of_Seats=r.Object.Number_of_Seats,
                            
 
                          })
@@ -325,5 +326,40 @@ namespace Wassilni_App.Services
                 Debug.WriteLine($"Error deleting ride with ID {tripId}: {ex.Message}");
             }
         }
+        public async Task<List<Notification>> GetUserNotificationsAsync()
+        {
+            string userId = Preferences.Get("userId", string.Empty);
+            try
+            {
+                var notifications = await _firebaseClient
+                    .Child("UserNotifications")
+                    .Child(userId)
+
+                    .OnceAsync<Notification>();
+
+                var id = notifications.Select(r => r.Object.Id).ToList();
+                Debug.WriteLine($"Ride with ID {id} deleted successfully.");
+                var notif = notifications.ToList();
+
+                var not = notif.Select(n => new Notification
+                {
+                    PhotoUrl = n.Object.PhotoUrl,
+                    Timestamp=n.Object.Timestamp,
+                    Title = n.Object.Title,
+                    Message = n.Object.Message,
+                    IsNew = true,
+                }).ToList();
+
+                int i = not.Count();
+
+                return not;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error retrieving notifications: {ex.Message}");
+                return new List<Notification>();
+            }
+        }
+
     }
 }
