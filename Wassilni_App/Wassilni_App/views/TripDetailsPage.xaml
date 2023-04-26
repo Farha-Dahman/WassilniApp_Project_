@@ -104,28 +104,6 @@
                     <!-- Riders List -->
                     <Label Text="Co-Passengers"  FontSize="20" Padding="15,0,0,15"></Label>
 
-                    <CollectionView ItemsSource="{Binding Riders}" >
-                        <CollectionView.ItemsLayout>
-                            <LinearItemsLayout Orientation="Horizontal" 
-                           ItemSpacing="10" />
-                        </CollectionView.ItemsLayout>
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <StackLayout Orientation="Vertical" Padding="10" HorizontalOptions="Center">
-                                    <forms:CircleImage Source="{Binding RiderPhotoUrl}" 
-                                   Aspect="AspectFill" 
-                                   HeightRequest="60" 
-                                   WidthRequest="60" 
-                                   BorderColor="Black" 
-                                   BorderThickness="1" />
-                                    <Label Text="{Binding RiderName}" 
-                       FontSize="14" 
-                       HorizontalOptions="Center" 
-                       HorizontalTextAlignment="Center" />
-                                </StackLayout>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
 
                     <!-- <Button Text="Request Ride" TextColor="White" CornerRadius="30" FontSize="22" Margin="20" HeightRequest="55" Command="{Binding RequestRideCommand}" ></Button> -->
 

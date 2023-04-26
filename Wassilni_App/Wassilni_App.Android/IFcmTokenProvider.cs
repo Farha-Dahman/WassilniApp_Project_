@@ -10,6 +10,7 @@ namespace Wassilni_App.Droid // Replace with your Android project namespace
 {
     public class FcmTokenProvider : IFcmTokenProvider
     {
+        [System.Obsolete]
         public async Task<string> GetFcmTokenAsync()
         {
             var instanceId = await FirebaseInstanceId.Instance.GetInstanceId().AsAsync<IInstanceIdResult>();
