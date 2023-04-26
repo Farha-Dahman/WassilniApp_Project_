@@ -13,6 +13,7 @@ using Wassilni_App.viewModels;
 using Xamarin.Forms;
 using Xamarin.Essentials;
 using Wassilni_App.Services;
+using Android.Content.Res;
 
 namespace Wassilni_App.viewModels
 {
@@ -73,14 +74,27 @@ namespace Wassilni_App.viewModels
 
         public ICommand CreatePoolCommand { get; set; }
         public ICommand FindPoolCommand { get; set; }
+        public ICommand ShowNotificationsCommand { get; }
+        public ICommand GoToNotificationsCommand { get; private set; }
 
         public HomeViewModel()
         {
+            GoToNotificationsCommand = new Command(async () => await GoToNotifications());
 
             CreatePoolCommand = new Command(async () => await ExecuteCreatePoolCommand());
             FindPoolCommand = new Command(async () => await ExecuteFindPoolCommand());
+            ShowNotificationsCommand = new Command(async () => await ExecuteShowNotificationsCommand());
+
         }
 
+        private async Task GoToNotifications()
+        {
+            await Application.Current.MainPage.Navigation.PushAsync(new NotificationsPage());
+        }
+        private async Task ExecuteShowNotificationsCommand()
+        {
+          //  await Application.Current.MainPage.Navigation.PushAsync(new NotificationsPage());
+        }
         private bool ValidateFields()
         {
             if (string.IsNullOrEmpty(LocationFrom) || (string.IsNullOrEmpty(LocationTo)))
@@ -94,6 +108,7 @@ namespace Wassilni_App.viewModels
                 return true;
             }
         }
+
         private async Task ExecuteCreatePoolCommand()
         {
             try

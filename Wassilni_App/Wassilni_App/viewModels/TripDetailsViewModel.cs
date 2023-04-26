@@ -30,26 +30,7 @@ namespace Wassilni_App.viewModels
         private TimeSpan _Time;
         private string _startLocation;
         private string _endLocation;
-        private string _riderName;
-        private string _riderPhotoUrl;
-        
-        private Rider _rides;
-
-        public Rider Rides
-        {
-            get { return _rides; }
-            set { _rides = value; }
-        }
-        public String RiderPhotoUrl
-        {
-            get { return _riderPhotoUrl; }
-            set { SetProperty(ref _riderPhotoUrl, value); }
-        }
-        public String RiderName
-        {
-            get { return _riderName; }
-            set { SetProperty(ref _riderName, value); }
-        }
+       
         public ICommand RequestRideCommand { get; set; }
 
 
@@ -132,16 +113,7 @@ namespace Wassilni_App.viewModels
                 PricePerRide = ride.PricePerRide;     
                 PhoneNumber = ride.PhoneNumber;
 
-                if (ride.Riders != null)
-                {
-                    Riders.Clear();
-                    foreach (var rider in ride.Riders)
-                    {
-                        Riders.Add(rider);
-                        RiderName=rider.RiderName;
-                        RiderPhotoUrl=rider.RiderPhotoUrl;
-                    }
-                }
+                
 
             }
 

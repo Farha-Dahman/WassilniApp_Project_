@@ -1,6 +1,7 @@
 ﻿using Firebase.Auth;
 using Firebase.Database;
 using Firebase.Database.Query;
+using Org.Xmlpull.V1.Sax2;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
@@ -135,14 +136,13 @@ namespace Wassilni_App.viewModels
 
                     await PopupNavigation.Instance.PushAsync(new PopUpSuccessRequest());
                     string driverFcmToken = await FetchDriverFcmToken(DriverId);
-                     await Application.Current.MainPage.DisplayAlert("Request Sent", driverFcmToken, "OK");
 
                     // Send a push notification to the driver
                     var pushNotificationHelper = new PushNotificationHelper();
                     await pushNotificationHelper.SendNotificationAsync(
                         "New ride request",
                         $"A new ride request has been made by {userName}",
-                        driverFcmToken);
+                        driverFcmToken, DriverId, PhotoUrl);
                 }
                 else
                 {
