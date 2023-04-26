@@ -1,5 +1,4 @@
 ﻿using System;
-
 using Android;
 using Android.App;
 using Android.Content.PM;
@@ -9,11 +8,15 @@ using Android.Hardware.Camera2.Params;
 using Android.Gms.Auth.Api.SignIn;
 using Android.Gms.Auth.Api;
 using Wassilni_App.Models;
-
+using Firebase.Iid;
+using System.Threading.Tasks;
+using Android.Gms.Extensions;
+using Firebase;
+using Firebase.Messaging;
 namespace Wassilni_App.Droid
 {
     [Activity(Label = "Wassilni_App", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize )]
-    public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
+    public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity, IFcmTokenProvider
     {
 
         protected override void OnCreate(Bundle savedInstanceState) 
@@ -23,6 +26,9 @@ namespace Wassilni_App.Droid
             Rg.Plugins.Popup.Popup.Init(this);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+            Firebase.FirebaseApp.InitializeApp(Application.Context);
+            FirebaseApp.InitializeApp(Application.Context);
+
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             Xamarin.FormsMaps.Init(this, savedInstanceState);
             LoadApplication(new App());
@@ -54,6 +60,13 @@ namespace Wassilni_App.Droid
             Rg.Plugins.Popup.Popup.SendBackPressed(base.OnBackPressed);
 
         }
+        public async Task<string> GetFcmTokenAsync()
+        {
+            var instanceId = await FirebaseInstanceId.Instance.GetInstanceId().AsAsync<IInstanceIdResult>();
+            return instanceId.Token;
+        }
+
+      
     }
 
 }

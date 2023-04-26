@@ -51,8 +51,8 @@
                         </StackLayout>
                     </StackLayout>
                     <BoxView BackgroundColor="LightGray" WidthRequest="1" HeightRequest="1.3" Margin="0,15,0,15"/>
+                   
                     <!-- Riders List -->
-
                     <Label Text="Co-Passengers"  FontSize="20" Padding="15,0,0,15"></Label>
                     <Label x:Name="myLabel" IsVisible="{Binding IsLabelVisible}"  Text="There are no passengers in this trip yet" FontSize="20" HorizontalOptions="Center" Margin="0,10,0,-60"></Label>
 

@@ -1,6 +1,7 @@
 ﻿using Firebase.Auth;
 using Firebase.Database;
 using Firebase.Database.Query;
+using Org.Xmlpull.V1.Sax2;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
@@ -69,8 +70,6 @@ namespace Wassilni_App.viewModels
         {
             await Application.Current.MainPage.Navigation.PushAsync(new TripDetailsPage(data));
         }
-
-
 
     }
 } 

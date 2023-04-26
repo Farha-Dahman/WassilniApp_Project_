@@ -210,7 +210,14 @@ namespace Wassilni_App.viewModels
 
 
                     await PopupNavigation.Instance.PushAsync(new PopUpSuccessRequest());
+                    string driverFcmToken = await FetchDriverFcmToken(DriverId);
 
+                    // Send a push notification to the driver
+                    var pushNotificationHelper = new PushNotificationHelper();
+                    await pushNotificationHelper.SendNotificationAsync(
+                        "New ride request",
+                        $"A new ride request has been made by {userName}",
+                        driverFcmToken, DriverId, PhotoUrl);
                 }
                 else
                 {
@@ -227,7 +234,16 @@ namespace Wassilni_App.viewModels
 
 
         }
+        private async Task<string> FetchDriverFcmToken(string driverId)
+        {
 
+            var driverSnapshot = await firebaseClient
+                .Child("User")
+                .Child(driverId)
+                .OnceSingleAsync<Wassilni_App.Models.User>();
+
+            return driverSnapshot.FCMToken;
+        }
 
         private async Task<bool> CheckIfUserHasRequestedRide(string rideId, string userId)
         {

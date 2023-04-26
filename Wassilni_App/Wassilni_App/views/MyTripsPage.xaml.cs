@@ -28,7 +28,7 @@ namespace Wassilni_App.views
             this.BindingContext = new MyTripsViewModel();
             _databaseHelper = new DatabaseHelper("https://wassilni-app-default-rtdb.firebaseio.com/"); 
 
-            _driverid = Xamarin.Essentials.Preferences.Get("userId", string.Empty);
+            _driverid = Preferences.Get("userId", string.Empty);
 
         }
 
@@ -40,26 +40,14 @@ namespace Wassilni_App.views
         {
             base.OnAppearing();
 
-            var rides = await LoadRides();
-
+           var rides = await LoadRides();
+        
               var allRides = new List<Ride>(rides);
 
             PoolsCollectionView.ItemsSource = allRides;
         }
 
-        private async Task<List<Ride>> LoadRidesWithRiderInfo()
-        {
-            try
-            {
-                var ridesWithRiderInfo = await _databaseHelper.GetRidesWithRidersByUserIdAsync(_driverid);
-                return ridesWithRiderInfo;
-            }
-            catch (Exception ex)
-            {
-                await Application.Current.MainPage.DisplayAlert("Error", $"error occurred while loading rides: {ex.Message}", "OK");
-                return new List<Ride>();
-            }
-        }
+    
         private async void OnCancelClicked(object sender, EventArgs e)
         {
             string tripId = (string)((Button)sender).CommandParameter;

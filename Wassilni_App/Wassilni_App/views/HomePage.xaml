@@ -6,11 +6,23 @@
              x:Class="Wassilni_App.views.HomePage" BackgroundColor="WhiteSmoke"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
 >
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="notification.png" Command="{Binding GoToNotificationsCommand}" />
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
+    
         <StackLayout>
-            <StackLayout HeightRequest="300">
-                <maps:Map IsShowingUser="True" x:Name="map"/>
-            </StackLayout>
+
+            <AbsoluteLayout HeightRequest="300">
+                <maps:Map AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"
+              IsShowingUser="True" x:Name="map" />
+                <Button AbsoluteLayout.LayoutFlags="PositionProportional"
+            AbsoluteLayout.LayoutBounds="3.3,0.01,AutoSize,AutoSize"
+            BackgroundColor="Transparent"
+            Command="{Binding GoToNotificationsCommand}"
+            ImageSource="notification.png" />
+            </AbsoluteLayout>
 
             <StackLayout Spacing="1" >
                 <Label Text="{Binding EmptyErrorMessage}" TextColor="Red" Margin="10,0,0,0" FontSize="16"/>

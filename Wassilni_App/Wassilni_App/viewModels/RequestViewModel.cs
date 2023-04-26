@@ -1,4 +1,5 @@
-﻿using Firebase.Database;
+﻿using Firebase.Auth;
+using Firebase.Database;
 using Firebase.Database.Query;
 using System;
 using System.Collections.Generic;
@@ -87,24 +88,25 @@ namespace Wassilni_App.viewModels
 
         }
 
+        string userId = Preferences.Get("userId", string.Empty);
 
         private readonly FirebaseClient firebaseClient = new FirebaseClient("https://wassilni-app-default-rtdb.firebaseio.com/");
 
         private async Task AcceptRequestAsync()
         {
             string RideID = RideId;
-            await Application.Current.MainPage.DisplayAlert("Request Updated", RideID, "OK");
-
+        
+            string userName = await FetchUserName(userId);
             await UpdateRequestStatusAsync(true);
 
           
             Ride bookedRide = await _databaseHelper.GetBookedRideByRideIdAsync(RideID);
-            await Application.Current.MainPage.DisplayAlert("bookedRide", bookedRide.DriverName, "ok");
+         
             if (bookedRide == null)
             {
                 await Application.Current.MainPage.DisplayAlert("Error", "Not Found", "ok");
             }
-            await Application.Current.MainPage.DisplayAlert("Error", "HI", "ok");
+           
 
             bookedRide.Riders.Add(new Rider
             {
@@ -124,7 +126,7 @@ namespace Wassilni_App.viewModels
 
           await UpdateAvailableSeatsAsync(Number_of_seats);
 
-            // Remove the request from the database
+         
             await _databaseHelper.DeleteRideRequestAsync(RequestId);
 
 
@@ -142,8 +144,14 @@ namespace Wassilni_App.viewModels
             }
             */
            _requestsViewModel.RemoveRequest(this);
+            _requestsViewModel.RemoveRequest(this);
+            string userFcmToken = await FetchDriverFcmToken(RiderId);
+            var pushNotificationHelper = new PushNotificationHelper();
+            await pushNotificationHelper.SendNotificationAsync(
+                "Ride Request Accepted",
+                $"Your ride request has been accepted by {bookedRide.DriverName}. Please check your upcoming rides.",
+                userFcmToken, RiderId, PhotoUrl);
 
-            
         }
 
         private async Task DenyRequestAsync()
@@ -152,6 +160,12 @@ namespace Wassilni_App.viewModels
             //  await _databaseHelper.DeleteRideRequestAsync(RequestId);
 
             _requestsViewModel.RemoveRequest(this);
+            string userFcmToken = await FetchDriverFcmToken(RiderId);
+            var pushNotificationHelper = new PushNotificationHelper();
+            await pushNotificationHelper.SendNotificationAsync(
+                "Ride Request Denayed",
+                $"Your ride request has been Denayed by {DriverName}.",
+                userFcmToken,RiderId, PhotoUrl);
 
 
         }
@@ -195,7 +209,29 @@ namespace Wassilni_App.viewModels
                 .Child(RideId)
                 .PutAsync(ride);
         }
- 
+        private async Task<string> FetchDriverFcmToken(string driverId)
+        {
+
+            var driverSnapshot = await firebaseClient
+                .Child("User")
+                .Child(driverId)
+                .OnceSingleAsync<Wassilni_App.Models.User>();
+
+            return driverSnapshot.FCMToken;
+        }
+        private async Task<string> FetchUserName(string userId)
+        {
+            var firebaseClient = new FirebaseClient("https://wassilni-app-default-rtdb.firebaseio.com/");
+
+            var userSnapshot = await firebaseClient
+                .Child("User")
+                .Child(userId)
+                .OnceSingleAsync<Wassilni_App.Models.User>();
+
+
+
+            return $"{userSnapshot.FirstName} {userSnapshot.LastName}";
+        }
     }
 
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using Wassilni_App.Models;
 using Wassilni_App.Services;
 using Wassilni_App.views;
 using Wassilni_App.views.Settings;
@@ -13,6 +14,7 @@ namespace Wassilni_App
         public App()
         {
             InitializeComponent();
+
             dbHelper = new DatabaseHelper("https://wassilni-app-default-rtdb.firebaseio.com/");
             MainPage = new NavigationPage(new SplashScreen());
         }

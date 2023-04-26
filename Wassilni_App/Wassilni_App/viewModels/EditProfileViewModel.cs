@@ -336,7 +336,7 @@ namespace Wassilni_App.viewModels
                     await firebaseClient.Child("User").Child(userId).PutAsync(user);
                 }
             }
-            catch (Exception ex)
+            catch 
             {
                 EmailErrorMessage = "Account Already Exist With This Email";
             }
