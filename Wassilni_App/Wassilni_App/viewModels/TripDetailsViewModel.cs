@@ -126,17 +126,19 @@ namespace Wassilni_App.viewModels
             var ride = await firebaseClient.Child("Ride").Child(rideId).OnceSingleAsync<Models.Ride>();
             if (ride != null)
             {
-                TripDate = ride.TripDate;
-                TripTime = ride.TripTime;
-                PhotoUrl = ride.PhotoUrl;
                 DriverName = ride.DriverName;
-                DriverId = ride.DriverID;
                 StartLocation = ride.StartLocation;
                 EndLocation = ride.EndLocation;
-                Number_of_seats = ride.Number_of_seats;
-                CarModel = ride.CarModel;
                 PricePerRide = ride.PricePerRide;
+                Number_of_seats = ride.Number_of_seats;
+                PickupDateTime = ride.PickupDateTime;
+                DriverId = ride.DriverID;
                 PhoneNumber = ride.PhoneNumber;
+                RideId = ride.RideID;
+                PhotoUrl = ride.PhotoUrl;
+                TripTime = ride.TripTime;
+                TripDate = ride.Date.Date.ToString("yyyy-MM-dd");
+              
                 if (ride.Riders != null)
                 {
                     Riders.Clear();
