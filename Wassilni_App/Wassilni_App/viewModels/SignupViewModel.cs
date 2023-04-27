@@ -346,7 +346,7 @@ namespace Wassilni_App.viewModels
                     FirstName = FirstName,
                     LastName = LastName,
                     Email = Email,
-                    PhoneNumber ="0"+PhoneNumber,
+                    PhoneNumber = PhoneNumber,
                     Birthdate = Birthdate,
                     Gender = SelectedGender,
                     PhotoUrl = DefaultUserPhoto(),
