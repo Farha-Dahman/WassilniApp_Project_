@@ -71,7 +71,7 @@ namespace Wassilni_App.viewModels
             {
                 PersonalPhoto = user.PhotoUrl;
                 Name = user.FirstName + " " + user.LastName;
-                PhoneNumber = "0" + user.PhoneNumber;
+                PhoneNumber = user.PhoneNumber;
                 Email = user.Email;
                 Gender = await firebaseClient.Child("User").Child(UserId).Child("Gender").OnceSingleAsync<String>();
                 Age = (DateTime.Now - DateTime.Parse(user.Birthdate)).Days / 365;
