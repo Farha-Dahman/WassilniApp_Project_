@@ -31,22 +31,23 @@ namespace Wassilni_App.views
             _driverid = Preferences.Get("userId", string.Empty);
 
         }
-
-        //async private void GoToPoolDetails(object sender, EventArgs e)
-        //{
-        //    await Navigation.PushAsync(new NavigationPage(new TripDetailsPage()));
-        
         protected override async void OnAppearing()
         {
             base.OnAppearing();
 
-           var rides = await LoadRides();
-        
-              var allRides = new List<Ride>(rides);
+            var rides = await LoadRides();
+            var ridesWithRider = await LoadRidesWithRiderInfo();
+            var allRides = new List<Ride>(rides.Concat(ridesWithRider));
 
             PoolsCollectionView.ItemsSource = allRides;
         }
 
+       
+        //async private void GoToPoolDetails(object sender, EventArgs e)
+        //{
+        //    await Navigation.PushAsync(new NavigationPage(new TripDetailsPage()));
+
+      
     
         private async void OnCancelClicked(object sender, EventArgs e)
         {
@@ -75,7 +76,19 @@ namespace Wassilni_App.views
             }
             
         }
-
+        private async Task<List<Ride>> LoadRidesWithRiderInfo()
+        {
+            try
+            {
+                var ridesWithRiderInfo = await _databaseHelper.GetRidesWithRidersByUserIdAsync(_driverid);
+                return ridesWithRiderInfo;
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", $"error occurred while loading rides: {ex.Message}", "OK");
+                return new List<Ride>();
+            }
+        }
 
         private async Task<List<Ride>> LoadRides()
         {
