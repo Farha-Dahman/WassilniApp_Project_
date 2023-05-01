@@ -5,30 +5,31 @@
              xmlns:forms="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin" xmlns:viewmodels="clr-namespace:Wassilni_App.viewModels" x:DataType="viewmodels:EditProfileViewModel">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Edit Profile" FontSize="30" TextColor="Black" Margin="20,20,0,15" FontAttributes="Bold"/>
             <StackLayout Orientation="Horizontal" >
-                <Grid>
-                    <forms:CircleImage Source="{Binding PhotoUrl}"
-                       Aspect="AspectFit"
-                       HeightRequest="100"
-                       WidthRequest="100"
-                       BorderColor="Gray"
-                       BorderThickness="2"
-                       Margin="40,0,0,0 "/>
-                    <Button Text="{StaticResource EditPhoto}"
-                       HeightRequest="60"
-                       WidthRequest="50"
+                <Grid Padding="0,50,0,0">
+                    <Frame  HasShadow="False"  HeightRequest="82" WidthRequest="56" CornerRadius="50" BorderColor="Gray" Margin="50,-20,15,0">
+                        <Image x:Name="UserImage"
+                           Margin="-19">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer x:Name="IMageTap"
+                                                  Tapped="IMageTap_Tapped">
+                                </TapGestureRecognizer>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Frame>
+                    <Label Text="{StaticResource EditPhoto}"
+                       HeightRequest="28"
+                       WidthRequest="25"
                        VerticalOptions="End"
                        HorizontalOptions="End"
                        FontFamily="FAS"
                        FontSize="25"
                        BackgroundColor="Transparent"
-                       TextColor="#5E7FFF"
-                       Margin="0,0,-18,-18 "
-                       Clicked="ChangeProfilePicture_Clicked">
-                    </Button>
+                       TextColor="#5E7FFF">
+                    </Label>
                 </Grid>
-                <Label Text="{Binding Name}" FontSize="Large" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="0,0,0,50" />
+                <Label  Padding="0,40,0,0" Text="{Binding Name}" FontSize="Large" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="0,0,0,50" />
+
             </StackLayout>
             <StackLayout  Margin="20,5,25,0"  WidthRequest="0">
                 <StackLayout Margin="0,0,0,25">
@@ -88,9 +89,9 @@
                             <DatePicker  x:Name="datePicker" Format="MM/dd/yyyy" TextColor="#333333" FontSize="18" HorizontalOptions="FillAndExpand" Margin="10,0,0,0" Date="{Binding Birthdate}" />
                         </StackLayout>
                     </Frame>
-                    <Label Text="{Binding BirthdateErrorMessage}" TextColor="Red" />
+                    <!--  <Label Text="{Binding BirthdateErrorMessage}" TextColor="Red" />-->
                 </StackLayout>
-                <Button  x:Name="ConfirmChanges"  Text="Confirm Changes" Margin="0,25,0,0"  ImageSource="{StaticResource arrow-right}" Command="{Binding EditProfilelCommand}"/>
+                <Button  x:Name="ConfirmChanges"  Text="Confirm Changes" Margin="0,25,0,0" Clicked="ConfirmChanges_Clicked"  ImageSource="{StaticResource arrow-right}" Command="{Binding EditProfilelCommand}"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
