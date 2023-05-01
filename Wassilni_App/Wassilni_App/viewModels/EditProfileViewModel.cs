@@ -9,12 +9,25 @@ using Xamarin.Forms;
 using Xamarin.Essentials;
 using Firebase.Storage;
 using Wassilni_App.Models;
+using System.IO;
+using System.ComponentModel;
+using System.Reactive.Disposables;
+using Newtonsoft.Json.Serialization;
+using Newtonsoft.Json;
+using User = Firebase.Auth.User;
 
 namespace Wassilni_App.viewModels
 {
     internal class EditProfileViewModel : BaseViewModel
     {
+
+
         FirebaseClient firebaseClient = new Firebase.Database.FirebaseClient("https://wassilni-app-default-rtdb.firebaseio.com/");
+
+        FirebaseStorage firebaseStorage = new FirebaseStorage("wassilni-app.appspot.com");
+
+
+
         string webAPIkey = "AIzaSyClVyVHgbXooKCTyoKMg6RgfBcnkkFKTX0";
         string userId = Preferences.Get("userId", string.Empty);
         private string _firstName;
@@ -34,11 +47,11 @@ namespace Wassilni_App.viewModels
         public String _photoUrl;
 
 
-        public String PhotoUrl
-        {
-            get { return _photoUrl; }
-            set { SetProperty(ref _photoUrl, value); }
-        }
+        /* public String PhotoUrl
+         {
+             get { return _photoUrl; }
+             set { SetProperty(ref _photoUrl, value); }
+         }*/
         public String Name
         {
             get { return _name; }
@@ -327,6 +340,7 @@ namespace Wassilni_App.viewModels
                     user.Birthdate = Birthdate;
                     isModified = true;
                 }
+
                 if (!string.IsNullOrEmpty(personalPhoto))
                 {
                     await firebaseClient.Child("User").Child(userId).Child("PhotoUrl").PutAsync(personalPhoto);
@@ -336,10 +350,24 @@ namespace Wassilni_App.viewModels
                     await firebaseClient.Child("User").Child(userId).PutAsync(user);
                 }
             }
-            catch 
+            catch (Exception ex)
             {
                 EmailErrorMessage = "Account Already Exist With This Email";
             }
         }
+
+        public async Task<string> Upload(Stream img, string filNmae)
+        {
+            var image = await firebaseStorage.Child("Images").Child(filNmae).PutAsync(img);
+            return image;
+        }
+
+        public async Task<bool> Update(Models.User user)
+        {
+            await firebaseClient.Child(nameof(User) + "/" + user).PutAsync(JsonConvert.SerializeObject(user));
+            return true;
+        }
+
+
     }
 }
