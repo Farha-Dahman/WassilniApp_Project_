@@ -7,29 +7,24 @@
         <StackLayout>
             <StackLayout Orientation="Horizontal" >
                 <Grid Padding="0,50,0,0">
-                    <Frame  HasShadow="False"  HeightRequest="82" WidthRequest="56" CornerRadius="50" BorderColor="Gray" Margin="50,-20,15,0">
-                        <Image x:Name="UserImage"
-                           Margin="-19">
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer x:Name="IMageTap"
-                                                  Tapped="IMageTap_Tapped">
-                                </TapGestureRecognizer>
-                            </Image.GestureRecognizers>
-                        </Image>
+                    <Frame HasShadow="False" HeightRequest="82" WidthRequest="56" CornerRadius="50" BorderColor="Gray" Margin="50,-20,15,0">
+                        <Image x:Name="UserImage" Margin="-19" />
                     </Frame>
                     <Label Text="{StaticResource EditPhoto}"
-                       HeightRequest="28"
-                       WidthRequest="25"
-                       VerticalOptions="End"
-                       HorizontalOptions="End"
-                       FontFamily="FAS"
-                       FontSize="25"
-                       BackgroundColor="Transparent"
-                       TextColor="#5E7FFF">
+       HeightRequest="28"
+       WidthRequest="25"
+       VerticalOptions="End"
+       HorizontalOptions="End"
+       FontFamily="FAS"
+       FontSize="25"
+       BackgroundColor="Transparent"
+       TextColor="#5E7FFF">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="IMageTap_Tapped" />
+                        </Label.GestureRecognizers>
                     </Label>
                 </Grid>
                 <Label  Padding="0,40,0,0" Text="{Binding Name}" FontSize="Large" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="0,0,0,50" />
-
             </StackLayout>
             <StackLayout  Margin="20,5,25,0"  WidthRequest="0">
                 <StackLayout Margin="0,0,0,25">
