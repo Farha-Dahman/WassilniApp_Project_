@@ -9,6 +9,7 @@ using Android.Hardware.Camera2.Params;
 using Android.Gms.Auth.Api.SignIn;
 using Android.Gms.Auth.Api;
 using Wassilni_App.Models;
+using Firebase;
 
 namespace Wassilni_App.Droid
 {
@@ -21,11 +22,13 @@ namespace Wassilni_App.Droid
             Rg.Plugins.Popup.Popup.Init(this);
             base.OnCreate(savedInstanceState);
             Rg.Plugins.Popup.Popup.Init(this);
+            FirebaseApp.InitializeApp(Application.Context);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             Xamarin.FormsMaps.Init(this, savedInstanceState);
             LoadApplication(new App());
+
 
         }
         protected override void OnActivityResult(int requestCode, Result resultCode, Android.Content.Intent data)

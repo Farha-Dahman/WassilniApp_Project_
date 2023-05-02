@@ -12,6 +12,9 @@ using Xamarin.Forms.Xaml;
 using System.ComponentModel;
 using Firebase.Database;
 using Firebase.Database.Query;
+using Firebase.Auth;
+using FirebaseAdmin;
+using Google.Apis.Auth.OAuth2;
 
 namespace Wassilni_App.views
 {
@@ -59,8 +62,29 @@ namespace Wassilni_App.views
         }
         private async Task SaveUserToDatabase(GoogleUser user)
         {
-            var firebaseClient = new FirebaseClient("https://wassilni-app-default-rtdb.firebaseio.com/");
-            await firebaseClient.Child("GoogleUser").PutAsync(user);
+            FirebaseClient firebaseClient = new Firebase.Database.FirebaseClient("https://wassilni-app-default-rtdb.firebaseio.com/");
+            var firebaseObject = await firebaseClient.Child("User").PostAsync(user);
+            string firebaseKey = firebaseObject.Key;
+            user.FirebaseKey = firebaseKey;
+            await firebaseClient.Child("User").Child(firebaseKey).PutAsync(user);
+
+            FirebaseApp app = FirebaseApp.Create(new AppOptions()
+            {
+                Credential = GoogleCredential.FromJson("YOUR_SERVICE_ACCOUNT_KEY_JSON"),
+                ProjectId = "YOUR_PROJECT_ID"
+            });
+
+            FirebaseAuth auth = FirebaseAuth.DefaultInstance;
+
+            try
+            {
+                var result = await auth.CreateUserWithEmailAndPasswordAsync(user.Email, "RANDOM_PASSWORD");
+                // User created successfully in Firebase Authentication
+            }
+            catch (FirebaseAuthException ex)
+            {
+                // Handle any errors here
+            }
         }
 
         private void GoogleLogout()
