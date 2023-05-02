@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿using System;​
 using System.Diagnostics;
 using System.IO;
 using Wassilni_App.viewModels;
@@ -15,6 +14,7 @@ using Plugin.Media;
 using Plugin.Media.Abstractions;
 using User = Firebase.Auth.User;
 using System.Drawing.Imaging;
+using System.Threading.Tasks;
 
 namespace Wassilni_App.views.Settings
 {
@@ -31,9 +31,16 @@ namespace Wassilni_App.views.Settings
         }
         string userId = Preferences.Get("userId", string.Empty);
         FirebaseClient firebaseClient = new Firebase.Database.FirebaseClient("https://wassilni-app-default-rtdb.firebaseio.com/");
-        FirebaseStorage firebaseStorage = new FirebaseStorage("//wassilni-app.appspot.com");
+        FirebaseStorage firebaseStorage = new FirebaseStorage("wassilni-app.appspot.com");
         private async void IMageTap_Tapped(object sender, EventArgs e)
         {
+            bool hasPermission = await CheckAndRequestStoragePermission();
+            if (!hasPermission)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "Update Photo Failed", "Cancel");
+                return;
+            }
+​
             await CrossMedia.Current.Initialize();
             try
             {
@@ -41,23 +48,28 @@ namespace Wassilni_App.views.Settings
                 {
                     PhotoSize = PhotoSize.Medium
                 });
-                if (file != null)
-                {
-                    return;
-                }
+
                 UserImage.Source = ImageSource.FromStream(() =>
                 {
                     return file.GetStream();
                 });
                 var user = await firebaseClient.Child("User").Child(userId).OnceSingleAsync<Models.User>();
-
+​
                 if (true)
                 {
-                    var stream = file.GetStream();
-                    var imageUri = await firebaseStorage.Child("profileImages").Child(userId).Child("profile.jpg").PutAsync(stream);
-                    string imageUrl = await firebaseStorage.Child("profileImages").Child(userId).Child("profile.jpg").GetDownloadUrlAsync();
+                    var storageReference = firebaseStorage
+                     .Child("Images")
+                     .Child(userId)
+                     .Child("profile.jpg");
+​
+                    using (var stream = file.GetStream())
+                    {
+                        var downloadUrl = await storageReference.PutAsync(stream);
+​
+                    }
+                    string imageUrl = await firebaseStorage.Child("Images").Child(userId).Child("profile.jpg").GetDownloadUrlAsync();
                     var databaseReference = firebaseClient.Child("User").Child(userId).Child("PhotoUrl");
-                    await databaseReference.PutAsync(imageUrl);
+                    await databaseReference.PutAsync("\"" + imageUrl + "\"");
                     user.PhotoUrl = imageUrl;
                 }
                 else
@@ -69,7 +81,7 @@ namespace Wassilni_App.views.Settings
             {
                 Debug.WriteLine($"Error selecting file: {ex.Message}");
             }
-
+​
         }
         private async void ConfirmChanges_Clicked(object sender, EventArgs e)
         {
@@ -86,11 +98,11 @@ namespace Wassilni_App.views.Settings
                 {
                     return file.GetStream();
                 });
-
+​
                 if (true)
                 {
                     var stream = file.GetStream();
-
+​
                     string imageUrl = await firebaseStorage.Child("profileImages").Child(userId).Child("profile.jpg").GetDownloadUrlAsync();
                     var databaseReference = firebaseClient.Child("User").Child(userId).Child("PhotoUrl");
                     await databaseReference.PutAsync(imageUrl);
@@ -104,6 +116,26 @@ namespace Wassilni_App.views.Settings
             catch (Exception ex)
             {
                 Debug.WriteLine($"Error selecting file: {ex.Message}");
+            }
+        }
+        async Task<bool> CheckAndRequestStoragePermission()
+        {
+            var status = await Permissions.CheckStatusAsync<Permissions.StorageRead>();
+            if (status != PermissionStatus.Granted)
+            {
+                status = await Permissions.RequestAsync<Permissions.StorageRead>();
+            }​
+            return status == PermissionStatus.Granted;
+        }
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+​
+            var user = await firebaseClient.Child("User").Child(userId).OnceSingleAsync<Models.User>();
+​
+            if (!string.IsNullOrEmpty(user.PhotoUrl))
+            {
+                UserImage.Source = user.PhotoUrl;
             }
         }
     }
