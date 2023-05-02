@@ -60,6 +60,8 @@ namespace Wassilni_App.views
                 DisplayAlert("Message", message, "Ok");
             }
         }
+        string webAPIkey = "AIzaSyClVyVHgbXooKCTyoKMg6RgfBcnkkFKTX0";
+
         private async Task SaveUserToDatabase(GoogleUser user)
         {
             FirebaseClient firebaseClient = new Firebase.Database.FirebaseClient("https://wassilni-app-default-rtdb.firebaseio.com/");
@@ -68,18 +70,21 @@ namespace Wassilni_App.views
             user.FirebaseKey = firebaseKey;
             await firebaseClient.Child("User").Child(firebaseKey).PutAsync(user);
 
-            FirebaseApp app = FirebaseApp.Create(new AppOptions()
-            {
-                Credential = GoogleCredential.FromJson("YOUR_SERVICE_ACCOUNT_KEY_JSON"),
-                ProjectId = "YOUR_PROJECT_ID"
-            });
-
-            FirebaseAuth auth = FirebaseAuth.DefaultInstance;
 
             try
             {
-                var result = await auth.CreateUserWithEmailAndPasswordAsync(user.Email, "RANDOM_PASSWORD");
-                // User created successfully in Firebase Authentication
+                var authProvider = new FirebaseAuthProvider(new FirebaseConfig(webAPIkey));
+
+                var authResult = await authProvider.CreateUserWithEmailAndPasswordAsync(user.Email, "WWW123456");
+
+                var newUser = new
+                {
+                    FirstName = user.Name,
+                    Email = user.Email,
+                    PhotoUrl = user.PhotoUrl,
+                };
+
+                await firebaseClient.Child("User").Child(authResult.User.LocalId).PutAsync(newUser);
             }
             catch (FirebaseAuthException ex)
             {
