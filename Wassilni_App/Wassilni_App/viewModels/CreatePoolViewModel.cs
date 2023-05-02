@@ -342,6 +342,8 @@ namespace Wassilni_App.viewModels
         {
 
             string _driverid = id;
+            var userPhotoUrl = await GetUserPhotoUrlAsync(_driverid);
+
 
             if (IsBusy)
                 return;
@@ -353,11 +355,11 @@ namespace Wassilni_App.viewModels
                 if (AllValidationsPassed())
                 {
 
-                    var personalPhotoUrl = "PersonalPhoto.png";
+               
                     // Create a pool object
                     var newPool = new Ride
                     {
-                        PhotoUrl = personalPhotoUrl,
+                        PhotoUrl = userPhotoUrl,
                         DriverID = _driverid,
                         DriverName = FullName,
                         PhoneNumber = PhoneNumber,
@@ -399,6 +401,11 @@ namespace Wassilni_App.viewModels
             {
                 IsBusy = false;
             }
+        }
+        private async Task<string> GetUserPhotoUrlAsync(string userId)
+        {
+            var user = await firebaseClient.Child("User").Child(userId).OnceSingleAsync<Models.User>();
+            return user.PhotoUrl;
         }
     }
 }
