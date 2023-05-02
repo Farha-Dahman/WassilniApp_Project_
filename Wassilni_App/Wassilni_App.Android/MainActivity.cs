@@ -13,6 +13,8 @@ using System.Threading.Tasks;
 using Android.Gms.Extensions;
 using Firebase;
 using Firebase.Messaging;
+using Firebase;
+
 namespace Wassilni_App.Droid
 {
     [Activity(Label = "Wassilni_App", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize )]
@@ -24,6 +26,7 @@ namespace Wassilni_App.Droid
             Rg.Plugins.Popup.Popup.Init(this);
             base.OnCreate(savedInstanceState);
             Rg.Plugins.Popup.Popup.Init(this);
+            FirebaseApp.InitializeApp(Application.Context);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             Firebase.FirebaseApp.InitializeApp(Application.Context);
@@ -32,6 +35,7 @@ namespace Wassilni_App.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             Xamarin.FormsMaps.Init(this, savedInstanceState);
             LoadApplication(new App());
+
 
         }
         protected override void OnActivityResult(int requestCode, Result resultCode, Android.Content.Intent data)

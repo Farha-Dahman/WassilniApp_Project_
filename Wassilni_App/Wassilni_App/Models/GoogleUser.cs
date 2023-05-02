@@ -11,6 +11,7 @@ namespace Wassilni_App.Models
         public Uri Picture { get; set; }
         public string UserId { get; set; }
         public string PhotoUrl { get; set; }
+        public string FirebaseKey { get; set; }
 
     }
     public interface IGoogleManager

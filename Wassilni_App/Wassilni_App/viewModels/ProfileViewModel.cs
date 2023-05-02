@@ -66,8 +66,10 @@ namespace Wassilni_App.viewModels
 
         public async Task GetUser(String UserId)
         {
-            var user = await firebaseClient.Child("User").Child(UserId).OnceSingleAsync<Models.User>();
-            if (user != null)
+            //var user = await firebaseClient.Child("User").Child(UserId).OnceSingleAsync<Models.User>();
+            var googleUser = await firebaseClient.Child("User").Child(UserId).OnceSingleAsync<GoogleUser>();
+
+            /*if (user != null)
             {
                 PersonalPhoto = user.PhotoUrl;
                 Name = user.FirstName + " " + user.LastName;
@@ -75,6 +77,18 @@ namespace Wassilni_App.viewModels
                 Email = user.Email;
                 Gender = await firebaseClient.Child("User").Child(UserId).Child("Gender").OnceSingleAsync<String>();
                 Age = (DateTime.Now - DateTime.Parse(user.Birthdate)).Days / 365;
+            }*/
+            if (googleUser != null)
+            {
+                PersonalPhoto = googleUser.PhotoUrl;
+                Name = googleUser.Name;
+                Email = googleUser.Email;
+            }
+            
+            
+            else
+            {
+                Console.WriteLine("*******************************************");
             }
             
         }
