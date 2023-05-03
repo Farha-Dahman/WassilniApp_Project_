@@ -90,7 +90,7 @@ namespace Wassilni_App.Droid
 
                     _onLoginComplete?.Invoke(new GoogleUser()
                     {
-                        Name = accountt.DisplayName,
+                        FullName = accountt.DisplayName,
                         Email = accountt.Email,
                         Picture = new Uri((accountt.PhotoUrl != null ? $"{accountt.PhotoUrl}" : $"https://autisticdating.net/imgs/profile-placeholder.jpg"))
                     }, string.Empty);
