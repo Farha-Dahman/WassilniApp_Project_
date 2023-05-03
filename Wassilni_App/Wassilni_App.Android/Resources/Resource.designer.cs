@@ -21013,9 +21013,6 @@ namespace Wassilni_App.Droid
 			// aapt resource value: 0x7F0302D6
 			public const int nestedScrollable = 2130903766;
 			
-			// aapt resource value: 0x7F0302D6
-			public const int nestedScrollable = 2130903766;
-			
 			// aapt resource value: 0x7F0302D4
 			public const int nestedScrollFlags = 2130903764;
 			

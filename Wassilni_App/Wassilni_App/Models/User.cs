@@ -16,8 +16,6 @@ namespace Wassilni_App.Models
         private string phoneNumber;
         private string photoUrl;
 
-        public string FullName { get; set; }
-
         public string Email
         {
             get { return _email; }

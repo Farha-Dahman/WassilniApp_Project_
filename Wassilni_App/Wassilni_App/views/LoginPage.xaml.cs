@@ -45,7 +45,7 @@ namespace Wassilni_App.views
                 IsLogedIn = true;
                 var user = new GoogleUser
                 {
-                    Name = googleUser.Name,
+                    FullName = googleUser.FullName,
                     Email = googleUser.Email,
                     PhotoUrl = googleUser.Picture.AbsoluteUri,
                     UserId = googleUser.UserId,
@@ -79,7 +79,7 @@ namespace Wassilni_App.views
 
                 var newUser = new
                 {
-                    FirstName = user.Name,
+                    Name = user.FullName,   
                     Email = user.Email,
                     PhotoUrl = user.PhotoUrl,
                 };
@@ -88,7 +88,7 @@ namespace Wassilni_App.views
             }
             catch (FirebaseAuthException ex)
             {
-                // Handle any errors here
+                DisplayAlert("Message", ex.Message, "Ok");
             }
         }
 
