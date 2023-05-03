@@ -16,6 +16,7 @@ namespace Wassilni_App.Models
     }
     public interface IGoogleManager
     {
+        //void Login(Action<GoogleUser, string> OnLoginComplete);
         void Login(Action<GoogleUser, string> OnLoginComplete);
 
         void Logout();

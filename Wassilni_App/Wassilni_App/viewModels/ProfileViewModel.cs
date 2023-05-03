@@ -67,7 +67,6 @@ namespace Wassilni_App.viewModels
         public async Task GetUser(String UserId)
         {
             var user = await firebaseClient.Child("User").Child(UserId).OnceSingleAsync<Models.User>();
-
             if (user != null)
             {
                 Email = user.Email;
