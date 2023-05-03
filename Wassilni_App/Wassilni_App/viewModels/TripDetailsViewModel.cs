@@ -174,12 +174,13 @@ namespace Wassilni_App.viewModels
                 {
 
                     string userName = await FetchUserName(userId);
+                    string userPhoto=await FetchUserPhoto(userId);
 
 
 
                     var newRideRequest = new RideRequest
                     {
-                        PhotoUrl = PhotoUrl,
+                        PhotoUrl = userPhoto,
                         RiderID = userId,
                         DriverID = DriverId,
                         RequestDate = DateTime.Now,
@@ -260,7 +261,6 @@ namespace Wassilni_App.viewModels
         }
         private async Task<string> FetchUserName(string userId)
         {
-            var firebaseClient = new FirebaseClient("https://wassilni-app-default-rtdb.firebaseio.com/");
 
             var userSnapshot = await firebaseClient
                 .Child("User")
@@ -270,6 +270,19 @@ namespace Wassilni_App.viewModels
 
 
             return $"{userSnapshot.FirstName} {userSnapshot.LastName}";
+        }
+        private async Task<string> FetchUserPhoto(string userId)
+        {
+        
+
+            var userSnapshot = await firebaseClient
+                .Child("User")
+                .Child(userId)
+                .OnceSingleAsync<Wassilni_App.Models.User>();
+
+
+
+            return userSnapshot.PhotoUrl; 
         }
     }
 }

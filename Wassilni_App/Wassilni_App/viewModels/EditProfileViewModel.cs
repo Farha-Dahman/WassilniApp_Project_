@@ -135,7 +135,8 @@ namespace Wassilni_App.viewModels
                 Name = user.FirstName + " " + user.LastName;
                 FirstName = user.FirstName;
                 LastName = user.LastName;
-                PhoneNumber = "0" + user.PhoneNumber;
+                PhoneNumber = user.PhoneNumber;
+                Birthdate = user.Birthdate;
                 Email = user.Email;
             }
         }

@@ -2,6 +2,7 @@
 using Firebase.Database.Query;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -21,6 +22,7 @@ namespace Wassilni_App.views
     {
         private readonly DatabaseHelper _databaseHelper;
         private readonly string _driverid;
+        public ObservableCollection<Ride> BookedRides { get; set; }
 
         public MyTripsPage()
         {
@@ -35,9 +37,11 @@ namespace Wassilni_App.views
         {
             base.OnAppearing();
 
+
             var rides = await LoadRides();
             var ridesWithRider = await LoadRidesWithRiderInfo();
             var allRides = new List<Ride>(rides.Concat(ridesWithRider));
+
 
             PoolsCollectionView.ItemsSource = allRides;
         }
@@ -86,6 +90,7 @@ namespace Wassilni_App.views
                             await firebaseClient.Child("Ride").Child(tripId).Child("Number_of_seats").PutAsync(NewNumberOfSeats);
                             Console.WriteLine("the rider deleted");
 
+
                         }
                     } 
                     catch (Exception ex)
@@ -96,6 +101,7 @@ namespace Wassilni_App.views
             }
 
         }
+      
         private async Task<List<Ride>> LoadRidesWithRiderInfo()
         {
             try
@@ -108,7 +114,7 @@ namespace Wassilni_App.views
                 await Application.Current.MainPage.DisplayAlert("Error", $"error occurred while loading rides: {ex.Message}", "OK");
                 return new List<Ride>();
             }
-        }
+       }
 
         private async Task<List<Ride>> LoadRides()
         {

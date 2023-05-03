@@ -31,7 +31,7 @@ namespace Wassilni_App.Models
         public string RiderName { get; set; }
         public string RiderPhotoUrl { get; set; }
         public string Gender { get; set; }
-        public int Number_of_seats { get; set; }
+        public int Number_of_seats { get;  set; }
         public string PhotoUrl { get; set; }
     }
 
