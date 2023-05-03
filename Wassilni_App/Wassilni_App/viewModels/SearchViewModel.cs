@@ -56,16 +56,30 @@ namespace Wassilni_App.viewModels
         }
         private void SearchUsers()
         {
-            if (string.IsNullOrWhiteSpace(searchTerm))
+            try
             {
-                filteredUsers.Clear();
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Users)));
-                return;
+                if (string.IsNullOrWhiteSpace(searchTerm))
+                {
+                    filteredUsers.Clear();
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Users)));
+                    return;
+                }
+
+                filteredUsers = allUsers.Where(user =>
+           (user.FullName != null && user.FullName.ToLower().Contains(searchTerm.ToLower())) ||
+           (user.FirstName != null && user.FirstName.ToLower().Contains(searchTerm.ToLower())) ||
+           (user.LastName != null && user.LastName.ToLower().Contains(searchTerm.ToLower())) ||
+           (user.FirstName != null && user.LastName != null && (user.FirstName.ToLower() + " " + user.LastName.ToLower()).Contains(searchTerm.ToLower()))
+       ).ToList();
             }
-            filteredUsers = allUsers.Where(user => user.FirstName.ToLower().Contains(searchTerm.ToLower()) ||
-             (user.FirstName.ToLower() + " " + user.LastName.ToLower()).Contains(searchTerm.ToLower())
-    ).ToList();
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Users)));
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception in SearchUsers: {0}", ex);
+            }
+            finally
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Users)));
+            }
         }
 
 

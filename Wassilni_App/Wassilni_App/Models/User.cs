@@ -6,6 +6,7 @@ namespace Wassilni_App.Models
 {
     public class User
     {
+        public string FullName { get; set; }
         private string _email;
         private string _password;
         private string _firstName;

@@ -130,19 +130,7 @@ namespace Wassilni_App.viewModels
             await _databaseHelper.DeleteRideRequestAsync(RequestId);
 
 
-            // Update or add the booked ride to the BookedRide table
-
-            /*
-            if (bookedRide.RideID == null)
-            {
-                string tripId = await _databaseHelper.AddAcceptedTripAsyncbookedRide);
-                bookedRide.TripID = tripId;
-            }
-            else
-            {
-                await _databaseHelper.UpdateAcceptedTripAsync(bookedRide);
-            }
-            */
+            
            _requestsViewModel.RemoveRequest(this);
             _requestsViewModel.RemoveRequest(this);
             string userFcmToken = await FetchDriverFcmToken(RiderId);
@@ -157,7 +145,6 @@ namespace Wassilni_App.viewModels
         private async Task DenyRequestAsync()
         {
             await UpdateRequestStatusAsync(false);
-            //  await _databaseHelper.DeleteRideRequestAsync(RequestId);
 
             _requestsViewModel.RemoveRequest(this);
             string userFcmToken = await FetchDriverFcmToken(RiderId);
@@ -173,9 +160,7 @@ namespace Wassilni_App.viewModels
         private async Task UpdateRequestStatusAsync(bool isAccepted)
         {
             string RequestID = RequestId;
-            //  string RequestID = Preferences.Get("RequestID", string.Empty);
-
-            //    await Application.Current.MainPage.DisplayAlert("Request Updated", RequestId, "OK");
+           
 
             await firebaseClient
                  .Child("requestRide")
@@ -188,8 +173,8 @@ namespace Wassilni_App.viewModels
             .Child(RequestID)
             .DeleteAsync();
 
-            var status = isAccepted ? "accepted" : "denied";
-            await Application.Current.MainPage.DisplayAlert("Request Updated", $"The request has been {status}.", "OK");
+          //  var status = isAccepted ? "accepted" : "denied";
+          //  await Application.Current.MainPage.DisplayAlert("Request Updated", $"The request has been {status}.", "OK");
 
         }
 
@@ -221,7 +206,6 @@ namespace Wassilni_App.viewModels
         }
         private async Task<string> FetchUserName(string userId)
         {
-            var firebaseClient = new FirebaseClient("https://wassilni-app-default-rtdb.firebaseio.com/");
 
             var userSnapshot = await firebaseClient
                 .Child("User")
