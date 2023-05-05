@@ -21,6 +21,7 @@ namespace Wassilni_App.views.Settings
             // Initialize the FirebaseAuthProvider with your Firebase app's API key
             _authProvider = new FirebaseAuthProvider(new FirebaseConfig("AIzaSyClVyVHgbXooKCTyoKMg6RgfBcnkkFKTX0"));
         }
+        
         private async void ChangePasswordButton_Clicked(object sender, EventArgs e)
         {
 
@@ -60,6 +61,9 @@ namespace Wassilni_App.views.Settings
                 await DisplayAlert("Error", ex.Reason.ToString(), "OK");
             }
         }
-
+        private async void GoToSettingsPage(object sender, EventArgs e)
+        {
+          await Navigation.PushAsync(new SettingsPage());
+        }
     }
 }

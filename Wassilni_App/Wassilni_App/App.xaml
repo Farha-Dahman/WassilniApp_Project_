@@ -65,8 +65,9 @@
             <x:String x:Key="bus">&#xf207;</x:String>
             <x:String x:Key="Google">&#xf1a0;</x:String>
             <x:String x:Key="close-eye">&#xf070;</x:String>
-            
+            <x:String x:Key="Key">&#xf084;</x:String>
 
+            
         </ResourceDictionary>
     </Application.Resources>
 </Application>
