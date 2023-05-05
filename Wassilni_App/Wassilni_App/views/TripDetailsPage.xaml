@@ -72,7 +72,6 @@
                             <CollectionView.ItemTemplate>
                                 <DataTemplate >
                                     <StackLayout Orientation="Vertical" HorizontalOptions="Center" >
-                                      
                                         <forms:CircleImage Source="{Binding RiderPhotoUrl}"
                                                            Aspect="AspectFit"
                                                            HeightRequest="70"
@@ -83,7 +82,6 @@
                                         FontSize="17"
                                         HorizontalOptions="Center"
                                         HorizontalTextAlignment="Center" />
-
                                     </StackLayout>
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
@@ -93,9 +91,9 @@
                     <StackLayout Margin="15,0,0,0">
                         <Label Text="Vehicle Info"  FontSize="20"></Label>
                         <Frame  Margin="0" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BackgroundColor="Transparent">
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="{StaticResource bus}" FontFamily="FAS"  FontSize="24" TextColor="{StaticResource colorPrimary}" Margin="9,10,0,0"/>
-                                <Label x:Name="CarModel" Text="{Binding CarModel}" TextColor="Black" FontSize="20" Margin="8,8,0,10"></Label>
+                            <StackLayout Orientation="Horizontal" Margin="15,0,0,0">
+                                <Label Text="{StaticResource bus}" FontFamily="FAS"  FontSize="24" TextColor="{StaticResource colorPrimary}" Margin="-5,10,0,0"/>
+                                <Label x:Name="CarModel" Text="{Binding CarModel}" TextColor="Black" FontSize="20" Margin="9,2,0,6"></Label>
                             </StackLayout>
                         </Frame>
                     </StackLayout>
