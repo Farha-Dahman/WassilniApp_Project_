@@ -27,27 +27,16 @@ namespace Wassilni_App.viewModels
         public bool IsAccepted { get; set; }
         public string DriverName { get; set; }
         public string RiderName { get; set; }
-
         public int Number_of_seats { get; set; }
-
-        public DateTime PickUpDateTime { get; set; }
-
+        //public DateTime PickUpDateTime { get; set; }
+        public String TripDate { get; set; }
+        public String TripTime { get; set; }
         public DateTime StartDate { get; set; }
-
-        public TimeSpan TripTime { get; set; }
-
         public string PhotoUrl { get; set; }
-
         public string PhoneNumber { get; set; }
-
-
         public decimal PricePerRide { get; set; }
-
-
         public string Gender { get; set; }
-
         public List<Rider> Riders { get; set; }
-
 
         public ICommand AcceptRequestCommand { get; set; }
         public ICommand DenyRequestCommand { get; set; }
@@ -71,8 +60,8 @@ namespace Wassilni_App.viewModels
             StartDate = request.Date;
             PhotoUrl = request.PhotoUrl;
             PhoneNumber = request.PhoneNumber;
-            PickUpDateTime = request.PickupDateTime;
-            TripTime = request.TripTime;
+            TripDate = request.PickupDateTime.Date.ToString("dd-MM-yyyy");
+            TripTime = request.PickupDateTime.ToString("hh:mm:ss tt");
             PhotoUrl = request.PhotoUrl;
             Gender = request.SelectedGender;
             Number_of_seats = request.Number_of_Seats;
