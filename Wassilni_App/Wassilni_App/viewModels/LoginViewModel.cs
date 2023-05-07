@@ -108,9 +108,20 @@ namespace Wassilni_App.viewModels
                         Preferences.Set("userId", id);
                         if (id != null)
                         {
-                            await authProvider.SignInWithEmailAndPasswordAsync(Email, Password);
-                            await Application.Current.MainPage.Navigation.PushAsync(new TabbedBottom());
-                            EmailErrorMessage = "";
+                            var authResult = await authProvider.SignInWithEmailAndPasswordAsync(Email, Password);
+
+                           
+                            var userProfile = await authProvider.GetUserAsync(authResult.FirebaseToken);
+
+                            if (userProfile.IsEmailVerified)
+                            {
+                                await Application.Current.MainPage.Navigation.PushAsync(new TabbedBottom());
+                                EmailErrorMessage = "";
+                            }
+                            else
+                            {
+                                EmailErrorMessage = "Please verify your email before signing in.";
+                            }
                         }
                     }
                 }
