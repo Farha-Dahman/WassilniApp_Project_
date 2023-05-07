@@ -28,11 +28,11 @@ namespace Wassilni_App.views
         public LoginPage()
         {
             InitializeComponent();
-            _googleManager = DependencyService.Get<IGoogleManager>();
+            //_googleManager = DependencyService.Get<IGoogleManager>();
             this.BindingContext = new LoginViewModel();
         }
 
-        private void btnLogin_Clicked(object sender, EventArgs e)
+        /*private void btnLogin_Clicked(object sender, EventArgs e)
         {
             _googleManager.Login(OnLoginComplete);
 
@@ -101,7 +101,7 @@ namespace Wassilni_App.views
         {
             _googleManager.Logout();
 
-        }
+        }*/
 
         async private void GoToTheHomePage(object sender, EventArgs e)
         {

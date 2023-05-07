@@ -11,6 +11,7 @@ using Wassilni_App.Models;
 using Wassilni_App.views;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Google.Apis.Auth.OAuth2;
 
 namespace Wassilni_App.viewModels
 {
@@ -21,8 +22,12 @@ namespace Wassilni_App.viewModels
         FirebaseAuthProvider authProvider;
         string webAPIkey = "AIzaSyClVyVHgbXooKCTyoKMg6RgfBcnkkFKTX0";
 
-        public string id;
+        private readonly IGoogleManager _googleManager;
+        GoogleUser GoogleUser = new GoogleUser();
+        public bool IsLogedIn { get; set; }
 
+
+        public string id;
         private string _email;
         private string _password;
         private string _emailErrorMessage;
@@ -57,14 +62,77 @@ namespace Wassilni_App.viewModels
         }
         public ICommand SignInCommand { get; set; }
 
-
+        public ICommand LoginWithGoogle { get; set; }
 
 
 
         public LoginViewModel()
         {
             SignInCommand = new Command(async () => await ExecuteSignInCommand());
+            _googleManager = DependencyService.Get<IGoogleManager>();
+            LoginWithGoogle = new Command(async () => await ExecuteLoginWithGoogleCommand());
         }
+
+        private async Task ExecuteLoginWithGoogleCommand()
+        {
+            _googleManager.Login(OnLoginComplete);
+        }
+        private async void OnLoginComplete(GoogleUser googleUser, string message)
+        {
+            if (googleUser != null)
+            {
+                IsLogedIn = true;
+                var user = new GoogleUser
+                {
+                    FullName = googleUser.FullName,
+                    Email = googleUser.Email,
+                    PhotoUrl = googleUser.Picture.AbsoluteUri,
+                    UserId = googleUser.UserId,
+                };
+                await SaveUserToDatabase(user);
+
+                App.Current.MainPage = new NavigationPage(new TabbedBottom());
+            }
+            else
+            {
+                IsLogedIn = false;
+                await Application.Current.MainPage.DisplayAlert("Error", message, "Ok");
+            }
+        }
+
+
+        private async Task SaveUserToDatabase(GoogleUser user)
+        {
+            FirebaseClient firebaseClient = new Firebase.Database.FirebaseClient("https://wassilni-app-default-rtdb.firebaseio.com/");
+            var firebaseObject = await firebaseClient.Child("User").PostAsync(user);
+            string firebaseKey = firebaseObject.Key;
+            user.FirebaseKey = firebaseKey;
+            await firebaseClient.Child("User").Child(firebaseKey).PutAsync(user);
+
+
+            try
+            {
+                var authProvider = new FirebaseAuthProvider(new FirebaseConfig(webAPIkey));
+
+                var authResult = await authProvider.CreateUserWithEmailAndPasswordAsync(user.Email, "WWW123456");
+
+                var newUser = new
+                {
+                    Name = user.FullName,
+                    Email = user.Email,
+                    PhotoUrl = user.PhotoUrl,
+                };
+
+                await firebaseClient.Child("User").Child(authResult.User.LocalId).PutAsync(newUser);
+            }
+            catch (FirebaseAuthException ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("Message", ex.Message, "Ok");
+            }
+        }
+
+
+
         private async Task ExecuteSignInCommand()
         {
 
@@ -134,5 +202,8 @@ namespace Wassilni_App.viewModels
                 IsBusy = false;
             }
         }
+
+
+
     }
 }
