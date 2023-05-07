@@ -46,6 +46,7 @@ namespace Wassilni_App.Services
         {
             string currentUserId = Preferences.Get("userId", string.Empty);
             var allRides = await GetRidesAsync();
+            pool.PickupDateTime = pool.Date.Add(pool.TripTime);
 
             if (pool.PickupDateTime.Equals(DateTime.MinValue))
             {
