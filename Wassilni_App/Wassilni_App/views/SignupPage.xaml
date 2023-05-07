@@ -29,36 +29,13 @@
                 <Label Text="{Binding EmptyFieldsLastNameErrorMessage}" TextColor="Red"/>
 
 
-                <StackLayout>
-                    <StackLayout Orientation="Horizontal" Margin="0,0,0,-35" >
-                        <StackLayout Orientation="Horizontal" Margin="0,0,0,40">
-                            <Picker FontSize="Medium" WidthRequest="50" x:Name="countryPicker" Title="Select Country" HeightRequest="54" SelectedIndexChanged="OnCountryPickerSelectedIndexChanged">
-                                <Picker.Items >
-                                    <x:String>United States</x:String>
-                                    <x:String>Canada</x:String>
-                                    <x:String>Mexico</x:String>
-                                    <x:String>Palestine</x:String>
-                                    <x:String>occupied Palestinian territories</x:String>
-                                    <x:String>Jordan</x:String>
-                                </Picker.Items>
-                            </Picker>
-                        </StackLayout>
-                        <Frame  Margin="0,0,0,45" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" HeightRequest="50" WidthRequest="50" BorderColor="Gray">
-                            <StackLayout Orientation="Horizontal">
-                                <Label x:Name="phoneCodeLabel" Text="+1" VerticalOptions="CenterAndExpand" Margin="10,0,0,0"/>
-                            </StackLayout>
-                        </Frame>
-
-                        <StackLayout>
-                            <Frame Margin="0,0,0,0" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" HeightRequest="50" WidthRequest="250" BorderColor="Gray">
-                                <StackLayout Orientation="Horizontal">
-                                    <Entry   Placeholder="Phone no.*" Text="{Binding PhoneNumber}" TextColor="Black" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="10,0,0,0"  FontSize="Medium"  Keyboard="Telephone"/>
-                                </StackLayout>
-                            </Frame>
-                        </StackLayout>
+                <Frame Margin="0,3,0,0" Padding="2" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BorderColor="Gray">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="{StaticResource Phone}" FontFamily="FAS"  FontSize="24" TextColor="{StaticResource colorPrimary}" Margin="9,10,0,0"/>
+                        <Entry x:Name="PhoneNo" Placeholder="Phone no.*" TextColor="#333333" FontSize="18" HorizontalOptions="FillAndExpand" Margin="10,0,0,0" Text="{Binding PhoneNumber}" Keyboard="Telephone"/>
                     </StackLayout>
-                    <Label Text="{Binding PhoneNumberErrorMessage}" TextColor="Red"/>
-                </StackLayout>
+                </Frame>
+                <Label Text="{Binding PhoneNumberErrorMessage}" TextColor="Red"/>
                 
                 <Frame Margin="0,3,0,0" Padding="2" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BorderColor="Gray">
                     <StackLayout Orientation="Horizontal">

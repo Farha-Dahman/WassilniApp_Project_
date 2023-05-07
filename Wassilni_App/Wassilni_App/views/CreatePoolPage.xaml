@@ -19,7 +19,7 @@
                     <Frame  Margin="0,9,0,0" Padding="15,5,15,-7" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BackgroundColor="Transparent">
                         <StackLayout Orientation="Horizontal">
                             <Label  Text="{StaticResource Profile}" FontFamily="FAS"  FontSize="24" TextColor="{StaticResource colorPrimary}" Margin="10,15,0,0"/>
-                            <Entry x:Name="FullName" Text="{Binding FullName}" Keyboard="Telephone" Placeholder="Phone Number" TextColor="#333333" FontSize="18" HorizontalOptions="FillAndExpand" Margin="10,0,0,0"></Entry>
+                            <Entry x:Name="FullName" Text="{Binding FullName}" Placeholder="Phone Number" TextColor="#333333" FontSize="18" HorizontalOptions="FillAndExpand" Margin="10,0,0,0"></Entry>
                         </StackLayout>
                     </Frame>
                     <BoxView BackgroundColor="DarkGray" Margin="60,-5,15,5" HeightRequest="1.2" Color="Gray" WidthRequest="310" HorizontalOptions="Center" VerticalOptions="Center" />
@@ -58,7 +58,7 @@
                             <Frame  Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BackgroundColor="Transparent">
                                 <StackLayout Orientation="Horizontal">
                                     <Label Text="{StaticResource Date}" FontFamily="FAS"  FontSize="24" TextColor="{StaticResource colorPrimary}" Margin="9,10,0,0"/>
-                                    <DatePicker x:Name="datePicker" Format="MM/dd/yyyy" MinimumDate="{x:Static sys:DateTime.Today}" Date="{Binding StartDate}" TextColor="#333333" FontSize="18" HorizontalOptions="FillAndExpand" Margin="10,0,0,0" />
+                                    <DatePicker x:Name="datePicker" Format="MM/dd/yyyy" MinimumDate="{x:Static sys:DateTime.Today}"  Date="{Binding StartDate}" TextColor="#333333" FontSize="18" HorizontalOptions="FillAndExpand" Margin="10,0,0,0" />
                                 </StackLayout>
                             </Frame>
                         </StackLayout>

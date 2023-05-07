@@ -31,7 +31,7 @@ namespace Wassilni_App.viewModels
 
              LoadRideRequests();
          }
-        */
+        *
         /*
            public async Task LoadRideRequests()
            {
@@ -42,12 +42,12 @@ namespace Wassilni_App.viewModels
         public RequestsViewModel()
         {
             RideRequests = new ObservableCollection<RequestViewModel>();
-            _databaseHelper = new DatabaseHelper("https://wassilni-app-default-rtdb.firebaseio.com/"); // Replace with your actual DatabaseHelper constructor
+            _databaseHelper = new DatabaseHelper("https://wassilni-app-default-rtdb.firebaseio.com/"); 
         }
 
         public async Task LoadRideRequests()
         {
-            var requests = await _databaseHelper.GetRideRequestsAsync(); // Replace with your actual method to fetch ride requests from the database
+            var requests = await _databaseHelper.GetRideRequestsAsync();
 
             RideRequests.Clear();
             foreach (var request in requests)

@@ -6,6 +6,7 @@ namespace Wassilni_App.Models
 {
     public class User
     {
+        public string FullName { get; set; }
         private string _email;
         private string _password;
         private string _firstName;
@@ -64,6 +65,7 @@ namespace Wassilni_App.Models
             get { return photoUrl; }
             set { photoUrl = value; }
         }
+        public string FCMToken { get; set; }
 
     }
 }

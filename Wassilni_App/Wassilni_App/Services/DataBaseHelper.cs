@@ -70,7 +70,6 @@ namespace Wassilni_App.Services
                       TripTime = r.TripTime,
                       Date = r.Date,
                       RideID=r.RideID
-
                   })
             .ToList();
         }
@@ -105,6 +104,7 @@ namespace Wassilni_App.Services
                              Date = r.Object.Date,
                              RequestID=r.Object.RequestID,
                              SelectedGender = r.Object.SelectedGender,
+                             Number_of_Seats=r.Object.Number_of_Seats,
                            
 
                          })
@@ -236,9 +236,9 @@ namespace Wassilni_App.Services
                 .ToList();
 
             Debug.WriteLine($"Rides with riders count: {ridesWithRiders.Count}");
-
+            try { 
             var userRides = ridesWithRiders
-                .Where(r => r.Object.Riders.Any(ri => ri.RiderID==userId))
+                .Where(r => r.Object.Riders != null && r.Object.Riders.Any(ri => ri != null && ri.RiderID == userId))
                 .Select(r => new Ride
                 {
 
@@ -256,13 +256,23 @@ namespace Wassilni_App.Services
                     RideID = r.Object.RideID,
                     CarModel = r.Object.CarModel,
                     TripDate = r.Object.Date.ToString("yyyy-MM-dd"),
-                    Riders = r.Object.Riders.ToList(),
+                  
                 })
                 .ToList();
 
-            Debug.WriteLine($"User rides count: {userRides.Count}");
+                Debug.WriteLine($"User rides count: {userRides.Count}");
+                return userRides;
 
-            return userRides;
+            }
+            catch (NullReferenceException ex)
+            {
+                Debug.WriteLine("exception in userRides creation:", ex);
+                return null;
+
+
+            }
+
+
         }
 
 
@@ -294,7 +304,6 @@ namespace Wassilni_App.Services
                         RideID=r.Object.RideID,   
                         CarModel=r.Object.CarModel,
                         TripDate = r.Object.Date.ToString("yyyy-MM-dd")
-
             })
                     .ToList();
 
@@ -325,5 +334,40 @@ namespace Wassilni_App.Services
                 Debug.WriteLine($"Error deleting ride with ID {tripId}: {ex.Message}");
             }
         }
+        public async Task<List<Notification>> GetUserNotificationsAsync()
+        {
+            string userId = Preferences.Get("userId", string.Empty);
+            try
+            {
+                var notifications = await _firebaseClient
+                    .Child("UserNotifications")
+                    .Child(userId)
+
+                    .OnceAsync<Notification>();
+
+                var id = notifications.Select(r => r.Object.Id).ToList();
+                Debug.WriteLine($"Ride with ID {id} deleted successfully.");
+                var notif = notifications.ToList();
+
+                var not = notif.Select(n => new Notification
+                {
+                    PhotoUrl = n.Object.PhotoUrl,
+                    Timestamp=n.Object.Timestamp,
+                    Title = n.Object.Title,
+                    Message = n.Object.Message,
+                    IsNew = true,
+                }).ToList();
+
+                int i = not.Count();
+
+                return not;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error retrieving notifications: {ex.Message}");
+                return new List<Notification>();
+            }
+        }
+
     }
 }

@@ -13,6 +13,7 @@ using Wassilni_App.views;
 using Rg.Plugins.Popup.Services;
 using System.Drawing;
 using System.Drawing.Imaging;
+using Wassilni_App.Models;
 
 namespace Wassilni_App.viewModels
 {
@@ -316,20 +317,30 @@ namespace Wassilni_App.viewModels
                 && ValidateGender()
                 && ValidatePassword();
         }
-
-
+        private string DefaultUserPhoto()
+        {
+            if (_selectedGender == "Male")
+            {
+                return "MaleDefaultPhoto.png";
+            }
+            else
+            {
+                return "FemaleDefaultPhoto.png";
+            }
+        }
         private async Task CreateUserAccount()
         {
             try
             {
+                // This code should be placed in the login/register method of your shared project
+                // This code should be placed in the login/register method of your ViewModel (or another appropriate class)
+             
                 var authProvider = new FirebaseAuthProvider(new FirebaseConfig(webAPIkey));
 
                 var authResult = await authProvider.CreateUserWithEmailAndPasswordAsync(Email, Password);
 
                 // Send a verification email
                 await authProvider.SendEmailVerificationAsync(authResult.FirebaseToken);
-                var personalPhotoUrl = "PersonalPhoto.png";
-                //var personalPhotoUrl = "https://w7.pngwing.com/pngs/177/551/png-transparent-user-interface-design-computer-icons-default-stephen-salazar-graphy-user-interface-design-computer-wallpaper-sphere-thumbnail.png";
                 var newUser = new
                 {
                     FirstName = FirstName,
@@ -338,19 +349,35 @@ namespace Wassilni_App.viewModels
                     PhoneNumber = PhoneNumber,
                     Birthdate = Birthdate,
                     Gender = SelectedGender,
-                    PhotoUrl = personalPhotoUrl,
+                    PhotoUrl = DefaultUserPhoto(),
                 };
 
                 await firebaseClient.Child("User").Child(authResult.User.LocalId).PutAsync(newUser);
+                var fcmTokenProvider = DependencyService.Get<IFcmTokenProvider>();
+                string fcmToken = await fcmTokenProvider.GetFcmTokenAsync();
+                await SaveFcmTokenAsync(fcmToken, authResult.User.LocalId);
+
+
 
                 await PopupNavigation.Instance.PushAsync(new PopUpSignUp());
             }
-            catch (Exception ex)
+            catch 
             {
                 EmailErrorMessage = "Account Already Exist With This Email";
             }
         }
+        public async Task SaveFcmTokenAsync(string fcmToken,string userId)
+        {
+           
 
+            if (!string.IsNullOrEmpty(userId))
+            {
+                await firebaseClient
+                    .Child("User")
+                    .Child(userId)
+                    .PatchAsync(new { FCMToken = fcmToken });
+            }
+        }
 
         private async Task ExecuteSignUpCommand()
         {

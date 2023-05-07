@@ -18,11 +18,8 @@ namespace Wassilni_App.viewModels
     public class CreatePoolViewModel : BaseViewModel
     {
 
-
         FirebaseClient firebaseClient = new Firebase.Database.FirebaseClient("https://wassilni-app-default-rtdb.firebaseio.com/");
     
-
-
         private string _fullName;
         private string _phoneNumber;
         private string _startLocation;
@@ -35,11 +32,6 @@ namespace Wassilni_App.viewModels
         public event EventHandler ShowTopErrorMessage;
 
         private bool _isTopErrorMessageVisible;
-        public bool IsTopErrorMessageVisible
-        {
-            get => _isTopErrorMessageVisible;
-            set => SetProperty(ref _isTopErrorMessageVisible, value);
-        }
         private string _phoneNumberErrorMessage;
         private string _startLocationErrorMessage;
         private string _endLocationErrorMessage;
@@ -49,9 +41,7 @@ namespace Wassilni_App.viewModels
         private string _priceErrorMessage;
         private string _errormessage;
         private string _StartDateErrorMessage;
-        
-
-
+       
         public string StartDateErrorMessage
         {
             get => _StartDateErrorMessage;
@@ -68,6 +58,11 @@ namespace Wassilni_App.viewModels
             set => SetProperty(ref _errormessage, value);
         }
 
+        public bool IsTopErrorMessageVisible
+        {
+            get => _isTopErrorMessageVisible;
+            set => SetProperty(ref _isTopErrorMessageVisible, value);
+        }
         public string StartLocationErrorMessage
         {
             get => _startLocationErrorMessage;
@@ -104,7 +99,6 @@ namespace Wassilni_App.viewModels
             set => SetProperty(ref _priceErrorMessage, value);
         }
 
-
         public string FullName
         {
             get { return _fullName; }
@@ -132,7 +126,7 @@ namespace Wassilni_App.viewModels
         public DateTime StartDate
         {
             get { return _startDate; }
-            set { SetProperty(ref _startDate, value); }
+            set { _startDate = value; OnPropertyChanged(); }
         }
 
         public TimeSpan StartTime
@@ -166,7 +160,6 @@ namespace Wassilni_App.viewModels
             set => SetProperty(ref _phoneNumberErrorMessage, value);
         }
 
-
         private bool ValidatePhoneNumber()
         {
             if (string.IsNullOrWhiteSpace(PhoneNumber) || !Regex.IsMatch(PhoneNumber, @"^[0-9]{8,15}$"))
@@ -181,17 +174,14 @@ namespace Wassilni_App.viewModels
 
         public ICommand CreatePoolCommand { get; set; }
 
-        public CreatePoolViewModel(Ride pool)
+        public   CreatePoolViewModel(Ride pool)
         {
             string userId = Preferences.Get("userId", string.Empty);
 
            
             CreatePoolCommand = new Command(async () => await ExecuteCreatePoolCommand(userId));
-           
-            //
-             FetchUserData(userId,pool);
+            FetchUserData(userId,pool);
         }
-
 
         private async Task FetchUserData(string userId,Ride pool)
         {
@@ -230,8 +220,7 @@ namespace Wassilni_App.viewModels
         {
             DateTime currentDateTime = DateTime.Now;
             DateTime selectedDateTime = StartDate.Add(StartTime);
-
-            if (selectedDateTime >= currentDateTime)
+            if (selectedDateTime > currentDateTime)
             {
                 return true;
             }
@@ -241,16 +230,18 @@ namespace Wassilni_App.viewModels
         private bool ValidateStartTime()
         {
             DateTime currentDateTime = DateTime.Now;
+            if(StartDate.Equals(DateTime.MinValue))
+            {
+                StartDate = DateTime.Today;
+            }
             DateTime selectedDateTime = StartDate.Add(StartTime);
 
-            if ( selectedDateTime >= currentDateTime)
+            if (selectedDateTime >= currentDateTime)
             {
                 return true;
             }
             return false;
         }
-
-        
 
         private bool ValidateCarModel()
         {
@@ -310,14 +301,15 @@ namespace Wassilni_App.viewModels
                 ErrorMessage = errorMessage;
                 ShowTopErrorMessage?.Invoke(this, EventArgs.Empty);
             }
+            /*
             else if (!ValidateStartDate())
             {
                 string errorMessage = "Please Select A Valid Date!.";
 
                 ErrorMessage = errorMessage;
                 ShowTopErrorMessage?.Invoke(this, EventArgs.Empty);
-            }
-           
+            }*/
+
             else if (!ValidatePrice())
             {
                 string errorMessage = "Please Enter The Ride price!.";
@@ -350,6 +342,8 @@ namespace Wassilni_App.viewModels
         {
 
             string _driverid = id;
+            var userPhotoUrl = await GetUserPhotoUrlAsync(_driverid);
+
 
             if (IsBusy)
                 return;
@@ -361,11 +355,11 @@ namespace Wassilni_App.viewModels
                 if (AllValidationsPassed())
                 {
 
-                    var personalPhotoUrl = "PersonalPhoto.png";
+               
                     // Create a pool object
                     var newPool = new Ride
                     {
-                        PhotoUrl = personalPhotoUrl,
+                        PhotoUrl = userPhotoUrl,
                         DriverID = _driverid,
                         DriverName = FullName,
                         PhoneNumber = PhoneNumber,
@@ -407,6 +401,11 @@ namespace Wassilni_App.viewModels
             {
                 IsBusy = false;
             }
+        }
+        private async Task<string> GetUserPhotoUrlAsync(string userId)
+        {
+            var user = await firebaseClient.Child("User").Child(userId).OnceSingleAsync<Models.User>();
+            return user.PhotoUrl;
         }
     }
 }

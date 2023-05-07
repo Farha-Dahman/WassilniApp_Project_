@@ -29,21 +29,7 @@ namespace Wassilni_App.views
         {
             await Navigation.PushModalAsync(new NavigationPage(new LoginPage()));
         }
-        Dictionary<string, string> countryPhonePrefixes = new Dictionary<string, string>
-        {
-            { "United States", "+1" },
-            { "Canada", "+2" },
-            { "Mexico", "+52" },
-            { "Palestine", "+970" },
-            { "occupied Palestinian territories", "+972" },
-            { "Jordan","962+" }
-        };
-        void OnCountryPickerSelectedIndexChanged(object sender, EventArgs e)
-        {
-            string selectedCountry = (string)countryPicker.SelectedItem;
-            string phonePrefix = countryPhonePrefixes[selectedCountry];
-            phoneCodeLabel.Text = phonePrefix;
-        }
+       
         private bool isPasswordVisible;
 
         private void OnEyeIconTapped(object sender, EventArgs e)

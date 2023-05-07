@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps" 
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              xmlns:forms="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             xmlns:viewmodels="clr-namespace:Wassilni_App.viewModels" x:DataType="viewmodels:TripDetailsViewModel"
              x:Class="Wassilni_App.views.TripDetailsPage"
              NavigationPage.HasNavigationBar="True">
     <NavigationPage.TitleView>
@@ -26,7 +27,6 @@
                         <Label Text=","  FontSize="22" FontFamily="Roboto-Bold" TextColor="Black"></Label>
                         <Label Text="{Binding TripTime}"  FontSize="22" FontFamily="Roboto-Bold" TextColor="Black" />
                     </StackLayout>
-
                     <StackLayout  Padding="15,15,0,5">
                         <Label Text="The Driver"  FontSize="20"></Label>
                         <StackLayout Orientation="Horizontal">
@@ -35,7 +35,6 @@
                         </StackLayout>
                     </StackLayout>
                     <BoxView BackgroundColor="LightGray" WidthRequest="1" HeightRequest="1.3" Margin="0,15,0,15"/>
-
                     <StackLayout  Padding="15,0,0,0">
                         <Label Text="The distanation"  FontSize="20" Padding="0,0,0,15"></Label>
                         <StackLayout Orientation="Vertical">
@@ -53,18 +52,54 @@
                     </StackLayout>
                     <BoxView BackgroundColor="LightGray" WidthRequest="1" HeightRequest="1.3" Margin="0,15,0,15"/>
                    
+                    <!-- Riders List -->
+                    <Label Text="Co-Passengers"  FontSize="20" Padding="15,0,0,15"></Label>
+                    <Label x:Name="myLabel" IsVisible="{Binding IsLabelVisible}"  Text="There are no passengers in this trip yet" FontSize="20" HorizontalOptions="Center" Margin="0,10,0,-60" TextColor="Black"></Label>
+
+                    <Grid Padding="30,0,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="100" />
+                        </Grid.RowDefinitions>
+                        <CollectionView Grid.Row="1"
+                    ItemsSource="{Binding Riders}">
+                            <CollectionView.ItemsLayout>
+                                <GridItemsLayout Orientation="Horizontal"
+                          HorizontalItemSpacing="10"
+                          VerticalItemSpacing="20" >
+                                </GridItemsLayout>
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate >
+                                    <StackLayout Orientation="Vertical" HorizontalOptions="Center" >
+                                      
+                                        <forms:CircleImage Source="{Binding RiderPhotoUrl}"
+                                                           Aspect="AspectFit"
+                                                           HeightRequest="70"
+                                                           WidthRequest="70"
+                                                           BorderColor="Black"
+                                                           BorderThickness="1" />
+                                        <Label Text="{Binding RiderName}"
+                                        FontSize="17"
+                                        HorizontalOptions="Center"
+                                        HorizontalTextAlignment="Center" />
+
+                                    </StackLayout>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </Grid>
+                    <BoxView BackgroundColor="LightGray" WidthRequest="1" HeightRequest="1.3" Margin="0,15,0,15"/>
                     <StackLayout Margin="15,0,0,0">
                         <Label Text="Vehicle Info"  FontSize="20"></Label>
-                    <Frame  Margin="0" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BackgroundColor="Transparent">
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="{StaticResource bus}" FontFamily="FAS"  FontSize="24" TextColor="{StaticResource colorPrimary}" Margin="9,10,0,0"/>
-                            <Label x:Name="CarModel" Text="{Binding CarModel}" TextColor="Black" FontSize="20" Margin="8,8,0,10"></Label>
-                        </StackLayout>
-                    </Frame>
+                        <Frame  Margin="0" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BackgroundColor="Transparent">
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{StaticResource bus}" FontFamily="FAS"  FontSize="24" TextColor="{StaticResource colorPrimary}" Margin="9,10,0,0"/>
+                                <Label x:Name="CarModel" Text="{Binding CarModel}" TextColor="Black" FontSize="20" Margin="8,8,0,10"></Label>
+                            </StackLayout>
+                        </Frame>
                     </StackLayout>
                     <BoxView BackgroundColor="LightGray" WidthRequest="1" HeightRequest="1.3" Margin="0,5,0,15"/>
-
-
                     <StackLayout Margin="15,0,0,10">
                         <Label Text="Number of seats"  FontSize="20" Margin="0,0,0,-15"></Label>
                         <Frame  HorizontalOptions="FillAndExpand" HasShadow="False" BackgroundColor="Transparent">
@@ -75,8 +110,6 @@
                         </Frame>
                     </StackLayout>
                     <BoxView BackgroundColor="LightGray" WidthRequest="1" HeightRequest="1.3" Margin="0,5,0,15"/>
-
-
                     <StackLayout Margin="15,0,0,20">
                         <Label Text="Phone Number"  FontSize="20"></Label>
                         <Frame  Margin="0" Padding="15,5,15,-7" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BackgroundColor="Transparent">
@@ -87,8 +120,6 @@
                         </Frame>
                     </StackLayout>
                     <BoxView BackgroundColor="LightGray" WidthRequest="1" HeightRequest="1.3" Margin="0,5,0,15"/>
-
-
                     <StackLayout Margin="15,0,0,40">
                         <Label Text="Price of Ride"  FontSize="20"></Label>
                         <Frame  Margin="0" Padding="15,5,15,-7" HorizontalOptions="FillAndExpand" CornerRadius="10" HasShadow="False" BackgroundColor="Transparent">
@@ -98,9 +129,7 @@
                             </StackLayout>
                         </Frame>
                     </StackLayout>
-
-                    <!-- <Button Text="Request Ride" TextColor="White" CornerRadius="30" FontSize="22" Margin="20" HeightRequest="55" Command="{Binding RequestRideCommand}" ></Button> -->
-
+                    <Button Text="Request Ride" TextColor="White" CornerRadius="30" FontSize="22" Margin="20" HeightRequest="55" Command="{Binding RequestRideCommand}" ></Button>
                 </StackLayout>
             </ScrollView>
         </StackLayout>

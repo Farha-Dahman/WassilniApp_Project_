@@ -14,7 +14,23 @@
                                 <StackLayout Orientation="Horizontal">
                                     <forms:CircleImage  Source="{Binding PhotoUrl}" Aspect="AspectFit" HeightRequest="60" WidthRequest="60" BorderColor="Gray"  BorderThickness="2"  Margin="0,-35,0,140 "/>
                                     <StackLayout >
-                                        <Label Text="{Binding RiderName}" FontSize="Large" FontAttributes="Bold" TextColor="Black"   Margin="8,10,0,10" />
+
+                                     
+
+
+                                        <Grid Grid.Row="0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label Text="{Binding RiderName}" FontSize="Large" FontAttributes="Bold" TextColor="Black"   Margin="8,10,0,10" />
+
+                                            <Label Text="{StaticResource Profile}" TextColor="{StaticResource colorPrimary}" FontSize="26" FontFamily="FAS" Padding="0,9,1,0"  Grid.Column="2" />
+                                            <Label Text="{Binding Number_of_seats}" FontSize="24" FontFamily="Roboto-Bold" TextColor="Black" Grid.Column="3"  Padding="0,7,10,0"/>
+
+                                        </Grid>
                                         <StackLayout Orientation="Horizontal" Margin="10,0,0,0">
                                             <Label Text="{StaticResource LocationFrom}" TextColor="{StaticResource colorPrimary}" FontSize="12" FontFamily="FAS" Margin="0,5,0,0"/>
                                             <Label  Text="{Binding StartLocation}" FontSize="15"  TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="0,0,0,2" />
@@ -30,9 +46,10 @@
                                                 <RowDefinition Height="auto" />
                                                 <RowDefinition Height="auto" />
                                             </Grid.RowDefinitions>
+                                          
+                                              
 
-
-                                            <Grid Grid.Row="2" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                                                <Grid Grid.Row="2" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="auto" />
                                                     <ColumnDefinition Width="auto" />
@@ -53,9 +70,9 @@
                                                     <Label Text="{StaticResource Date}" TextColor="{StaticResource colorPrimary}" FontSize="23" FontFamily="FAS" Margin="-30,2,0,0"/>
                                                     <Label  Text="{Binding PickUpDateTime}" FontSize="16"  TextColor="Black" Margin="10,0,0,0" />
                                                 </Grid>
-                                               
+                                        
 
-                                                <Grid Grid.Column="4" Padding="12,2,2,0" WidthRequest="100">
+                                                    <Grid Grid.Column="4" Padding="12,2,2,0" WidthRequest="100">
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="auto" />
                                                         <ColumnDefinition Width="auto" />
