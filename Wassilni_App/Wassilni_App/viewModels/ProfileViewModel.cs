@@ -67,7 +67,6 @@ namespace Wassilni_App.viewModels
         public async Task GetUser(String UserId)
         {
             var user = await firebaseClient.Child("User").Child(UserId).OnceSingleAsync<Models.User>();
-            //var googleUser = await firebaseClient.Child("User").Child(UserId).OnceSingleAsync<GoogleUser>();
 
             if (user != null)
             {
@@ -77,11 +76,6 @@ namespace Wassilni_App.viewModels
                 PhoneNumber = user.PhoneNumber;
                 Gender = await firebaseClient.Child("User").Child(UserId).Child("Gender").OnceSingleAsync<String>();
                 Age = (DateTime.Now - DateTime.Parse(user.Birthdate)).Days / 365;
-            }
-         
-            else
-            {
-                Console.WriteLine("*******************************************");
             }
             
         }

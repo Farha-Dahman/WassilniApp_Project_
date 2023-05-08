@@ -12,11 +12,10 @@ namespace Wassilni_App.Models
         public string UserId { get; set; }
         public string PhotoUrl { get; set; }
         public string FirebaseKey { get; set; }
-
+        //public string FirebaseUserId { get; set; }
     }
     public interface IGoogleManager
     {
-        //void Login(Action<GoogleUser, string> OnLoginComplete);
         void Login(Action<GoogleUser, string> OnLoginComplete);
 
         void Logout();

@@ -12,6 +12,11 @@ using Wassilni_App.views;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Google.Apis.Auth.OAuth2;
+using System.Linq;
+using Newtonsoft.Json;
+using System.Net.Http;
+using static Google.Apis.Auth.OAuth2.Web.AuthorizationCodeWebApp;
+using static Java.Util.Jar.Attributes;
 
 namespace Wassilni_App.viewModels
 {
@@ -89,6 +94,7 @@ namespace Wassilni_App.viewModels
                     PhotoUrl = googleUser.Picture.AbsoluteUri,
                     UserId = googleUser.UserId,
                 };
+
                 await SaveUserToDatabase(user);
 
                 App.Current.MainPage = new NavigationPage(new TabbedBottom());
@@ -98,22 +104,20 @@ namespace Wassilni_App.viewModels
                 IsLogedIn = false;
                 await Application.Current.MainPage.DisplayAlert("Error", message, "Ok");
             }
+        
         }
-
 
         private async Task SaveUserToDatabase(GoogleUser user)
         {
-            FirebaseClient firebaseClient = new Firebase.Database.FirebaseClient("https://wassilni-app-default-rtdb.firebaseio.com/");
             var firebaseObject = await firebaseClient.Child("User").PostAsync(user);
             string firebaseKey = firebaseObject.Key;
             user.FirebaseKey = firebaseKey;
             await firebaseClient.Child("User").Child(firebaseKey).PutAsync(user);
 
+            var authProvider = new FirebaseAuthProvider(new FirebaseConfig(webAPIkey));
 
             try
             {
-                var authProvider = new FirebaseAuthProvider(new FirebaseConfig(webAPIkey));
-
                 var authResult = await authProvider.CreateUserWithEmailAndPasswordAsync(user.Email, "WWW123456");
 
                 var newUser = new
@@ -124,14 +128,16 @@ namespace Wassilni_App.viewModels
                 };
 
                 await firebaseClient.Child("User").Child(authResult.User.LocalId).PutAsync(newUser);
+
+                await authProvider.SignInWithEmailAndPasswordAsync(newUser.Email, "WWW123456");
+                await Application.Current.MainPage.Navigation.PushAsync(new TabbedBottom());
+
             }
             catch (FirebaseAuthException ex)
             {
                 await Application.Current.MainPage.DisplayAlert("Message", ex.Message, "Ok");
             }
         }
-
-
 
         private async Task ExecuteSignInCommand()
         {
