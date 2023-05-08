@@ -138,22 +138,23 @@ namespace Wassilni_App.viewModels
                 PhotoUrl = ride.PhotoUrl;
                 TripTime = ride.TripTime;
                 TripDate = ride.Date.Date.ToString("yyyy-MM-dd");
-              
+                CarModel = ride.CarModel;
+
                 if (ride.Riders != null)
                 {
                     Riders.Clear();
-                    if (ride.Riders.Count() == 1)
+                if (ride.Riders.Count() == 1)
+                {
+                    // myLabel.Visible = true;
+                    IsLabelVisible = true;
+                }
+                else
+                {
+                    foreach (var rider in ride.Riders.Skip(1))
                     {
-                        // myLabel.Visible = true;
-                        IsLabelVisible = true;
-                    }
-                    else
-                    {
-                        foreach (var rider in ride.Riders.Skip(1))
-                        {
-                            Riders.Add(rider);
-                            RiderName = rider.RiderName;
-                            RiderPhotoUrl = rider.RiderPhotoUrl;
+                        Riders.Add(rider);
+                        RiderName = rider.RiderName;
+                        RiderPhotoUrl = rider.RiderPhotoUrl;
                         }
                     }
                 }

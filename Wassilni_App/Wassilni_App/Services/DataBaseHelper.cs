@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Wassilni_App.Models;
 using Xamarin.Essentials;
 using System.Diagnostics;
+using System.Runtime.InteropServices.ComTypes;
 
 
 namespace Wassilni_App.Services
@@ -35,6 +36,7 @@ namespace Wassilni_App.Services
                 PricePerRide = r.Object.PricePerRide,
                 PhotoUrl = r.Object.PhotoUrl,
                 TripTime = r.Object.TripTime,
+                TripDate = r.Object.TripDate,
                 Date = r.Object.Date,
                 RideID=r.Object.RideID
             }).ToList();
@@ -46,7 +48,11 @@ namespace Wassilni_App.Services
             var allRides = await GetRidesAsync();
             pool.PickupDateTime = pool.Date.Add(pool.TripTime);
 
-
+            if (pool.PickupDateTime.Equals(DateTime.MinValue))
+            {
+                pool.PickupDateTime = DateTime.Now;
+            }
+            pool.PickupDateTime = pool.PickupDateTime.Date.Add(pool.TripTime);
 
             return allRides.Where(r =>
                   r.DriverID != currentUserId &&
