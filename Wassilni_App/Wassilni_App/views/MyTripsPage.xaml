@@ -80,7 +80,7 @@
                                         <ColumnDefinition Width="auto" />
                                         <ColumnDefinition Width="auto" />
                                     </Grid.ColumnDefinitions>
-                                    <Button Text="Cancel" TextColor="White" FontFamily="Roboto-Medium" FontSize="Medium" HorizontalOptions="End" CommandParameter="{Binding RideID}" WidthRequest="110" HeightRequest="40" Grid.Column="2"  Clicked="OnCancelClicked"></Button>
+                                    <Button Text="Cancel" TextColor="White" FontFamily="Roboto-Medium" FontSize="Medium" HorizontalOptions="End" CommandParameter="{Binding RideID}" WidthRequest="110" HeightRequest="28" Grid.Column="2"  Clicked="OnCancelClicked" IsVisible="{Binding ShowCancelButton}"></Button>
                                 </Grid>
                             </Grid>
                         </Frame>

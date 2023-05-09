@@ -44,6 +44,22 @@ namespace Wassilni_App.views
             var ridesWithRider = await LoadRidesWithRiderInfo();
             var allRides = new List<Ride>(rides.Concat(ridesWithRider));
 
+            foreach (var ride in allRides)
+            {
+                if (DateTime.Now < ride.Date)
+                {
+                    Console.WriteLine("it's in future");
+                    ride.ShowCancelButton = true;
+                }
+                else
+                {
+                    Console.WriteLine("it's in past");
+                    ride.ShowCancelButton = false;
+
+                }
+
+            }
+
             PoolsCollectionView.ItemsSource = allRides;
         }
 
