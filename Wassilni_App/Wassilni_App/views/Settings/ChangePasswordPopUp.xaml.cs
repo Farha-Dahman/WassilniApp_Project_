@@ -14,8 +14,6 @@ namespace Wassilni_App.views.Settings
 
         private async void Ok_Clicked(object sender, System.EventArgs e)
         {
-           
-            await Navigation.PushAsync(new ChangePasswordPage());
             await PopupNavigation.Instance.PopAsync();
         }
     }
