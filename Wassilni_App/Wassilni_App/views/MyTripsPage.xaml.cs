@@ -46,14 +46,13 @@ namespace Wassilni_App.views
 
             foreach (var ride in allRides)
             {
-                if (DateTime.Now < ride.Date)
+                DateTime savedDateTime = DateTime.ParseExact(ride.TripDate + " " + ride.TripTime, "yyyy-MM-dd HH:mm:ss", null);
+                if (DateTime.Now < savedDateTime)
                 {
-                    Console.WriteLine("it's in future");
                     ride.ShowCancelButton = true;
                 }
                 else
                 {
-                    Console.WriteLine("it's in past");
                     ride.ShowCancelButton = false;
 
                 }
