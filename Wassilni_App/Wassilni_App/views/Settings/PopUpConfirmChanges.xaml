@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Wassilni_App.views.Settings.PopUpConfirmChanges"
+             xmlns:xf="http://schemas.microsoft.com/xamarin/forms"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:viewmodels="clr-namespace:Wassilni_App.viewModels"
+             x:DataType="viewmodels:EditProfileViewModel"
+             HasSystemPadding="False"
+             BackgroundColor="#AA000000">
+
+    <Frame BackgroundColor="white" CornerRadius="15" Padding="30" Margin="40" HasShadow="True" VerticalOptions="Center" HorizontalOptions="Center">
+        <StackLayout Spacing="20">
+            <Label Text="Are you sure you want to confirm the changes?" VerticalOptions="Center" />
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Confirm" Clicked="ConfirmChanges_ConfirmClicked" FontSize="18" WidthRequest="100" x:Name="ConfirmChanges" Command="{Binding EditProfilelCommand}"/>
+                <Button Text="Cancel" Clicked="ConfirmChanges_CancelClicked" FontSize="18" WidthRequest="100" />
+            </StackLayout>
+        </StackLayout>
+    </Frame>
+
+
+</pages:PopupPage>
