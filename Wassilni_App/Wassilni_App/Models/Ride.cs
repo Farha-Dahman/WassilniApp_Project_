@@ -21,7 +21,7 @@ namespace Wassilni_App.Models
         public string TripDate { get; set; }
 
         public string DriverGender { get; set; }
-
+        public bool ShowCancelButton { get; set; }
         public List<Rider> Riders { get; set; }
 
     }

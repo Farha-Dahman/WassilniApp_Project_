@@ -44,6 +44,21 @@ namespace Wassilni_App.views
             var ridesWithRider = await LoadRidesWithRiderInfo();
             var allRides = new List<Ride>(rides.Concat(ridesWithRider));
 
+            foreach (var ride in allRides)
+            {
+                DateTime savedDateTime = DateTime.ParseExact(ride.TripDate + " " + ride.TripTime, "yyyy-MM-dd HH:mm:ss", null);
+                if (DateTime.Now < savedDateTime)
+                {
+                    ride.ShowCancelButton = true;
+                }
+                else
+                {
+                    ride.ShowCancelButton = false;
+
+                }
+
+            }
+
             PoolsCollectionView.ItemsSource = allRides;
         }
 
