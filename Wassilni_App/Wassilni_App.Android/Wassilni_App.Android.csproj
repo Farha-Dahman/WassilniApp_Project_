@@ -86,6 +86,12 @@
     <PackageReference Include="Xamarin.AndroidX.Core">
       <Version>1.9.0.2</Version>
     </PackageReference>
+    <PackageReference Include="Xamarin.Firebase.Auth">
+      <Version>121.0.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Firebase.Core">
+      <Version>121.1.1.1</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Firebase.Iid">
       <Version>121.1.0.8</Version>
     </PackageReference>
