@@ -40,11 +40,11 @@ namespace Wassilni_App.views
             // Update the eye icon
             if (isPasswordVisible)
             {
-                EyeIcon.Text = "\xf070"; // Replace with the closed eye icon resource
+                EyeIcon.Text = "\xf070"; 
             }
             else
             {
-                EyeIcon.Text = "\xf06e"; // Replace with the open eye icon resource
+                EyeIcon.Text = "\xf06e"; 
             }
         }
     }

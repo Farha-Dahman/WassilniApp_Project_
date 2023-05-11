@@ -166,6 +166,11 @@ namespace Wassilni_App.viewModels
 
             string userId = Preferences.Get("userId", string.Empty);
             //  string DriverId = Preferences.Get("DriverId", string.Empty);
+              string Number_of_seat = Preferences.Get("Number_of_seats", string.Empty);
+            int.TryParse(Number_of_seat, out int seatCount);
+
+
+
             string rideId = RideId;
             try
             {
@@ -196,7 +201,7 @@ namespace Wassilni_App.viewModels
                         RideID = RideId,
                         PhoneNumber = PhoneNumber,
                         TripDate = TripDate,
-                        Number_of_Seats = Number_of_seats,
+                        Number_of_Seats = seatCount,
                     };
                     var newRideRequestResponse = await firebaseClient
                    .Child("requestRide")

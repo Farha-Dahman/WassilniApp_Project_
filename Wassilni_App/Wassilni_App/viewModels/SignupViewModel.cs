@@ -165,7 +165,6 @@ namespace Wassilni_App.viewModels
 
         private bool IsValidEmail(string email)
         {
-            // This regular expression pattern is used to check if the email is valid
             string pattern = @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$";
             return Regex.IsMatch(email, pattern);
         }
@@ -332,14 +331,12 @@ namespace Wassilni_App.viewModels
         {
             try
             {
-                // This code should be placed in the login/register method of your shared project
-                // This code should be placed in the login/register method of your ViewModel (or another appropriate class)
+              
              
                 var authProvider = new FirebaseAuthProvider(new FirebaseConfig(webAPIkey));
 
                 var authResult = await authProvider.CreateUserWithEmailAndPasswordAsync(Email, Password);
 
-                // Send a verification email
                 await authProvider.SendEmailVerificationAsync(authResult.FirebaseToken);
                 var newUser = new
                 {

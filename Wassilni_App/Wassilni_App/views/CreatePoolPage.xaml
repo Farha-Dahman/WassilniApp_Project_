@@ -78,7 +78,7 @@
                             <Label Text="{StaticResource Car}" FontFamily="FAS"  FontSize="26" TextColor="{StaticResource colorPrimary}" Margin="9,35,0,0"  />
                             <Frame BackgroundColor="Transparent" HorizontalOptions="FillAndExpand">
                                 <StackLayout Orientation="Horizontal">
-                                    <Label x:Name="NoOfSeat" Text="{Binding Source={x:Reference stepper}, Path=Value, StringFormat='{0} Seat'}" BindingContext="{x:Reference stepper}" FontSize="18" Margin="0,10,0,10" TextColor="#333333"></Label>
+                                    <Label x:Name="NoOfSeat" Text="{Binding Source={x:Reference stepper}, Path=Value, StringFormat='{1} Seat'}" BindingContext="{x:Reference stepper}" FontSize="18" Margin="0,10,0,10" TextColor="#333333"></Label>
                                     <Stepper Maximum="7"
                                  Minimum="1"
                                  Increment="1"
