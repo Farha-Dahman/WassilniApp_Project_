@@ -124,8 +124,6 @@ namespace Wassilni_App.viewModels
                         Number_of_seats = NumberOfSeats,
 
                     };
-
-
                     await Application.Current.MainPage.Navigation.PushAsync(new NavigationPage(new CreatePoolPage(Pool)));
                 }
             }
@@ -153,7 +151,10 @@ namespace Wassilni_App.viewModels
                         PricePerRide = Price,
                         DriverID = DriverId,
                     };
-
+                    if (Pool.Number_of_seats == 0)
+                    {
+                        Pool.Number_of_seats = 1;
+                    }
                     DatabaseHelper dbHelper = ((App)Application.Current).dbHelper;
                     string DriverID = Pool.DriverID;
                     string Number_of_seats = Pool.Number_of_seats.ToString();
