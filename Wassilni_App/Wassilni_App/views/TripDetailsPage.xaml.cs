@@ -38,11 +38,9 @@ namespace Wassilni_App.views
 
         private async void OnLocationChanged(object sender, TextChangedEventArgs e)
         {
-            // Get the start and end location entries
             var startLocation = LocationFrom.Text;
             var endLocation = LocationTo.Text;
 
-            // Check that both the start and end location entries have values
             if (!string.IsNullOrWhiteSpace(startLocation) && !string.IsNullOrWhiteSpace(endLocation))
             {
                 await OnRoutClicked(sender, e);
@@ -77,27 +75,21 @@ namespace Wassilni_App.views
 
             try
             {
-                // Remove any existing pins and polylines from the map
                 map.Pins.Clear();
                 map.MapElements.Clear();
 
-                // Get the start and end location entries
                 var startLocation = LocationFrom.Text;
                 var endLocation = LocationTo.Text;
 
-                // Use a geocoder to convert the start and end location into coordinates
                 var geoCoder = new Geocoder();
                 var startResults = await geoCoder.GetPositionsForAddressAsync(startLocation);
                 var endResults = await geoCoder.GetPositionsForAddressAsync(endLocation);
 
-                // Check that we have at least one result for both the start and end location
                 if (startResults.Any() && endResults.Any())
                 {
-                    // Get the first result for each location
                     var startPosition = startResults.First();
                     var endPosition = endResults.First();
 
-                    // Add pins for the start and end locations
                     map.Pins.Add(new Pin
                     {
                         Label = "Start",
@@ -112,7 +104,6 @@ namespace Wassilni_App.views
                         Type = PinType.Place
                     });
 
-                    // Get route from Google Maps Directions API
                     string apiKey = "AIzaSyCzsoVk0vHyr81imbvoPwSDco1qC6s6WAc";
                     string apiUrl = $"https://maps.googleapis.com/maps/api/directions/json?origin={startPosition.Latitude},{startPosition.Longitude}&destination={endPosition.Latitude},{endPosition.Longitude}&key={apiKey}";
 
@@ -123,7 +114,6 @@ namespace Wassilni_App.views
                         var points = routeData["routes"][0]["overview_polyline"]["points"].ToString();
                         var positions = DecodePolyline(points);
 
-                        // Create a Polyline shape to represent the route between the two locations
                         var polyline = new Polyline();
                         foreach (var position in positions)
                         {
@@ -135,7 +125,6 @@ namespace Wassilni_App.views
                         // Add the Polyline shape to the map
                         map.MapElements.Add(polyline);
 
-                        // Set the map's region to include both the start and end locations
                         var bounds = new MapSpan(new Position((startPosition.Latitude + endPosition.Latitude) / 2, (startPosition.Longitude + endPosition.Longitude) / 2), Math.Abs(startPosition.Latitude - endPosition.Latitude) * 1.2, Math.Abs(startPosition.Longitude - endPosition.Longitude) * 1.2);
                         map.MoveToRegion(bounds);
                     }

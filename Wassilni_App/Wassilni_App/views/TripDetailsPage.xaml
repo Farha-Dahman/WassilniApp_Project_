@@ -30,7 +30,7 @@
                     <StackLayout  Padding="15,15,0,5">
                         <Label Text="The Driver"  FontSize="20"></Label>
                         <StackLayout Orientation="Horizontal">
-                            <Image Source="{Binding PhotoUrl}" Aspect="AspectFill"  HeightRequest="60" WidthRequest="60" />
+                            <forms:CircleImage Source="{Binding PhotoUrl}" Aspect="AspectFill"  HeightRequest="60" WidthRequest="60" />
                             <Label Text="{Binding DriverName}"  FontSize="24"  FontFamily="Roboto-Bold" TextColor="Black" Margin="0,15,0,0" />
                         </StackLayout>
                     </StackLayout>

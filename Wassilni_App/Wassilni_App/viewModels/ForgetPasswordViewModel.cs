@@ -51,7 +51,6 @@ namespace Wassilni_App.viewModels
         }
         private bool IsValidEmail(string email)
         {
-            // This regular expression pattern is used to check if the email is valid
             string pattern = @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$";
             return Regex.IsMatch(email, pattern);
         }
