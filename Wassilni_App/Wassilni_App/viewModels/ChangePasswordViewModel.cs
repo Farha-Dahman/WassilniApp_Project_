@@ -85,7 +85,7 @@ namespace Wassilni_App.viewModels
             {
                 if (string.IsNullOrEmpty(OldPassword))
                 {
-                    OldPasswordErrorMessage = "Please enter your old password";
+                    OldPasswordErrorMessage = "Please enter your current password";
                     return;
                 }
 
