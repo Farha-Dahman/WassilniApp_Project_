@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Forms;
 namespace Wassilni_App.Models
 {
     public class Ride
     {
+        public Thickness FrameMargin { get; set; }
         public string RideID { get; set; }
         public string DriverID { get; set; }
         public string DriverName { get; set; }

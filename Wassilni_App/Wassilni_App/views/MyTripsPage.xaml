@@ -21,7 +21,7 @@
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Frame CornerRadius="15"  BackgroundColor="{StaticResource colorFrame}" BorderColor="{StaticResource colorPrimary}" Padding="0,1,0,2" >
+                        <Frame CornerRadius="15"  BackgroundColor="{StaticResource colorFrame}" Margin="{Binding FrameMargin}" BorderColor="{StaticResource colorPrimary}" Padding="0,1,0,2" >
                             <Grid Padding="10,10,10,0" RowSpacing="2" >
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="auto" />

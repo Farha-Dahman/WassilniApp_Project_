@@ -54,19 +54,13 @@ namespace Wassilni_App.views
                 else
                 {
                     ride.ShowCancelButton = false;
-
+                    ride.FrameMargin = new Thickness(0, 0, 0, 20);
                 }
 
             }
 
             PoolsCollectionView.ItemsSource = allRides;
         }
-
-        //async private void GoToPoolDetails(object sender, EventArgs e)
-        //{
-        //    await Navigation.PushAsync(new NavigationPage(new TripDetailsPage()));
-
-
 
         private async void OnCancelClicked(object sender, EventArgs e)
         {
