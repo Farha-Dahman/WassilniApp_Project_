@@ -15,6 +15,7 @@ using Plugin.Media.Abstractions;
 using User = Firebase.Auth.User;
 using System.Drawing.Imaging;
 using System.Threading.Tasks;
+using Rg.Plugins.Popup.Services;
 
 namespace Wassilni_App.views.Settings
 {
@@ -106,6 +107,8 @@ namespace Wassilni_App.views.Settings
             {
                 Debug.WriteLine($"Error selecting file: {ex.Message}");
             }
+            await PopupNavigation.Instance.PushAsync(new PopUpConfirmChanges());
+
         }
         async Task<bool> CheckAndRequestStoragePermission()
         {

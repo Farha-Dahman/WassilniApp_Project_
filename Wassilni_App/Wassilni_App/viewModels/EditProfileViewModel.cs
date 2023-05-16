@@ -167,7 +167,7 @@ namespace Wassilni_App.viewModels
         {
             if (string.IsNullOrEmpty(PhoneNumber))
             {
-                PhoneNumberErrorMessage = "Please enter a valid phone number with a country code.";
+                PhoneNumberErrorMessage = "Please enter a valid phone number.";
                 return false;
             }
             PhoneNumberErrorMessage = "";
