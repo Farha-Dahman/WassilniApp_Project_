@@ -21,12 +21,57 @@ namespace Wassilni_App.views.Settings
         {
             SubjectLayout.IsVisible = !SubjectLayout.IsVisible;
             DefinitionLayout.IsVisible = false;
+            DefinitionRidesharing.IsVisible = false;
+            DefinitionHowWeUseYourInformation.IsVisible = false;
+            DefinitionSharingOfInformation.IsVisible = false;
+            DefinitionTermsOfService.IsVisible = false;
         }
 
         private void OnDefinitionArrowTapped(object sender, EventArgs e)
         {
             DefinitionLayout.IsVisible = !DefinitionLayout.IsVisible;
             SubjectLayout.IsVisible = false;
+            DefinitionRidesharing.IsVisible = false;
+            DefinitionHowWeUseYourInformation.IsVisible = false;
+            DefinitionSharingOfInformation.IsVisible = false;
+            DefinitionTermsOfService.IsVisible = false;
+        }
+        private void OnHowWeUseYourInformationTapped(object sender, EventArgs e)
+        {
+            DefinitionHowWeUseYourInformation.IsVisible = !DefinitionHowWeUseYourInformation.IsVisible;
+            SubjectLayout.IsVisible = false;
+            DefinitionLayout.IsVisible = false;
+            DefinitionRidesharing.IsVisible = false;
+            DefinitionSharingOfInformation.IsVisible = false;
+            DefinitionTermsOfService.IsVisible = false;
+        }
+        private void OnSharingOfInformationTapped(object sender, EventArgs e)
+        {
+            DefinitionSharingOfInformation.IsVisible = !DefinitionSharingOfInformation.IsVisible;
+            SubjectLayout.IsVisible = false;
+            DefinitionLayout.IsVisible = false;
+            DefinitionHowWeUseYourInformation.IsVisible = false;
+            DefinitionRidesharing.IsVisible = false;
+            DefinitionTermsOfService.IsVisible = false;
+        }
+        private void OnTermsOfServiceTapped(object sender, EventArgs e)
+        {
+            DefinitionTermsOfService.IsVisible = !DefinitionTermsOfService.IsVisible;
+            SubjectLayout.IsVisible = false;
+            DefinitionLayout.IsVisible = false;
+            DefinitionHowWeUseYourInformation.IsVisible = false;
+            DefinitionSharingOfInformation.IsVisible = false;
+            DefinitionRidesharing.IsVisible = false;
+
+        }
+        private void OnRidesharingTapped(object sender, EventArgs e)
+        {
+            DefinitionRidesharing.IsVisible = !DefinitionRidesharing.IsVisible;
+            SubjectLayout.IsVisible = false;
+            DefinitionLayout.IsVisible = false;
+            DefinitionHowWeUseYourInformation.IsVisible = false;
+            DefinitionSharingOfInformation.IsVisible = false;
+            DefinitionTermsOfService.IsVisible = false;
         }
     }
 }
