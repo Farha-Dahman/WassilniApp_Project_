@@ -24702,22 +24702,13 @@ namespace Wassilni_App.Droid
 			public const int Search1 = 2131165360;
 			
 			// aapt resource value: 0x7F0700B1
-			public const int Search2 = 2131165361;
+			public const int test_custom_background = 2131165361;
 			
 			// aapt resource value: 0x7F0700B2
-			public const int Search3 = 2131165362;
+			public const int tooltip_frame_dark = 2131165362;
 			
 			// aapt resource value: 0x7F0700B3
-			public const int Search4 = 2131165363;
-			
-			// aapt resource value: 0x7F0700B4
-			public const int test_custom_background = 2131165364;
-			
-			// aapt resource value: 0x7F0700B5
-			public const int tooltip_frame_dark = 2131165365;
-			
-			// aapt resource value: 0x7F0700B6
-			public const int tooltip_frame_light = 2131165366;
+			public const int tooltip_frame_light = 2131165363;
 			
 			static Drawable()
 			{
