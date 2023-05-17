@@ -26,6 +26,12 @@ namespace Wassilni_App.views
             _requestsViewModel = new RequestsViewModel();
             BindingContext = _requestsViewModel;
             RequestsCollectionView.ItemsSource = _requestsViewModel.RideRequests;
+
+            MessagingCenter.Subscribe<RequestsViewModel, bool>(this, "CollectionViewEmpty", (sender, isEmpty) =>
+            {
+                RequestsCollectionView.IsVisible = !isEmpty;
+                NoRequestsLabel.IsVisible = isEmpty;
+            });
         }
 
         protected override async void OnAppearing()

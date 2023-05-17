@@ -6,7 +6,8 @@
              BackgroundColor="#F0F0F0" >
     <ContentPage.Content>
         <StackLayout>
-            <CollectionView x:Name="RequestsCollectionView">
+
+            <CollectionView x:Name="RequestsCollectionView" IsVisible="False">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout Padding="10">
@@ -44,10 +45,10 @@
                                                 <RowDefinition Height="auto" />
                                                 <RowDefinition Height="auto" />
                                             </Grid.RowDefinitions>
-                                          
-                                              
 
-                                                <Grid Grid.Row="2" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+
+
+                                            <Grid Grid.Row="2" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="auto" />
                                                     <ColumnDefinition Width="auto" />
@@ -68,9 +69,9 @@
                                                     <Label Text="{StaticResource Date}" TextColor="{StaticResource colorPrimary}" FontSize="23" FontFamily="FAS" Margin="-30,2,0,0"/>
                                                     <Label  Text="{Binding TripDate}" FontSize="17.5"  TextColor="Black" Margin="2,3,0,0" />
                                                 </Grid>
-                                        
 
-                                                    <Grid Grid.Column="4" Padding="12,2,2,0" WidthRequest="100">
+
+                                                <Grid Grid.Column="4" Padding="12,2,2,0" WidthRequest="100">
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="auto" />
                                                         <ColumnDefinition Width="auto" />
@@ -97,6 +98,8 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+            <Label x:Name="NoRequestsLabel" Text="You don't have any requests yet" IsVisible="False" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
         </StackLayout>
+        
     </ContentPage.Content>
 </ContentPage>
