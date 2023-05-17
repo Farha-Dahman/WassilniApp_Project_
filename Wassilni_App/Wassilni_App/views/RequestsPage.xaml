@@ -14,7 +14,7 @@
                             <Frame  Padding="20,15,0,2"  HorizontalOptions="FillAndExpand" CornerRadius="15" HasShadow="False" BorderColor="{StaticResource colorPrimary}" BackgroundColor="#D0DAFF">
                                 <StackLayout Orientation="Horizontal">
                                     <forms:CircleImage  Source="{Binding PhotoUrl}" Aspect="AspectFit" HeightRequest="60" WidthRequest="60" BorderColor="Gray"  BorderThickness="2"  Margin="0,0,0,140"/>
-                                    <StackLayout >
+                                    <StackLayout>
                                         <StackLayout Orientation="Vertical">
                                             <Label  Text="{Binding RequestDate}" FontSize="16"  TextColor="Black" Margin="-70,-10,0,0" />
                                         </StackLayout>
@@ -98,6 +98,7 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+            
             <Label x:Name="NoRequestsLabel" Text="You don't have any requests yet" IsVisible="False" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
         </StackLayout>
         

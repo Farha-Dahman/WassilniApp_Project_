@@ -64,7 +64,7 @@ namespace Wassilni_App.viewModels
         {
             if (RideRequests == null || !RideRequests.Any())
             {
-                // Show the empty image
+                // Show the message
                 MessagingCenter.Send(this, "CollectionViewEmpty", true);
             }
             else
