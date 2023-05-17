@@ -149,15 +149,7 @@ namespace Wassilni_App.viewModels
             IsBusy = true;
             try
             {
-                if (string.IsNullOrEmpty(Email))
-                {
-                    EmailErrorMessage = "Please enter a valid email address.";
-
-                }
-                else
-                {
-                    EmailErrorMessage = "";
-                }
+                
                 if (string.IsNullOrEmpty(Password))
                 {
                     PasswordErrorMessage = "Please enter your password.";
@@ -202,8 +194,8 @@ namespace Wassilni_App.viewModels
                 else
                 {
 
-                    // Email does not exist in Firebase
-                    EmailErrorMessage = "Email Does Not Exist";
+                  
+                    EmailErrorMessage = "Please enter a valid email address.";
                 }
 
             }
