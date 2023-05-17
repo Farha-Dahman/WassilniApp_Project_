@@ -11,8 +11,6 @@ namespace Wassilni_App.views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SearchPage : ContentPage
     {
-        SearchViewModel viewModel;
-
         public SearchPage()
         {
             InitializeComponent();

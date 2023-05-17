@@ -124,8 +124,6 @@ namespace Wassilni_App.viewModels
                         Number_of_seats = NumberOfSeats,
 
                     };
-
-
                     await Application.Current.MainPage.Navigation.PushAsync(new NavigationPage(new CreatePoolPage(Pool)));
                 }
             }
@@ -140,6 +138,7 @@ namespace Wassilni_App.viewModels
         {
             try
             {
+                int Number = NumberOfSeats;
                 if (ValidateFields())
                 {
                     Ride Pool = new Ride
@@ -152,9 +151,16 @@ namespace Wassilni_App.viewModels
                         PricePerRide = Price,
                         DriverID = DriverId,
                     };
+                    if (Pool.Number_of_seats == 0)
+                    {
+                        Pool.Number_of_seats = 1;
+                    }
                     DatabaseHelper dbHelper = ((App)Application.Current).dbHelper;
                     string DriverID = Pool.DriverID;
+                    string Number_of_seats = Pool.Number_of_seats.ToString();
                     Preferences.Set("DriverID", DriverId);
+
+                    Preferences.Set("Number_of_seats", Number_of_seats);
                     List<Ride> matchingPools = await dbHelper.GetMatchingPoolsAsync(Pool);
                     await Application.Current.MainPage.Navigation.PushAsync(new FindPoolPage(matchingPools));
                 }

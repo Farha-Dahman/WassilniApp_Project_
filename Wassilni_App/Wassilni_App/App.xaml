@@ -36,6 +36,7 @@
             <x:String x:Key="Home">&#xe3af;</x:String>
             <x:String x:Key="Car">&#xf5de;</x:String>
             <x:String x:Key="Request">&#xf1d8;</x:String>
+            <x:String x:Key="Search">&#xf002;</x:String>
             <x:String x:Key="Profile">&#xf007;</x:String>
             <x:String x:Key="Email">&#xf0e0;</x:String>
             <x:String x:Key="Login">&#xf2f6;</x:String>
@@ -65,7 +66,9 @@
             <x:String x:Key="bus">&#xf207;</x:String>
             <x:String x:Key="Google">&#xf1a0;</x:String>
             <x:String x:Key="close-eye">&#xf070;</x:String>
-            
+            <x:String x:Key="Key">&#xf084;</x:String>
+            <x:String x:Key="shield">&#xf3ed;</x:String>
+
 
         </ResourceDictionary>
     </Application.Resources>

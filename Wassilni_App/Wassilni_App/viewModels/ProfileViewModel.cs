@@ -57,7 +57,8 @@ namespace Wassilni_App.viewModels
             get { return _PersonalPhoto; }
             set { SetProperty(ref _PersonalPhoto, value); }
         }
-
+        public bool IsGenderVisible { get; set; }
+  
         public ProfileViewModel()
         {
             string userId = Preferences.Get("userId", string.Empty);
@@ -69,14 +70,19 @@ namespace Wassilni_App.viewModels
             var user = await firebaseClient.Child("User").Child(UserId).OnceSingleAsync<Models.User>();
             if (user != null)
             {
-                PersonalPhoto = user.PhotoUrl;
-                Name = user.FirstName + " " + user.LastName;
-                PhoneNumber = user.PhoneNumber;
                 Email = user.Email;
-                Gender = await firebaseClient.Child("User").Child(UserId).Child("Gender").OnceSingleAsync<String>();
+                PersonalPhoto = user.PhotoUrl;
+                Name = !string.IsNullOrEmpty(user.FirstName) && !string.IsNullOrEmpty(user.LastName)
+                    ? user.FirstName + " " + user.LastName
+                    : user.FullName;
+                PhoneNumber = user.PhoneNumber;
+                Gender = user.SelectedGender;
                 Age = (DateTime.Now - DateTime.Parse(user.Birthdate)).Days / 365;
             }
-            
+            if (user.SelectedGender == null)
+            {
+                IsGenderVisible = false;
+            }
         }
     }
 }

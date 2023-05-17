@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Wassilni_App.Models;
 using Xamarin.Essentials;
 using System.Diagnostics;
+using System.Runtime.InteropServices.ComTypes;
 
 
 namespace Wassilni_App.Services
@@ -35,6 +36,7 @@ namespace Wassilni_App.Services
                 PricePerRide = r.Object.PricePerRide,
                 PhotoUrl = r.Object.PhotoUrl,
                 TripTime = r.Object.TripTime,
+                TripDate = r.Object.TripDate,
                 Date = r.Object.Date,
                 RideID=r.Object.RideID
             }).ToList();
@@ -46,7 +48,11 @@ namespace Wassilni_App.Services
             var allRides = await GetRidesAsync();
             pool.PickupDateTime = pool.Date.Add(pool.TripTime);
 
-
+            if (pool.PickupDateTime.Equals(DateTime.MinValue))
+            {
+                pool.PickupDateTime = DateTime.Now;
+            }
+            pool.PickupDateTime = pool.PickupDateTime.Date.Add(pool.TripTime);
 
             return allRides.Where(r =>
                   r.DriverID != currentUserId &&
@@ -258,6 +264,7 @@ namespace Wassilni_App.Services
                     TripDate = r.Object.Date.ToString("yyyy-MM-dd"),
                   
                 })
+                .OrderByDescending(r => r.PickupDateTime)
                 .ToList();
 
                 Debug.WriteLine($"User rides count: {userRides.Count}");
@@ -305,7 +312,8 @@ namespace Wassilni_App.Services
                         CarModel=r.Object.CarModel,
                         TripDate = r.Object.Date.ToString("yyyy-MM-dd")
             })
-                    .ToList();
+             .OrderByDescending(r => r.PickupDateTime) 
+            .ToList();
 
                 Debug.WriteLine("Ride list count: " + rideList.Count);
 
@@ -368,6 +376,12 @@ namespace Wassilni_App.Services
                 return new List<Notification>();
             }
         }
-
+        public async Task<bool> CheckPoolExists(Ride newPool)
+        {
+            var allRides = await GetRidesAsync();
+            return allRides.Any(r => r.DriverID == newPool.DriverID &&
+                              Math.Abs((r.PickupDateTime - newPool.PickupDateTime).TotalMinutes) < 30 
+                                     );
+        }
     }
 }

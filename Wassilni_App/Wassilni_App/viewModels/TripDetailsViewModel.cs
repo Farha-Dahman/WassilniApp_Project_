@@ -138,25 +138,43 @@ namespace Wassilni_App.viewModels
                 PhotoUrl = ride.PhotoUrl;
                 TripTime = ride.TripTime;
                 TripDate = ride.Date.Date.ToString("yyyy-MM-dd");
-              
+                CarModel = ride.CarModel;
+
                 if (ride.Riders != null)
                 {
                     Riders.Clear();
-                    if (ride.Riders.Count() == 1)
-                    {
-                        // myLabel.Visible = true;
-                        IsLabelVisible = true;
+                if (ride.Riders.Count() == 1)
+                {
+                    // myLabel.Visible = true;
+                    IsLabelVisible = true;
+                        OnPropertyChanged(nameof(IsLabelVisible));
                     }
-                    else
-                    {
+                else
+                {
+                 
                         foreach (var rider in ride.Riders.Skip(1))
                         {
+                            
+                            OnPropertyChanged(nameof(rider.RiderName));
+                            OnPropertyChanged(nameof(rider.RiderPhotoUrl));
                             Riders.Add(rider);
-                            RiderName = rider.RiderName;
-                            RiderPhotoUrl = rider.RiderPhotoUrl;
+                        RiderName = rider.RiderName;
+                        RiderPhotoUrl = rider.RiderPhotoUrl;
+                        OnPropertyChanged(RiderName);
+                        OnPropertyChanged(RiderPhotoUrl);
+                        Riders = new ObservableCollection<Rider>(ride.Riders);
+                        OnPropertyChanged(nameof(Riders));
+                          
+
                         }
+                        OnPropertyChanged(nameof(RiderName));
+                        OnPropertyChanged(nameof(RiderPhotoUrl));
                     }
+                  
+                   
                 }
+            
+
             }
         }
 
@@ -165,6 +183,11 @@ namespace Wassilni_App.viewModels
 
             string userId = Preferences.Get("userId", string.Empty);
             //  string DriverId = Preferences.Get("DriverId", string.Empty);
+              string Number_of_seat = Preferences.Get("Number_of_seats", string.Empty);
+            int.TryParse(Number_of_seat, out int seatCount);
+
+
+
             string rideId = RideId;
             try
             {
@@ -195,7 +218,7 @@ namespace Wassilni_App.viewModels
                         RideID = RideId,
                         PhoneNumber = PhoneNumber,
                         TripDate = TripDate,
-                        Number_of_Seats = Number_of_seats,
+                        Number_of_Seats = seatCount,
                     };
                     var newRideRequestResponse = await firebaseClient
                    .Child("requestRide")

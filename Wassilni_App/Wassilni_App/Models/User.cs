@@ -16,7 +16,6 @@ namespace Wassilni_App.Models
         private string phoneNumber;
         private string photoUrl;
 
-
         public string Email
         {
             get { return _email; }
@@ -66,6 +65,7 @@ namespace Wassilni_App.Models
             set { photoUrl = value; }
         }
         public string FCMToken { get; set; }
+        public string Userid { get; set; }
 
     }
 }

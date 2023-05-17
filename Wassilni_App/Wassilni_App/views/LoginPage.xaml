@@ -36,7 +36,7 @@
                         </Frame>
                     </Grid>
 
-                <Button x:Name="btnLogin" Text="Log in With Google" Clicked="btnLogin_Clicked" ImageSource="Googleimages.png" HorizontalOptions="FillAndExpand" HeightRequest="50" WidthRequest="20"  BorderColor="{StaticResource colorPrimary}"  BorderWidth="1.5" BackgroundColor="Transparent" TextColor="#333333" Margin="60,20,60,20"  CornerRadius="10" FontSize="18" />
+                <Button x:Name="btnLogin" Text="Log in With Google" Command="{Binding LoginWithGoogle}" ImageSource="Googleimages.png" HorizontalOptions="FillAndExpand" HeightRequest="50" WidthRequest="20"  BorderColor="{StaticResource colorPrimary}"  BorderWidth="1.5" BackgroundColor="Transparent" TextColor="#333333" Margin="60,20,60,20"  CornerRadius="10" FontSize="18" />
 
                     
                     <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
