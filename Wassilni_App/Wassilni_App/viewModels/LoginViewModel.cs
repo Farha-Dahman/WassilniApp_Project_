@@ -162,14 +162,7 @@ namespace Wassilni_App.viewModels
             IsBusy = true;
             try
             {
-                if (string.IsNullOrEmpty(Email))
-                {
-                    EmailErrorMessage = "Please enter a valid email address.";
-                }
-                else
-                {
-                    EmailErrorMessage = "";
-                }
+               
                 if (string.IsNullOrEmpty(Password))
                 {
                     PasswordErrorMessage = "Please enter your password.";
