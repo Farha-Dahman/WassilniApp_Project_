@@ -147,17 +147,34 @@ namespace Wassilni_App.viewModels
                 {
                     // myLabel.Visible = true;
                     IsLabelVisible = true;
-                }
+                        OnPropertyChanged(nameof(IsLabelVisible));
+                    }
                 else
                 {
-                    foreach (var rider in ride.Riders.Skip(1))
-                    {
-                        Riders.Add(rider);
+                 
+                        foreach (var rider in ride.Riders.Skip(1))
+                        {
+                            
+                            OnPropertyChanged(nameof(rider.RiderName));
+                            OnPropertyChanged(nameof(rider.RiderPhotoUrl));
+                            Riders.Add(rider);
                         RiderName = rider.RiderName;
                         RiderPhotoUrl = rider.RiderPhotoUrl;
+                        OnPropertyChanged(RiderName);
+                        OnPropertyChanged(RiderPhotoUrl);
+                        Riders = new ObservableCollection<Rider>(ride.Riders);
+                        OnPropertyChanged(nameof(Riders));
+                          
+
                         }
+                        OnPropertyChanged(nameof(RiderName));
+                        OnPropertyChanged(nameof(RiderPhotoUrl));
                     }
+                  
+                   
                 }
+            
+
             }
         }
 

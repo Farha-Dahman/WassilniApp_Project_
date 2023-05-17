@@ -133,9 +133,9 @@ namespace Wassilni_App.views
 
                 }
             }
-            catch (Exception ex)
+            catch 
             {
-                await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
+               
             }
         }
 
@@ -189,10 +189,13 @@ namespace Wassilni_App.views
 
             return poly;
         }
-
+          protected override bool OnBackButtonPressed()
+        {
+            return true;
+        }
 
 
     }
 }
-    
-    
+
+

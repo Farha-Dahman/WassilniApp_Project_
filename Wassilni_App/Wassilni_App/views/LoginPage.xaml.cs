@@ -119,7 +119,10 @@ namespace Wassilni_App.views
             await Navigation.PushAsync(new NavigationPage(new ForgetPasswordPage()));
 
         }
-
+        protected override bool OnBackButtonPressed()
+        {
+            return true;
+        }
 
     }
 
