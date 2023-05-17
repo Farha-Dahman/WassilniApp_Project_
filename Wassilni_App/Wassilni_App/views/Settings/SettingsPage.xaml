@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Wassilni_App.views.Settings.SettingsPage">
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Settings"
+                   FontSize="24"
+                   TextColor="White"
+                   HorizontalOptions="StartAndExpand" />
+        </StackLayout>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <StackLayout Spacing="15" BackgroundColor="WhiteSmoke">
+            <Label Text="Help Center"
+                VerticalOptions="Start" 
+                HorizontalOptions="StartAndExpand" FontSize="20" Margin="15,10,0,10"/>
+
+            <Frame x:Name="EditProfile" HeightRequest="24" Margin="15,0,15,0" HasShadow="True" CornerRadius="5">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="GoToEditProfilePage" />
+                </Frame.GestureRecognizers>
+                <StackLayout Orientation="Horizontal">
+                    <Label x:Name="BuEditProfile" BackgroundColor="Transparent" TextColor="Gray" Text="Edit Profile" FontSize="22" Padding="5,-5,0,0"/>
+                    <Label Text="{StaticResource arrow-right}" FontFamily="FAS"  FontSize="24" TextColor="Gray" HorizontalOptions="EndAndExpand" Margin="0,0,0,0"/>
+                </StackLayout>
+            </Frame>
+
+
+            <Frame x:Name="ContactUs" HeightRequest="24" Margin="15,0,15,0" HasShadow="True" CornerRadius="5">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="GoToContactUsPage" />
+                </Frame.GestureRecognizers>
+                <StackLayout Orientation="Horizontal">
+                    <Label x:Name="BuContactUs" BackgroundColor="Transparent" TextColor="Gray" Text="Contact Us" FontSize="22" Padding="5,-5,0,0"/>
+                    <Label Text="{StaticResource arrow-right}" FontFamily="FAS"  FontSize="24" TextColor="Gray" HorizontalOptions="EndAndExpand" Margin="0,0,0,0"/>
+                </StackLayout>
+            </Frame>
+
+            <Frame x:Name="Privacy_Terms" HeightRequest="24" Margin="15,0,15,0" HasShadow="True" CornerRadius="5">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="GoToPrivacy_TermsPage" />
+                </Frame.GestureRecognizers>
+                <StackLayout Orientation="Horizontal">
+                    <Label x:Name="BuPrivacy_Terms" BackgroundColor="Transparent" TextColor="Gray" Text="Privacy &amp; Terms" FontSize="22" Padding="5,-5,0,0"/>
+                    <Label Text="{StaticResource arrow-right}" FontFamily="FAS"  FontSize="24" TextColor="Gray" HorizontalOptions="EndAndExpand" Margin="0,0,0,0"/>
+                </StackLayout>
+            </Frame>
+
+            <Frame x:Name="FAQs" HeightRequest="24" Margin="15,0,15,0" HasShadow="True" CornerRadius="5">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="GoToFAQsPage" />
+                </Frame.GestureRecognizers>
+                <StackLayout Orientation="Horizontal">
+                    <Label x:Name="BuFAQs" BackgroundColor="Transparent" TextColor="Gray" Text="FAQs" FontSize="22" Padding="5,-5,0,0"/>
+                    <Label Text="{StaticResource arrow-right}" FontFamily="FAS"  FontSize="24" TextColor="Gray" HorizontalOptions="EndAndExpand" Margin="0,0,0,0"/>
+                </StackLayout>
+            </Frame>
+
+            <Frame x:Name="ChangePass" HeightRequest="24" Margin="15,0,15,0" HasShadow="True" CornerRadius="5">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="GoToChangePassPage" />
+                </Frame.GestureRecognizers>
+                <StackLayout Orientation="Horizontal">
+                    <Label x:Name="BuChangePass" BackgroundColor="Transparent" TextColor="Gray" Text="Change Password" FontSize="22" Padding="5,-5,0,0"/>
+                    <Label Text="{StaticResource arrow-right}" FontFamily="FAS"  FontSize="24" TextColor="Gray" HorizontalOptions="EndAndExpand" Margin="0,0,0,0"/>
+                </StackLayout>
+            </Frame>
+
+            <Frame x:Name="Logout" HeightRequest="24" Margin="15,0,15,0" HasShadow="True" CornerRadius="5">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="BtnLogout_Clicked" />
+                </Frame.GestureRecognizers>
+                <StackLayout Orientation="Horizontal">
+                    <Label x:Name="BuLogout" BackgroundColor="Transparent" TextColor="Gray" Text="Logout" FontSize="22" Padding="5,-5,0,0"/>
+                    <Label Text="{StaticResource arrow-right}" FontFamily="FAS"  FontSize="24" TextColor="Gray" HorizontalOptions="EndAndExpand" Margin="0,0,0,0"/>
+                </StackLayout>
+            </Frame>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

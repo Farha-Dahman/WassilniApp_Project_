@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:forms="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             x:Class="Wassilni_App.views.RequestsPage"
+             BackgroundColor="#F0F0F0" >
+    <ContentPage.Content>
+        <StackLayout>
+
+            <CollectionView x:Name="RequestsCollectionView" IsVisible="False">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10">
+                            <Frame  Padding="20,15,0,2"  HorizontalOptions="FillAndExpand" CornerRadius="15" HasShadow="False" BorderColor="{StaticResource colorPrimary}" BackgroundColor="#D0DAFF">
+                                <StackLayout Orientation="Horizontal">
+                                    <forms:CircleImage  Source="{Binding PhotoUrl}" Aspect="AspectFit" HeightRequest="60" WidthRequest="60" BorderColor="Gray"  BorderThickness="2"  Margin="0,0,0,140"/>
+                                    <StackLayout>
+                                        <StackLayout Orientation="Vertical">
+                                            <Label  Text="{Binding RequestDate}" FontSize="16"  TextColor="Black" Margin="-70,-10,0,0" />
+                                        </StackLayout>
+                                        <Grid Grid.Row="0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label Text="{Binding RiderName}" FontSize="Large" FontAttributes="Bold" TextColor="Black"   Margin="8,15,0,10" />
+
+                                            <Label Text="{StaticResource Profile}" TextColor="{StaticResource colorPrimary}" FontSize="26" FontFamily="FAS" Padding="0,19,1,0"  Grid.Column="2" />
+                                            <Label Text="{Binding Number_of_seats}" FontSize="24" FontFamily="Roboto-Bold" TextColor="Black" Grid.Column="3"  Padding="0,17,10,0"/>
+                                        </Grid>
+                                        <StackLayout Orientation="Horizontal" Margin="10,0,0,0">
+                                            <Label Text="{StaticResource LocationFrom}" TextColor="{StaticResource colorPrimary}" FontSize="13" FontFamily="FAS" Margin="0,5,0,0"/>
+                                            <Label  Text="{Binding StartLocation}" FontSize="17"  TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="0,0,0,2" />
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal" Margin="10,0,0,0">
+                                            <Label Text="{StaticResource LocationTo}" TextColor="{StaticResource colorDrop}" FontSize="19" FontFamily="FAS" Margin="0,2,0,0"/>
+                                            <Label  Text="{Binding EndLocation}" FontSize="17"  TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="0,2,0,0" />
+                                        </StackLayout>
+
+                                        <Grid Padding="5,-5,10,0" >
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="auto" />
+                                                <RowDefinition Height="auto" />
+                                                <RowDefinition Height="auto" />
+                                            </Grid.RowDefinitions>
+
+
+
+                                            <Grid Grid.Row="2" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="auto" />
+                                                    <ColumnDefinition Width="auto" />
+                                                    <ColumnDefinition Width="auto" />
+                                                    <ColumnDefinition Width="auto" />
+                                                    <ColumnDefinition Width="auto" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <Grid Grid.Column="0" Padding="12,2,10,0" WidthRequest="100">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="auto" />
+                                                        <ColumnDefinition Width="auto" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="auto" />
+                                                        <RowDefinition Height="auto" />
+                                                    </Grid.RowDefinitions>
+                                                    <Label Text="{StaticResource Date}" TextColor="{StaticResource colorPrimary}" FontSize="23" FontFamily="FAS" Margin="-30,2,0,0"/>
+                                                    <Label  Text="{Binding TripDate}" FontSize="17.5"  TextColor="Black" Margin="2,3,0,0" />
+                                                </Grid>
+
+
+                                                <Grid Grid.Column="4" Padding="12,2,2,0" WidthRequest="100">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="auto" />
+                                                        <ColumnDefinition Width="auto" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="auto" />
+                                                        <RowDefinition Height="auto" />
+                                                    </Grid.RowDefinitions>
+                                                    <Label Text="{StaticResource Time}" TextColor="{StaticResource colorPrimary}" FontSize="23" FontFamily="FAS" Margin="-35,2,10,0"/>
+                                                    <Label  Text="{Binding TripTime}" FontSize="17"  TextColor="Black" Margin="0" />
+                                                </Grid>
+                                            </Grid>
+                                        </Grid>
+
+
+                                        <StackLayout Orientation="Horizontal" Margin="70,0,0,0" >
+                                            <Button Text="Accept"  WidthRequest="90"  FontSize="18"  Command="{Binding AcceptRequestCommand}" />
+                                            <Button Text="Deny"  WidthRequest="90"  FontSize="18" Command="{Binding DenyRequestCommand}" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            
+            <Label x:Name="NoRequestsLabel" Text="You don't have any requests yet" IsVisible="False" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Wassilni_App.views.Settings.Privacy_TermsPage"
+             >
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Privacy &amp; Terms"
+                   FontSize="24"
+                   TextColor="White"
+                   HorizontalOptions="StartAndExpand" />
+        </StackLayout>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <StackLayout Margin="10">
+
+            <Frame BackgroundColor="Transparent" Margin="0" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Privacy Policy" FontSize="22" TextColor="Black" Grid.Column="0" VerticalOptions="Center"/>
+                    <Image Source="https://cdn-icons-png.flaticon.com/512/2985/2985150.png" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="End" WidthRequest="20" HeightRequest="20">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnSubjectArrowTapped"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
+            </Frame>
+            <Frame x:Name="SubjectLayout" BackgroundColor="Transparent" IsVisible="False" Margin="0,20,0,0" >
+                <StackLayout Margin="20,0,0,0">
+                    <Label Text="Our carpooling app respects your privacy and is committed to protecting it. This privacy policy describes how we collect, use, and share personal information when you use our app. By using our app, you agree to the terms of this privacy policy." FontSize="20" Margin="-20,-50,0,0"/>
+                </StackLayout>
+            </Frame>
+            <Frame BackgroundColor="Transparent" Margin="0" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Information We Collect"  TextColor="Black" FontSize="22" Grid.Column="0" VerticalOptions="Center"/>
+                    <Image Source="https://cdn-icons-png.flaticon.com/512/2985/2985150.png" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="End" WidthRequest="20" HeightRequest="20">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnDefinitionArrowTapped"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
+            </Frame>
+            <Frame x:Name="DefinitionLayout" BackgroundColor="Transparent" IsVisible="False" Margin="0,20,0,0" >
+                <StackLayout Margin="20,0,0,0">
+                    <Label Text="When you use our app, we may collect certain personal information from you, such as your name, email address, phone number. We also collect information about your rides and interactions with other users, as well as data from cookies and other tracking technologies." FontSize="20" Margin="-20,-50,0,0"/>
+                </StackLayout>
+            </Frame>
+
+            <Frame BackgroundColor="Transparent" Margin="0" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="How We Use Your Information"  TextColor="Black" FontSize="22" Grid.Column="0" VerticalOptions="Center"/>
+                    <Image Source="https://cdn-icons-png.flaticon.com/512/2985/2985150.png" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="End" WidthRequest="20" HeightRequest="20">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnHowWeUseYourInformationTapped"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
+            </Frame>
+            <Frame x:Name="DefinitionHowWeUseYourInformation" BackgroundColor="Transparent" IsVisible="False" Margin="0,20,0,0" >
+                <StackLayout Margin="20,0,0,0">
+                    <Label Text="We use your personal information to provide and improve our app, to facilitate ridesharing, and to communicate with you about our services. We may also use your information for marketing purposes and to comply with legal obligations." FontSize="20" Margin="-20,-50,0,0"/>
+                </StackLayout>
+            </Frame>
+            <Frame BackgroundColor="Transparent" Margin="0" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Sharing of Information"  TextColor="Black" FontSize="22" Grid.Column="0" VerticalOptions="Center"/>
+                    <Image Source="https://cdn-icons-png.flaticon.com/512/2985/2985150.png" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="End" WidthRequest="20" HeightRequest="20">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnSharingOfInformationTapped"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
+            </Frame>
+            <Frame x:Name="DefinitionSharingOfInformation" BackgroundColor="Transparent" IsVisible="False" Margin="0,20,0,0" >
+                <StackLayout Margin="20,0,0,0">
+                    <Label Text="We may share your personal information with third-party service providers who help us operate our app and provide services to you. We may also share your information with other users in connection with ridesharing. We may disclose your information if required by law or in response to legal process." FontSize="20" Margin="-20,-50,0,0"/>
+                </StackLayout>
+            </Frame>
+            
+            <Frame BackgroundColor="Transparent" Margin="0" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Terms of Service"  TextColor="Black" FontSize="22" Grid.Column="0" VerticalOptions="Center"/>
+                    <Image Source="https://cdn-icons-png.flaticon.com/512/2985/2985150.png" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="End" WidthRequest="20" HeightRequest="20">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnTermsOfServiceTapped"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
+            </Frame>
+            <Frame x:Name="DefinitionTermsOfService" BackgroundColor="Transparent" IsVisible="False" Margin="0,20,0,0" >
+                <StackLayout Margin="20,0,0,0">
+                    <Label Text="We may share your personal information with third-party service providers who help us operate our app and provide services to you. We may also share your information with other users in connection with ridesharing. We may disclose your information if required by law or in response to legal process." FontSize="20" Margin="-20,-50,0,0"/>
+                </StackLayout>
+            </Frame>
+            
+            <Frame BackgroundColor="Transparent" Margin="0" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Ridesharing"  TextColor="Black" FontSize="22" Grid.Column="0" VerticalOptions="Center"/>
+                    <Image Source="https://cdn-icons-png.flaticon.com/512/2985/2985150.png" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="End" WidthRequest="20" HeightRequest="20">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnRidesharingTapped"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
+            </Frame>
+            <Frame x:Name="DefinitionRidesharing" BackgroundColor="Transparent" IsVisible="False" Margin="0,20,0,0" >
+                <StackLayout Margin="20,0,0,0">
+                    <Label Text="We may share your personal information with third-party service providers who help us operate our app and provide services to you. We may also share your information with other users in connection with ridesharing. We may disclose your information if required by law or in response to legal process." FontSize="20" Margin="-20,-50,0,0"/>
+                </StackLayout>
+            </Frame>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
