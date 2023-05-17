@@ -264,6 +264,7 @@ namespace Wassilni_App.Services
                     TripDate = r.Object.Date.ToString("yyyy-MM-dd"),
                   
                 })
+                .OrderByDescending(r => r.PickupDateTime)
                 .ToList();
 
                 Debug.WriteLine($"User rides count: {userRides.Count}");
@@ -311,7 +312,8 @@ namespace Wassilni_App.Services
                         CarModel=r.Object.CarModel,
                         TripDate = r.Object.Date.ToString("yyyy-MM-dd")
             })
-                    .ToList();
+             .OrderByDescending(r => r.PickupDateTime) 
+            .ToList();
 
                 Debug.WriteLine("Ride list count: " + rideList.Count);
 
@@ -374,6 +376,12 @@ namespace Wassilni_App.Services
                 return new List<Notification>();
             }
         }
-
+        public async Task<bool> CheckPoolExists(Ride newPool)
+        {
+            var allRides = await GetRidesAsync();
+            return allRides.Any(r => r.DriverID == newPool.DriverID &&
+                              Math.Abs((r.PickupDateTime - newPool.PickupDateTime).TotalMinutes) < 30 
+                                     );
+        }
     }
 }
