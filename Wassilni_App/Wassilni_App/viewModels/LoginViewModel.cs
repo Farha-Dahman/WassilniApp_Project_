@@ -213,9 +213,9 @@ namespace Wassilni_App.viewModels
                 }
                 else
                 {
-                    // Email does not exist in Firebase
-                    EmailErrorMessage = "Email Does Not Exist";
-                    Console.WriteLine("EmailErrorMessage");
+                 
+                    EmailErrorMessage = "Please enter a valid email address.";
+
                 }
             }
             catch 

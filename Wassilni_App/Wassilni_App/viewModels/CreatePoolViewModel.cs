@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Wassilni_App.Models;
+using Wassilni_App.Services;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using static Wassilni_App.Models.Ride;
@@ -19,7 +20,9 @@ namespace Wassilni_App.viewModels
     {
 
         FirebaseClient firebaseClient = new Firebase.Database.FirebaseClient("https://wassilni-app-default-rtdb.firebaseio.com/");
-    
+        DatabaseHelper databaseHelper = new DatabaseHelper("https://wassilni-app-default-rtdb.firebaseio.com/");
+
+
         private string _fullName;
         private string _phoneNumber;
         private string _startLocation;
@@ -251,7 +254,7 @@ namespace Wassilni_App.viewModels
             }
             return true;
         }
-
+    
         private bool ValidatePrice()
         {
             if (Price <= 0)
@@ -270,6 +273,7 @@ namespace Wassilni_App.viewModels
          && ValidateStartTime()
          && ValidateCarModel()
          && ValidatePrice();
+
 
             if (!ValidatePhoneNumber())
             {
@@ -301,23 +305,8 @@ namespace Wassilni_App.viewModels
                 ErrorMessage = errorMessage;
                 ShowTopErrorMessage?.Invoke(this, EventArgs.Empty);
             }
-            /*
-            else if (!ValidateStartDate())
-            {
-                string errorMessage = "Please Select A Valid Date!.";
-
-                ErrorMessage = errorMessage;
-                ShowTopErrorMessage?.Invoke(this, EventArgs.Empty);
-            }*/
 
             else if (!ValidatePrice())
-            {
-                string errorMessage = "Please Enter The Ride price!.";
-
-                ErrorMessage = errorMessage;
-                ShowTopErrorMessage?.Invoke(this, EventArgs.Empty);
-            }
-            else if (!ValidateCarModel())
             {
                 string errorMessage = "Please Enter The Ride price!.";
 
@@ -334,6 +323,8 @@ namespace Wassilni_App.viewModels
             }
 
             return validationResult;
+
+
         }
 
 
@@ -354,10 +345,10 @@ namespace Wassilni_App.viewModels
             {
                 if (AllValidationsPassed())
                 {
+                   
 
-               
-                    // Create a pool object
-                    var newPool = new Ride
+                        // Create a pool object
+                        var newPool = new Ride
                     {
                         PhotoUrl = userPhotoUrl,
                         DriverID = _driverid,
@@ -377,19 +368,33 @@ namespace Wassilni_App.viewModels
                         Riders = new List<Rider>()
 
                     };
-                    newPool.Riders.Add(new Rider());
-                 
+                    var poolExists = await databaseHelper.CheckPoolExists(newPool);
 
-                    // Save the pool object to the database
-                    var rideReference = await firebaseClient.Child("Ride").PostAsync(newPool);
-                    newPool.RideID = rideReference.Key;
-                    Preferences.Set("RideID", rideReference.Key);
-                    string rideId = Preferences.Get("RideID", string.Empty);
-                    newPool.RideID = rideId;
-                    await firebaseClient.Child("Ride").Child(rideId).PutAsync(newPool);
-                    // Navigate back or display a success message
-                    await PopupNavigation.Instance.PushAsync(new PopUpCreatePool());
+                    if (!poolExists)
+                    {
+
+                        newPool.Riders.Add(new Rider());
+                        // Save the pool object to the database
+                        var rideReference = await firebaseClient.Child("Ride").PostAsync(newPool);
+                        newPool.RideID = rideReference.Key;
+                        Preferences.Set("RideID", rideReference.Key);
+                        string rideId = Preferences.Get("RideID", string.Empty);
+                        newPool.RideID = rideId;
+                        await firebaseClient.Child("Ride").Child(rideId).PutAsync(newPool);
+                        // Navigate back or display a success message
+                        await PopupNavigation.Instance.PushAsync(new PopUpCreatePool());
+                    }
+                    else
+                    {
+                          string errorMessage = "There is already an existing Pool at the same time and date You cant start two trips at the same time";
+
+                ErrorMessage = errorMessage;
+                ShowTopErrorMessage?.Invoke(this, EventArgs.Empty);
+
+                    }
+                   
                 }
+              
 
 
             }
