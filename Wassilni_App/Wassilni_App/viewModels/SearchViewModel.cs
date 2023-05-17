@@ -17,6 +17,11 @@ namespace Wassilni_App.viewModels
         private List<Models.User> filteredUsers;
         private string searchTerm;
 
+        public List<Models.User> Users => filteredUsers;
+
+        public ICommand SearchUsersCommand { get; }
+        public ICommand ViewProfileCommand { get; }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
         public string SearchTerm
@@ -25,9 +30,13 @@ namespace Wassilni_App.viewModels
             set
             {
                 searchTerm = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SearchTerm)));
+                OnPropertyChanged(nameof(SearchTerm));
                 SearchUsers();
             }
+        }
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         public SearchViewModel()
@@ -40,15 +49,7 @@ namespace Wassilni_App.viewModels
             LoadUsers();
             ViewProfileCommand = new Command<Models.User>(ExecuteViewProfileCommand);
         }
-        private async void NavigateToUserProfile(Models.User user)
-        {
-            await Application.Current.MainPage.Navigation.PushAsync(new ViewProfilePage(user.Email));
-        }
-        public List<Models.User> Users => filteredUsers;
-
-        public ICommand SearchUsersCommand { get; }
-        public ICommand ViewProfileCommand { get; }
-
+       
         private async void LoadUsers()
         {
             var users = await firebaseClient.Child("User").OnceAsync<Models.User>();
@@ -61,16 +62,16 @@ namespace Wassilni_App.viewModels
                 if (string.IsNullOrWhiteSpace(searchTerm))
                 {
                     filteredUsers.Clear();
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Users)));
-                    return;
                 }
-
-                filteredUsers = allUsers.Where(user =>
-           (user.FullName != null && user.FullName.ToLower().Contains(searchTerm.ToLower())) ||
-           (user.FirstName != null && user.FirstName.ToLower().Contains(searchTerm.ToLower())) ||
-           (user.LastName != null && user.LastName.ToLower().Contains(searchTerm.ToLower())) ||
-           (user.FirstName != null && user.LastName != null && (user.FirstName.ToLower() + " " + user.LastName.ToLower()).Contains(searchTerm.ToLower()))
-       ).ToList();
+                else
+                {
+                    filteredUsers = allUsers.Where(user =>
+                      (user.FullName != null && user.FullName.ToLower().Contains(searchTerm.ToLower())) ||
+                      (user.FirstName != null && user.FirstName.ToLower().Contains(searchTerm.ToLower())) ||
+                      (user.LastName != null && user.LastName.ToLower().Contains(searchTerm.ToLower())) ||
+                      (user.FirstName != null && user.LastName != null && (user.FirstName.ToLower() + " " + user.LastName.ToLower()).Contains(searchTerm.ToLower()))
+                         ).ToList();
+                }
             }
             catch (Exception ex)
             {
@@ -78,21 +79,29 @@ namespace Wassilni_App.viewModels
             }
             finally
             {
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Users)));
+                OnPropertyChanged(nameof(Users));
+            }
+            if (string.IsNullOrWhiteSpace(searchTerm) && filteredUsers.Count == 0)
+            {
+                filteredUsers = new List<Models.User>(); // Create an empty list
+                OnPropertyChanged(nameof(Users));
             }
         }
 
 
+        private async void NavigateToUserProfile(Models.User user)
+        {
+            await Application.Current.MainPage.Navigation.PushAsync(new ViewProfilePage(user.Email));
+        }
         private async void ExecuteViewProfileCommand(Models.User user)
         {
-            var userRef = firebaseClient.Child("User").OrderBy("Email").EqualTo(user.Email);
-            var users = await userRef.OnceAsync<Models.User>();
+            var users = await firebaseClient.Child("User").OrderBy("Email").EqualTo(user.Email).OnceAsync<Models.User>();
             var selectedUser = users.Select(u => u.Object).FirstOrDefault();
 
             if (selectedUser != null)
             {
                 // Navigate to the user profile page using the user's key
-                await Application.Current.MainPage.Navigation.PushAsync(new ViewProfilePage(selectedUser.Email));
+                NavigateToUserProfile(selectedUser);
             }
         }
     }
