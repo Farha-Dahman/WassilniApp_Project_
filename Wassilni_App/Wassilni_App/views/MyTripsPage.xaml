@@ -21,7 +21,7 @@
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Frame CornerRadius="15"  BackgroundColor="{StaticResource colorFrame}" BorderColor="{StaticResource colorPrimary}" Padding="0,1,0,2" >
+                        <Frame CornerRadius="15"  BackgroundColor="{StaticResource colorFrame}" Margin="{Binding FrameMargin}" BorderColor="{StaticResource colorPrimary}" Padding="0,1,0,2" >
                             <Grid Padding="10,10,10,0" RowSpacing="2" >
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="auto" />
@@ -35,11 +35,11 @@
                                 </Grid.ColumnDefinitions>
                                 <forms:CircleImage Source="{Binding PhotoUrl}" Aspect="AspectFit" HeightRequest="50" WidthRequest="50" Grid.Column="0" Grid.Row="0"/>
                                 <Label Text="{Binding DriverName}" FontSize="20" FontFamily="Roboto-Bold" TextColor="Black" Grid.Column="1" Grid.Row="0"  Padding="3,10" />
-                                <StackLayout Grid.Column="1" Grid.Row="1">
-                                    <Grid>
+                                <StackLayout Grid.ColumnSpan="3" Grid.Row="1" Margin="55,0,0,0">
+                                <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="auto" />
-                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="auto" />
                                         </Grid.ColumnDefinitions>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="auto" />
@@ -48,11 +48,12 @@
                                             <RowDefinition Height="auto" />
                                         </Grid.RowDefinitions>
                                         <Label Text="{StaticResource LocationFrom}" FontFamily="FAS" FontSize="13" Padding="0,2,0,0" TextColor="{StaticResource colorPrimary}" Grid.Column="0" Grid.Row="0"></Label>
-                                        <Label Text="{Binding StartLocation}" FontFamily="Roboto-Bold" Grid.Column="1" Grid.Row="0" FontSize="15"></Label>
+                                        <Label Text="{Binding StartLocation}" FontFamily="Roboto-Bold" Grid.Column="1" Grid.Row="0"  FontSize="15"></Label>
                                         <Label Text="{StaticResource LocationTo}" FontFamily="FAS" FontSize="18" Padding="0,2,0,0" TextColor="{StaticResource colorDrop}"  Grid.Column="0" Grid.Row="1"></Label>
                                         <Label Text="{Binding EndLocation}" FontFamily="Roboto-Bold" Grid.Column="1" Grid.Row="1" FontSize="15" Margin="0,3,0,0"></Label>
                                     </Grid>
                                 </StackLayout>
+                                
                                 <Grid Grid.Row="2"  Grid.ColumnSpan="3" Margin="55,0,0,10">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="auto" />
@@ -80,7 +81,7 @@
                                         <ColumnDefinition Width="auto" />
                                         <ColumnDefinition Width="auto" />
                                     </Grid.ColumnDefinitions>
-                                    <Button Text="Cancel" TextColor="White" FontFamily="Roboto-Medium" FontSize="Medium" HorizontalOptions="End" CommandParameter="{Binding RideID}" WidthRequest="110" HeightRequest="28" Grid.Column="2"  Clicked="OnCancelClicked" IsVisible="{Binding ShowCancelButton}"></Button>
+                                    <Button Text="Cancel" TextColor="White" FontFamily="Roboto-Medium" FontSize="Medium" HorizontalOptions="End" CommandParameter="{Binding RideID}" WidthRequest="110" HeightRequest="40" Grid.Column="2"  Clicked="OnCancelClicked" IsVisible="{Binding ShowCancelButton}"></Button>
                                 </Grid>
                             </Grid>
                         </Frame>

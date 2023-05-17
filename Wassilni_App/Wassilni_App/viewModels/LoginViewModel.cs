@@ -16,7 +16,6 @@ using System.Linq;
 using Newtonsoft.Json;
 using System.Net.Http;
 using static Google.Apis.Auth.OAuth2.Web.AuthorizationCodeWebApp;
-using static Java.Util.Jar.Attributes;
 
 namespace Wassilni_App.viewModels
 {
@@ -92,68 +91,88 @@ namespace Wassilni_App.viewModels
                     FullName = googleUser.FullName,
                     Email = googleUser.Email,
                     PhotoUrl = googleUser.Picture.AbsoluteUri,
-                    UserId = googleUser.UserId,
                 };
 
                 await SaveUserToDatabase(user);
+                await Application.Current.MainPage.Navigation.PushAsync(new TabbedBottom());
 
-                App.Current.MainPage = new NavigationPage(new TabbedBottom());
             }
             else
             {
                 IsLogedIn = false;
                 await Application.Current.MainPage.DisplayAlert("Error", message, "Ok");
             }
-        
+
         }
 
         private async Task SaveUserToDatabase(GoogleUser user)
         {
-            var firebaseObject = await firebaseClient.Child("User").PostAsync(user);
-            string firebaseKey = firebaseObject.Key;
-            user.FirebaseKey = firebaseKey;
-            await firebaseClient.Child("User").Child(firebaseKey).PutAsync(user);
-
             var authProvider = new FirebaseAuthProvider(new FirebaseConfig(webAPIkey));
+            var userSnapshot = await firebaseClient.Child("User").OnceAsync<Models.User>();
 
-            try
+            var userIsExist = false;
+            foreach (var userObject in userSnapshot)
+            {
+                var userInfo = userObject.Object;
+                if (userInfo.Email == user.Email)
+                {
+                    userIsExist = true;
+                    break;
+                }
+            }
+            if (userIsExist)
+            {
+                var query = await firebaseClient.Child("User").OrderBy("Email").EqualTo(user.Email).OnceAsync<Models.User>();
+                string userId = null;
+                foreach (var googleUser in query)
+                {
+                    userId = googleUser.Key;
+                    break;
+                }
+                id = userId;
+                Preferences.Set("userId", id);
+                if (id != null)
+                {
+                    await authProvider.SignInWithEmailAndPasswordAsync(user.Email, "WWW123456");
+                    await Application.Current.MainPage.Navigation.PushAsync(new TabbedBottom());
+                }
+            }
+            else
             {
                 var authResult = await authProvider.CreateUserWithEmailAndPasswordAsync(user.Email, "WWW123456");
 
-                var newUser = new
+                var firebaseObject = await firebaseClient.Child("User").PostAsync(user);
+                string userId = firebaseObject.Key;
+                user.userId = userId;
+
+                Preferences.Set("userId", user.userId);
+                if (user.userId != null)
                 {
-                    Name = user.FullName,
-                    Email = user.Email,
-                    PhotoUrl = user.PhotoUrl,
-                };
-
-                await firebaseClient.Child("User").Child(authResult.User.LocalId).PutAsync(newUser);
-
-                await authProvider.SignInWithEmailAndPasswordAsync(newUser.Email, "WWW123456");
-                await Application.Current.MainPage.Navigation.PushAsync(new TabbedBottom());
-
-            }
-            catch (FirebaseAuthException ex)
-            {
-                await Application.Current.MainPage.DisplayAlert("Message", ex.Message, "Ok");
+                    await authProvider.SignInWithEmailAndPasswordAsync(user.Email, "WWW123456");
+                    await Application.Current.MainPage.Navigation.PushAsync(new TabbedBottom());
+                }
             }
         }
 
         private async Task ExecuteSignInCommand()
         {
-
-
             if (IsBusy)
                 return;
 
             IsBusy = true;
             try
             {
-                
+                if (string.IsNullOrEmpty(Email))
+                {
+                    EmailErrorMessage = "Please enter a valid email address.";
+                }
+                else
+                {
+                    EmailErrorMessage = "";
+                }
                 if (string.IsNullOrEmpty(Password))
                 {
                     PasswordErrorMessage = "Please enter your password.";
-
                 }
                 else
                 {
@@ -171,6 +190,7 @@ namespace Wassilni_App.viewModels
                     foreach(var user in emailExistence)
                     {
                         id = user.Key;
+                        Console.WriteLine($"id: {id}");
                         Preferences.Set("userId", id);
                         if (id != null)
                         {
@@ -193,26 +213,19 @@ namespace Wassilni_App.viewModels
                 }
                 else
                 {
-
-                  
+                 
                     EmailErrorMessage = "Please enter a valid email address.";
-                }
 
+                }
             }
             catch 
             {
                 PasswordErrorMessage = "The Password you provided is wrong";
             }
-
-
-
             finally
             {
                 IsBusy = false;
             }
         }
-
-
-
     }
 }

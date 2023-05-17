@@ -44,7 +44,7 @@ namespace Wassilni_App.viewModels
         public ObservableCollection<RideRequest> RequestRides { get; set; }
         private readonly RequestsViewModel _requestsViewModel;
         private readonly DatabaseHelper _databaseHelper;
-
+        public bool IsCollectionViewEmpty => RequestRides == null || !RequestRides.Any();
         public RequestViewModel(RideRequest request, RequestsViewModel requestsViewModel, DatabaseHelper databaseHelper)
         {
             RequestId = request.RequestID;
@@ -76,6 +76,7 @@ namespace Wassilni_App.viewModels
             DenyRequestCommand = new Command(async () => await DenyRequestAsync());
 
         }
+      
 
         string userId = Preferences.Get("userId", string.Empty);
 
@@ -129,6 +130,7 @@ namespace Wassilni_App.viewModels
                 $"Your ride request has been accepted by {bookedRide.DriverName}. Please check your upcoming rides.",
                 userFcmToken, RiderId, PhotoUrl);
 
+            await CheckIfCollectionViewIsEmpty();
         }
 
         private async Task DenyRequestAsync()
@@ -143,9 +145,13 @@ namespace Wassilni_App.viewModels
                 $"Your ride request has been Denayed by {DriverName}.",
                 userFcmToken,RiderId, PhotoUrl);
 
-
+            await CheckIfCollectionViewIsEmpty();
         }
-
+        private async Task CheckIfCollectionViewIsEmpty()
+        {
+            var isCollectionViewEmpty = !_requestsViewModel.RideRequests.Any();
+            MessagingCenter.Send(_requestsViewModel, "CollectionViewEmpty", isCollectionViewEmpty);
+        }
         private async Task UpdateRequestStatusAsync(bool isAccepted)
         {
             string RequestID = RequestId;

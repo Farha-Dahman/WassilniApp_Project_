@@ -54,11 +54,26 @@ namespace Wassilni_App.viewModels
             {
                 RideRequests.Add(new RequestViewModel(request, this, _databaseHelper));
             }
+            CheckIfCollectionViewIsEmpty();
         }
         public void RemoveRequest(RequestViewModel request)
         {
             RideRequests.Remove(request);
         }
+        private void CheckIfCollectionViewIsEmpty()
+        {
+            if (RideRequests == null || !RideRequests.Any())
+            {
+                // Show the message
+                MessagingCenter.Send(this, "CollectionViewEmpty", true);
+            }
+            else
+            {
+                // Show the collection view
+                MessagingCenter.Send(this, "CollectionViewEmpty", false);
+            }
+        }
+
     }
 }
 

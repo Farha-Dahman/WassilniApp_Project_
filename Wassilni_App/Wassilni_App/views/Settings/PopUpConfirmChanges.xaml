@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Wassilni_App.views.Settings.PopUpConfirmChanges"
+             xmlns:xf="http://schemas.microsoft.com/xamarin/forms"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:viewmodels="clr-namespace:Wassilni_App.viewModels"
+             x:DataType="viewmodels:EditProfileViewModel"
+             HasSystemPadding="False"
+             BackgroundColor="#AA000000">
+
+    <Frame BackgroundColor="White" CornerRadius="15" Padding="20" Margin="50" HasShadow="True" VerticalOptions="Center" HorizontalOptions="Center">
+        <StackLayout Spacing="20">
+            <Image Source="checkmark.png" WidthRequest="80" HeightRequest="80" HorizontalOptions="Center" />
+            <Label Text="changed Successfully" FontSize="Large" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+            <Label Text="Your changes have been completed successfully." FontSize="Small" HorizontalTextAlignment="Center" />
+            <Button Text="OK" x:Name="GoLogIn" BackgroundColor="{StaticResource colorPrimary}" TextColor="White" CornerRadius="10" Padding="20, 0" Clicked="Ok_Clicked"/>
+        </StackLayout>
+    </Frame>
+
+
+</pages:PopupPage>

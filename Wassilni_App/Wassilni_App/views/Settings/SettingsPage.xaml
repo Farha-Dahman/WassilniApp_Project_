@@ -42,7 +42,7 @@
                     <TapGestureRecognizer Tapped="GoToPrivacy_TermsPage" />
                 </Frame.GestureRecognizers>
                 <StackLayout Orientation="Horizontal">
-                    <Label x:Name="BuPrivacy_Terms" BackgroundColor="Transparent" TextColor="Gray" Text="Privacy  Terms" FontSize="22" Padding="5,-5,0,0"/>
+                    <Label x:Name="BuPrivacy_Terms" BackgroundColor="Transparent" TextColor="Gray" Text="Privacy &amp; Terms" FontSize="22" Padding="5,-5,0,0"/>
                     <Label Text="{StaticResource arrow-right}" FontFamily="FAS"  FontSize="24" TextColor="Gray" HorizontalOptions="EndAndExpand" Margin="0,0,0,0"/>
                 </StackLayout>
             </Frame>
