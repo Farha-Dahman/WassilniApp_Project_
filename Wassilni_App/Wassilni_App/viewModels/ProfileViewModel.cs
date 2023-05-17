@@ -76,7 +76,7 @@ namespace Wassilni_App.viewModels
                     ? user.FirstName + " " + user.LastName
                     : user.FullName;
                 PhoneNumber = user.PhoneNumber;
-                Gender = await firebaseClient.Child("User").Child(UserId).Child("Gender").OnceSingleAsync<String>();
+                Gender = user.SelectedGender;
                 Age = (DateTime.Now - DateTime.Parse(user.Birthdate)).Days / 365;
             }
             if (user.SelectedGender == null)

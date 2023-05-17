@@ -104,19 +104,18 @@ namespace Wassilni_App.viewModels
             }
 
         }
-        
+
         private async Task SaveUserToDatabase(GoogleUser user)
         {
             var authProvider = new FirebaseAuthProvider(new FirebaseConfig(webAPIkey));
             var userSnapshot = await firebaseClient.Child("User").OnceAsync<Models.User>();
-            
+
             var userIsExist = false;
             foreach (var userObject in userSnapshot)
             {
                 var userInfo = userObject.Object;
-                if(userInfo.Email == user.Email)
+                if (userInfo.Email == user.Email)
                 {
-                    Console.WriteLine("user is exist in database");
                     userIsExist = true;
                     break;
                 }
@@ -191,6 +190,7 @@ namespace Wassilni_App.viewModels
                     foreach(var user in emailExistence)
                     {
                         id = user.Key;
+                        Console.WriteLine($"id: {id}");
                         Preferences.Set("userId", id);
                         if (id != null)
                         {
@@ -215,6 +215,7 @@ namespace Wassilni_App.viewModels
                 {
                     // Email does not exist in Firebase
                     EmailErrorMessage = "Email Does Not Exist";
+                    Console.WriteLine("EmailErrorMessage");
                 }
             }
             catch 
