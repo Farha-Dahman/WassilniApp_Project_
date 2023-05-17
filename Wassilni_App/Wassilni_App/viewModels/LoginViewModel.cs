@@ -16,8 +16,6 @@ using System.Linq;
 using Newtonsoft.Json;
 using System.Net.Http;
 using static Google.Apis.Auth.OAuth2.Web.AuthorizationCodeWebApp;
-using static Java.Util.Jar.Attributes;
-
 
 namespace Wassilni_App.viewModels
 {
@@ -93,7 +91,6 @@ namespace Wassilni_App.viewModels
                     FullName = googleUser.FullName,
                     Email = googleUser.Email,
                     PhotoUrl = googleUser.Picture.AbsoluteUri,
-                    UserId = googleUser.UserId,
                 };
 
                 await SaveUserToDatabase(user);
@@ -109,7 +106,7 @@ namespace Wassilni_App.viewModels
         }
 
 
-        private async Task SaveUserToDatabase(GoogleUser user)
+        /*private async Task SaveUserToDatabase(GoogleUser user)
         {
             FirebaseClient firebaseClient = new Firebase.Database.FirebaseClient("https://wassilni-app-default-rtdb.firebaseio.com/");
             var firebaseObject = await firebaseClient.Child("User").PostAsync(user);
@@ -136,6 +133,143 @@ namespace Wassilni_App.viewModels
             {
                 await Application.Current.MainPage.DisplayAlert("Message", ex.Message, "Ok");
             }
+        }*/
+        
+        private async Task SaveUserToDatabase(GoogleUser user)
+        {
+            var authProvider = new FirebaseAuthProvider(new FirebaseConfig(webAPIkey));
+            //var firebaseUser = await authProvider.GetUserAsync(user.FirebaseKey);
+            //retrieve the user object from the real-time database
+            Console.WriteLine(user.Email);
+
+            //var user = await firebaseClient.Child("User").Child(UserId).OnceSingleAsync<Models.User>();
+
+           // var firebaseObject = await firebaseClient.Child("User").Child(user.).OnceSingleAsync<Models.User>();
+
+            //var authProvider = new FirebaseAuthProvider(new FirebaseConfig(webAPIkey));
+           // var firebaseObject = await authProvider.GetUserAsync(user.Email);
+            var userSnapshot = await firebaseClient.Child("User").OnceAsync<Models.User>();
+            // Retrieve all users
+
+            // var users = new List<Models.User>();
+            //object userInfo;
+            var user_is_exist = false;
+            foreach (var userObject in userSnapshot)
+            {
+                var userInfo = userObject.Object;
+                if(userInfo.Email == user.Email)
+                {
+                    Console.WriteLine("user is exist in database");
+                    user_is_exist = true;
+                    //userInfo = userObject.Object;
+                    break;
+                }
+                //Console.WriteLine(userInfo.Email);
+                //Console.WriteLine(userInfo.FullName);
+                //users.Add(userInfo);
+            }
+
+
+
+            // get the GoogleUser object from the FirebaseObject
+            //GoogleUser firebaseUser = firebaseObject.Object;
+
+            if (user_is_exist)
+            {
+                Console.WriteLine("sign_in");
+                Console.WriteLine(user.Email);
+                //var authResult = await authProvider.SignInWithEmailAndPasswordAsync(user.Email, "WWW123456");
+                var firebaseObject = await firebaseClient.Child("User").PostAsync(user);
+                string userId = firebaseObject.Key;
+                user.userId = userId;
+                Console.WriteLine("user.userId = " + user.userId);
+
+                id = user.userId;
+                Console.WriteLine("Id = " + id);
+
+                Preferences.Set("userId", id);
+                if (id != null)
+                {
+                    await authProvider.SignInWithEmailAndPasswordAsync(user.Email, "WWW123456");
+                    await Application.Current.MainPage.Navigation.PushAsync(new TabbedBottom());
+                }
+
+                Console.WriteLine("after sign_in");
+            }
+            else
+            {
+                Console.WriteLine(" in the else ");
+                var authResult = await authProvider.CreateUserWithEmailAndPasswordAsync(user.Email, "WWW123456");
+
+                //var firebaseObject = await firebaseClient.Child("User").PostAsync(user);
+                //string userId = firebaseObject.Key;
+                //user.userId = userId;
+                await firebaseClient.Child("User").Child(authResult.User.LocalId).PutAsync(user);
+                await authProvider.SignInWithEmailAndPasswordAsync(user.Email, "WWW123456");
+
+
+
+            }
+
+
+            /*
+            if (firebaseObject != null)
+           {
+               //try
+               //{
+                    Console.WriteLine("inside if    = " + firebaseObject.Email);
+
+                    var authResult = await authProvider.SignInWithEmailAndPasswordAsync(user.Email, "WWW123456");
+
+                    Console.WriteLine("authResult   =  "  + authResult);
+                    await Application.Current.MainPage.Navigation.PushAsync(new TabbedBottom());
+
+                    // var userProfile = await authProvider.GetUserAsync(authResult.FirebaseToken);
+                    // Console.WriteLine("authResult   =  " + authResult);
+
+                    // if (userProfile.IsEmailVerified)
+                    //{
+                    //    // User is logged in, navigate to next page
+                    //    await Application.Current.MainPage.Navigation.PushAsync(new TabbedBottom());
+                    //    EmailErrorMessage = "";
+                    //}
+               // }
+               // catch (FirebaseAuthException ex)
+               //{
+               //    // Invalid ID token error
+               //    await Application.Current.MainPage.DisplayAlert("Message", ex.Message, "Ok");
+               //}
+           }
+           else
+           {
+               try
+               {
+                   // Create the new user in the Firebase authentication database
+                   var authResult = await authProvider.CreateUserWithEmailAndPasswordAsync(user.Email, "WWW123456");
+
+                   // Save the Firebase user ID to the local user object
+                   var newUser = new GoogleUser
+                   {
+                       FullName = user.FullName,
+                       Email = user.Email,
+                       PhotoUrl = user.PhotoUrl,
+                       UserId = user.UserId,
+                       FirebaseKey = authResult.User.LocalId
+                   };
+
+                   // Save the user info to the real-time database
+                   FirebaseClient firebaseClient = new Firebase.Database.FirebaseClient("https://wassilni-app-default-rtdb.firebaseio.com/");
+                   await firebaseClient.Child("User").Child(authResult.User.LocalId).PutAsync(newUser);
+
+                   // User is logged in, navigate to next page
+                   App.Current.MainPage = new NavigationPage(new TabbedBottom());
+               }
+               catch (FirebaseAuthException ex)
+               {
+                   // Firebase authentication error
+                   await Application.Current.MainPage.DisplayAlert("Message", ex.Message, "Ok");
+               }
+           }*/
         }
 
         private async Task ExecuteSignInCommand()

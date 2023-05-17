@@ -15,9 +15,9 @@
                    Margin="0,45,0,20 "/>
             <Label Text="{Binding Name}" FontSize="Large" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="5,0,0,0" />
             <StackLayout  Margin="35,17,25,0" WidthRequest="0">
-                <StackLayout  Margin="20" >
+                <StackLayout x:Name="PhoneNumber" IsVisible="true" Margin="20" >
                     <StackLayout Orientation="Horizontal" VerticalOptions="Center" >
-                        <Label Text="{StaticResource Phone}" TextColor="#5E7FFF" FontSize="24" FontFamily="FAS" />
+                        <Label  Text="{StaticResource Phone}" TextColor="#5E7FFF" FontSize="24" FontFamily="FAS" />
                         <Label Text="{Binding PhoneNumber}"  FontSize="Medium" Margin="5,0,0,0"/>
                     </StackLayout>
                     <BoxView BackgroundColor="DarkGray" Margin="30,5,5,5" HeightRequest="1.1" Color="Gray" WidthRequest="310" HorizontalOptions="Center" VerticalOptions="Center" />
@@ -29,14 +29,14 @@
                     </StackLayout>
                     <BoxView BackgroundColor="DarkGray" Margin="30,5,5,5" HeightRequest="1.1" Color="Gray" WidthRequest="310" HorizontalOptions="Center" VerticalOptions="Center" />
                 </StackLayout>
-                <StackLayout  Margin="20">
+                <StackLayout x:Name="Gender" IsVisible="true" Margin="20">
                     <StackLayout Orientation="Horizontal" VerticalOptions="Center" >
                         <Label Text="{StaticResource Gender}" TextColor="#5E7FFF" FontSize="24" FontFamily="FAS" />
                         <Label Text="{Binding Gender}"  FontSize="Medium" Margin="5,0,0,0"/>
                     </StackLayout>
                     <BoxView BackgroundColor="DarkGray" Margin="30,5,5,5" HeightRequest="1.1" Color="Gray" WidthRequest="310" HorizontalOptions="Center" VerticalOptions="Center" />
                 </StackLayout>
-                <StackLayout  Margin="20">
+                <StackLayout x:Name="Age" IsVisible="true" Margin="20">
                     <StackLayout Orientation="Horizontal" VerticalOptions="Center" >
                         <Label Text="{StaticResource Birthday}" TextColor="#5E7FFF" FontSize="24" FontFamily="FAS" />
                         <Label Text="{Binding Age}" FontSize="Medium" Margin="5,0,0,0" />
